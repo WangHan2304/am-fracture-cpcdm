@@ -1,6 +1,8 @@
-﻿# Homogenization bias and applicability limits of orientation-resolved ductile damage descriptors in AM metals (Taylor CP-CDM)
+# Homogenization bias and applicability limits of orientation-resolved ductile damage descriptors in AM metals (Taylor CP-CDM)
 
 Reproducibility archive for the manuscript submitted to the *International Journal of Damage Mechanics* (SAGE). It contains the solver code, the curated literature dataset, the result JSONs behind every reported number, and the LaTeX sources.
+
+> **Version of record and priority.** This archive is the citable version of record for the work described here, released under the MIT License (see the LICENSE file) and archived with a versioned DOI: [10.5281/zenodo.23257091](https://doi.org/10.5281/zenodo.23257091). The companion manuscript is under review at the *International Journal of Damage Mechanics*. Please cite the manuscript and/or the DOI if you build on this work.
 
 ## Contents
 - `simulation/src/` - Taylor-type crystal-plasticity continuum-damage model (TaylorCPCDM), CP-CDM, materials, RVE generator.
