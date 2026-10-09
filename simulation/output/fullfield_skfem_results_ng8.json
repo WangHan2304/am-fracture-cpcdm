@@ -1,0 +1,59 @@
+{
+ "engine": "scikit-fem 12.0.2",
+ "model": "Third-party FE (scikit-fem) plane-strain full-field CP-CDM vs TaylorCPCDM (identical constitutive/parameters/orientations)",
+ "constitutive": "batch explicit integration copied verbatim from fullfield_2d_cpfem._integrate_batch (fixed n_sub, slip clip)",
+ "cases": [
+  {
+   "material": "Ti64",
+   "orientation": 0,
+   "ef_skfem": 0.04444,
+   "ef_taylor": 0.06441,
+   "bias_pct": -31.0,
+   "fracture_type": "localization_onset",
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "skfem_wall_sec": 195.6
+  },
+  {
+   "material": "Ti64",
+   "orientation": 45,
+   "ef_skfem": 0.032,
+   "ef_taylor": 0.05197,
+   "bias_pct": -38.42,
+   "fracture_type": "localization_onset",
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "skfem_wall_sec": 113.2
+  },
+  {
+   "material": "Ti64",
+   "orientation": 90,
+   "ef_skfem": 0.02703,
+   "ef_taylor": 0.047,
+   "bias_pct": -42.49,
+   "fracture_type": "localization_onset",
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "skfem_wall_sec": 70.9
+  },
+  {
+   "material": "AlSi10Mg",
+   "orientation": 0,
+   "ef_skfem": 0.03737,
+   "ef_taylor": 0.05734,
+   "bias_pct": -34.82,
+   "fracture_type": "localization_onset",
+   "Dc": 0.35,
+   "S0": 0.2,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "skfem_wall_sec": 216.4
+  }
+ ]
+}

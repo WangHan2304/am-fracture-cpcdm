@@ -1,0 +1,29 @@
+{
+  "material": "Ti64",
+  "dataset": "Sun2024_ADEM_adem.202400942",
+  "S0_used": 0.32,
+  "cases": [
+    {
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.0723,
+      "error_pct": 22.61,
+      "uts_pred_MPa": 960.0
+    },
+    {
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.0541,
+      "error_pct": 1.47,
+      "uts_pred_MPa": 952.0
+    },
+    {
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.0439,
+      "error_pct": 44.33,
+      "uts_pred_MPa": 950.0
+    }
+  ],
+  "avg_error_pct": 22.8
+}

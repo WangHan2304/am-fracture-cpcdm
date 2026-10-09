@@ -1,0 +1,436 @@
+{
+  "timestamp": "2026-06-18T16:56:10.224141",
+  "materials": {
+    "Ti64": {
+      "0deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 90.5613944159909,
+          "elastic_modulus_GPa": 113.20174301998864,
+          "yield_stress_MPa": 90.22470891147721
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 91.01647679999087
+        },
+        "experimental": {
+          "ef_exp": 0.08,
+          "ef_pred": 0.12,
+          "error_pct": 49.999999999999986,
+          "pass_10pct": false
+        }
+      },
+      "45deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 90.51588617759091,
+          "elastic_modulus_GPa": 113.14485772198866,
+          "yield_stress_MPa": 90.17936986177295
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 91.01647679999087
+        },
+        "experimental": {
+          "ef_exp": 0.065,
+          "ef_pred": 0.12,
+          "error_pct": 84.6153846153846,
+          "pass_10pct": false
+        }
+      },
+      "90deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 90.47037793919093,
+          "elastic_modulus_GPa": 113.08797242398866,
+          "yield_stress_MPa": 90.13403081206869
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 91.01647679999087
+        },
+        "experimental": {
+          "ef_exp": 0.05,
+          "ef_pred": 0.12,
+          "error_pct": 139.99999999999997,
+          "pass_10pct": false
+        }
+      },
+      "0deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      },
+      "90deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      }
+    },
+    "316L": {
+      "0deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 96.83916234238693,
+          "elastic_modulus_GPa": 121.04895292798368,
+          "yield_stress_MPa": 96.40126973966031
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 97.0332287999869
+        },
+        "experimental": {
+          "ef_exp": 0.35,
+          "ef_pred": 0.12,
+          "error_pct": 65.71428571428571,
+          "pass_10pct": false
+        }
+      },
+      "45deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 96.81975569662693,
+          "elastic_modulus_GPa": 121.02469462078368,
+          "yield_stress_MPa": 96.3819508479289
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 97.0332287999869
+        },
+        "experimental": {
+          "ef_exp": 0.3,
+          "ef_pred": 0.12,
+          "error_pct": 60.0,
+          "pass_10pct": false
+        }
+      },
+      "90deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 96.80034905086693,
+          "elastic_modulus_GPa": 121.00043631358368,
+          "yield_stress_MPa": 96.36263195619752
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 97.0332287999869
+        },
+        "experimental": {
+          "ef_exp": 0.25,
+          "ef_pred": 0.12,
+          "error_pct": 52.0,
+          "pass_10pct": false
+        }
+      },
+      "0deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      },
+      "90deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      }
+    },
+    "AlSi10Mg": {
+      "0deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 56.70080901119364,
+          "elastic_modulus_GPa": 70.87601126399205,
+          "yield_stress_MPa": 56.474513430739556
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 57.158073599993585
+        },
+        "experimental": {
+          "ef_exp": 0.06,
+          "ef_pred": 0.12,
+          "error_pct": 100.0,
+          "pass_10pct": false
+        }
+      },
+      "45deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 56.655082552313644,
+          "elastic_modulus_GPa": 70.81885319039206,
+          "yield_stress_MPa": 56.42896946829541
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 57.158073599993585
+        },
+        "experimental": {
+          "ef_exp": 0.05,
+          "ef_pred": 0.12,
+          "error_pct": 139.99999999999997,
+          "pass_10pct": false
+        }
+      },
+      "90deg": {
+        "modified": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 56.60935609343365,
+          "elastic_modulus_GPa": 70.76169511679207,
+          "yield_stress_MPa": 56.383425505851264
+        },
+        "lemaitre": {
+          "fracture_strain": 0.12,
+          "max_stress_MPa": 57.158073599993585
+        },
+        "experimental": {
+          "ef_exp": 0.04,
+          "ef_pred": 0.12,
+          "error_pct": 199.99999999999994,
+          "pass_10pct": false
+        }
+      },
+      "0deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      },
+      "90deg_rve": {
+        "modified": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17,
+          "fracture_strain_ci95": 1.5704195272132438e-17
+        },
+        "lemaitre": {
+          "fracture_strain": 0.10000000000000002,
+          "fracture_strain_std": 1.3877787807814457e-17
+        }
+      }
+    }
+  },
+  "sensitivity": {
+    "base_ef": 0.1,
+    "parameters": {
+      "D0": {
+        "nominal": 0.005,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "phi": {
+        "nominal": 0.003,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "lambda_mp": {
+        "nominal": 50.0,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "xi_grain": {
+        "nominal": 3.5,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "theta_tex": {
+        "nominal": 0.42,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "alpha1": {
+        "nominal": 0.5,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "alpha2": {
+        "nominal": 0.3,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "beta1": {
+        "nominal": 2.0,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "beta2": {
+        "nominal": 1.5,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "beta3": {
+        "nominal": 10.0,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "beta4": {
+        "nominal": 0.8,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "beta5": {
+        "nominal": 0.2,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "S0": {
+        "nominal": 3.5,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "s_damage": {
+        "nominal": 1.0,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      },
+      "p_D": {
+        "nominal": 0.05,
+        "effects": {
+          "-20%": 0.1,
+          "-10%": 0.1,
+          "+10%": 0.1,
+          "+20%": 0.1
+        },
+        "sensitivity_index": 0.0,
+        "max_change_pct": 0.0
+      }
+    }
+  },
+  "contribution": {
+    "base_modified_ef": 0.1,
+    "lemaitre_ef": 0.1,
+    "total_effect_pct": 0.0,
+    "components": {
+      "porosity (f_phi)": {
+        "ef_without": 0.1,
+        "delta_ef": 0.0,
+        "contribution_pct": 0.0
+      },
+      "texture (f_theta)": {
+        "ef_without": 0.1,
+        "delta_ef": 0.0,
+        "contribution_pct": 0.0
+      },
+      "melt_pool (f_lambda)": {
+        "ef_without": 0.1,
+        "delta_ef": 0.0,
+        "contribution_pct": 0.0
+      },
+      "morphology (f_xi)": {
+        "ef_without": 0.1,
+        "delta_ef": 0.0,
+        "contribution_pct": 0.0
+      }
+    }
+  }
+}

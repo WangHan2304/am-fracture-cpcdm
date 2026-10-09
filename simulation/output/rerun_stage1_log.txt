@@ -1,0 +1,22 @@
+
+==== rerun_stage1 2026-10-06 22:25:29 ====
+[22:25:29] WAVE A1: 16 independent single-process scripts (concurrent)
+[22:25:30] blind_predict_frozen.py                rc=0  0s  [22:25:30] HEADLINE n=9  ef mean/med/max=66.48/32.74/360.78%  pass@20%=3/9  UTS mean=17.96% | [22:25:30] DONE -> D:\20260618断裂模型论文\simulation\output\blind_predict_frozen_results.json  (0.0s)
+[22:25:56] blind_test_in718.py                    rc=0  27s  avg_ef_error=93.9%  avg_uts_error=73.3%  ratio90/0 pred=0.62 exp=1.50 | DONE saved blind_test_in718_results.json
+[22:26:11] blind_alsi_second_source.py            rc=0  41s  psi=90: pred 0.0286 exp 0.081 err 64.7% | DONE avg err 38.83 ratio {'pred': 0.42, 'exp': 0.98}
+[22:26:23] blind_test_ti64_cross_source.py        rc=0  53s    90deg: exp=0.0789 pred=0.0439 err=44.33% | avg=22.80% -> D:\20260618断裂模型论文\simulation\output\blind_test_ti64_cross_source_results.json
+[22:26:35] sensitivity_Dc.py                      rc=0  66s  Dc=0.588  ef=0.07229 | span_rel=0.00%  DONE saved sensitivity_Dc.json
+[22:26:41] sensitivity_k_g_90.py                  rc=0  71s  k_g=0.40  ef=0.04406 | span_rel=0.4%  DONE saved sensitivity_k_g_90.json
+[22:28:37] blind_ti64_beta6_slow.py               rc=0  187s    -> mean err=21.8% | DONE
+[22:30:24] blind_test_in718_mode2.py              rc=0  294s  blind(45/90) avg_ef_error=71.5%  ratio90/0 pred=0.17 exp=0.67 | DONE saved blind_test_in718_mode2_results.json
+[22:31:08] blind_test_in718_fast.py               rc=0  338s  [M2] S0*=8.0 train=17.5% blind avg=71.5% ratio90/0=0.17 (exp 0.67) | DONE saved blind_test_in718_fast_results.json  total=338s
+[22:37:05] taylor_single_crystal_bounds.py        rc=0  654s  [AlSi10Mg] Taylor ef=0.06877 | single ef 0.05187..0.12200 (mean 0.07731 std 0.02778) | dev -24.57..+77.41% (654s) | Wrote D:\20260618断裂模型论文\simulation\output\taylor_single_crystal_bounds.json (654s total)
+[22:37:38] beta6_scan.py                          rc=0  675s  Ti64 b6=0.7: 0d=0.1293 (64%) 45d=0.1228 (130%) 90d=0.1251 (34%) | DONE
+[22:37:48] blind_316l_beta6_slow.py               rc=0  738s  316L-2 b6=0.7: 90d ef=0.4000 err=20.3% | DONE
+[22:39:03] blind_test_316l_cross_source.py        rc=0  814s  S0*=1.0 train=26.8% avg_blind=80.6% ratio90/0 pred=0.29 exp=2.83 | DONE
+[22:41:37] sensitivity_r5_beta.py                 rc=0  967s  } | DONE 967s
+[22:55:46] sensitivity_v9.py                      rc=0  1790s  Wrote D:\20260618断裂模型论文\simulation\output\sensitivity_v9.json | Wrote D:\20260618断裂模型论文\simulation\figures\Fig_sensitivity_v2.png (1789s total)
+[23:10:41] blind_test_in718_v2.py                 rc=4294967295  2711s  [M1] psi=45 ef=0.013 err=94.9% UTS=204 err=79.0% | [M1] psi=90 ef=0.011 err=96.2% UTS=287 err=71.1%
+[23:10:41] WAVE A2: 6 internal-pool scripts (sequential)
+[23:48:16] experiment_v11_loocv_fix.py            rc=4294967295  2255s    [LEM] Ti64       hold= 45deg | S0=  0.3200 train_err= 20.89% blind_ef= 20.98% blind_uts=13.43% | 896s |   [LEM] Ti64       hold= 90deg | S0=  0.8000 train_err= 12.48% blind_ef= 49.41% blind_uts= 9.41% | 1038s
+[00:48:28] experiment_v11_gs_directional.py       rc=4294967295  3612s  v11 gs(psi) directional: k_g=0.15, xi0={'Ti64': 3.5, '316L': 2.5, 'AlSi10Mg': 1.5} |   [CAL-MODEL] Ti64       S0=  0.3200 cal_err= 10.76% | ef [np.float64(9.64), np.float64(14.16), np.float64(8.47)] | UTS [np.float64(16.

@@ -1,0 +1,86 @@
+{
+  "timestamp": "lemaitre_baseline_v1",
+  "description": "Conventional Lemaitre baseline: same Taylor CP solver, f_AM=1, S_eff=S0, D0=0, no aniso multiplier; S0 calibrated on 0 deg only.",
+  "EPS_STEP": 0.0005,
+  "N_SUB": 30,
+  "N_GRAINS": 20,
+  "S0_lemaitre": {
+    "Ti64": 1.775,
+    "316L": 7.62265625,
+    "AlSi10Mg": 0.7250000000000001
+  },
+  "avg_error_pct_all9": 25.760050480850193,
+  "avg_error_pct_45_90": 38.330125673621446,
+  "max_error_pct": 67.1522400931362,
+  "cases": {
+    "Ti64": {
+      "0": {
+        "ef_exp": 0.08,
+        "ef_pred": 0.08023307524470538,
+        "error_pct": 0.2913440558817253,
+        "uts_exp": 1150,
+        "uts_pred_mpa": 963.1399351019005
+      },
+      "45": {
+        "ef_exp": 0.063,
+        "ef_pred": 0.08023307524470538,
+        "error_pct": 27.354087690008544,
+        "uts_exp": 1100,
+        "uts_pred_mpa": 963.1399351019005
+      },
+      "90": {
+        "ef_exp": 0.048,
+        "ef_pred": 0.08023307524470538,
+        "error_pct": 67.1522400931362,
+        "uts_exp": 1050,
+        "uts_pred_mpa": 963.1399351019005
+      }
+    },
+    "316L": {
+      "0": {
+        "ef_exp": 0.37,
+        "ef_pred": 0.367537973857092,
+        "error_pct": 0.6654124710562079,
+        "uts_exp": 680,
+        "uts_pred_mpa": 659.7406818244922
+      },
+      "45": {
+        "ef_exp": 0.31,
+        "ef_pred": 0.367537973857092,
+        "error_pct": 18.560636728094202,
+        "uts_exp": 640,
+        "uts_pred_mpa": 659.7406818244922
+      },
+      "90": {
+        "ef_exp": 0.255,
+        "ef_pred": 0.367537973857092,
+        "error_pct": 44.13253876748707,
+        "uts_exp": 595,
+        "uts_pred_mpa": 659.7406818244922
+      }
+    },
+    "AlSi10Mg": {
+      "0": {
+        "ef_exp": 0.056,
+        "ef_pred": 0.05650564850503167,
+        "error_pct": 0.902943758985119,
+        "uts_exp": 440,
+        "uts_pred_mpa": 352.70230522045307
+      },
+      "45": {
+        "ef_exp": 0.047,
+        "ef_pred": 0.05650564850503167,
+        "error_pct": 20.22478405325887,
+        "uts_exp": 410,
+        "uts_pred_mpa": 352.70230522045307
+      },
+      "90": {
+        "ef_exp": 0.037,
+        "ef_pred": 0.0564458926826052,
+        "error_pct": 52.55646670974379,
+        "uts_exp": 375,
+        "uts_pred_mpa": 352.7545649728349
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+ "ng=3": {
+  "local": {
+   "residual_ms": 19.66,
+   "residual_samples_ms": [
+    19.8,
+    19.66,
+    19.85,
+    40.39,
+    49.89
+   ],
+   "residual_spread_pct": 153.7,
+   "tangent_s": 15.42,
+   "tangent_samples_s": [
+    15.42,
+    15.49
+   ],
+   "tangent_spread_pct": 0.43,
+   "n_free": 157,
+   "nip": 216,
+   "W": null
+  },
+  "nonlocal": {
+   "residual_ms": 20.43,
+   "residual_samples_ms": [
+    20.47,
+    20.85,
+    20.43,
+    51.66,
+    50.86
+   ],
+   "residual_spread_pct": 152.85,
+   "tangent_s": 15.87,
+   "tangent_samples_s": [
+    15.94,
+    15.87
+   ],
+   "tangent_spread_pct": 0.44,
+   "n_free": 157,
+   "nip": 216,
+   "W": {
+    "nip": 216,
+    "lc": 0.3333333333333333,
+    "rcut": 1.0,
+    "nnz": 42792,
+    "nnz_per_row_mean": 198.11,
+    "max_neighbour_radius": 1.0,
+    "row_sum_min": 0.9999999999999997,
+    "row_sum_max": 1.0000000000000002,
+    "constant_field_error": 4.440892098500626e-16,
+    "sparse": true
+   }
+  },
+  "method": "interleaved sampling, min of 5 rounds x 20 reps for residual, min of 2 interleaved calls for tangent. MIN (not mean) is used deliberately: other python processes run on this machine and one tangent call lasts 15-69 s, so the mean is routinely hit by contention spikes - see residual_samples_ms for an example.",
+  "tangent_overhead_ratio": 1.0292,
+  "residual_overhead_ratio": 1.0392,
+  "matvec": {
+   "lc_1_over_ng": {
+    "nnz_per_row": 198.11,
+    "csr_us": 41.82,
+    "dense_us": 6.7,
+    "max_abs_agreement": 1.3322676295501878e-15
+   },
+   "lc_0p25": {
+    "nnz_per_row": 137.78,
+    "csr_us": 25.15,
+    "dense_us": 6.44,
+    "max_abs_agreement": 8.881784197001252e-16
+   }
+  }
+ },
+ "ng=4": {
+  "local": {
+   "residual_ms": 104.6,
+   "residual_samples_ms": [
+    106.27,
+    106.41,
+    107.07,
+    107.45,
+    104.6
+   ],
+   "residual_spread_pct": 2.72,
+   "tangent_s": 68.52,
+   "tangent_samples_s": [
+    68.52,
+    69.94
+   ],
+   "tangent_spread_pct": 2.08,
+   "n_free": 322,
+   "nip": 512,
+   "W": null
+  },
+  "nonlocal": {
+   "residual_ms": 108.55,
+   "residual_samples_ms": [
+    111.98,
+    112.77,
+    112.14,
+    108.55,
+    111.89
+   ],
+   "residual_spread_pct": 3.89,
+   "tangent_s": 72.65,
+   "tangent_samples_s": [
+    72.65,
+    73.27
+   ],
+   "tangent_spread_pct": 0.85,
+   "n_free": 322,
+   "nip": 512,
+   "W": {
+    "nip": 512,
+    "lc": 0.25,
+    "rcut": 0.75,
+    "nnz": 164312,
+    "nnz_per_row_mean": 320.92,
+    "max_neighbour_radius": 0.75,
+    "row_sum_min": 0.9999999999999997,
+    "row_sum_max": 1.0000000000000004,
+    "constant_field_error": 6.661338147750939e-16,
+    "sparse": true
+   }
+  },
+  "method": "interleaved sampling, min of 5 rounds x 20 reps for residual, min of 2 interleaved calls for tangent. MIN (not mean) is used deliberately: other python processes run on this machine and one tangent call lasts 15-69 s, so the mean is routinely hit by contention spikes - see residual_samples_ms for an example.",
+  "tangent_overhead_ratio": 1.0603,
+  "residual_overhead_ratio": 1.0378,
+  "matvec": {
+   "lc_1_over_ng": {
+    "nnz_per_row": 320.92,
+    "csr_us": 137.5,
+    "dense_us": 32.86,
+    "max_abs_agreement": 1.6653345369377348e-15
+   },
+   "lc_0p25": {
+    "nnz_per_row": 320.92,
+    "csr_us": 135.03,
+    "dense_us": 35.71,
+    "max_abs_agreement": 1.6653345369377348e-15
+   }
+  }
+ }
+}

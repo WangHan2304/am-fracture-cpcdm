@@ -1,0 +1,31 @@
+{
+ "material": "AlSi10Mg (LPBF as-built)",
+ "dataset": "Metals 2018, 8, 825 (doi:10.3390/met8100825)",
+ "S0_used": 0.2,
+ "resolution": "eps_step=5e-4, n_sub=30",
+ "cases": [
+  {
+   "orientation_deg": 0,
+   "ef_exp": 0.083,
+   "ef_pred": 0.0688,
+   "error_pct": 17.15
+  },
+  {
+   "orientation_deg": 45,
+   "ef_exp": 0.057,
+   "ef_pred": 0.0372,
+   "error_pct": 34.66
+  },
+  {
+   "orientation_deg": 90,
+   "ef_exp": 0.081,
+   "ef_pred": 0.0286,
+   "error_pct": 64.68
+  }
+ ],
+ "avg_error_pct": 38.83,
+ "ratio_90_over_0": {
+  "pred": 0.42,
+  "exp": 0.98
+ }
+}

@@ -1,0 +1,22 @@
+[1/3] Re-running 9-case validation with FINAL parameters ...
+
+Material       Orient   ef_exp     ef_pred    Err%     Pass  UTS err%  
+------------------------------------------------------------------------
+Ti-6Al-4V      0        0.0800     0.0788     1.56     PASS  16.67     
+Ti-6Al-4V      45       0.0630     0.0640     1.55     PASS  13.16     
+Ti-6Al-4V      90       0.0480     0.0477     0.61     PASS  9.54      
+316L SS        0        0.3700     0.3370     8.91     PASS  4.80      
+316L SS        45       0.3100     0.3043     1.84     PASS  0.55      
+316L SS        90       0.2550     0.2526     0.95     PASS  4.75      
+AlSi10Mg       0        0.0560     0.0566     1.16     PASS  20.48     
+AlSi10Mg       45       0.0470     0.0458     2.66     PASS  15.17     
+AlSi10Mg       90       0.0370     0.0371     0.34     PASS  8.11      
+------------------------------------------------------------------------
+Pass: 9/9, Average ef error: 2.17%
+
+[2/3] Generating figures ...
+      Figures written to: D:\20260618断裂模型论文\simulation\figures
+[3/3] Writing results JSON ...
+      JSON written to: D:\20260618断裂模型论文\simulation\output\experiment_v2_results.json
+
+DONE: figures + JSON regenerated with 316L@90 aniso=0.98 (9/9).

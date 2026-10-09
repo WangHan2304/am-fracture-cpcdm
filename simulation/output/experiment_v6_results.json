@@ -1,0 +1,132 @@
+{
+  "model": "v6_canonical",
+  "model_form": "S=S0 constant; f_AM = f_phi*f_theta*f_D0*f_lambda(psi)*f_xi(psi)*f_AM_aniso(psi); a(0)=1, a(45), a(90) calibrated",
+  "eps_step": {
+    "Ti64": 0.0005,
+    "316L": 0.001,
+    "AlSi10Mg": 0.0005
+  },
+  "calibration": "each case calibrated (S0 on 0deg, multipliers on 45/90deg); all 9 are calibration cases; validation = LOOCV (v5)",
+  "avg_error_pct": 0.7363885536457159,
+  "avg_uts_error_pct": 16.204640023405982,
+  "pass_count": 9,
+  "cases": [
+    {
+      "material": "Ti64",
+      "orientation": 0,
+      "S0": 2.040544109344482,
+      "a_aniso": 1.0,
+      "f_AM": 2.016157028089241,
+      "ef_exp": 0.08,
+      "ef_pred": 0.07999772671064471,
+      "error_pct": 0.0028416116941085146,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 960.0058232854675,
+      "uts_error_pct": 16.521232757785434
+    },
+    {
+      "material": "Ti64",
+      "orientation": 45,
+      "S0": 2.040544109344482,
+      "a_aniso": 1.684234619140625,
+      "f_AM": 3.2900727550962694,
+      "ef_exp": 0.063,
+      "ef_pred": 0.06300179771380975,
+      "error_pct": 0.002853513983722618,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 959.6450745932948,
+      "uts_error_pct": 12.759538673336838
+    },
+    {
+      "material": "Ti64",
+      "orientation": 90,
+      "S0": 2.040544109344482,
+      "a_aniso": 4.2154541015625,
+      "f_AM": 7.1836681913607565,
+      "ef_exp": 0.048,
+      "ef_pred": 0.048001072613416795,
+      "error_pct": 0.0022346112849881694,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 958.7472461111648,
+      "uts_error_pct": 8.69073846560335
+    },
+    {
+      "material": "316L",
+      "orientation": 0,
+      "S0": 6.497032089233398,
+      "a_aniso": 1.0,
+      "f_AM": 1.4509318505461724,
+      "ef_exp": 0.37,
+      "ef_pred": 0.36593279044898835,
+      "error_pct": 1.0992458245977408,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 531.6106786623463,
+      "uts_error_pct": 21.821959020243185
+    },
+    {
+      "material": "316L",
+      "orientation": 45,
+      "S0": 6.497032089233398,
+      "a_aniso": 1.241180419921875,
+      "f_AM": 1.7855902142557278,
+      "ef_exp": 0.31,
+      "ef_pred": 0.29789082809722,
+      "error_pct": 3.9061844847677394,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 490.2430644727521,
+      "uts_error_pct": 23.39952117613248
+    },
+    {
+      "material": "316L",
+      "orientation": 90,
+      "S0": 6.497032089233398,
+      "a_aniso": 1.560333251953125,
+      "f_AM": 2.110824974931192,
+      "ef_exp": 0.255,
+      "ef_pred": 0.25904256167804907,
+      "error_pct": 1.5853183051172788,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 467.1863878226577,
+      "uts_error_pct": 21.481279357536522
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 0,
+      "S0": 0.7022244930267334,
+      "a_aniso": 1.0,
+      "f_AM": 1.6070113760054117,
+      "ef_exp": 0.056,
+      "ef_pred": 0.05600962574833557,
+      "error_pct": 0.017188836313511324,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 351.2712242640692,
+      "uts_error_pct": 20.165630849075182
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 45,
+      "S0": 0.7022244930267334,
+      "a_aniso": 1.011749267578125,
+      "f_AM": 2.095853300707689,
+      "ef_exp": 0.047,
+      "ef_pred": 0.04699735017850202,
+      "error_pct": 0.005637918080810963,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 350.7124743888844,
+      "uts_error_pct": 14.460372100272098
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 90,
+      "S0": 0.7022244930267334,
+      "a_aniso": 1.262542724609375,
+      "f_AM": 3.105592839045591,
+      "ef_exp": 0.037,
+      "ef_pred": 0.03700221699447947,
+      "error_pct": 0.005991876971541418,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 350.46942070999216,
+      "uts_error_pct": 6.541487810668755
+    }
+  ]
+}

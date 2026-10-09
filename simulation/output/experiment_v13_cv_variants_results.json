@@ -1,0 +1,4301 @@
+{
+ "model": "v13_cv_variants_extended_dataset",
+ "generated": "2026-10-06 22:10:51",
+ "protocol": {
+  "n_grains": 20,
+  "strain_rate": 0.001,
+  "eps_step": {
+   "316L": 0.001,
+   "other": 0.0005
+  },
+  "n_sub": 30,
+  "S0_grid": [
+   0.05,
+   0.2,
+   0.8,
+   3.2,
+   12.8,
+   50.0
+  ],
+  "refine_rounds": 1,
+  "k_g": 0.15,
+  "xi0": {
+   "Ti64": 3.5,
+   "316L": 2.5,
+   "AlSi10Mg": 1.5,
+   "IN718": 3.0
+  },
+  "w_iso": 0.25,
+  "lambda_ref": 50.0,
+  "single_S0_per_material": true,
+  "leakage_free": true,
+  "S0_known_v12": {
+   "Ti64": 0.32,
+   "316L": 3.2,
+   "AlSi10Mg": 0.2
+  },
+  "S0_geo_mean_v12": 0.589445,
+  "orientation_convention": "0 deg = loading axis PARALLEL to the build direction; 90 deg = perpendicular; taken directly from the extended dataset CSV (already converted at extraction).",
+  "deviations_from_v12": [
+   {
+    "id": "D1",
+    "field": "n_grains",
+    "v12": 20,
+    "v13": 20,
+    "status": "MATCHED - not exercised by the primary run",
+    "reason": "the brief anticipated 15-90 min per TaylorCPCDM run and asked for n_grains=10 to halve the cost. The measured cost is ~15 s per run (~30 s at n_grains=20), so the primary run keeps v12's n_grains=20 and the truncation is instead measured directly on the nine v12 calibration cases at n_grains=10 (see protocol_deviation_check). TaylorCPCDM.__init__ calls np.random.seed(seed) with seed=42, so the orientation set is reproducible and the 10-grain set is exactly the first 10 grains of the 20-grain set."
+   },
+   {
+    "id": "D2",
+    "field": "S0 calibration grid",
+    "v12": "6 points + 1 refine round",
+    "v13": [
+     0.05,
+     0.2,
+     0.8,
+     3.2,
+     12.8,
+     50.0
+    ],
+    "status": "MATCHED - not exercised by the primary run",
+    "reason": "same runtime premise as D1. The primary run uses v12\"s own six-point grid and its refinement probe best/1.6, best*1.6, so a fold calibration here is directly comparable with the corresponding v12 fold."
+   },
+   {
+    "id": "D3",
+    "field": "IN718 max_strain",
+    "v12": "0.31 (fallback)",
+    "v13": 0.4,
+    "status": "ACTIVE (IN718 only)",
+    "reason": "the v12 fallback truncates a late-fracturing IN718 prediction and returns ef = max_strain as an artefact; 0.40 matches the in-repo IN718 precedent (blind_test_in718_fast.py). Every truncated run is flagged as n_truncated."
+   },
+   {
+    "id": "D4",
+    "field": "IN718 gs(psi)",
+    "v12": "directional k_g applied",
+    "v13": "directional k_g applied (draft-script bug fixed)",
+    "status": "ACTIVE (IN718 only) - a fix, restoring v12 behaviour",
+    "reason": "the draft script applied the IN718 override dict after the directional gs correction, so the flat gs = 280 MPa silently overwrote it and k_g was dropped for IN718. Fixed here to match the v12 protocol and blind_test_in718_fast.py (overrides first, directional gs last)."
+   },
+   {
+    "id": "D5",
+    "field": "IN718 integrator",
+    "v12": "n/a - IN718 not in v12",
+    "v13": "eps_step=5e-4, n_sub=30 (the v12 protocol)",
+    "status": "NOTE",
+    "reason": "the published in-repo IN718 blind test used a fast configuration (eps_step=2e-3, n_sub=12, n_grains=20); this run uses the v12 integrator for IN718 too, so the IN718 numbers here are NOT expected to reproduce that published 93.1% digit for digit. The deviation check quantifies the integrator-plus-grain difference where the v12 cases allow."
+   }
+  ],
+  "runtime_premise_correction": "the task brief specified result caching, known-S0 re-use, a coarse 4-point calibration grid, n_grains=10 and background execution because a TaylorCPCDM run was believed to take 15-90 min. Measured cost on this machine is 14.5 s (AlSi10Mg|0|0.20) and 16.7 s (Ti64|0|0.320) at n_grains=10, so a whole three-variant experiment is minutes, not hours. The accuracy-preserving options were therefore adopted for the primary run; the requested saving measures remain implemented (the cache is still the backbone of the run and of the resumability) and the n_grains=10 variant is still reported as a measured sensitivity, but they no longer buy accuracy with speed. All other optimisations in the brief are retained: one run per distinct (material, orientation, S0), known v12 S0 values re-used verbatim rather than re-fitted, incremental cache writes after every completed run, and a low worker count so the concurrent 3D CPFEM job is not starved.",
+  "n_grains_sensitivity": 10,
+  "v12_stats_untouched": true,
+  "note": "The nine v12 points are reproduced verbatim (source_id = v12_original). The extended-protocol statistics below are reported independently and do not replace, rescale or reinterpret the locked v12 LOOCV figures (mean blind ef error 31.85%, UTS 15.33%, pass@10% 2/9)."
+ },
+ "dataset_summary": {
+  "n_points": 54,
+  "materials": [
+   "316L",
+   "AlSi10Mg",
+   "IN718",
+   "Ti64"
+  ],
+  "sources": [
+   "awd2018metals",
+   "hitzler2017materials",
+   "hovig2018in718",
+   "nist_mds2_3402",
+   "sun2024adem",
+   "v12_original",
+   "watring2020addma"
+  ],
+  "n_by_source": {
+   "awd2018metals": 3,
+   "hitzler2017materials": 3,
+   "hovig2018in718": 3,
+   "nist_mds2_3402": 30,
+   "sun2024adem": 3,
+   "v12_original": 9,
+   "watring2020addma": 3
+  },
+  "n_by_material": {
+   "316L": 6,
+   "AlSi10Mg": 6,
+   "IN718": 6,
+   "Ti64": 36
+  }
+ },
+ "leave_one_source": {
+  "folds": [
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "hitzler2017materials",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_316L_0",
+     "v12_316L_45",
+     "v12_316L_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Process-window / surface-condition shift: milled specimens on a 200 C-preheated platform, UTS at 0 deg (512 MPa) below the nominal 316L band, and the highest ductility at 90 deg (33.2%) rather than at 0 deg. Decision-tree branch: reversal triage -> process-window shift -> S0 not transferable, in-source recalibration required.",
+    "material": "316L",
+    "S0": 3.2,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 28.22,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "hitzler2017_316L_90",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 90,
+      "ef_exp": 0.3324,
+      "ef_pred": 0.22358,
+      "ef_error_pct": 32.74,
+      "uts_exp_MPa": 634.43,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.1,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_45",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 45,
+      "ef_exp": 0.3256,
+      "ef_pred": 0.39025,
+      "ef_error_pct": 19.86,
+      "uts_exp_MPa": 698.98,
+      "uts_pred_MPa": 501.3,
+      "uts_error_pct": 28.29,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_0",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 0,
+      "ef_exp": 0.1176,
+      "ef_pred": 0.54188,
+      "ef_error_pct": 360.78,
+      "uts_exp_MPa": 511.99,
+      "uts_pred_MPa": 620.6,
+      "uts_error_pct": 21.22,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 137.79,
+    "avg_held_uts_error_pct": 28.2,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 3.2,
+    "alternative_avg_held_ef_error_pct": 137.79
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "hitzler2017materials"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "hitzler2017_316L_90",
+     "hitzler2017_316L_45",
+     "hitzler2017_316L_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.37,
+      "45": 0.31,
+      "90": 0.255
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "316L",
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 62.67,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_316L_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.37,
+      "ef_pred": 0.14272,
+      "ef_error_pct": 61.43,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 39.44,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.31,
+      "ef_pred": 0.07824,
+      "ef_error_pct": 74.76,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.66,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.255,
+      "ef_pred": 0.03096,
+      "ef_error_pct": 87.86,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 30.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 74.68,
+    "avg_held_uts_error_pct": 35.3,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 89.652,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 85.133,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 62.672,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 137.792,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 74.717,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 80.089,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "awd2018metals",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_AlSi10Mg_0",
+     "v12_AlSi10Mg_45",
+     "v12_AlSi10Mg_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.083,
+      "45": 0.057,
+      "90": 0.081
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Morphology-projection boundary: V-shaped trend with 90 deg nearly as ductile as 0 deg and lack-of-fusion porosity mediating failure. Mechanistically consistent with the calibration class but the projection over-weights transverse acceleration. Decision-tree branch: residual audit (90/0 ratio).",
+    "material": "AlSi10Mg",
+    "S0": 0.2,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 22.08,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "awd2018_AlSi10Mg_90",
+      "source_id": "awd2018metals",
+      "orientation_deg": 90,
+      "ef_exp": 0.081,
+      "ef_pred": 0.0286,
+      "ef_error_pct": 64.69,
+      "uts_exp_MPa": 379.6,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 7.93,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_45",
+      "source_id": "awd2018metals",
+      "orientation_deg": 45,
+      "ef_exp": 0.057,
+      "ef_pred": 0.03725,
+      "ef_error_pct": 34.66,
+      "uts_exp_MPa": 367.8,
+      "uts_pred_MPa": 349.8,
+      "uts_error_pct": 4.91,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_0",
+      "source_id": "awd2018metals",
+      "orientation_deg": 0,
+      "ef_exp": 0.083,
+      "ef_pred": 0.06877,
+      "ef_error_pct": 17.15,
+      "uts_exp_MPa": 351.8,
+      "uts_pred_MPa": 351.7,
+      "uts_error_pct": 0.02,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 38.83,
+    "avg_held_uts_error_pct": 4.29,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 0.2,
+    "alternative_avg_held_ef_error_pct": 38.83
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "awd2018metals"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "awd2018_AlSi10Mg_90",
+     "awd2018_AlSi10Mg_45",
+     "awd2018_AlSi10Mg_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.056,
+      "45": 0.047,
+      "90": 0.037
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "AlSi10Mg",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 28.27,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_AlSi10Mg_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.056,
+      "ef_pred": 0.09745,
+      "ef_error_pct": 74.02,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 352.3,
+      "uts_error_pct": 19.94,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.047,
+      "ef_pred": 0.04982,
+      "ef_error_pct": 6.01,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 350.2,
+      "uts_error_pct": 14.58,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.037,
+      "ef_pred": 0.0366,
+      "ef_error_pct": 1.08,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 6.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 27.04,
+    "avg_held_uts_error_pct": 13.77,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 68.795,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 38.831,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 44.652,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 53.384,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 28.271,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "nist_mds2_3402",
+    "train_sources": [
+     "sun2024adem",
+     "v12_original"
+    ],
+    "n_train": 6,
+    "train_point_ids": [
+     "sun2024_Ti64_0",
+     "sun2024_Ti64_45",
+     "sun2024_Ti64_90",
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      90
+     ],
+     "shape": "two_orientations (0 deg = 0.2291, 90 deg = 0.2438; spread 0.0146); a second point at the same orientation with a different process window gives the within-orientation process spread",
+     "ef_by_orientation": {
+      "0": 0.22914000000000004,
+      "90": 0.24377333333333331
+     },
+     "n_points": 30
+    },
+    "mechanism_note": "",
+    "material": "Ti64",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 16.78,
+    "n_held": 30,
+    "predictions": [
+     {
+      "point_id": "nist_mds2_3402_HT0_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1928,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 77.21,
+      "uts_exp_MPa": 1294.2,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 26.57,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT0_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.168,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 56.97,
+      "uts_exp_MPa": 1302.72,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 26.32,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2925,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 84.98,
+      "uts_exp_MPa": 1076.81,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 11.74,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.249,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 70.97,
+      "uts_exp_MPa": 1081.62,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 11.26,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3138,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.0,
+      "uts_exp_MPa": 1082.43,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 12.2,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2936,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 75.38,
+      "uts_exp_MPa": 1085.18,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 11.55,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3186,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.21,
+      "uts_exp_MPa": 990.83,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.09,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.3177,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 77.25,
+      "uts_exp_MPa": 995.9,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.62,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3005,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 85.38,
+      "uts_exp_MPa": 1063.02,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 10.6,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2756,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 73.77,
+      "uts_exp_MPa": 1065.78,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 9.94,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3279,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.6,
+      "uts_exp_MPa": 1022.63,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 7.07,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2955,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 75.54,
+      "uts_exp_MPa": 1033.46,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 7.12,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1548,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 71.62,
+      "uts_exp_MPa": 1028.26,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 7.58,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1495,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 51.65,
+      "uts_exp_MPa": 1021.45,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 6.03,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1715,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 74.38,
+      "uts_exp_MPa": 1008.99,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 5.81,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1631,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 55.68,
+      "uts_exp_MPa": 1003.47,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 4.34,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1704,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 74.22,
+      "uts_exp_MPa": 994.46,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.44,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1644,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 56.03,
+      "uts_exp_MPa": 989.9,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.03,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3158,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.09,
+      "uts_exp_MPa": 1050.39,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 9.52,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2886,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 74.95,
+      "uts_exp_MPa": 1051.6,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 8.72,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3187,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.21,
+      "uts_exp_MPa": 991.86,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.19,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.311,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 76.76,
+      "uts_exp_MPa": 997.07,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.73,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3049,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 85.59,
+      "uts_exp_MPa": 1070.03,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 11.18,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2743,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 73.65,
+      "uts_exp_MPa": 1077.32,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 10.9,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.0927,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 52.6,
+      "uts_exp_MPa": 1035.62,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 8.23,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1014,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 28.71,
+      "uts_exp_MPa": 1019.73,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 5.87,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2037,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 78.43,
+      "uts_exp_MPa": 906.94,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.79,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2086,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 65.35,
+      "uts_exp_MPa": 892.08,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 7.6,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.178,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 75.32,
+      "uts_exp_MPa": 961.53,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 1.16,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1768,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 59.11,
+      "uts_exp_MPa": 949.69,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 1.07,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 72.09,
+    "avg_held_uts_error_pct": 8.34,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 41.729,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 27.591,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 36.712,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 34.737,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 16.775,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "sun2024adem",
+    "train_sources": [
+     "nist_mds2_3402",
+     "v12_original"
+    ],
+    "n_train": 5,
+    "train_point_ids": [
+     "nist_mds2_3402_HT0_h",
+     "nist_mds2_3402_HT0_v",
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "alpha'-martensite lath geometry. Under the dataset convention (0 deg = axis parallel to BD) the source direction trend is non-monotone, with the minimum at 45 deg; the projection laws encode a monotone transverse degradation and cannot reproduce a mid-angle minimum. Decision-tree branch: reversal triage -> lath geometry -> not repairable by the shielding term.",
+    "material": "Ti64",
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 27.94,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "sun2024_Ti64_0",
+      "source_id": "sun2024adem",
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.09235,
+      "ef_error_pct": 1.12,
+      "uts_exp_MPa": 1165.0,
+      "uts_pred_MPa": 960.1,
+      "uts_error_pct": 17.59,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_45",
+      "source_id": "sun2024adem",
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.06464,
+      "ef_error_pct": 21.28,
+      "uts_exp_MPa": 1299.0,
+      "uts_pred_MPa": 953.0,
+      "uts_error_pct": 26.64,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_90",
+      "source_id": "sun2024adem",
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.04898,
+      "ef_error_pct": 37.92,
+      "uts_exp_MPa": 1186.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 19.87,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 20.11,
+    "avg_held_uts_error_pct": 21.37,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 53.727,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 42.369,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 40.301,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 27.944,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 59.452,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "nist_mds2_3402",
+     "sun2024adem"
+    ],
+    "n_train": 5,
+    "train_point_ids": [
+     "nist_mds2_3402_HT0_h",
+     "nist_mds2_3402_HT0_v",
+     "sun2024_Ti64_0",
+     "sun2024_Ti64_45",
+     "sun2024_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.08,
+      "45": 0.063,
+      "90": 0.048
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "Ti64",
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 35.99,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_Ti64_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.08,
+      "ef_pred": 0.09235,
+      "ef_error_pct": 15.44,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 960.1,
+      "uts_error_pct": 16.51,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.063,
+      "ef_pred": 0.06464,
+      "ef_error_pct": 2.61,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 953.0,
+      "uts_error_pct": 13.36,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.048,
+      "ef_pred": 0.04898,
+      "ef_error_pct": 2.05,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 9.49,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 6.7,
+    "avg_held_uts_error_pct": 13.12,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 58.984,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 48.374,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 42.137,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 35.987,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 52.428,
+      "stage": "refine1"
+     }
+    ]
+   }
+  ],
+  "skipped": [
+   {
+    "material": "IN718",
+    "status": "skipped_single_as_built_source",
+    "as_built_sources": [
+     "watring2020addma"
+    ],
+    "heat_treated_sources": [
+     "hovig2018in718"
+    ],
+    "all_sources_for_material": [
+     "hovig2018in718",
+     "watring2020addma"
+    ],
+    "n_as_built_points": 3,
+    "n_heat_treated_points": 3,
+    "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+   }
+  ],
+  "summary": {
+   "label": "LOSO",
+   "n_predictions": 48,
+   "mean_ef_error_pct": 64.13,
+   "median_ef_error_pct": 72.64,
+   "std_ef_error_pct": 51.76,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 360.78,
+   "pass_10pct": 5,
+   "pass_20pct": 8,
+   "bootstrap_mean_95ci": [
+    51.78,
+    80.67
+   ],
+   "bootstrap_median_95ci": [
+    56.97,
+    74.95
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_v12_only_summary": {
+   "label": "LOSO (held source = v12_original)",
+   "n_predictions": 9,
+   "mean_ef_error_pct": 36.14,
+   "median_ef_error_pct": 15.44,
+   "std_ef_error_pct": 37.24,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 87.86,
+   "pass_10pct": 4,
+   "pass_20pct": 5,
+   "bootstrap_mean_95ci": [
+    13.06,
+    59.82
+   ],
+   "bootstrap_median_95ci": [
+    2.05,
+    74.76
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_extended_only_summary": {
+   "label": "LOSO (held source = extended literature source)",
+   "n_predictions": 39,
+   "mean_ef_error_pct": 70.58,
+   "median_ef_error_pct": 73.77,
+   "std_ef_error_pct": 52.85,
+   "min_ef_error_pct": 1.12,
+   "max_ef_error_pct": 360.78,
+   "pass_10pct": 1,
+   "pass_20pct": 3,
+   "bootstrap_mean_95ci": [
+    57.36,
+    89.9
+   ],
+   "bootstrap_median_95ci": [
+    59.11,
+    75.54
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "in718_confounded_diagnostic": {
+   "status": "DECLARED DIAGNOSTIC, NOT A PROTOCOL FOLD",
+   "reason": [
+    {
+     "material": "IN718",
+     "status": "skipped_single_as_built_source",
+     "as_built_sources": [
+      "watring2020addma"
+     ],
+     "heat_treated_sources": [
+      "hovig2018in718"
+     ],
+     "all_sources_for_material": [
+      "hovig2018in718",
+      "watring2020addma"
+     ],
+     "n_as_built_points": 3,
+     "n_heat_treated_points": 3,
+     "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+    }
+   ],
+   "folds": [
+    {
+     "held_source": "hovig2018in718",
+     "train_sources": [
+      "watring2020addma"
+     ],
+     "S0": 1.28,
+     "train_err_pct": 42.51,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on as-built IN718 applied to solution-treated IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "hovig2018_IN718_90",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 90,
+       "ef_exp": 0.2,
+       "ef_pred": 0.04496,
+       "ef_error_pct": 77.52,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 379.5,
+       "uts_error_pct": 60.88,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_45",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 45,
+       "ef_exp": 0.25,
+       "ef_pred": 0.13863,
+       "ef_error_pct": 44.55,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 419.0,
+       "uts_error_pct": 56.8,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_0",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 0,
+       "ef_exp": 0.3,
+       "ef_pred": 0.4,
+       "ef_error_pct": 33.33,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 490.8,
+       "uts_error_pct": 49.4,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 51.8,
+     "avg_held_uts_error_pct": 55.69
+    },
+    {
+     "held_source": "watring2020addma",
+     "train_sources": [
+      "hovig2018in718"
+     ],
+     "S0": 3.2,
+     "train_err_pct": 32.86,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on solution-treated IN718 applied to as-built IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "watring2020_IN718_90_lo",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.06,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 215.84,
+       "uts_exp_MPa": 774.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 49.16,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_90_hi",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.29,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 34.65,
+       "uts_exp_MPa": 1081.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 63.6,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_30",
+       "source_id": "watring2020addma",
+       "orientation_deg": 30,
+       "ef_exp": 0.28,
+       "ef_pred": 0.4,
+       "ef_error_pct": 42.86,
+       "uts_exp_MPa": 1070.0,
+       "uts_pred_MPa": 485.3,
+       "uts_error_pct": 54.64,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 97.78,
+     "avg_held_uts_error_pct": 55.8
+    }
+   ]
+  }
+ },
+ "leave_one_material": {
+  "folds": [
+   {
+    "cv_type": "leave_one_material",
+    "held_material": "316L",
+    "train_materials": [
+     "AlSi10Mg",
+     "IN718",
+     "Ti64"
+    ],
+    "train_S0_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "method": "v12_locked_value",
+      "train_err_pct": 29.35
+     },
+     "AlSi10Mg": {
+      "S0": 0.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 30.46
+     },
+     "IN718": {
+      "S0": 1.28,
+      "method": "v12_grid_refit",
+      "train_err_pct": 42.51
+     }
+    },
+    "S0_transfer_geomean": 0.434307,
+    "S0_transfer_sensitivity_geomean": 0.507968,
+    "sensitivity_refit_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "train_err_pct": 29.35
+     },
+     "AlSi10Mg": {
+      "S0": 0.32,
+      "train_err_pct": 27.65
+     },
+     "IN718": {
+      "S0": 1.28,
+      "train_err_pct": 42.51
+     }
+    },
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 0 deg)",
+     "ef_by_orientation": {
+      "0": 0.2438,
+      "45": 0.31779999999999997,
+      "90": 0.29369999999999996
+     },
+     "n_points": 6
+    },
+    "n_held_points": 6,
+    "material": "316L",
+    "S0": 0.434307,
+    "S0_method": "cross_material_geomean",
+    "train_err_pct": null,
+    "n_held": 6,
+    "predictions": [
+     {
+      "point_id": "v12_316L_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.37,
+      "ef_pred": 0.0718,
+      "ef_error_pct": 80.59,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 39.44,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.31,
+      "ef_pred": 0.03434,
+      "ef_error_pct": 88.92,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.66,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.255,
+      "ef_pred": 0.0269,
+      "ef_error_pct": 89.45,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 30.79,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_90",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 90,
+      "ef_exp": 0.3324,
+      "ef_pred": 0.0269,
+      "ef_error_pct": 91.91,
+      "uts_exp_MPa": 634.43,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.1,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_45",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 45,
+      "ef_exp": 0.3256,
+      "ef_pred": 0.03434,
+      "ef_error_pct": 89.45,
+      "uts_exp_MPa": 698.98,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 41.09,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_0",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 0,
+      "ef_exp": 0.1176,
+      "ef_pred": 0.0718,
+      "ef_error_pct": 38.94,
+      "uts_exp_MPa": 511.99,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 19.57,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 79.88,
+    "avg_held_uts_error_pct": 33.61,
+    "n_truncated": 0,
+    "status": "ok",
+    "sensitivity_refit_avg_held_ef_error_pct": 77.87,
+    "sensitivity_refit_avg_held_uts_error_pct": 33.61
+   },
+   {
+    "cv_type": "leave_one_material",
+    "held_material": "AlSi10Mg",
+    "train_materials": [
+     "316L",
+     "IN718",
+     "Ti64"
+    ],
+    "train_S0_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "method": "v12_locked_value",
+      "train_err_pct": 29.35
+     },
+     "316L": {
+      "S0": 3.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 83.01
+     },
+     "IN718": {
+      "S0": 1.28,
+      "method": "v12_grid_refit",
+      "train_err_pct": 42.51
+     }
+    },
+    "S0_transfer_geomean": 1.094385,
+    "S0_transfer_sensitivity_geomean": 0.689419,
+    "sensitivity_refit_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "train_err_pct": 29.35
+     },
+     "316L": {
+      "S0": 0.8,
+      "train_err_pct": 68.68
+     },
+     "IN718": {
+      "S0": 1.28,
+      "train_err_pct": 42.51
+     }
+    },
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0695,
+      "45": 0.052000000000000005,
+      "90": 0.059
+     },
+     "n_points": 6
+    },
+    "n_held_points": 6,
+    "material": "AlSi10Mg",
+    "S0": 1.094385,
+    "S0_method": "cross_material_geomean",
+    "train_err_pct": null,
+    "n_held": 6,
+    "predictions": [
+     {
+      "point_id": "v12_AlSi10Mg_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.056,
+      "ef_pred": 0.122,
+      "ef_error_pct": 117.86,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 369.7,
+      "uts_error_pct": 15.98,
+      "truncated": true
+     },
+     {
+      "point_id": "v12_AlSi10Mg_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.047,
+      "ef_pred": 0.104,
+      "ef_error_pct": 121.28,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 352.3,
+      "uts_error_pct": 14.07,
+      "truncated": true
+     },
+     {
+      "point_id": "v12_AlSi10Mg_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.037,
+      "ef_pred": 0.084,
+      "ef_error_pct": 127.03,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 350.9,
+      "uts_error_pct": 6.42,
+      "truncated": true
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_90",
+      "source_id": "awd2018metals",
+      "orientation_deg": 90,
+      "ef_exp": 0.081,
+      "ef_pred": 0.084,
+      "ef_error_pct": 3.7,
+      "uts_exp_MPa": 379.6,
+      "uts_pred_MPa": 350.9,
+      "uts_error_pct": 7.55,
+      "truncated": true
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_45",
+      "source_id": "awd2018metals",
+      "orientation_deg": 45,
+      "ef_exp": 0.057,
+      "ef_pred": 0.104,
+      "ef_error_pct": 82.46,
+      "uts_exp_MPa": 367.8,
+      "uts_pred_MPa": 352.3,
+      "uts_error_pct": 4.21,
+      "truncated": true
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_0",
+      "source_id": "awd2018metals",
+      "orientation_deg": 0,
+      "ef_exp": 0.083,
+      "ef_pred": 0.122,
+      "ef_error_pct": 46.99,
+      "uts_exp_MPa": 351.8,
+      "uts_pred_MPa": 369.7,
+      "uts_error_pct": 5.09,
+      "truncated": true
+     }
+    ],
+    "avg_held_ef_error_pct": 83.22,
+    "avg_held_uts_error_pct": 8.89,
+    "n_truncated": 6,
+    "status": "ok",
+    "sensitivity_refit_avg_held_ef_error_pct": 64.47,
+    "sensitivity_refit_avg_held_uts_error_pct": 8.94
+   },
+   {
+    "cv_type": "leave_one_material",
+    "held_material": "IN718",
+    "train_materials": [
+     "316L",
+     "AlSi10Mg",
+     "Ti64"
+    ],
+    "train_S0_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "method": "v12_locked_value",
+      "train_err_pct": 29.35
+     },
+     "316L": {
+      "S0": 3.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 83.01
+     },
+     "AlSi10Mg": {
+      "S0": 0.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 30.46
+     }
+    },
+    "S0_transfer_geomean": 0.589445,
+    "S0_transfer_sensitivity_geomean": 0.434307,
+    "sensitivity_refit_per_material": {
+     "Ti64": {
+      "S0": 0.32,
+      "train_err_pct": 29.35
+     },
+     "316L": {
+      "S0": 0.8,
+      "train_err_pct": 68.68
+     },
+     "AlSi10Mg": {
+      "S0": 0.32,
+      "train_err_pct": 27.65
+     }
+    },
+    "held_trend": {
+     "orientations": [
+      0,
+      30,
+      45,
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "0": 0.3,
+      "30": 0.28,
+      "45": 0.25,
+      "90": 0.18333333333333335
+     },
+     "n_points": 6
+    },
+    "n_held_points": 6,
+    "material": "IN718",
+    "S0": 0.589445,
+    "S0_method": "cross_material_geomean",
+    "train_err_pct": null,
+    "n_held": 6,
+    "predictions": [
+     {
+      "point_id": "hovig2018_IN718_90",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 90,
+      "ef_exp": 0.2,
+      "ef_pred": 0.0406,
+      "ef_error_pct": 79.7,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 381.2,
+      "uts_error_pct": 60.7,
+      "truncated": false
+     },
+     {
+      "point_id": "hovig2018_IN718_45",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 45,
+      "ef_exp": 0.25,
+      "ef_pred": 0.06455,
+      "ef_error_pct": 74.18,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 408.0,
+      "uts_error_pct": 57.93,
+      "truncated": false
+     },
+     {
+      "point_id": "hovig2018_IN718_0",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 0,
+      "ef_exp": 0.3,
+      "ef_pred": 0.11529,
+      "ef_error_pct": 61.57,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 432.5,
+      "uts_error_pct": 55.41,
+      "truncated": false
+     },
+     {
+      "point_id": "watring2020_IN718_90_lo",
+      "source_id": "watring2020addma",
+      "orientation_deg": 90,
+      "ef_exp": 0.06,
+      "ef_pred": 0.0406,
+      "ef_error_pct": 32.34,
+      "uts_exp_MPa": 774.0,
+      "uts_pred_MPa": 381.2,
+      "uts_error_pct": 50.75,
+      "truncated": false
+     },
+     {
+      "point_id": "watring2020_IN718_90_hi",
+      "source_id": "watring2020addma",
+      "orientation_deg": 90,
+      "ef_exp": 0.29,
+      "ef_pred": 0.0406,
+      "ef_error_pct": 86.0,
+      "uts_exp_MPa": 1081.0,
+      "uts_pred_MPa": 381.2,
+      "uts_error_pct": 64.74,
+      "truncated": false
+     },
+     {
+      "point_id": "watring2020_IN718_30",
+      "source_id": "watring2020addma",
+      "orientation_deg": 30,
+      "ef_exp": 0.28,
+      "ef_pred": 0.13116,
+      "ef_error_pct": 53.16,
+      "uts_exp_MPa": 1070.0,
+      "uts_pred_MPa": 421.6,
+      "uts_error_pct": 60.6,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 64.49,
+    "avg_held_uts_error_pct": 58.35,
+    "n_truncated": 0,
+    "status": "ok",
+    "sensitivity_refit_avg_held_ef_error_pct": 67.2,
+    "sensitivity_refit_avg_held_uts_error_pct": 58.64
+   },
+   {
+    "cv_type": "leave_one_material",
+    "held_material": "Ti64",
+    "train_materials": [
+     "316L",
+     "AlSi10Mg",
+     "IN718"
+    ],
+    "train_S0_per_material": {
+     "316L": {
+      "S0": 3.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 83.01
+     },
+     "AlSi10Mg": {
+      "S0": 0.2,
+      "method": "v12_locked_value",
+      "train_err_pct": 30.46
+     },
+     "IN718": {
+      "S0": 1.28,
+      "method": "v12_grid_refit",
+      "train_err_pct": 42.51
+     }
+    },
+    "S0_transfer_geomean": 0.935686,
+    "S0_transfer_sensitivity_geomean": 0.689419,
+    "sensitivity_refit_per_material": {
+     "316L": {
+      "S0": 0.8,
+      "train_err_pct": 68.68
+     },
+     "AlSi10Mg": {
+      "S0": 0.32,
+      "train_err_pct": 27.65
+     },
+     "IN718": {
+      "S0": 1.28,
+      "train_err_pct": 42.51
+     }
+    },
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.21238235294117647,
+      "45": 0.05815,
+      "90": 0.22255882352941178
+     },
+     "n_points": 36
+    },
+    "n_held_points": 36,
+    "material": "Ti64",
+    "S0": 0.935686,
+    "S0_method": "cross_material_geomean",
+    "train_err_pct": null,
+    "n_held": 36,
+    "predictions": [
+     {
+      "point_id": "v12_Ti64_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.08,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 74.03,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 16.47,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.063,
+      "ef_pred": 0.0897,
+      "ef_error_pct": 42.38,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 953.5,
+      "uts_error_pct": 13.32,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.048,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 27.23,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 9.44,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_0",
+      "source_id": "sun2024adem",
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 49.06,
+      "uts_exp_MPa": 1165.0,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 17.55,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_45",
+      "source_id": "sun2024adem",
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.0897,
+      "ef_error_pct": 68.29,
+      "uts_exp_MPa": 1299.0,
+      "uts_pred_MPa": 953.5,
+      "uts_error_pct": 26.6,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_90",
+      "source_id": "sun2024adem",
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 22.6,
+      "uts_exp_MPa": 1186.0,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 19.83,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT0_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1928,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 68.33,
+      "uts_exp_MPa": 1294.2,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 26.53,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT0_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.168,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 17.13,
+      "uts_exp_MPa": 1302.72,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 26.26,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2925,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 79.12,
+      "uts_exp_MPa": 1076.81,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 11.7,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.249,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 44.09,
+      "uts_exp_MPa": 1081.62,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 11.19,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3138,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 80.54,
+      "uts_exp_MPa": 1082.43,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 12.16,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2936,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 52.58,
+      "uts_exp_MPa": 1085.18,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 11.48,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3186,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 80.83,
+      "uts_exp_MPa": 990.83,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 4.04,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.3177,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 56.18,
+      "uts_exp_MPa": 995.9,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 3.55,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3005,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 79.68,
+      "uts_exp_MPa": 1063.02,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 10.55,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2756,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 49.48,
+      "uts_exp_MPa": 1065.78,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 9.87,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3279,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 81.38,
+      "uts_exp_MPa": 1022.63,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 7.02,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2955,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 52.89,
+      "uts_exp_MPa": 1033.46,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 7.05,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1548,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 60.55,
+      "uts_exp_MPa": 1028.26,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 7.53,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1495,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 6.88,
+      "uts_exp_MPa": 1021.45,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 5.96,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1715,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 64.39,
+      "uts_exp_MPa": 1008.99,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 5.76,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1631,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 14.64,
+      "uts_exp_MPa": 1003.47,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 4.27,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1704,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 64.16,
+      "uts_exp_MPa": 994.46,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 4.39,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1644,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 15.32,
+      "uts_exp_MPa": 989.9,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 2.96,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3158,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 80.66,
+      "uts_exp_MPa": 1050.39,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 9.48,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2886,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 51.76,
+      "uts_exp_MPa": 1051.6,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 8.66,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3187,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 80.84,
+      "uts_exp_MPa": 991.86,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 4.14,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.311,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 55.23,
+      "uts_exp_MPa": 997.07,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 3.66,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3049,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 79.97,
+      "uts_exp_MPa": 1070.03,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 11.14,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2743,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 49.24,
+      "uts_exp_MPa": 1077.32,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 10.84,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.0927,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 34.12,
+      "uts_exp_MPa": 1035.62,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 8.19,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1014,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 37.3,
+      "uts_exp_MPa": 1019.73,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 5.8,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2037,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 70.02,
+      "uts_exp_MPa": 906.94,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 4.84,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2086,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 33.26,
+      "uts_exp_MPa": 892.08,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 7.68,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.178,
+      "ef_pred": 0.06107,
+      "ef_error_pct": 65.69,
+      "uts_exp_MPa": 961.53,
+      "uts_pred_MPa": 950.8,
+      "uts_error_pct": 1.11,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1768,
+      "ef_pred": 0.13922,
+      "ef_error_pct": 21.26,
+      "uts_exp_MPa": 949.69,
+      "uts_pred_MPa": 960.6,
+      "uts_error_pct": 1.15,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 53.09,
+    "avg_held_uts_error_pct": 9.78,
+    "n_truncated": 0,
+    "status": "ok",
+    "sensitivity_refit_avg_held_ef_error_pct": 55.1,
+    "sensitivity_refit_avg_held_uts_error_pct": 9.81
+   }
+  ],
+  "summary": {
+   "label": "LOMO",
+   "n_predictions": 54,
+   "mean_ef_error_pct": 60.68,
+   "median_ef_error_pct": 62.86,
+   "std_ef_error_pct": 27.98,
+   "min_ef_error_pct": 3.7,
+   "max_ef_error_pct": 127.03,
+   "pass_10pct": 2,
+   "pass_20pct": 5,
+   "bootstrap_mean_95ci": [
+    53.25,
+    68.13
+   ],
+   "bootstrap_median_95ci": [
+    52.17,
+    74.11
+   ],
+   "bootstrap_resamples": 10000
+  }
+ },
+ "leave_one_process": {
+  "grouping": {
+   "definition": "process groups are the measured (laser power W, scan speed mm/s, layer height um) triples defined in data/extended_process_groups.json; each group is one complete process window",
+   "n_groups": 6,
+   "groups": {
+    "PG1_168W_1475mmps_30um": {
+     "n_points": 1,
+     "materials": [
+      "IN718"
+     ],
+     "sources": [
+      "watring2020addma"
+     ],
+     "laser_power_W": 168,
+     "scan_speed_mm_s": 1475,
+     "layer_height_um": 30
+    },
+    "PG2_175W_710mmps_30um": {
+     "n_points": 3,
+     "materials": [
+      "Ti64"
+     ],
+     "sources": [
+      "sun2024adem"
+     ],
+     "laser_power_W": 175,
+     "scan_speed_mm_s": 710,
+     "layer_height_um": 30
+    },
+    "PG3_200W_800mmps_30um": {
+     "n_points": 3,
+     "materials": [
+      "316L"
+     ],
+     "sources": [
+      "hitzler2017materials"
+     ],
+     "laser_power_W": 200,
+     "scan_speed_mm_s": 800,
+     "layer_height_um": 30
+    },
+    "PG4_220W_1180mmps_30um": {
+     "n_points": 1,
+     "materials": [
+      "IN718"
+     ],
+     "sources": [
+      "watring2020addma"
+     ],
+     "laser_power_W": 220,
+     "scan_speed_mm_s": 1180,
+     "layer_height_um": 30
+    },
+    "PG5_275W_805mmps_50um": {
+     "n_points": 3,
+     "materials": [
+      "IN718"
+     ],
+     "sources": [
+      "hovig2018in718"
+     ],
+     "laser_power_W": 275,
+     "scan_speed_mm_s": 805,
+     "layer_height_um": 50
+    },
+    "PG6_330W_1770mmps_30um": {
+     "n_points": 1,
+     "materials": [
+      "IN718"
+     ],
+     "sources": [
+      "watring2020addma"
+     ],
+     "laser_power_W": 330,
+     "scan_speed_mm_s": 1770,
+     "layer_height_um": 30
+    }
+   },
+   "ungroupable_sources": {
+    "v12_original": {
+     "n_points": 9,
+     "reason": "v12 is a COMPILED representative dataset: its values are central values of reported literature ranges from several publications (Carroll 2015 / Wang 2024, Jaskari 2021, Wu 2023) and no single process window (power / scan speed / layer thickness) is defined for it. Cannot be placed in any process group; its nine points participate only in leave-one-source and leave-one-material CV, never in leave-one-process CV."
+    },
+    "awd2018metals": {
+     "n_points": 3,
+     "reason": "The source explicitly states that the SLM scanning parameters are not available for publication ('not available to be published in this work'); no laser power, scan speed or layer thickness can be attributed. Cannot be placed in any process group; must be excluded from leave-one-process CV."
+    }
+   },
+   "material_mismatch_caveat": "the two largest windows (PG2 Ti-6Al-4V and PG3 316L) each contain a single material and a single source, and the only window with >1 point that shares its material with another window is the IN718 as-built family (PG1/PG4/PG6) inside one publication; the LOPO error pool is therefore small and heterogeneous and is reported with a bootstrap interval rather than as a precise statistic"
+  },
+  "folds": [
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG1_168W_1475mmps_30um",
+    "process_window": {
+     "laser_power_W": 168,
+     "scan_speed_mm_s": 1475,
+     "layer_height_um": 30,
+     "manifest_energy_density": 3.8
+    },
+    "held_heat_treatment": "as-built",
+    "held_heat_treatment_class": "as-built",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": true,
+    "train_sources": [
+     "watring2020addma"
+    ],
+    "n_train": 2,
+    "train_point_ids": [
+     "watring2020_IN718_90_hi",
+     "watring2020_IN718_30"
+    ],
+    "held_trend": {
+     "orientations": [
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "90": 0.06
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "single_source_training": true,
+    "material": "IN718",
+    "S0": 3.2,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 38.76,
+    "n_held": 1,
+    "predictions": [
+     {
+      "point_id": "watring2020_IN718_90_lo",
+      "source_id": "watring2020addma",
+      "orientation_deg": 90,
+      "ef_exp": 0.06,
+      "ef_pred": 0.1895,
+      "ef_error_pct": 215.84,
+      "uts_exp_MPa": 774.0,
+      "uts_pred_MPa": 393.5,
+      "uts_error_pct": 49.16,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 215.84,
+    "avg_held_uts_error_pct": 49.16,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 91.448,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 87.684,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 76.223,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 38.755,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 40.394,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 40.394,
+      "stage": "grid"
+     },
+     {
+      "S0": 2.0,
+      "train_mean_ef_error_pct": 59.25,
+      "stage": "refine1"
+     },
+     {
+      "S0": 5.120000000000001,
+      "train_mean_ef_error_pct": 40.394,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG2_175W_710mmps_30um",
+    "process_window": {
+     "laser_power_W": 175,
+     "scan_speed_mm_s": 710,
+     "layer_height_um": 30,
+     "manifest_energy_density": 8.2
+    },
+    "held_heat_treatment": "as-built",
+    "held_heat_treatment_class": "as-built",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": true,
+    "train_sources": [
+     "nist_mds2_3402",
+     "v12_original"
+    ],
+    "n_train": 5,
+    "train_point_ids": [
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90",
+     "nist_mds2_3402_HT0_h",
+     "nist_mds2_3402_HT0_v"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "",
+    "material": "Ti64",
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 27.94,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "sun2024_Ti64_0",
+      "source_id": "sun2024adem",
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.09235,
+      "ef_error_pct": 1.12,
+      "uts_exp_MPa": 1165.0,
+      "uts_pred_MPa": 960.1,
+      "uts_error_pct": 17.59,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_45",
+      "source_id": "sun2024adem",
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.06464,
+      "ef_error_pct": 21.28,
+      "uts_exp_MPa": 1299.0,
+      "uts_pred_MPa": 953.0,
+      "uts_error_pct": 26.64,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_90",
+      "source_id": "sun2024adem",
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.04898,
+      "ef_error_pct": 37.92,
+      "uts_exp_MPa": 1186.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 19.87,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 20.11,
+    "avg_held_uts_error_pct": 21.37,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 53.727,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 42.369,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 40.301,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 27.944,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 59.452,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG3_200W_800mmps_30um",
+    "process_window": {
+     "laser_power_W": 200,
+     "scan_speed_mm_s": 800,
+     "layer_height_um": 30,
+     "manifest_energy_density": 8.3
+    },
+    "held_heat_treatment": "as-built (build platform preheated to 200 C)",
+    "held_heat_treatment_class": "as-built",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": true,
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_316L_0",
+     "v12_316L_45",
+     "v12_316L_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "316L",
+    "S0": 3.2,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 28.22,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "hitzler2017_316L_90",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 90,
+      "ef_exp": 0.3324,
+      "ef_pred": 0.22358,
+      "ef_error_pct": 32.74,
+      "uts_exp_MPa": 634.43,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.1,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_45",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 45,
+      "ef_exp": 0.3256,
+      "ef_pred": 0.39025,
+      "ef_error_pct": 19.86,
+      "uts_exp_MPa": 698.98,
+      "uts_pred_MPa": 501.3,
+      "uts_error_pct": 28.29,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_0",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 0,
+      "ef_exp": 0.1176,
+      "ef_pred": 0.54188,
+      "ef_error_pct": 360.78,
+      "uts_exp_MPa": 511.99,
+      "uts_pred_MPa": 620.6,
+      "uts_error_pct": 21.22,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 137.79,
+    "avg_held_uts_error_pct": 28.2,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 93.657,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 91.437,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 74.682,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 28.221,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 66.567,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 66.567,
+      "stage": "grid"
+     },
+     {
+      "S0": 2.0,
+      "train_mean_ef_error_pct": 32.555,
+      "stage": "refine1"
+     },
+     {
+      "S0": 5.120000000000001,
+      "train_mean_ef_error_pct": 66.509,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG4_220W_1180mmps_30um",
+    "process_window": {
+     "laser_power_W": 220,
+     "scan_speed_mm_s": 1180,
+     "layer_height_um": 30,
+     "manifest_energy_density": 6.2
+    },
+    "held_heat_treatment": "as-built",
+    "held_heat_treatment_class": "as-built",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": true,
+    "train_sources": [
+     "watring2020addma"
+    ],
+    "n_train": 2,
+    "train_point_ids": [
+     "watring2020_IN718_90_lo",
+     "watring2020_IN718_90_hi"
+    ],
+    "held_trend": {
+     "orientations": [
+      30
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "30": 0.28
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "single_source_training": true,
+    "material": "IN718",
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 43.83,
+    "n_held": 1,
+    "predictions": [
+     {
+      "point_id": "watring2020_IN718_30",
+      "source_id": "watring2020addma",
+      "orientation_deg": 30,
+      "ef_exp": 0.28,
+      "ef_pred": 0.07923,
+      "ef_error_pct": 71.7,
+      "uts_exp_MPa": 1070.0,
+      "uts_pred_MPa": 422.1,
+      "uts_error_pct": 60.56,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 71.7,
+    "avg_held_uts_error_pct": 60.56,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 77.903,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 73.4,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 43.831,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 125.247,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 302.299,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 302.299,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 59.256,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 54.78,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG5_275W_805mmps_50um",
+    "process_window": {
+     "laser_power_W": 275,
+     "scan_speed_mm_s": 805,
+     "layer_height_um": 50,
+     "manifest_energy_density": 6.8
+    },
+    "held_heat_treatment": "solution-treated (980 C / 1 h, argon, air cool) - set 1",
+    "held_heat_treatment_class": "heat-treated",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": false,
+    "train_sources": [
+     "watring2020addma"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "watring2020_IN718_90_lo",
+     "watring2020_IN718_90_hi",
+     "watring2020_IN718_30"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.3,
+      "45": 0.25,
+      "90": 0.2
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "confound": "No heat-treatment-matched out-of-window data exists for this group; training uses a heat-treatment-mixed set (solution-treated IN718 for an as-built held window, or the reverse). Reported as an exploratory fold.",
+    "single_source_training": true,
+    "material": "IN718",
+    "S0": 1.28,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 42.51,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "hovig2018_IN718_90",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 90,
+      "ef_exp": 0.2,
+      "ef_pred": 0.04496,
+      "ef_error_pct": 77.52,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 379.5,
+      "uts_error_pct": 60.88,
+      "truncated": false
+     },
+     {
+      "point_id": "hovig2018_IN718_45",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 45,
+      "ef_exp": 0.25,
+      "ef_pred": 0.13863,
+      "ef_error_pct": 44.55,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 419.0,
+      "uts_error_pct": 56.8,
+      "truncated": false
+     },
+     {
+      "point_id": "hovig2018_IN718_0",
+      "source_id": "hovig2018in718",
+      "orientation_deg": 0,
+      "ef_exp": 0.3,
+      "ef_pred": 0.4,
+      "ef_error_pct": 33.33,
+      "uts_exp_MPa": 970.0,
+      "uts_pred_MPa": 490.8,
+      "uts_error_pct": 49.4,
+      "truncated": true
+     }
+    ],
+    "avg_held_ef_error_pct": 51.8,
+    "avg_held_uts_error_pct": 55.69,
+    "n_truncated": 1,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 82.093,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 77.096,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 53.122,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 97.784,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 215.818,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 215.818,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 61.375,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 42.508,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_process",
+    "group_id": "PG6_330W_1770mmps_30um",
+    "process_window": {
+     "laser_power_W": 330,
+     "scan_speed_mm_s": 1770,
+     "layer_height_um": 30,
+     "manifest_energy_density": 6.2
+    },
+    "held_heat_treatment": "as-built",
+    "held_heat_treatment_class": "as-built",
+    "train_heat_treatment_class": "as-built",
+    "heat_treatment_matched": true,
+    "train_sources": [
+     "watring2020addma"
+    ],
+    "n_train": 2,
+    "train_point_ids": [
+     "watring2020_IN718_90_lo",
+     "watring2020_IN718_30"
+    ],
+    "held_trend": {
+     "orientations": [
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "90": 0.29
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "single_source_training": true,
+    "material": "IN718",
+    "S0": 1.28,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 21.51,
+    "n_held": 1,
+    "predictions": [
+     {
+      "point_id": "watring2020_IN718_90_hi",
+      "source_id": "watring2020addma",
+      "orientation_deg": 90,
+      "ef_exp": 0.29,
+      "ef_pred": 0.04496,
+      "ef_error_pct": 84.5,
+      "uts_exp_MPa": 1081.0,
+      "uts_pred_MPa": 379.5,
+      "uts_error_pct": 64.9,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 84.5,
+    "avg_held_uts_error_pct": 64.9,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 76.927,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 70.204,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 39.312,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 129.349,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 304.762,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 304.762,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 49.047,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 21.514,
+      "stage": "refine1"
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "label": "LOPO",
+   "n_predictions": 12,
+   "mean_ef_error_pct": 83.43,
+   "median_ef_error_pct": 41.23,
+   "std_ef_error_pct": 103.56,
+   "min_ef_error_pct": 1.12,
+   "max_ef_error_pct": 360.78,
+   "pass_10pct": 1,
+   "pass_20pct": 2,
+   "bootstrap_mean_95ci": [
+    37.1,
+    147.32
+   ],
+   "bootstrap_median_95ci": [
+    27.01,
+    81.01
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "statistical_power_statement": "LOPO is deliverable but weakly powered: 6 process windows, of which 3 hold out a single point and 3 hold out one complete source; 2 of the 6 folds cannot use heat-treatment-matched training data and 3 of the 6 are calibrated on a training set drawn from a single publication. The pooled n is 12 predictions, not 12 independent processes. It is reported as an exploratory block."
+ },
+ "comparison_with_v12_loocv": {
+  "v12_reference": {
+   "protocol": "leave-one-orientation-out, nine folds, per-fold S0 refit",
+   "published_mean_blind_ef_error_pct": 31.85,
+   "published_mean_blind_uts_error_pct": 15.33,
+   "published_pass_10pct": 2,
+   "n": 9,
+   "source": "experiment_v12_fxi_transverse_results.json, key loocv.modified_model. LOCKED reference: read back for the table, never recomputed, refitted or rewritten.",
+   "summary_read_back_from_json": {
+    "label": "v12 LOOCV (read back from the locked JSON)",
+    "n_predictions": 9,
+    "mean_ef_error_pct": 31.22,
+    "median_ef_error_pct": 22.69,
+    "std_ef_error_pct": 23.23,
+    "min_ef_error_pct": 8.47,
+    "max_ef_error_pct": 74.02,
+    "pass_10pct": 2,
+    "pass_20pct": 3,
+    "bootstrap_mean_95ci": [
+     17.83,
+     46.21
+    ],
+    "bootstrap_median_95ci": [
+     9.64,
+     58.95
+    ],
+    "bootstrap_resamples": 10000
+   }
+  },
+  "paired_on_v12_nine": {
+   "status": "ok",
+   "design": "same nine experimental cases; v12 predicts each with the other two orientations of the SAME source, v13 predicts each with the other SOURCE of the same material (the v12_original points are held out entirely). The pairing isolates what changes when the held-out unit moves from orientation to source.",
+   "fold_order": [
+    "Ti64@0",
+    "Ti64@45",
+    "Ti64@90",
+    "316L@0",
+    "316L@45",
+    "316L@90",
+    "AlSi10Mg@0",
+    "AlSi10Mg@45",
+    "AlSi10Mg@90"
+   ],
+   "v13_loso_hold_v12_err_pct": [
+    15.44,
+    2.61,
+    2.05,
+    61.43,
+    74.76,
+    87.86,
+    74.02,
+    6.01,
+    1.08
+   ],
+   "v12_loocv_err_pct": [
+    9.64,
+    14.16,
+    8.47,
+    46.45,
+    25.89,
+    58.95,
+    74.02,
+    20.75,
+    22.69
+   ],
+   "v12_loocv_uts_err_pct": [
+    16.53,
+    13.42,
+    9.49,
+    8.73,
+    21.68,
+    30.79,
+    19.94,
+    14.69,
+    6.8
+   ],
+   "v13_uts_err_pct": [
+    16.51,
+    13.36,
+    9.49,
+    39.44,
+    35.66,
+    30.79,
+    19.94,
+    14.58,
+    6.79
+   ],
+   "paired_diff_pct": [
+    5.8,
+    -11.55,
+    -6.42,
+    14.98,
+    48.87,
+    28.91,
+    0.0,
+    -14.74,
+    -21.61
+   ],
+   "n": 9,
+   "mean_v13_pct": 36.14,
+   "mean_v12_pct": 31.22,
+   "mean_diff_pct": 4.92,
+   "median_diff_pct": 0.0,
+   "wilcoxon": {
+    "stat": 19.0,
+    "p_value": 0.734375
+   },
+   "sign_test": {
+    "n_positive": 5,
+    "n_negative": 4,
+    "n_ties": 0,
+    "p_value_two_sided": 1.0
+   },
+   "bootstrap_100k_mean_diff_95ci": [
+    -8.15,
+    19.72
+   ],
+   "v13_mean_uts_err_pct": 20.73,
+   "interpretation": "At n=9 the paired mean difference is +4.92 pt (positive = source-exclusion CV worse than orientation-exclusion CV); Wilcoxon p=0.7344, sign-test p=1.0000, bootstrap 95% CI of the mean difference [-8.15, +19.72]. The difference is NOT statistically significant at n=9: the bootstrap interval includes 0, so the two held-out units cannot be separated with this sample size."
+  },
+  "pooled_table": {
+   "note": "all rows are fracture-strain (ef) relative errors in per cent under the same single-S0, leakage-free protocol. The v12 row is the LOCKED published reference under a different held-out unit; it is read back from its own results file and is not recomputed or rewritten here. The rows are NOT directly comparable in difficulty: v12 holds out one orientation of the calibration source, LOSO holds out an entire source, LOMO extrapolates across materials, LOPO holds out a process window.",
+   "rows": [
+    {
+     "variant": "v12 LOOCV (locked reference)",
+     "is_locked_reference": true,
+     "n_predictions": 9,
+     "mean_ef_error_pct": 31.22,
+     "median_ef_error_pct": 22.69,
+     "std_ef_error_pct": 23.23,
+     "bootstrap_mean_95ci": [
+      17.83,
+      46.21
+     ],
+     "pass_10pct": 2,
+     "pass_20pct": 3,
+     "published_mean_ef_error_pct": 31.85
+    },
+    {
+     "variant": "leave_one_source",
+     "n_predictions": 48,
+     "mean_ef_error_pct": 64.13,
+     "median_ef_error_pct": 72.64,
+     "std_ef_error_pct": 51.76,
+     "bootstrap_mean_95ci": [
+      51.78,
+      80.67
+     ],
+     "pass_10pct": 5,
+     "pass_20pct": 8
+    },
+    {
+     "variant": "leave_one_material",
+     "n_predictions": 54,
+     "mean_ef_error_pct": 60.68,
+     "median_ef_error_pct": 62.86,
+     "std_ef_error_pct": 27.98,
+     "bootstrap_mean_95ci": [
+      53.25,
+      68.13
+     ],
+     "pass_10pct": 2,
+     "pass_20pct": 5
+    },
+    {
+     "variant": "leave_one_process",
+     "n_predictions": 12,
+     "mean_ef_error_pct": 83.43,
+     "median_ef_error_pct": 41.23,
+     "std_ef_error_pct": 103.56,
+     "bootstrap_mean_95ci": [
+      37.1,
+      147.32
+     ],
+     "pass_10pct": 1,
+     "pass_20pct": 2
+    }
+   ]
+  }
+ },
+ "protocol_deviation_check": {
+  "purpose": "two separate questions in one table. (1) Does this runner reproduce the published v12 predictions at the same settings? (2) What does the n_grains=10 truncation the brief requested actually cost?",
+  "n_cases": 9,
+  "reproduction_n20": {
+   "description": "v13 evaluated at the published v12 S0, orientation and n_grains=20 - exactly the numbers v12 printed.",
+   "delta_ef_pct_of_pred": {
+    "mean": 0.0,
+    "mean_abs": 0.0,
+    "max_abs": 0.0
+   },
+   "delta_uts_pct": {
+    "mean": 0.0,
+    "mean_abs": 0.0,
+    "max_abs": 0.0
+   },
+   "verdict": "VERIFIED: this runner reproduces the published v12 ef predictions to within 0.05% at n_grains=20, so the extended-protocol numbers below differ from v12 only through the cross-validation design."
+  },
+  "truncation_n20_vs_n10": {
+   "description": "same S0 and orientation, n_grains=10 instead of 20. The n_grains=10 orientation set is the first ten grains of the n_grains=20 set, so this isolates the grain-count truncation.",
+   "delta_ef_pct_of_pred": {
+    "mean": -1.278,
+    "mean_abs": 1.457,
+    "max_abs": 5.758
+   },
+   "delta_ef_pct_of_exp": {
+    "mean": -1.193,
+    "mean_abs": 1.418,
+    "max_abs": 5.049
+   },
+   "delta_uts_pct": {
+    "mean": 1.746,
+    "mean_abs": 1.746,
+    "max_abs": 5.643
+   },
+   "within_5pct_claim": false,
+   "verdict": "the brief's \"<5% accuracy loss\" estimate for n_grains=10 is NOT supported on these nine cases."
+  },
+  "cases": [
+   {
+    "material": "Ti64",
+    "orientation_deg": 0,
+    "S0": 0.32,
+    "ef_exp": 0.08,
+    "ef_pred_v12_published_n20": 0.07229,
+    "ef_pred_v13_n20": 0.07229,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 959.9,
+    "uts_pred_v13_n20_MPa": 959.9,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.07145,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.000832,
+    "truncation_delta_ef_pct_of_pred": -1.151,
+    "truncation_delta_ef_pct_of_exp": -1.04,
+    "uts_pred_v13_n10_MPa": 963.6,
+    "truncation_delta_uts_pct": 0.383
+   },
+   {
+    "material": "Ti64",
+    "orientation_deg": 45,
+    "S0": 0.32,
+    "ef_exp": 0.063,
+    "ef_pred_v12_published_n20": 0.05408,
+    "ef_pred_v13_n20": 0.05408,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 952.4,
+    "uts_pred_v13_n20_MPa": 952.4,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.05364,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.000444,
+    "truncation_delta_ef_pct_of_pred": -0.821,
+    "truncation_delta_ef_pct_of_exp": -0.705,
+    "uts_pred_v13_n10_MPa": 956.6,
+    "truncation_delta_uts_pct": 0.434
+   },
+   {
+    "material": "Ti64",
+    "orientation_deg": 90,
+    "S0": 0.32,
+    "ef_exp": 0.048,
+    "ef_pred_v12_published_n20": 0.04394,
+    "ef_pred_v13_n20": 0.04394,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 950.3,
+    "uts_pred_v13_n20_MPa": 950.3,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.04366,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.000278,
+    "truncation_delta_ef_pct_of_pred": -0.634,
+    "truncation_delta_ef_pct_of_exp": -0.58,
+    "uts_pred_v13_n10_MPa": 954.8,
+    "truncation_delta_uts_pct": 0.463
+   },
+   {
+    "material": "316L",
+    "orientation_deg": 0,
+    "S0": 3.2,
+    "ef_exp": 0.37,
+    "ef_pred_v12_published_n20": 0.54188,
+    "ef_pred_v13_n20": 0.54188,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 620.6,
+    "uts_pred_v13_n20_MPa": 620.6,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.53163,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.010256,
+    "truncation_delta_ef_pct_of_pred": -1.893,
+    "truncation_delta_ef_pct_of_exp": -2.772,
+    "uts_pred_v13_n10_MPa": 637.4,
+    "truncation_delta_uts_pct": 2.7
+   },
+   {
+    "material": "316L",
+    "orientation_deg": 45,
+    "S0": 3.2,
+    "ef_exp": 0.31,
+    "ef_pred_v12_published_n20": 0.39025,
+    "ef_pred_v13_n20": 0.39025,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 501.3,
+    "uts_pred_v13_n20_MPa": 501.3,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.39251,
+    "truncated_n20": false,
+    "truncation_delta_ef": 0.002265,
+    "truncation_delta_ef_pct_of_pred": 0.58,
+    "truncation_delta_ef_pct_of_exp": 0.731,
+    "uts_pred_v13_n10_MPa": 529.6,
+    "truncation_delta_uts_pct": 5.643
+   },
+   {
+    "material": "316L",
+    "orientation_deg": 90,
+    "S0": 3.2,
+    "ef_exp": 0.255,
+    "ef_pred_v12_published_n20": 0.22358,
+    "ef_pred_v13_n20": 0.22358,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 411.8,
+    "uts_pred_v13_n20_MPa": 411.8,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.21071,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.012874,
+    "truncation_delta_ef_pct_of_pred": -5.758,
+    "truncation_delta_ef_pct_of_exp": -5.049,
+    "uts_pred_v13_n10_MPa": 416.9,
+    "truncation_delta_uts_pct": 1.238
+   },
+   {
+    "material": "AlSi10Mg",
+    "orientation_deg": 0,
+    "S0": 0.2,
+    "ef_exp": 0.056,
+    "ef_pred_v12_published_n20": 0.06877,
+    "ef_pred_v13_n20": 0.06877,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 351.7,
+    "uts_pred_v13_n20_MPa": 351.7,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.06892,
+    "truncated_n20": false,
+    "truncation_delta_ef": 0.000157,
+    "truncation_delta_ef_pct_of_pred": 0.228,
+    "truncation_delta_ef_pct_of_exp": 0.28,
+    "uts_pred_v13_n10_MPa": 356.9,
+    "truncation_delta_uts_pct": 1.462
+   },
+   {
+    "material": "AlSi10Mg",
+    "orientation_deg": 45,
+    "S0": 0.2,
+    "ef_exp": 0.047,
+    "ef_pred_v12_published_n20": 0.03725,
+    "ef_pred_v13_n20": 0.03725,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 349.8,
+    "uts_pred_v13_n20_MPa": 349.8,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.03696,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.000286,
+    "truncation_delta_ef_pct_of_pred": -0.767,
+    "truncation_delta_ef_pct_of_exp": -0.608,
+    "uts_pred_v13_n10_MPa": 356.0,
+    "truncation_delta_uts_pct": 1.782
+   },
+   {
+    "material": "AlSi10Mg",
+    "orientation_deg": 90,
+    "S0": 0.2,
+    "ef_exp": 0.037,
+    "ef_pred_v12_published_n20": 0.0286,
+    "ef_pred_v13_n20": 0.0286,
+    "reproduction_delta_ef": 0.0,
+    "reproduction_delta_ef_pct_of_pred": 0.0,
+    "uts_pred_v12_published_n20_MPa": 349.5,
+    "uts_pred_v13_n20_MPa": 349.5,
+    "reproduction_delta_uts_pct": 0.0,
+    "ef_pred_v13_n10": 0.02824,
+    "truncated_n20": false,
+    "truncation_delta_ef": -0.000368,
+    "truncation_delta_ef_pct_of_pred": -1.285,
+    "truncation_delta_ef_pct_of_exp": -0.994,
+    "uts_pred_v13_n10_MPa": 355.1,
+    "truncation_delta_uts_pct": 1.608
+   }
+  ]
+ },
+ "orientation_mapping_flag": {
+  "finding": "the extended dataset converts the printed build-plate angle to the model convention (0 deg = axis parallel to the build direction), while blind_test_ti64_cross_source.py / blind_test_in718_fast.py assigned the printed angles to the model angles directly. The measured numbers are the same in both cases; only the orientation attribution differs, and it swaps the 0 deg and 90 deg errors.",
+  "resolution_adopted": "the extended dataset is authoritative for this report (as instructed); every number in this JSON uses the CSV orientation_deg. The alternative pairing is scored below so the difference is quantified and not hidden.",
+  "consequence": "for sun2024 the two pairings give similar average errors, but for hovig2018 the mirrored pairing is the one that reproduces the manuscript's ~93% strict-extrapolation error while the CSV pairing gives a much smaller error and no 90 deg reversal. The difference is reported, not resolved.",
+  "v12_locked_stats_affected": false,
+  "comparisons": [
+   {
+    "source": "sun2024adem",
+    "material": "Ti64",
+    "S0_used": 0.32,
+    "s0_note": "locked v12 value",
+    "csv_convention": {
+     "avg_ef_error_pct": 22.8,
+     "per_orientation": {
+      "0": 22.61,
+      "45": 1.47,
+      "90": 44.32
+     }
+    },
+    "mirrored_pairing": {
+     "avg_ef_error_pct": 30.67,
+     "per_orientation": {
+      "0": 8.38,
+      "90": 52.96
+     }
+    },
+    "delta_avg_ef_error_pct": 7.87
+   },
+   {
+    "source": "hitzler2017materials",
+    "material": "316L",
+    "S0_used": 3.2,
+    "s0_note": "locked v12 value",
+    "csv_convention": {
+     "avg_ef_error_pct": 137.79,
+     "per_orientation": {
+      "0": 360.78,
+      "45": 19.86,
+      "90": 32.74
+     }
+    },
+    "mirrored_pairing": {
+     "avg_ef_error_pct": 76.57,
+     "per_orientation": {
+      "0": 63.02,
+      "90": 90.12
+     }
+    },
+    "delta_avg_ef_error_pct": -61.22
+   },
+   {
+    "source": "awd2018metals",
+    "material": "AlSi10Mg",
+    "S0_used": 0.2,
+    "s0_note": "locked v12 value",
+    "csv_convention": {
+     "avg_ef_error_pct": 38.83,
+     "per_orientation": {
+      "0": 17.15,
+      "45": 34.66,
+      "90": 64.69
+     }
+    },
+    "mirrored_pairing": {
+     "avg_ef_error_pct": 40.32,
+     "per_orientation": {
+      "0": 15.1,
+      "90": 65.54
+     }
+    },
+    "delta_avg_ef_error_pct": 1.49
+   },
+   {
+    "source": "hovig2018in718",
+    "material": "IN718",
+    "S0_used": 0.589445,
+    "s0_note": "cross-material geometric mean (the value the manuscript's IN718 strict extrapolation used)",
+    "csv_convention": {
+     "avg_ef_error_pct": 71.82,
+     "per_orientation": {
+      "0": 61.57,
+      "45": 74.18,
+      "90": 79.7
+     }
+    },
+    "mirrored_pairing": {
+     "avg_ef_error_pct": 64.41,
+     "per_orientation": {
+      "0": 42.35,
+      "90": 86.47
+     }
+    },
+    "delta_avg_ef_error_pct": -7.41
+   }
+  ]
+ },
+ "failure_mode_analysis": {
+  "decision_tree": "steps: (1) data check - is >=1 orientation of the target source available to recalibrate S0? (2) mechanism check - does the target reproduce the columnar-accelerated transverse degradation of the calibration set? (3) reversal triage - defect shielding (repairable by the beta6 shielding term), process-window shift (S0 not transferable, in-source recalibration required), alpha-lath geometry (not repairable); (4) residual audit - 90/0 projection ratio for weakly columnar alloys.",
+  "folds": [
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG1_168W_1475mmps_30um",
+    "material": "IN718",
+    "avg_held_ef_error_pct": 215.84,
+    "avg_held_uts_error_pct": 49.16,
+    "train_err_pct": 38.76,
+    "S0": 3.2,
+    "S0_method": "v12_grid_refit",
+    "n_held": 1,
+    "held_trend": {
+     "orientations": [
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "90": 0.06
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "watring2020_IN718_90_lo",
+     "orientation_deg": 90,
+     "ef_exp": 0.06,
+     "ef_pred": 0.1895,
+     "ef_error_pct": 215.84
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "hitzler2017materials",
+    "material": "316L",
+    "avg_held_ef_error_pct": 137.79,
+    "avg_held_uts_error_pct": 28.2,
+    "train_err_pct": 28.22,
+    "S0": 3.2,
+    "S0_method": "v12_locked_value",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Process-window / surface-condition shift: milled specimens on a 200 C-preheated platform, UTS at 0 deg (512 MPa) below the nominal 316L band, and the highest ductility at 90 deg (33.2%) rather than at 0 deg. Decision-tree branch: reversal triage -> process-window shift -> S0 not transferable, in-source recalibration required.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "hitzler2017_316L_0",
+     "orientation_deg": 0,
+     "ef_exp": 0.1176,
+     "ef_pred": 0.54188,
+     "ef_error_pct": 360.78
+    }
+   },
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG3_200W_800mmps_30um",
+    "material": "316L",
+    "avg_held_ef_error_pct": 137.79,
+    "avg_held_uts_error_pct": 28.2,
+    "train_err_pct": 28.22,
+    "S0": 3.2,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "hitzler2017_316L_0",
+     "orientation_deg": 0,
+     "ef_exp": 0.1176,
+     "ef_pred": 0.54188,
+     "ef_error_pct": 360.78
+    }
+   },
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG6_330W_1770mmps_30um",
+    "material": "IN718",
+    "avg_held_ef_error_pct": 84.5,
+    "avg_held_uts_error_pct": 64.9,
+    "train_err_pct": 21.51,
+    "S0": 1.28,
+    "S0_method": "v12_grid_refit",
+    "n_held": 1,
+    "held_trend": {
+     "orientations": [
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "90": 0.29
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "watring2020_IN718_90_hi",
+     "orientation_deg": 90,
+     "ef_exp": 0.29,
+     "ef_pred": 0.04496,
+     "ef_error_pct": 84.5
+    }
+   },
+   {
+    "variant": "leave_one_material",
+    "held_unit": "AlSi10Mg",
+    "material": "AlSi10Mg",
+    "avg_held_ef_error_pct": 83.22,
+    "avg_held_uts_error_pct": 8.89,
+    "train_err_pct": null,
+    "S0": 1.094385,
+    "S0_method": "cross_material_geomean",
+    "n_held": 6,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0695,
+      "45": 0.052000000000000005,
+      "90": 0.059
+     },
+     "n_points": 6
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "v12_AlSi10Mg_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.037,
+     "ef_pred": 0.084,
+     "ef_error_pct": 127.03
+    }
+   },
+   {
+    "variant": "leave_one_material",
+    "held_unit": "316L",
+    "material": "316L",
+    "avg_held_ef_error_pct": 79.88,
+    "avg_held_uts_error_pct": 33.61,
+    "train_err_pct": null,
+    "S0": 0.434307,
+    "S0_method": "cross_material_geomean",
+    "n_held": 6,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 0 deg)",
+     "ef_by_orientation": {
+      "0": 0.2438,
+      "45": 0.31779999999999997,
+      "90": 0.29369999999999996
+     },
+     "n_points": 6
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "hitzler2017_316L_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.3324,
+     "ef_pred": 0.0269,
+     "ef_error_pct": 91.91
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "v12_original",
+    "material": "316L",
+    "avg_held_ef_error_pct": 74.68,
+    "avg_held_uts_error_pct": 35.3,
+    "train_err_pct": 62.67,
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.37,
+      "45": 0.31,
+      "90": 0.255
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "v12_316L_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.255,
+     "ef_pred": 0.03096,
+     "ef_error_pct": 87.86
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "nist_mds2_3402",
+    "material": "Ti64",
+    "avg_held_ef_error_pct": 72.09,
+    "avg_held_uts_error_pct": 8.34,
+    "train_err_pct": 16.78,
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "n_held": 30,
+    "held_trend": {
+     "orientations": [
+      0,
+      90
+     ],
+     "shape": "two_orientations (0 deg = 0.2291, 90 deg = 0.2438; spread 0.0146); a second point at the same orientation with a different process window gives the within-orientation process spread",
+     "ef_by_orientation": {
+      "0": 0.22914000000000004,
+      "90": 0.24377333333333331
+     },
+     "n_points": 30
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "nist_mds2_3402_HT5_h",
+     "orientation_deg": 90,
+     "ef_exp": 0.3279,
+     "ef_pred": 0.04394,
+     "ef_error_pct": 86.6
+    }
+   },
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG4_220W_1180mmps_30um",
+    "material": "IN718",
+    "avg_held_ef_error_pct": 71.7,
+    "avg_held_uts_error_pct": 60.56,
+    "train_err_pct": 43.83,
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "n_held": 1,
+    "held_trend": {
+     "orientations": [
+      30
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "30": 0.28
+     },
+     "n_points": 1
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "watring2020_IN718_30",
+     "orientation_deg": 30,
+     "ef_exp": 0.28,
+     "ef_pred": 0.07923,
+     "ef_error_pct": 71.7
+    }
+   },
+   {
+    "variant": "leave_one_material",
+    "held_unit": "IN718",
+    "material": "IN718",
+    "avg_held_ef_error_pct": 64.49,
+    "avg_held_uts_error_pct": 58.35,
+    "train_err_pct": null,
+    "S0": 0.589445,
+    "S0_method": "cross_material_geomean",
+    "n_held": 6,
+    "held_trend": {
+     "orientations": [
+      0,
+      30,
+      45,
+      90
+     ],
+     "shape": "insufficient_orientations",
+     "ef_by_orientation": {
+      "0": 0.3,
+      "30": 0.28,
+      "45": 0.25,
+      "90": 0.18333333333333335
+     },
+     "n_points": 6
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "watring2020_IN718_90_hi",
+     "orientation_deg": 90,
+     "ef_exp": 0.29,
+     "ef_pred": 0.0406,
+     "ef_error_pct": 86.0
+    }
+   },
+   {
+    "variant": "leave_one_material",
+    "held_unit": "Ti64",
+    "material": "Ti64",
+    "avg_held_ef_error_pct": 53.09,
+    "avg_held_uts_error_pct": 9.78,
+    "train_err_pct": null,
+    "S0": 0.935686,
+    "S0_method": "cross_material_geomean",
+    "n_held": 36,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.21238235294117647,
+      "45": 0.05815,
+      "90": 0.22255882352941178
+     },
+     "n_points": 36
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "nist_mds2_3402_HT5_h",
+     "orientation_deg": 90,
+     "ef_exp": 0.3279,
+     "ef_pred": 0.06107,
+     "ef_error_pct": 81.38
+    }
+   },
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG5_275W_805mmps_50um",
+    "material": "IN718",
+    "avg_held_ef_error_pct": 51.8,
+    "avg_held_uts_error_pct": 55.69,
+    "train_err_pct": 42.51,
+    "S0": 1.28,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.3,
+      "45": 0.25,
+      "90": 0.2
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+    "confound": "No heat-treatment-matched out-of-window data exists for this group; training uses a heat-treatment-mixed set (solution-treated IN718 for an as-built held window, or the reverse). Reported as an exploratory fold.",
+    "worst_point": {
+     "point_id": "hovig2018_IN718_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.2,
+     "ef_pred": 0.04496,
+     "ef_error_pct": 77.52
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "awd2018metals",
+    "material": "AlSi10Mg",
+    "avg_held_ef_error_pct": 38.83,
+    "avg_held_uts_error_pct": 4.29,
+    "train_err_pct": 22.08,
+    "S0": 0.2,
+    "S0_method": "v12_locked_value",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.083,
+      "45": 0.057,
+      "90": 0.081
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Morphology-projection boundary: V-shaped trend with 90 deg nearly as ductile as 0 deg and lack-of-fusion porosity mediating failure. Mechanistically consistent with the calibration class but the projection over-weights transverse acceleration. Decision-tree branch: residual audit (90/0 ratio).",
+    "confound": null,
+    "worst_point": {
+     "point_id": "awd2018_AlSi10Mg_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.081,
+     "ef_pred": 0.0286,
+     "ef_error_pct": 64.69
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "v12_original",
+    "material": "AlSi10Mg",
+    "avg_held_ef_error_pct": 27.04,
+    "avg_held_uts_error_pct": 13.77,
+    "train_err_pct": 28.27,
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.056,
+      "45": 0.047,
+      "90": 0.037
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "v12_AlSi10Mg_0",
+     "orientation_deg": 0,
+     "ef_exp": 0.056,
+     "ef_pred": 0.09745,
+     "ef_error_pct": 74.02
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "sun2024adem",
+    "material": "Ti64",
+    "avg_held_ef_error_pct": 20.11,
+    "avg_held_uts_error_pct": 21.37,
+    "train_err_pct": 27.94,
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "alpha'-martensite lath geometry. Under the dataset convention (0 deg = axis parallel to BD) the source direction trend is non-monotone, with the minimum at 45 deg; the projection laws encode a monotone transverse degradation and cannot reproduce a mid-angle minimum. Decision-tree branch: reversal triage -> lath geometry -> not repairable by the shielding term.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "sun2024_Ti64_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.0789,
+     "ef_pred": 0.04898,
+     "ef_error_pct": 37.92
+    }
+   },
+   {
+    "variant": "leave_one_process",
+    "held_unit": "PG2_175W_710mmps_30um",
+    "material": "Ti64",
+    "avg_held_ef_error_pct": 20.11,
+    "avg_held_uts_error_pct": 21.37,
+    "train_err_pct": 27.94,
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "",
+    "confound": null,
+    "worst_point": {
+     "point_id": "sun2024_Ti64_90",
+     "orientation_deg": 90,
+     "ef_exp": 0.0789,
+     "ef_pred": 0.04898,
+     "ef_error_pct": 37.92
+    }
+   },
+   {
+    "variant": "leave_one_source",
+    "held_unit": "v12_original",
+    "material": "Ti64",
+    "avg_held_ef_error_pct": 6.7,
+    "avg_held_uts_error_pct": 13.12,
+    "train_err_pct": 35.99,
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "n_held": 3,
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.08,
+      "45": 0.063,
+      "90": 0.048
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "confound": null,
+    "worst_point": {
+     "point_id": "v12_Ti64_0",
+     "orientation_deg": 0,
+     "ef_exp": 0.08,
+     "ef_pred": 0.09235,
+     "ef_error_pct": 15.44
+    }
+   }
+  ],
+  "worst_fold": {
+   "variant": "leave_one_process",
+   "held_unit": "PG1_168W_1475mmps_30um",
+   "material": "IN718",
+   "avg_held_ef_error_pct": 215.84,
+   "avg_held_uts_error_pct": 49.16,
+   "train_err_pct": 38.76,
+   "S0": 3.2,
+   "S0_method": "v12_grid_refit",
+   "n_held": 1,
+   "held_trend": {
+    "orientations": [
+     90
+    ],
+    "shape": "insufficient_orientations",
+    "ef_by_orientation": {
+     "90": 0.06
+    },
+    "n_points": 1
+   },
+   "mechanism_note": "Within-source process-window spread: the same build orientation at 90 deg gives 6.0% (38 J/mm3, 6.9% lack-of-fusion porosity) and 29.0% (62 J/mm3, 0.23% porosity) elongation. A single orientation-only S0 cannot represent both; the fold quantifies process-window variance that the descriptors do not carry.",
+   "confound": null,
+   "worst_point": {
+    "point_id": "watring2020_IN718_90_lo",
+    "orientation_deg": 90,
+    "ef_exp": 0.06,
+    "ef_pred": 0.1895,
+    "ef_error_pct": 215.84
+   }
+  },
+  "best_fold": {
+   "variant": "leave_one_source",
+   "held_unit": "v12_original",
+   "material": "Ti64",
+   "avg_held_ef_error_pct": 6.7,
+   "avg_held_uts_error_pct": 13.12,
+   "train_err_pct": 35.99,
+   "S0": 0.5,
+   "S0_method": "v12_grid_refit",
+   "n_held": 3,
+   "held_trend": {
+    "orientations": [
+     0,
+     45,
+     90
+    ],
+    "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+    "ef_by_orientation": {
+     "0": 0.08,
+     "45": 0.063,
+     "90": 0.048
+    },
+    "n_points": 3
+   },
+   "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+   "confound": null,
+   "worst_point": {
+    "point_id": "v12_Ti64_0",
+    "orientation_deg": 0,
+    "ef_exp": 0.08,
+    "ef_pred": 0.09235,
+    "ef_error_pct": 15.44
+   }
+  }
+ },
+ "prediction_cache_manifest": {
+  "n_entries": 157,
+  "n_wave1_grid": 78,
+  "path": "D:\\20260618断裂模型论文\\simulation\\output\\cv_prediction_cache.json",
+  "note": "one entry per distinct (material, orientation, S0, n_grains); a run is shared by every fold that needs it, which is why the ~75-run experiment is re-runnable at zero cost"
+ },
+ "run": {
+  "wall_seconds_total": 1883.6,
+  "n_cache_entries": 157,
+  "workers": 14,
+  "log": "D:\\20260618断裂模型论文\\simulation\\output\\cv_variants_log.txt",
+  "completed": "2026-10-06 22:12:06"
+ }
+}

@@ -1,0 +1,3001 @@
+{
+ "model": "v13_cv_variants_extended_dataset",
+ "generated": "2026-09-28 22:04:22",
+ "purpose": "R13b: re-run the leave-one-source block after adding NIST mds2-3402 as a third independent Ti64 source. Nothing in the locked R13 statistics is overwritten; the two blocks are reported side by side and the locked file is read-only in this script.",
+ "scope": {
+  "recomputed": [
+   "leave_one_source"
+  ],
+  "not_recomputed": [
+   "leave_one_material",
+   "leave_one_process",
+   "comparison_with_v12_loocv",
+   "protocol_deviation_check",
+   "orientation_mapping_flag",
+   "failure_mode_analysis"
+  ],
+  "why": "mds2-3402 contains only Ti-6Al-4V, so 316L, AlSi10Mg and IN718 folds cannot change; their folds are recomputed here anyway as a regression check (identical inputs must reproduce the locked numbers), but LOMO, LOPO and the paired v12 comparison are left untouched."
+ },
+ "dataset": {
+  "csv": "D:\\20260618断裂模型论文\\simulation\\data\\extended_literature_dataset.csv",
+  "csv_sha256": "65183045594b00b7b349a0fa9bb799bc5c58bff4af346f4427ba66231803e8b5",
+  "n_points": 54,
+  "n_sources": 7,
+  "n_by_source": {
+   "awd2018metals": 3,
+   "hitzler2017materials": 3,
+   "hovig2018in718": 3,
+   "nist_mds2_3402": 30,
+   "sun2024adem": 3,
+   "v12_original": 9,
+   "watring2020addma": 3
+  },
+  "n_by_material": {
+   "316L": 6,
+   "AlSi10Mg": 6,
+   "IN718": 6,
+   "Ti64": 36
+  }
+ },
+ "protocol": {
+  "n_grains": 20,
+  "strain_rate": 0.001,
+  "eps_step": {
+   "316L": 0.001,
+   "other": 0.0005
+  },
+  "n_sub": 30,
+  "S0_grid": [
+   0.05,
+   0.2,
+   0.8,
+   3.2,
+   12.8,
+   50.0
+  ],
+  "refine_rounds": 1,
+  "k_g": 0.15,
+  "xi0": {
+   "Ti64": 3.5,
+   "316L": 2.5,
+   "AlSi10Mg": 1.5,
+   "IN718": 3.0
+  },
+  "w_iso": 0.25,
+  "lambda_ref": 50.0,
+  "single_S0_per_material": true,
+  "leakage_free": true,
+  "S0_known_v12": {
+   "Ti64": 0.32,
+   "316L": 2.0,
+   "AlSi10Mg": 0.2
+  },
+  "S0_geo_mean_v12": 0.503968,
+  "orientation_convention": "0 deg = loading axis PARALLEL to the build direction; 90 deg = perpendicular; taken directly from the extended dataset CSV (already converted at extraction).",
+  "deviations_from_v12": [
+   {
+    "id": "D1",
+    "field": "n_grains",
+    "v12": 20,
+    "v13": 20,
+    "status": "MATCHED - not exercised by the primary run",
+    "reason": "the brief anticipated 15-90 min per TaylorCPCDM run and asked for n_grains=10 to halve the cost. The measured cost is ~15 s per run (~30 s at n_grains=20), so the primary run keeps v12's n_grains=20 and the truncation is instead measured directly on the nine v12 calibration cases at n_grains=10 (see protocol_deviation_check). TaylorCPCDM.__init__ calls np.random.seed(seed) with seed=42, so the orientation set is reproducible and the 10-grain set is exactly the first 10 grains of the 20-grain set."
+   },
+   {
+    "id": "D2",
+    "field": "S0 calibration grid",
+    "v12": "6 points + 1 refine round",
+    "v13": [
+     0.05,
+     0.2,
+     0.8,
+     3.2,
+     12.8,
+     50.0
+    ],
+    "status": "MATCHED - not exercised by the primary run",
+    "reason": "same runtime premise as D1. The primary run uses v12\"s own six-point grid and its refinement probe best/1.6, best*1.6, so a fold calibration here is directly comparable with the corresponding v12 fold."
+   },
+   {
+    "id": "D3",
+    "field": "IN718 max_strain",
+    "v12": "0.31 (fallback)",
+    "v13": 0.4,
+    "status": "ACTIVE (IN718 only)",
+    "reason": "the v12 fallback truncates a late-fracturing IN718 prediction and returns ef = max_strain as an artefact; 0.40 matches the in-repo IN718 precedent (blind_test_in718_fast.py). Every truncated run is flagged as n_truncated."
+   },
+   {
+    "id": "D4",
+    "field": "IN718 gs(psi)",
+    "v12": "directional k_g applied",
+    "v13": "directional k_g applied (draft-script bug fixed)",
+    "status": "ACTIVE (IN718 only) - a fix, restoring v12 behaviour",
+    "reason": "the draft script applied the IN718 override dict after the directional gs correction, so the flat gs = 280 MPa silently overwrote it and k_g was dropped for IN718. Fixed here to match the v12 protocol and blind_test_in718_fast.py (overrides first, directional gs last)."
+   },
+   {
+    "id": "D5",
+    "field": "IN718 integrator",
+    "v12": "n/a - IN718 not in v12",
+    "v13": "eps_step=5e-4, n_sub=30 (the v12 protocol)",
+    "status": "NOTE",
+    "reason": "the published in-repo IN718 blind test used a fast configuration (eps_step=2e-3, n_sub=12, n_grains=20); this run uses the v12 integrator for IN718 too, so the IN718 numbers here are NOT expected to reproduce that published 93.1% digit for digit. The deviation check quantifies the integrator-plus-grain difference where the v12 cases allow."
+   }
+  ],
+  "runtime_premise_correction": "the task brief specified result caching, known-S0 re-use, a coarse 4-point calibration grid, n_grains=10 and background execution because a TaylorCPCDM run was believed to take 15-90 min. Measured cost on this machine is 14.5 s (AlSi10Mg|0|0.20) and 16.7 s (Ti64|0|0.320) at n_grains=10, so a whole three-variant experiment is minutes, not hours. The accuracy-preserving options were therefore adopted for the primary run; the requested saving measures remain implemented (the cache is still the backbone of the run and of the resumability) and the n_grains=10 variant is still reported as a measured sensitivity, but they no longer buy accuracy with speed. All other optimisations in the brief are retained: one run per distinct (material, orientation, S0), known v12 S0 values re-used verbatim rather than re-fitted, incremental cache writes after every completed run, and a low worker count so the concurrent 3D CPFEM job is not starved.",
+  "n_grains_sensitivity": 10,
+  "v12_stats_untouched": true,
+  "note": "The nine v12 points are reproduced verbatim (source_id = v12_original). The extended-protocol statistics below are reported independently and do not replace, rescale or reinterpret the locked v12 LOOCV figures (mean blind ef error 31.85%, UTS 15.33%, pass@10% 2/9)."
+ },
+ "cache": {
+  "path": "D:\\20260618断裂模型论文\\simulation\\output\\cv_prediction_cache.json",
+  "n_entries": 154,
+  "n_entries_locked_r13": 148,
+  "n_entries_added_by_r13b": 6,
+  "n_new_runs_this_invocation": 0,
+  "n_failed_runs": 0,
+  "note": "shared with the locked R13 run; the wave-1 grid universe is unchanged because mds2 introduces no new (material, orientation) pair - it maps onto the existing Ti64 0/90 deg columns. All runs added by R13b are Ti64 refinements at S0 = 0.5 and 1.28 (3 orientations each); a second invocation of this script therefore adds 0 runs."
+ },
+ "loso_v13_original": {
+  "folds": [
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "hitzler2017materials",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_316L_0",
+     "v12_316L_45",
+     "v12_316L_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Process-window / surface-condition shift: milled specimens on a 200 C-preheated platform, UTS at 0 deg (512 MPa) below the nominal 316L band, and the highest ductility at 90 deg (33.2%) rather than at 0 deg. Decision-tree branch: reversal triage -> process-window shift -> S0 not transferable, in-source recalibration required.",
+    "material": "316L",
+    "S0": 2.0,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 30.1,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "hitzler2017_316L_90",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 90,
+      "ef_exp": 0.3324,
+      "ef_pred": 0.10468,
+      "ef_error_pct": 68.51,
+      "uts_exp_MPa": 634.43,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.1,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_45",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 45,
+      "ef_exp": 0.3256,
+      "ef_pred": 0.25003,
+      "ef_error_pct": 23.21,
+      "uts_exp_MPa": 698.98,
+      "uts_pred_MPa": 423.6,
+      "uts_error_pct": 39.4,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_0",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 0,
+      "ef_exp": 0.1176,
+      "ef_pred": 0.32556,
+      "ef_error_pct": 176.84,
+      "uts_exp_MPa": 511.99,
+      "uts_pred_MPa": 513.7,
+      "uts_error_pct": 0.34,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 89.52,
+    "avg_held_uts_error_pct": 24.95,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 2.0,
+    "alternative_avg_held_ef_error_pct": 89.52
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "hitzler2017materials"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "hitzler2017_316L_90",
+     "hitzler2017_316L_45",
+     "hitzler2017_316L_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.37,
+      "45": 0.31,
+      "90": 0.255
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "316L",
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 63.17,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_316L_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.37,
+      "ef_pred": 0.14272,
+      "ef_error_pct": 61.43,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 39.44,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.31,
+      "ef_pred": 0.07336,
+      "ef_error_pct": 76.34,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.66,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.255,
+      "ef_pred": 0.03096,
+      "ef_error_pct": 87.86,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 30.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 75.21,
+    "avg_held_uts_error_pct": 35.3,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 89.238,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 84.808,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 63.172,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 140.606,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 73.632,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 77.368,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "awd2018metals",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_AlSi10Mg_0",
+     "v12_AlSi10Mg_45",
+     "v12_AlSi10Mg_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.083,
+      "45": 0.057,
+      "90": 0.081
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Morphology-projection boundary: V-shaped trend with 90 deg nearly as ductile as 0 deg and lack-of-fusion porosity mediating failure. Mechanistically consistent with the calibration class but the projection over-weights transverse acceleration. Decision-tree branch: residual audit (90/0 ratio).",
+    "material": "AlSi10Mg",
+    "S0": 0.2,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 21.98,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "awd2018_AlSi10Mg_90",
+      "source_id": "awd2018metals",
+      "orientation_deg": 90,
+      "ef_exp": 0.081,
+      "ef_pred": 0.0286,
+      "ef_error_pct": 64.69,
+      "uts_exp_MPa": 379.6,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 7.93,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_45",
+      "source_id": "awd2018metals",
+      "orientation_deg": 45,
+      "ef_exp": 0.057,
+      "ef_pred": 0.03739,
+      "ef_error_pct": 34.4,
+      "uts_exp_MPa": 367.8,
+      "uts_pred_MPa": 349.8,
+      "uts_error_pct": 4.88,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_0",
+      "source_id": "awd2018metals",
+      "orientation_deg": 0,
+      "ef_exp": 0.083,
+      "ef_pred": 0.06877,
+      "ef_error_pct": 17.15,
+      "uts_exp_MPa": 351.8,
+      "uts_pred_MPa": 351.7,
+      "uts_error_pct": 0.02,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 38.75,
+    "avg_held_uts_error_pct": 4.28,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 0.2,
+    "alternative_avg_held_ef_error_pct": 38.75
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "awd2018metals"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "awd2018_AlSi10Mg_90",
+     "awd2018_AlSi10Mg_45",
+     "awd2018_AlSi10Mg_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.056,
+      "45": 0.047,
+      "90": 0.037
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "AlSi10Mg",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 28.15,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_AlSi10Mg_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.056,
+      "ef_pred": 0.09745,
+      "ef_error_pct": 74.02,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 352.3,
+      "uts_error_pct": 19.94,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.047,
+      "ef_pred": 0.05003,
+      "ef_error_pct": 6.44,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 350.3,
+      "uts_error_pct": 14.55,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.037,
+      "ef_pred": 0.0366,
+      "ef_error_pct": 1.08,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 6.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 27.18,
+    "avg_held_uts_error_pct": 13.76,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 68.77,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 38.747,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 44.859,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 53.328,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 28.152,
+      "stage": "refine1"
+     }
+    ]
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "sun2024adem",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "alpha'-martensite lath geometry. Under the dataset convention (0 deg = axis parallel to BD) the source direction trend is non-monotone, with the minimum at 45 deg; the projection laws encode a monotone transverse degradation and cannot reproduce a mid-angle minimum. Decision-tree branch: reversal triage -> lath geometry -> not repairable by the shielding term.",
+    "material": "Ti64",
+    "S0": 0.32,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 9.77,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "sun2024_Ti64_0",
+      "source_id": "sun2024adem",
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 22.61,
+      "uts_exp_MPa": 1165.0,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 17.61,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_45",
+      "source_id": "sun2024adem",
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.05595,
+      "ef_error_pct": 4.97,
+      "uts_exp_MPa": 1299.0,
+      "uts_pred_MPa": 955.0,
+      "uts_error_pct": 26.48,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_90",
+      "source_id": "sun2024adem",
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 44.32,
+      "uts_exp_MPa": 1186.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 19.87,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 23.97,
+    "avg_held_uts_error_pct": 21.32,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 0.32,
+    "alternative_avg_held_ef_error_pct": 23.97
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "sun2024adem"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "sun2024_Ti64_0",
+     "sun2024_Ti64_45",
+     "sun2024_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.08,
+      "45": 0.063,
+      "90": 0.048
+     },
+     "n_points": 3
+    },
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "Ti64",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 23.96,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_Ti64_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.08,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 9.64,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 16.53,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.063,
+      "ef_pred": 0.05595,
+      "ef_error_pct": 11.2,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 955.0,
+      "uts_error_pct": 13.18,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.048,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 8.47,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 9.49,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 9.77,
+    "avg_held_uts_error_pct": 13.07,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 45.93,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 31.846,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 40.957,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 90.507,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 90.507,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 90.507,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 38.93,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 23.962,
+      "stage": "refine1"
+     }
+    ]
+   }
+  ],
+  "skipped": [
+   {
+    "material": "IN718",
+    "status": "skipped_single_as_built_source",
+    "as_built_sources": [
+     "watring2020addma"
+    ],
+    "heat_treated_sources": [
+     "hovig2018in718"
+    ],
+    "all_sources_for_material": [
+     "hovig2018in718",
+     "watring2020addma"
+    ],
+    "n_as_built_points": 3,
+    "n_heat_treated_points": 3,
+    "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+   }
+  ],
+  "summary": {
+   "label": "LOSO",
+   "n_predictions": 18,
+   "mean_ef_error_pct": 44.07,
+   "median_ef_error_pct": 28.8,
+   "std_ef_error_pct": 43.96,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 176.84,
+   "pass_10pct": 5,
+   "pass_20pct": 7,
+   "bootstrap_mean_95ci": [
+    25.91,
+    66.03
+   ],
+   "bootstrap_median_95ci": [
+    10.42,
+    66.6
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_v12_only_summary": {
+   "label": "LOSO (held source = v12_original)",
+   "n_predictions": 9,
+   "mean_ef_error_pct": 37.39,
+   "median_ef_error_pct": 11.2,
+   "std_ef_error_pct": 36.32,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 87.86,
+   "pass_10pct": 4,
+   "pass_20pct": 5,
+   "bootstrap_mean_95ci": [
+    15.04,
+    60.5
+   ],
+   "bootstrap_median_95ci": [
+    6.44,
+    76.34
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_extended_only_summary": {
+   "label": "LOSO (held source = extended literature source)",
+   "n_predictions": 9,
+   "mean_ef_error_pct": 50.74,
+   "median_ef_error_pct": 34.4,
+   "std_ef_error_pct": 51.83,
+   "min_ef_error_pct": 4.97,
+   "max_ef_error_pct": 176.84,
+   "pass_10pct": 1,
+   "pass_20pct": 2,
+   "bootstrap_mean_95ci": [
+    24.66,
+    85.82
+   ],
+   "bootstrap_median_95ci": [
+    17.15,
+    68.51
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "in718_confounded_diagnostic": {
+   "status": "DECLARED DIAGNOSTIC, NOT A PROTOCOL FOLD",
+   "reason": [
+    {
+     "material": "IN718",
+     "status": "skipped_single_as_built_source",
+     "as_built_sources": [
+      "watring2020addma"
+     ],
+     "heat_treated_sources": [
+      "hovig2018in718"
+     ],
+     "all_sources_for_material": [
+      "hovig2018in718",
+      "watring2020addma"
+     ],
+     "n_as_built_points": 3,
+     "n_heat_treated_points": 3,
+     "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+    }
+   ],
+   "folds": [
+    {
+     "held_source": "hovig2018in718",
+     "train_sources": [
+      "watring2020addma"
+     ],
+     "S0": 1.28,
+     "train_err_pct": 37.29,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on as-built IN718 applied to solution-treated IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "hovig2018_IN718_90",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 90,
+       "ef_exp": 0.2,
+       "ef_pred": 0.04496,
+       "ef_error_pct": 77.52,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 379.5,
+       "uts_error_pct": 60.88,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_45",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 45,
+       "ef_exp": 0.25,
+       "ef_pred": 0.20865,
+       "ef_error_pct": 16.54,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 431.0,
+       "uts_error_pct": 55.57,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_0",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 0,
+       "ef_exp": 0.3,
+       "ef_pred": 0.4,
+       "ef_error_pct": 33.33,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 490.8,
+       "uts_error_pct": 49.4,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 42.46,
+     "avg_held_uts_error_pct": 55.28
+    },
+    {
+     "held_source": "watring2020addma",
+     "train_sources": [
+      "hovig2018in718"
+     ],
+     "S0": 3.2,
+     "train_err_pct": 32.86,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on solution-treated IN718 applied to as-built IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "watring2020_IN718_90_lo",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.06,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 215.84,
+       "uts_exp_MPa": 774.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 49.16,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_90_hi",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.29,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 34.65,
+       "uts_exp_MPa": 1081.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 63.6,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_30",
+       "source_id": "watring2020addma",
+       "orientation_deg": 30,
+       "ef_exp": 0.28,
+       "ef_pred": 0.4,
+       "ef_error_pct": 42.86,
+       "uts_exp_MPa": 1070.0,
+       "uts_pred_MPa": 510.9,
+       "uts_error_pct": 52.25,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 97.78,
+     "avg_held_uts_error_pct": 55.0
+    }
+   ]
+  },
+  "fold_level_summary": {
+   "description": "fold-level statistics. Each fold contributes one value (the mean over the points that fold held out), so a single-point fold counts as much as a three-point fold. The summary.* block above is POINT-level and weights by number of points. For LOSO (6x3) and LOMO (4x6) the two means coincide; for LOPO (3,3,3,1,1,1) they do not, so both are given here.",
+   "n_folds": 6,
+   "per_fold_ef_error_pct": [
+    89.52,
+    75.21,
+    38.75,
+    27.18,
+    23.97,
+    9.77
+   ],
+   "ef": {
+    "mean": 44.067,
+    "median": 32.965,
+    "std": 31.399,
+    "min": 9.77,
+    "max": 89.52,
+    "pass_10pct_count": 1,
+    "pass_20pct_count": 1
+   },
+   "uts": {
+    "mean": 18.78,
+    "median": 17.54,
+    "std": 10.821,
+    "min": 4.28,
+    "max": 35.3
+   },
+   "point_level_mean_minus_fold_level_mean_pct": 0.003,
+   "fold_errors_for_paper_table": [
+    {
+     "variant": "leave_one_source",
+     "held_unit": "hitzler2017materials",
+     "material": "316L",
+     "S0": 2.0,
+     "n_held": 3,
+     "avg_ef_error_pct": 89.52,
+     "avg_uts_error_pct": 24.95,
+     "S0_method": "v12_locked_value",
+     "confound": null
+    },
+    {
+     "variant": "leave_one_source",
+     "held_unit": "v12_original",
+     "material": "316L",
+     "S0": 0.8,
+     "n_held": 3,
+     "avg_ef_error_pct": 75.21,
+     "avg_uts_error_pct": 35.3,
+     "S0_method": "v12_grid_refit",
+     "confound": null
+    },
+    {
+     "variant": "leave_one_source",
+     "held_unit": "awd2018metals",
+     "material": "AlSi10Mg",
+     "S0": 0.2,
+     "n_held": 3,
+     "avg_ef_error_pct": 38.75,
+     "avg_uts_error_pct": 4.28,
+     "S0_method": "v12_locked_value",
+     "confound": null
+    },
+    {
+     "variant": "leave_one_source",
+     "held_unit": "v12_original",
+     "material": "AlSi10Mg",
+     "S0": 0.32,
+     "n_held": 3,
+     "avg_ef_error_pct": 27.18,
+     "avg_uts_error_pct": 13.76,
+     "S0_method": "v12_grid_refit",
+     "confound": null
+    },
+    {
+     "variant": "leave_one_source",
+     "held_unit": "sun2024adem",
+     "material": "Ti64",
+     "S0": 0.32,
+     "n_held": 3,
+     "avg_ef_error_pct": 23.97,
+     "avg_uts_error_pct": 21.32,
+     "S0_method": "v12_locked_value",
+     "confound": null
+    },
+    {
+     "variant": "leave_one_source",
+     "held_unit": "v12_original",
+     "material": "Ti64",
+     "S0": 0.32,
+     "n_held": 3,
+     "avg_ef_error_pct": 9.77,
+     "avg_uts_error_pct": 13.07,
+     "S0_method": "v12_grid_refit",
+     "confound": null
+    }
+   ]
+  },
+  "provenance": {
+   "source_file": "D:\\20260618断裂模型论文\\simulation\\output\\experiment_v13_cv_variants_results.json",
+   "copied_verbatim": true,
+   "status": "LOCKED R13 statistics - republished here unchanged, not recomputed",
+   "n_points_in_that_dataset": 24,
+   "n_by_source_in_that_dataset": {
+    "awd2018metals": 3,
+    "hitzler2017materials": 3,
+    "hovig2018in718": 3,
+    "sun2024adem": 3,
+    "v12_original": 9,
+    "watring2020addma": 3
+   }
+  }
+ },
+ "loso_with_nist": {
+  "folds": [
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "hitzler2017materials",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_316L_0",
+     "v12_316L_45",
+     "v12_316L_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_increasing_0<45<90 (inverted mechanism)",
+     "ef_by_orientation": {
+      "0": 0.1176,
+      "45": 0.3256,
+      "90": 0.3324
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built (build platform preheated to 200 C)"
+    ],
+    "mechanism_note": "Process-window / surface-condition shift: milled specimens on a 200 C-preheated platform, UTS at 0 deg (512 MPa) below the nominal 316L band, and the highest ductility at 90 deg (33.2%) rather than at 0 deg. Decision-tree branch: reversal triage -> process-window shift -> S0 not transferable, in-source recalibration required.",
+    "material": "316L",
+    "S0": 2.0,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 30.1,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "hitzler2017_316L_90",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 90,
+      "ef_exp": 0.3324,
+      "ef_pred": 0.10468,
+      "ef_error_pct": 68.51,
+      "uts_exp_MPa": 634.43,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.1,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_45",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 45,
+      "ef_exp": 0.3256,
+      "ef_pred": 0.25003,
+      "ef_error_pct": 23.21,
+      "uts_exp_MPa": 698.98,
+      "uts_pred_MPa": 423.6,
+      "uts_error_pct": 39.4,
+      "truncated": false
+     },
+     {
+      "point_id": "hitzler2017_316L_0",
+      "source_id": "hitzler2017materials",
+      "orientation_deg": 0,
+      "ef_exp": 0.1176,
+      "ef_pred": 0.32556,
+      "ef_error_pct": 176.84,
+      "uts_exp_MPa": 511.99,
+      "uts_pred_MPa": 513.7,
+      "uts_error_pct": 0.34,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 89.52,
+    "avg_held_uts_error_pct": 24.95,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 2.0,
+    "alternative_avg_held_ef_error_pct": 89.52
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "hitzler2017materials"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "hitzler2017_316L_90",
+     "hitzler2017_316L_45",
+     "hitzler2017_316L_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.37,
+      "45": 0.31,
+      "90": 0.255
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built"
+    ],
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "316L",
+    "S0": 0.8,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 63.17,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_316L_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.37,
+      "ef_pred": 0.14272,
+      "ef_error_pct": 61.43,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 39.44,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.31,
+      "ef_pred": 0.07336,
+      "ef_error_pct": 76.34,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 35.66,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_316L_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.255,
+      "ef_pred": 0.03096,
+      "ef_error_pct": 87.86,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 411.8,
+      "uts_error_pct": 30.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 75.21,
+    "avg_held_uts_error_pct": 35.3,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 89.238,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 84.808,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 63.172,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 140.606,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 169.215,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 73.632,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 77.368,
+      "stage": "refine1"
+     }
+    ],
+    "alternative_locked_S0": 2.0,
+    "alternative_avg_held_ef_error_pct": 30.1
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "awd2018metals",
+    "train_sources": [
+     "v12_original"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "v12_AlSi10Mg_0",
+     "v12_AlSi10Mg_45",
+     "v12_AlSi10Mg_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.083,
+      "45": 0.057,
+      "90": 0.081
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built"
+    ],
+    "mechanism_note": "Morphology-projection boundary: V-shaped trend with 90 deg nearly as ductile as 0 deg and lack-of-fusion porosity mediating failure. Mechanistically consistent with the calibration class but the projection over-weights transverse acceleration. Decision-tree branch: residual audit (90/0 ratio).",
+    "material": "AlSi10Mg",
+    "S0": 0.2,
+    "S0_method": "v12_locked_value",
+    "train_err_pct": 21.98,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "awd2018_AlSi10Mg_90",
+      "source_id": "awd2018metals",
+      "orientation_deg": 90,
+      "ef_exp": 0.081,
+      "ef_pred": 0.0286,
+      "ef_error_pct": 64.69,
+      "uts_exp_MPa": 379.6,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 7.93,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_45",
+      "source_id": "awd2018metals",
+      "orientation_deg": 45,
+      "ef_exp": 0.057,
+      "ef_pred": 0.03739,
+      "ef_error_pct": 34.4,
+      "uts_exp_MPa": 367.8,
+      "uts_pred_MPa": 349.8,
+      "uts_error_pct": 4.88,
+      "truncated": false
+     },
+     {
+      "point_id": "awd2018_AlSi10Mg_0",
+      "source_id": "awd2018metals",
+      "orientation_deg": 0,
+      "ef_exp": 0.083,
+      "ef_pred": 0.06877,
+      "ef_error_pct": 17.15,
+      "uts_exp_MPa": 351.8,
+      "uts_pred_MPa": 351.7,
+      "uts_error_pct": 0.02,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 38.75,
+    "avg_held_uts_error_pct": 4.28,
+    "n_truncated": 0,
+    "status": "ok",
+    "alternative_locked_S0": 0.2,
+    "alternative_avg_held_ef_error_pct": 38.75
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "awd2018metals"
+    ],
+    "n_train": 3,
+    "train_point_ids": [
+     "awd2018_AlSi10Mg_90",
+     "awd2018_AlSi10Mg_45",
+     "awd2018_AlSi10Mg_0"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.056,
+      "45": 0.047,
+      "90": 0.037
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built"
+    ],
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "AlSi10Mg",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 28.15,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_AlSi10Mg_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.056,
+      "ef_pred": 0.09745,
+      "ef_error_pct": 74.02,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 352.3,
+      "uts_error_pct": 19.94,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.047,
+      "ef_pred": 0.05003,
+      "ef_error_pct": 6.44,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 350.3,
+      "uts_error_pct": 14.55,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_AlSi10Mg_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.037,
+      "ef_pred": 0.0366,
+      "ef_error_pct": 1.08,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 349.5,
+      "uts_error_pct": 6.79,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 27.18,
+    "avg_held_uts_error_pct": 13.76,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 68.77,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 38.747,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 44.859,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 44.383,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 53.328,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 28.152,
+      "stage": "refine1"
+     }
+    ],
+    "alternative_locked_S0": 0.2,
+    "alternative_avg_held_ef_error_pct": 21.98
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "nist_mds2_3402",
+    "train_sources": [
+     "sun2024adem",
+     "v12_original"
+    ],
+    "n_train": 6,
+    "train_point_ids": [
+     "sun2024_Ti64_0",
+     "sun2024_Ti64_45",
+     "sun2024_Ti64_90",
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      90
+     ],
+     "shape": "two_orientations (0 deg = 0.2291, 90 deg = 0.2438; spread 0.0146); a second point at the same orientation with a different process window gives the within-orientation process spread",
+     "ef_by_orientation": {
+      "0": 0.22914000000000004,
+      "90": 0.24377333333333331
+     },
+     "n_points": 30
+    },
+    "held_heat_treatments": [
+     "HIP (SHIP+RQ: super-beta HIP with rapid quenching), 1050 C / 100 MPa / 2 h, quench 2000 C/min (no tempering step)",
+     "HIP (SHIP: super-beta HIP with slow cooling), 1050 C / 100 MPa / 2 h, cool 12 C/min",
+     "HIP (csHIP+FC: classic sub-beta HIP with fast cooling), 920 C / 100 MPa / 2 h, cool 100 C/min",
+     "HIP (csHIP+RQ: classic sub-beta HIP with rapid quenching), 920 C / 100 MPa / 2 h, quench 2000 C/min",
+     "HIP (csHIP: classic sub-beta HIP with slow cooling, per ASTM F2924/F3001), 920 C / 100 MPa / 2 h, cool 12 C/min",
+     "HIP (nsHIP+FC: new sub-beta HIP with fast cooling), 800 C / 200 MPa / 2 h, cool 100 C/min",
+     "HIP (nsHIP+RQ: new sub-beta HIP with rapid quenching), 800 C / 200 MPa / 2 h, quench 2000 C/min",
+     "HIP (nsHIP: new sub-beta HIP with slow cooling), 800 C / 200 MPa / 2 h, cool 12 C/min; 200 MPa used at 800 C to ensure porosity closure",
+     "HIP + ageing (csHIP+A: classic sub-beta HIP with an ageing step), 920 C / 100 MPa / 2 h, cool 12 C/min; then 545 C / 100 h in a vacuum furnace without pressure, cool 12 C/min",
+     "HIP + tempering (SHIP+RQ+T1: super-beta HIP, rapid quench, temper T1), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 2 h, cool 12 C/min",
+     "HIP + tempering (SHIP+RQ+T2+FC: super-beta HIP, rapid quench, longer tempering, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 100 C/min",
+     "HIP + tempering (SHIP+RQ+T2: super-beta HIP, rapid quench, longer tempering), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 12 C/min",
+     "HIP + tempering (SHIP+RQ+T3+FC: super-beta HIP, rapid quench, higher tempering temperature T3, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 920 C / 100 MPa / 2 h, cool 100 C/min",
+     "as-built (AB; no post-build heat treatment; the source notes AB is not technically a heat treatment)",
+     "stress-relief anneal (SR: stress relieved), 800 C / 2 h, vacuum furnace at an external vendor, cool 12 C/min"
+    ],
+    "mechanism_note": "Heat-treatment state and property-range mismatch. The held source spans 15 conditions: HT0 is as-built, HT1 is a stress-relief anneal, and HT2-HT14 are HIP treatments (14 of them, at 800/920/1050 C, 100/200 MPa, with cooling or quenching from 12 to 2000 C/min, some with a tempering or ageing step). LOSO calibrates S0 on the AS-BUILT points of the other sources only (v12_original + sun2024adem), so 28 of the 30 held rows are a material state the calibration set does not contain. A second, independent gap applies to ALL 30 rows: this dataset's properties are far outside the calibration range even as-built - mds2 HT0 is UTS 1294-1303 MPa with TE 16.8-19.3 %, against UTS 1050-1299 MPa with TE 4.8-9.3 % for the 6 as-built Ti64 calibration points. HIP then raises TE further, to 27.3-32.8 % in 13 of the 14 treated conditions. The attribution between these two gaps is not assumed here; it is measured by the diagnostic block below and stated in the mechanism sentence appended to this note. Measured attribution: as-built HT0 (n=2) mean ef error 67.09% (median 67.09%); HIP HT2-HT14 (n=26) mean 72.02% (median 75.13%); HIP by cooling class - the 13 high-ductility treated conditions are the ones the band check flagged. CONCLUSION ON ATTRIBUTION: the as-built HT0 points fail almost as badly as the heat-treated points (67.09% vs 72.44% mean ef error over n=2 and n=28). Heat treatment therefore does NOT explain this fold on its own, and attributing the error to the absent heat-treatment descriptor alone would be wrong. The dominant cause is the property-range gap, which is present as-built as well: the S0 calibrated on the v12/sun2024 as-built points does not transfer to this dataset at ANY heat-treatment state.",
+    "material": "Ti64",
+    "S0": 0.32,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 16.87,
+    "n_held": 30,
+    "predictions": [
+     {
+      "point_id": "nist_mds2_3402_HT0_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1928,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 77.21,
+      "uts_exp_MPa": 1294.2,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 26.57,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT0_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.168,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 56.97,
+      "uts_exp_MPa": 1302.72,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 26.32,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2925,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 84.98,
+      "uts_exp_MPa": 1076.81,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 11.74,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT1_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.249,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 70.97,
+      "uts_exp_MPa": 1081.62,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 11.26,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3138,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.0,
+      "uts_exp_MPa": 1082.43,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 12.2,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT2_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2936,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 75.38,
+      "uts_exp_MPa": 1085.18,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 11.55,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3186,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.21,
+      "uts_exp_MPa": 990.83,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.09,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT3_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.3177,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 77.25,
+      "uts_exp_MPa": 995.9,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.62,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3005,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 85.38,
+      "uts_exp_MPa": 1063.02,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 10.6,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT4_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2756,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 73.77,
+      "uts_exp_MPa": 1065.78,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 9.94,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3279,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.6,
+      "uts_exp_MPa": 1022.63,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 7.07,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT5_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2955,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 75.54,
+      "uts_exp_MPa": 1033.46,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 7.12,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1548,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 71.62,
+      "uts_exp_MPa": 1028.26,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 7.58,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT6_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1495,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 51.65,
+      "uts_exp_MPa": 1021.45,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 6.03,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1715,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 74.38,
+      "uts_exp_MPa": 1008.99,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 5.81,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT7_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1631,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 55.68,
+      "uts_exp_MPa": 1003.47,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 4.34,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.1704,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 74.22,
+      "uts_exp_MPa": 994.46,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.44,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT8_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1644,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 56.03,
+      "uts_exp_MPa": 989.9,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.03,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3158,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.09,
+      "uts_exp_MPa": 1050.39,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 9.52,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT9_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2886,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 74.95,
+      "uts_exp_MPa": 1051.6,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 8.72,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3187,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 86.21,
+      "uts_exp_MPa": 991.86,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.19,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT10_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.311,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 76.76,
+      "uts_exp_MPa": 997.07,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 3.73,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.3049,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 85.59,
+      "uts_exp_MPa": 1070.03,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 11.18,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT11_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2743,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 73.65,
+      "uts_exp_MPa": 1077.32,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 10.9,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.0927,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 52.6,
+      "uts_exp_MPa": 1035.62,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 8.23,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT12_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1014,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 28.71,
+      "uts_exp_MPa": 1019.73,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 5.87,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.2037,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 78.43,
+      "uts_exp_MPa": 906.94,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 4.79,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT13_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.2086,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 65.35,
+      "uts_exp_MPa": 892.08,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 7.6,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_h",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 90,
+      "ef_exp": 0.178,
+      "ef_pred": 0.04394,
+      "ef_error_pct": 75.32,
+      "uts_exp_MPa": 961.53,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 1.16,
+      "truncated": false
+     },
+     {
+      "point_id": "nist_mds2_3402_HT14_v",
+      "source_id": "nist_mds2_3402",
+      "orientation_deg": 0,
+      "ef_exp": 0.1768,
+      "ef_pred": 0.07229,
+      "ef_error_pct": 59.11,
+      "uts_exp_MPa": 949.69,
+      "uts_pred_MPa": 959.9,
+      "uts_error_pct": 1.07,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 72.09,
+    "avg_held_uts_error_pct": 8.34,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 41.563,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 26.9,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 39.218,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 103.454,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.125,
+      "train_mean_ef_error_pct": 34.291,
+      "stage": "refine1"
+     },
+     {
+      "S0": 0.32000000000000006,
+      "train_mean_ef_error_pct": 16.865,
+      "stage": "refine1"
+     }
+    ],
+    "alternative_locked_S0": 0.32,
+    "alternative_avg_held_ef_error_pct": 72.09
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "sun2024adem",
+    "train_sources": [
+     "nist_mds2_3402",
+     "v12_original"
+    ],
+    "n_train": 5,
+    "train_point_ids": [
+     "nist_mds2_3402_HT0_h",
+     "nist_mds2_3402_HT0_v",
+     "v12_Ti64_0",
+     "v12_Ti64_45",
+     "v12_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "non_monotone_V (least ductile at 45 deg)",
+     "ef_by_orientation": {
+      "0": 0.0934,
+      "45": 0.0533,
+      "90": 0.0789
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built"
+    ],
+    "mechanism_note": "alpha'-martensite lath geometry. Under the dataset convention (0 deg = axis parallel to BD) the source direction trend is non-monotone, with the minimum at 45 deg; the projection laws encode a monotone transverse degradation and cannot reproduce a mid-angle minimum. Decision-tree branch: reversal triage -> lath geometry -> not repairable by the shielding term.",
+    "material": "Ti64",
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 28.84,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "sun2024_Ti64_0",
+      "source_id": "sun2024adem",
+      "orientation_deg": 0,
+      "ef_exp": 0.0934,
+      "ef_pred": 0.09235,
+      "ef_error_pct": 1.12,
+      "uts_exp_MPa": 1165.0,
+      "uts_pred_MPa": 960.1,
+      "uts_error_pct": 17.59,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_45",
+      "source_id": "sun2024adem",
+      "orientation_deg": 45,
+      "ef_exp": 0.0533,
+      "ef_pred": 0.06746,
+      "ef_error_pct": 26.56,
+      "uts_exp_MPa": 1299.0,
+      "uts_pred_MPa": 955.5,
+      "uts_error_pct": 26.44,
+      "truncated": false
+     },
+     {
+      "point_id": "sun2024_Ti64_90",
+      "source_id": "sun2024adem",
+      "orientation_deg": 90,
+      "ef_exp": 0.0789,
+      "ef_pred": 0.04898,
+      "ef_error_pct": 37.92,
+      "uts_exp_MPa": 1186.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 19.87,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 21.87,
+    "avg_held_uts_error_pct": 21.3,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 53.636,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 41.989,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 41.679,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 79.084,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 28.838,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 61.549,
+      "stage": "refine1"
+     }
+    ],
+    "alternative_locked_S0": 0.32,
+    "alternative_avg_held_ef_error_pct": 23.97
+   },
+   {
+    "cv_type": "leave_one_source",
+    "held_source": "v12_original",
+    "train_sources": [
+     "nist_mds2_3402",
+     "sun2024adem"
+    ],
+    "n_train": 5,
+    "train_point_ids": [
+     "nist_mds2_3402_HT0_h",
+     "nist_mds2_3402_HT0_v",
+     "sun2024_Ti64_0",
+     "sun2024_Ti64_45",
+     "sun2024_Ti64_90"
+    ],
+    "held_trend": {
+     "orientations": [
+      0,
+      45,
+      90
+     ],
+     "shape": "monotone_decreasing_0>45>90 (calibration mechanism)",
+     "ef_by_orientation": {
+      "0": 0.08,
+      "45": 0.063,
+      "90": 0.048
+     },
+     "n_points": 3
+    },
+    "held_heat_treatments": [
+     "as-built"
+    ],
+    "mechanism_note": "Calibration-set mechanism: columnar-morphology-accelerated transverse damage. Monotone decreasing ductility 0 > 45 > 90 deg. Holding this source out forces every material S0 to be re-derived from a single external source, so the fold measures both source transfer and (for FCC alloys) the projection-normalisation residual.",
+    "material": "Ti64",
+    "S0": 0.5,
+    "S0_method": "v12_grid_refit",
+    "train_err_pct": 37.04,
+    "n_held": 3,
+    "predictions": [
+     {
+      "point_id": "v12_Ti64_0",
+      "source_id": "v12_original",
+      "orientation_deg": 0,
+      "ef_exp": 0.08,
+      "ef_pred": 0.09235,
+      "ef_error_pct": 15.44,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 960.1,
+      "uts_error_pct": 16.51,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_45",
+      "source_id": "v12_original",
+      "orientation_deg": 45,
+      "ef_exp": 0.063,
+      "ef_pred": 0.06746,
+      "ef_error_pct": 7.07,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 955.5,
+      "uts_error_pct": 13.13,
+      "truncated": false
+     },
+     {
+      "point_id": "v12_Ti64_90",
+      "source_id": "v12_original",
+      "orientation_deg": 90,
+      "ef_exp": 0.048,
+      "ef_pred": 0.04898,
+      "ef_error_pct": 2.05,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 950.3,
+      "uts_error_pct": 9.49,
+      "truncated": false
+     }
+    ],
+    "avg_held_ef_error_pct": 8.19,
+    "avg_held_uts_error_pct": 13.04,
+    "n_truncated": 0,
+    "status": "ok",
+    "S0_grid_trace": [
+     {
+      "S0": 0.05,
+      "train_mean_ef_error_pct": 58.876,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.2,
+      "train_mean_ef_error_pct": 47.925,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.8,
+      "train_mean_ef_error_pct": 43.766,
+      "stage": "grid"
+     },
+     {
+      "S0": 3.2,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 12.8,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 50.0,
+      "train_mean_ef_error_pct": 63.546,
+      "stage": "grid"
+     },
+     {
+      "S0": 0.5,
+      "train_mean_ef_error_pct": 37.043,
+      "stage": "refine1"
+     },
+     {
+      "S0": 1.2800000000000002,
+      "train_mean_ef_error_pct": 54.906,
+      "stage": "refine1"
+     }
+    ],
+    "alternative_locked_S0": 0.32,
+    "alternative_avg_held_ef_error_pct": 9.77
+   }
+  ],
+  "skipped": [
+   {
+    "material": "IN718",
+    "status": "skipped_single_as_built_source",
+    "as_built_sources": [
+     "watring2020addma"
+    ],
+    "heat_treated_sources": [
+     "hovig2018in718"
+    ],
+    "all_sources_for_material": [
+     "hovig2018in718",
+     "watring2020addma"
+    ],
+    "n_as_built_points": 3,
+    "n_heat_treated_points": 3,
+    "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+   }
+  ],
+  "summary": {
+   "label": "LOSO (with nist_mds2_3402)",
+   "n_predictions": 48,
+   "mean_ef_error_pct": 61.35,
+   "median_ef_error_pct": 72.64,
+   "std_ef_error_pct": 31.97,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 176.84,
+   "pass_10pct": 5,
+   "pass_20pct": 7,
+   "bootstrap_mean_95ci": [
+    52.47,
+    70.38
+   ],
+   "bootstrap_median_95ci": [
+    59.11,
+    75.32
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_v12_only_summary": {
+   "label": "LOSO (held source = v12_original)",
+   "n_predictions": 9,
+   "mean_ef_error_pct": 36.86,
+   "median_ef_error_pct": 15.44,
+   "std_ef_error_pct": 36.93,
+   "min_ef_error_pct": 1.08,
+   "max_ef_error_pct": 87.86,
+   "pass_10pct": 4,
+   "pass_20pct": 5,
+   "bootstrap_mean_95ci": [
+    14.05,
+    60.31
+   ],
+   "bootstrap_median_95ci": [
+    2.05,
+    76.34
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "hold_extended_only_summary": {
+   "label": "LOSO (held source = extended literature source)",
+   "n_predictions": 39,
+   "mean_ef_error_pct": 67.0,
+   "median_ef_error_pct": 73.77,
+   "std_ef_error_pct": 28.32,
+   "min_ef_error_pct": 1.12,
+   "max_ef_error_pct": 176.84,
+   "pass_10pct": 1,
+   "pass_20pct": 2,
+   "bootstrap_mean_95ci": [
+    58.47,
+    76.23
+   ],
+   "bootstrap_median_95ci": [
+    64.69,
+    75.54
+   ],
+   "bootstrap_resamples": 10000
+  },
+  "in718_confounded_diagnostic": {
+   "status": "DECLARED DIAGNOSTIC, NOT A PROTOCOL FOLD",
+   "reason": [
+    {
+     "material": "IN718",
+     "status": "skipped_single_as_built_source",
+     "as_built_sources": [
+      "watring2020addma"
+     ],
+     "heat_treated_sources": [
+      "hovig2018in718"
+     ],
+     "all_sources_for_material": [
+      "hovig2018in718",
+      "watring2020addma"
+     ],
+     "n_as_built_points": 3,
+     "n_heat_treated_points": 3,
+     "reason": "LOSO needs at least two as-built sources for a material: one to calibrate S0 and one to hold out. As-built sources for this material: ['watring2020addma']; heat-treated sources: ['hovig2018in718']. Excluding the single as-built source would leave no heat-treatment-matched training data, so the fold would confound heat treatment with source transfer. It is not run inside the LOSO block; the same comparison is reported as the declared cross-heat-treatment diagnostic instead."
+    }
+   ],
+   "folds": [
+    {
+     "held_source": "hovig2018in718",
+     "train_sources": [
+      "watring2020addma"
+     ],
+     "S0": 1.28,
+     "train_err_pct": 37.29,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on as-built IN718 applied to solution-treated IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "hovig2018_IN718_90",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 90,
+       "ef_exp": 0.2,
+       "ef_pred": 0.04496,
+       "ef_error_pct": 77.52,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 379.5,
+       "uts_error_pct": 60.88,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_45",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 45,
+       "ef_exp": 0.25,
+       "ef_pred": 0.20865,
+       "ef_error_pct": 16.54,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 431.0,
+       "uts_error_pct": 55.57,
+       "truncated": false
+      },
+      {
+       "point_id": "hovig2018_IN718_0",
+       "source_id": "hovig2018in718",
+       "orientation_deg": 0,
+       "ef_exp": 0.3,
+       "ef_pred": 0.4,
+       "ef_error_pct": 33.33,
+       "uts_exp_MPa": 970.0,
+       "uts_pred_MPa": 490.8,
+       "uts_error_pct": 49.4,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 42.46,
+     "avg_held_uts_error_pct": 55.28
+    },
+    {
+     "held_source": "watring2020addma",
+     "train_sources": [
+      "hovig2018in718"
+     ],
+     "S0": 3.2,
+     "train_err_pct": 32.86,
+     "mechanism": "Solution-treated IN718 (980 C / 1 h) - NOT as-built. Any fold that calibrates on this source and predicts an as-built source (or vice versa) is confounded by heat treatment and is reported as a declared diagnostic, not as a protocol fold.",
+     "confound": "S0 calibrated on solution-treated IN718 applied to as-built IN718",
+     "n_held": 3,
+     "predictions": [
+      {
+       "point_id": "watring2020_IN718_90_lo",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.06,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 215.84,
+       "uts_exp_MPa": 774.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 49.16,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_90_hi",
+       "source_id": "watring2020addma",
+       "orientation_deg": 90,
+       "ef_exp": 0.29,
+       "ef_pred": 0.1895,
+       "ef_error_pct": 34.65,
+       "uts_exp_MPa": 1081.0,
+       "uts_pred_MPa": 393.5,
+       "uts_error_pct": 63.6,
+       "truncated": false
+      },
+      {
+       "point_id": "watring2020_IN718_30",
+       "source_id": "watring2020addma",
+       "orientation_deg": 30,
+       "ef_exp": 0.28,
+       "ef_pred": 0.4,
+       "ef_error_pct": 42.86,
+       "uts_exp_MPa": 1070.0,
+       "uts_pred_MPa": 510.9,
+       "uts_error_pct": 52.25,
+       "truncated": true
+      }
+     ],
+     "avg_held_ef_error_pct": 97.78,
+     "avg_held_uts_error_pct": 55.0
+    }
+   ]
+  },
+  "in718_confounded_diagnostic_note": "carried over verbatim from the locked R13 run: no IN718 point was added or changed by R13b, so this declared diagnostic is not recomputed."
+ },
+ "regression_check_vs_locked": [
+  {
+   "fold": "316L/hitzler2017materials",
+   "in_locked_r13": true,
+   "train_point_ids_identical": true,
+   "S0_identical": true,
+   "avg_held_ef_error_identical": true,
+   "R13": {
+    "S0": 2.0,
+    "avg_held_ef_error_pct": 89.52
+   },
+   "R13b": {
+    "S0": 2.0,
+    "avg_held_ef_error_pct": 89.52
+   },
+   "note": "unchanged inputs: reproduced exactly (this is a real regression check on the shared machinery)"
+  },
+  {
+   "fold": "316L/v12_original",
+   "in_locked_r13": true,
+   "train_point_ids_identical": true,
+   "S0_identical": true,
+   "avg_held_ef_error_identical": true,
+   "R13": {
+    "S0": 0.8,
+    "avg_held_ef_error_pct": 75.21
+   },
+   "R13b": {
+    "S0": 0.8,
+    "avg_held_ef_error_pct": 75.21
+   },
+   "note": "unchanged inputs: reproduced exactly (this is a real regression check on the shared machinery)"
+  },
+  {
+   "fold": "AlSi10Mg/awd2018metals",
+   "in_locked_r13": true,
+   "train_point_ids_identical": true,
+   "S0_identical": true,
+   "avg_held_ef_error_identical": true,
+   "R13": {
+    "S0": 0.2,
+    "avg_held_ef_error_pct": 38.75
+   },
+   "R13b": {
+    "S0": 0.2,
+    "avg_held_ef_error_pct": 38.75
+   },
+   "note": "unchanged inputs: reproduced exactly (this is a real regression check on the shared machinery)"
+  },
+  {
+   "fold": "AlSi10Mg/v12_original",
+   "in_locked_r13": true,
+   "train_point_ids_identical": true,
+   "S0_identical": true,
+   "avg_held_ef_error_identical": true,
+   "R13": {
+    "S0": 0.32,
+    "avg_held_ef_error_pct": 27.18
+   },
+   "R13b": {
+    "S0": 0.32,
+    "avg_held_ef_error_pct": 27.18
+   },
+   "note": "unchanged inputs: reproduced exactly (this is a real regression check on the shared machinery)"
+  },
+  {
+   "fold": "Ti64/nist_mds2_3402",
+   "in_locked_r13": false,
+   "note": "new fold created by the mds2 addition"
+  },
+  {
+   "fold": "Ti64/sun2024adem",
+   "in_locked_r13": true,
+   "train_point_ids_identical": false,
+   "S0_identical": false,
+   "avg_held_ef_error_identical": false,
+   "R13": {
+    "S0": 0.32,
+    "avg_held_ef_error_pct": 23.97
+   },
+   "R13b": {
+    "S0": 0.5,
+    "avg_held_ef_error_pct": 21.87
+   },
+   "note": "inputs changed: the training set now contains the mds2 as-built HT0 points, so the fold is expected to move"
+  },
+  {
+   "fold": "Ti64/v12_original",
+   "in_locked_r13": true,
+   "train_point_ids_identical": false,
+   "S0_identical": false,
+   "avg_held_ef_error_identical": false,
+   "R13": {
+    "S0": 0.32,
+    "avg_held_ef_error_pct": 9.77
+   },
+   "R13b": {
+    "S0": 0.5,
+    "avg_held_ef_error_pct": 8.19
+   },
+   "note": "inputs changed: the training set now contains the mds2 as-built HT0 points, so the fold is expected to move"
+  }
+ ],
+ "nist_mds2_holdout_diagnostic": {
+  "why": "the held source mixes 1 as-built and 14 heat-treated conditions while the training set is as-built only; splitting the held points by heat-treatment class isolates the descriptor gap from the transfer error",
+  "held_S0": 0.32,
+  "train_sources": [
+   "sun2024adem",
+   "v12_original"
+  ],
+  "as_built_HT0_only": {
+   "n": 2,
+   "summary_ef": {
+    "label": "mds2 held subset",
+    "n_predictions": 2,
+    "mean_ef_error_pct": 67.09,
+    "median_ef_error_pct": 67.09,
+    "std_ef_error_pct": 14.31,
+    "min_ef_error_pct": 56.97,
+    "max_ef_error_pct": 77.21,
+    "pass_10pct": 0,
+    "pass_20pct": 0,
+    "bootstrap_mean_95ci": [
+     56.97,
+     77.21
+    ],
+    "bootstrap_median_95ci": [
+     56.97,
+     77.21
+    ],
+    "bootstrap_resamples": 10000
+   },
+   "mean_signed_ef_error_pct": -67.09,
+   "ef_exp_min": 0.168,
+   "ef_exp_max": 0.1928,
+   "uts_exp_min_MPa": 1294.2,
+   "uts_exp_max_MPa": 1302.72
+  },
+  "heat_treated_all": {
+   "n": 28,
+   "summary_ef": {
+    "label": "mds2 held subset",
+    "n_predictions": 28,
+    "mean_ef_error_pct": 72.44,
+    "median_ef_error_pct": 75.13,
+    "std_ef_error_pct": 13.73,
+    "min_ef_error_pct": 28.71,
+    "max_ef_error_pct": 86.6,
+    "pass_10pct": 0,
+    "pass_20pct": 0,
+    "bootstrap_mean_95ci": [
+     67.12,
+     77.17
+    ],
+    "bootstrap_median_95ci": [
+     72.64,
+     77.84
+    ],
+    "bootstrap_resamples": 10000
+   },
+   "mean_signed_ef_error_pct": -72.44,
+   "ef_exp_min": 0.0927,
+   "ef_exp_max": 0.3279,
+   "uts_exp_min_MPa": 892.08,
+   "uts_exp_max_MPa": 1085.18
+  },
+  "stress_relief_HT1_only": {
+   "n": 2,
+   "summary_ef": {
+    "label": "mds2 held subset",
+    "n_predictions": 2,
+    "mean_ef_error_pct": 77.97,
+    "median_ef_error_pct": 77.97,
+    "std_ef_error_pct": 9.91,
+    "min_ef_error_pct": 70.97,
+    "max_ef_error_pct": 84.98,
+    "pass_10pct": 0,
+    "pass_20pct": 0,
+    "bootstrap_mean_95ci": [
+     70.97,
+     84.98
+    ],
+    "bootstrap_median_95ci": [
+     70.97,
+     84.98
+    ],
+    "bootstrap_resamples": 10000
+   },
+   "mean_signed_ef_error_pct": -77.97,
+   "ef_exp_min": 0.249,
+   "ef_exp_max": 0.2925,
+   "uts_exp_min_MPa": 1076.81,
+   "uts_exp_max_MPa": 1081.62
+  },
+  "hip_conditions_HT2_to_HT14": {
+   "n": 26,
+   "summary_ef": {
+    "label": "mds2 held subset",
+    "n_predictions": 26,
+    "mean_ef_error_pct": 72.02,
+    "median_ef_error_pct": 75.13,
+    "std_ef_error_pct": 14.03,
+    "min_ef_error_pct": 28.71,
+    "max_ef_error_pct": 86.6,
+    "pass_10pct": 0,
+    "pass_20pct": 0,
+    "bootstrap_mean_95ci": [
+     66.32,
+     76.97
+    ],
+    "bootstrap_median_95ci": [
+     72.91,
+     77.59
+    ],
+    "bootstrap_resamples": 10000
+   },
+   "mean_signed_ef_error_pct": -72.02,
+   "ef_exp_min": 0.0927,
+   "ef_exp_max": 0.3279,
+   "uts_exp_min_MPa": 892.08,
+   "uts_exp_max_MPa": 1085.18
+  },
+  "as_built_calibration_reference": {
+   "n": 6,
+   "sources": [
+    "sun2024adem",
+    "v12_original"
+   ],
+   "ef_min": 0.048,
+   "ef_max": 0.0934,
+   "uts_min_MPa": 1050.0,
+   "uts_max_MPa": 1299.0,
+   "note": "the as-built Ti64 points of the OTHER sources - what S0 was calibrated on"
+  },
+  "per_point": [
+   {
+    "point_id": "nist_mds2_3402_HT5_h",
+    "heat_treatment": "HIP + ageing (csHIP+A: classic sub-beta HIP with an ageing step), 920 C / 100 MPa / 2 h, cool 12 C/min; then 545 C / 100 h in a vacuum furnace without pressure, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3279,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 86.6,
+    "signed_ef_error_pct": -86.6,
+    "uts_exp_MPa": 1022.63,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 7.07
+   },
+   {
+    "point_id": "nist_mds2_3402_HT3_h",
+    "heat_treatment": "HIP (csHIP: classic sub-beta HIP with slow cooling, per ASTM F2924/F3001), 920 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3186,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 86.21,
+    "signed_ef_error_pct": -86.21,
+    "uts_exp_MPa": 990.83,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 4.09
+   },
+   {
+    "point_id": "nist_mds2_3402_HT10_h",
+    "heat_treatment": "HIP (csHIP+FC: classic sub-beta HIP with fast cooling), 920 C / 100 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3187,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 86.21,
+    "signed_ef_error_pct": -86.21,
+    "uts_exp_MPa": 991.86,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 4.19
+   },
+   {
+    "point_id": "nist_mds2_3402_HT9_h",
+    "heat_treatment": "HIP (nsHIP+RQ: new sub-beta HIP with rapid quenching), 800 C / 200 MPa / 2 h, quench 2000 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3158,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 86.09,
+    "signed_ef_error_pct": -86.09,
+    "uts_exp_MPa": 1050.39,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 9.52
+   },
+   {
+    "point_id": "nist_mds2_3402_HT2_h",
+    "heat_treatment": "HIP (nsHIP: new sub-beta HIP with slow cooling), 800 C / 200 MPa / 2 h, cool 12 C/min; 200 MPa used at 800 C to ensure porosity closure",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3138,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 86.0,
+    "signed_ef_error_pct": -86.0,
+    "uts_exp_MPa": 1082.43,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 12.2
+   },
+   {
+    "point_id": "nist_mds2_3402_HT11_h",
+    "heat_treatment": "HIP (csHIP+RQ: classic sub-beta HIP with rapid quenching), 920 C / 100 MPa / 2 h, quench 2000 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3049,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 85.59,
+    "signed_ef_error_pct": -85.59,
+    "uts_exp_MPa": 1070.03,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 11.18
+   },
+   {
+    "point_id": "nist_mds2_3402_HT4_h",
+    "heat_treatment": "HIP (nsHIP+FC: new sub-beta HIP with fast cooling), 800 C / 200 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.3005,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 85.38,
+    "signed_ef_error_pct": -85.38,
+    "uts_exp_MPa": 1063.02,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 10.6
+   },
+   {
+    "point_id": "nist_mds2_3402_HT1_h",
+    "heat_treatment": "stress-relief anneal (SR: stress relieved), 800 C / 2 h, vacuum furnace at an external vendor, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.2925,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 84.98,
+    "signed_ef_error_pct": -84.98,
+    "uts_exp_MPa": 1076.81,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 11.74
+   },
+   {
+    "point_id": "nist_mds2_3402_HT13_h",
+    "heat_treatment": "HIP (SHIP: super-beta HIP with slow cooling), 1050 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.2037,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 78.43,
+    "signed_ef_error_pct": -78.43,
+    "uts_exp_MPa": 906.94,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 4.79
+   },
+   {
+    "point_id": "nist_mds2_3402_HT3_v",
+    "heat_treatment": "HIP (csHIP: classic sub-beta HIP with slow cooling, per ASTM F2924/F3001), 920 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.3177,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 77.25,
+    "signed_ef_error_pct": -77.25,
+    "uts_exp_MPa": 995.9,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 3.62
+   },
+   {
+    "point_id": "nist_mds2_3402_HT0_h",
+    "heat_treatment": "as-built (AB; no post-build heat treatment; the source notes AB is not technically a heat treatment)",
+    "heat_treatment_class": "as-built",
+    "orientation_deg": 90,
+    "ef_exp": 0.1928,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 77.21,
+    "signed_ef_error_pct": -77.21,
+    "uts_exp_MPa": 1294.2,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 26.57
+   },
+   {
+    "point_id": "nist_mds2_3402_HT10_v",
+    "heat_treatment": "HIP (csHIP+FC: classic sub-beta HIP with fast cooling), 920 C / 100 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.311,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 76.76,
+    "signed_ef_error_pct": -76.76,
+    "uts_exp_MPa": 997.07,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 3.73
+   },
+   {
+    "point_id": "nist_mds2_3402_HT5_v",
+    "heat_treatment": "HIP + ageing (csHIP+A: classic sub-beta HIP with an ageing step), 920 C / 100 MPa / 2 h, cool 12 C/min; then 545 C / 100 h in a vacuum furnace without pressure, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2955,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 75.54,
+    "signed_ef_error_pct": -75.54,
+    "uts_exp_MPa": 1033.46,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 7.12
+   },
+   {
+    "point_id": "nist_mds2_3402_HT2_v",
+    "heat_treatment": "HIP (nsHIP: new sub-beta HIP with slow cooling), 800 C / 200 MPa / 2 h, cool 12 C/min; 200 MPa used at 800 C to ensure porosity closure",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2936,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 75.38,
+    "signed_ef_error_pct": -75.38,
+    "uts_exp_MPa": 1085.18,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 11.55
+   },
+   {
+    "point_id": "nist_mds2_3402_HT14_h",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T3+FC: super-beta HIP, rapid quench, higher tempering temperature T3, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 920 C / 100 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.178,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 75.32,
+    "signed_ef_error_pct": -75.31,
+    "uts_exp_MPa": 961.53,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 1.16
+   },
+   {
+    "point_id": "nist_mds2_3402_HT9_v",
+    "heat_treatment": "HIP (nsHIP+RQ: new sub-beta HIP with rapid quenching), 800 C / 200 MPa / 2 h, quench 2000 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2886,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 74.95,
+    "signed_ef_error_pct": -74.95,
+    "uts_exp_MPa": 1051.6,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 8.72
+   },
+   {
+    "point_id": "nist_mds2_3402_HT7_h",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T2: super-beta HIP, rapid quench, longer tempering), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.1715,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 74.38,
+    "signed_ef_error_pct": -74.38,
+    "uts_exp_MPa": 1008.99,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 5.81
+   },
+   {
+    "point_id": "nist_mds2_3402_HT8_h",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T2+FC: super-beta HIP, rapid quench, longer tempering, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.1704,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 74.22,
+    "signed_ef_error_pct": -74.21,
+    "uts_exp_MPa": 994.46,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 4.44
+   },
+   {
+    "point_id": "nist_mds2_3402_HT4_v",
+    "heat_treatment": "HIP (nsHIP+FC: new sub-beta HIP with fast cooling), 800 C / 200 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2756,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 73.77,
+    "signed_ef_error_pct": -73.77,
+    "uts_exp_MPa": 1065.78,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 9.94
+   },
+   {
+    "point_id": "nist_mds2_3402_HT11_v",
+    "heat_treatment": "HIP (csHIP+RQ: classic sub-beta HIP with rapid quenching), 920 C / 100 MPa / 2 h, quench 2000 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2743,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 73.65,
+    "signed_ef_error_pct": -73.65,
+    "uts_exp_MPa": 1077.32,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 10.9
+   },
+   {
+    "point_id": "nist_mds2_3402_HT6_h",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T1: super-beta HIP, rapid quench, temper T1), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.1548,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 71.62,
+    "signed_ef_error_pct": -71.61,
+    "uts_exp_MPa": 1028.26,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 7.58
+   },
+   {
+    "point_id": "nist_mds2_3402_HT1_v",
+    "heat_treatment": "stress-relief anneal (SR: stress relieved), 800 C / 2 h, vacuum furnace at an external vendor, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.249,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 70.97,
+    "signed_ef_error_pct": -70.97,
+    "uts_exp_MPa": 1081.62,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 11.26
+   },
+   {
+    "point_id": "nist_mds2_3402_HT13_v",
+    "heat_treatment": "HIP (SHIP: super-beta HIP with slow cooling), 1050 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.2086,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 65.35,
+    "signed_ef_error_pct": -65.35,
+    "uts_exp_MPa": 892.08,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 7.6
+   },
+   {
+    "point_id": "nist_mds2_3402_HT14_v",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T3+FC: super-beta HIP, rapid quench, higher tempering temperature T3, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 920 C / 100 MPa / 2 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.1768,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 59.11,
+    "signed_ef_error_pct": -59.11,
+    "uts_exp_MPa": 949.69,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 1.07
+   },
+   {
+    "point_id": "nist_mds2_3402_HT0_v",
+    "heat_treatment": "as-built (AB; no post-build heat treatment; the source notes AB is not technically a heat treatment)",
+    "heat_treatment_class": "as-built",
+    "orientation_deg": 0,
+    "ef_exp": 0.168,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 56.97,
+    "signed_ef_error_pct": -56.97,
+    "uts_exp_MPa": 1302.72,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 26.32
+   },
+   {
+    "point_id": "nist_mds2_3402_HT8_v",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T2+FC: super-beta HIP, rapid quench, longer tempering, fast cooling), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 100 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.1644,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 56.03,
+    "signed_ef_error_pct": -56.03,
+    "uts_exp_MPa": 989.9,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 3.03
+   },
+   {
+    "point_id": "nist_mds2_3402_HT7_v",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T2: super-beta HIP, rapid quench, longer tempering), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 6 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.1631,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 55.68,
+    "signed_ef_error_pct": -55.68,
+    "uts_exp_MPa": 1003.47,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 4.34
+   },
+   {
+    "point_id": "nist_mds2_3402_HT12_h",
+    "heat_treatment": "HIP (SHIP+RQ: super-beta HIP with rapid quenching), 1050 C / 100 MPa / 2 h, quench 2000 C/min (no tempering step)",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 90,
+    "ef_exp": 0.0927,
+    "ef_pred": 0.04394,
+    "ef_error_pct": 52.6,
+    "signed_ef_error_pct": -52.6,
+    "uts_exp_MPa": 1035.62,
+    "uts_pred_MPa": 950.3,
+    "uts_error_pct": 8.23
+   },
+   {
+    "point_id": "nist_mds2_3402_HT6_v",
+    "heat_treatment": "HIP + tempering (SHIP+RQ+T1: super-beta HIP, rapid quench, temper T1), 1050 C / 100 MPa / 2 h, quench 2000 C/min; then 800 C / 100 MPa / 2 h, cool 12 C/min",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.1495,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 51.65,
+    "signed_ef_error_pct": -51.65,
+    "uts_exp_MPa": 1021.45,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 6.03
+   },
+   {
+    "point_id": "nist_mds2_3402_HT12_v",
+    "heat_treatment": "HIP (SHIP+RQ: super-beta HIP with rapid quenching), 1050 C / 100 MPa / 2 h, quench 2000 C/min (no tempering step)",
+    "heat_treatment_class": "heat-treated",
+    "orientation_deg": 0,
+    "ef_exp": 0.1014,
+    "ef_pred": 0.07229,
+    "ef_error_pct": 28.71,
+    "signed_ef_error_pct": -28.71,
+    "uts_exp_MPa": 1019.73,
+    "uts_pred_MPa": 959.9,
+    "uts_error_pct": 5.87
+   }
+  ],
+  "mechanism_note": "Heat-treatment state and property-range mismatch. The held source spans 15 conditions: HT0 is as-built, HT1 is a stress-relief anneal, and HT2-HT14 are HIP treatments (14 of them, at 800/920/1050 C, 100/200 MPa, with cooling or quenching from 12 to 2000 C/min, some with a tempering or ageing step). LOSO calibrates S0 on the AS-BUILT points of the other sources only (v12_original + sun2024adem), so 28 of the 30 held rows are a material state the calibration set does not contain. A second, independent gap applies to ALL 30 rows: this dataset's properties are far outside the calibration range even as-built - mds2 HT0 is UTS 1294-1303 MPa with TE 16.8-19.3 %, against UTS 1050-1299 MPa with TE 4.8-9.3 % for the 6 as-built Ti64 calibration points. HIP then raises TE further, to 27.3-32.8 % in 13 of the 14 treated conditions. The attribution between these two gaps is not assumed here; it is measured by the diagnostic block below and stated in the mechanism sentence appended to this note. Measured attribution: as-built HT0 (n=2) mean ef error 67.09% (median 67.09%); HIP HT2-HT14 (n=26) mean 72.02% (median 75.13%); HIP by cooling class - the 13 high-ductility treated conditions are the ones the band check flagged. CONCLUSION ON ATTRIBUTION: the as-built HT0 points fail almost as badly as the heat-treated points (67.09% vs 72.44% mean ef error over n=2 and n=28). Heat treatment therefore does NOT explain this fold on its own, and attributing the error to the absent heat-treatment descriptor alone would be wrong. The dominant cause is the property-range gap, which is present as-built as well: the S0 calibrated on the v12/sun2024 as-built points does not transfer to this dataset at ANY heat-treatment state."
+ },
+ "run": {
+  "wall_seconds_total": 0.1,
+  "workers": 4,
+  "n_cache_entries": 154,
+  "log": "D:\\20260618断裂模型论文\\simulation\\output\\cv_variants_r13b_log.txt",
+  "completed": "2026-09-28 22:04:22"
+ }
+}

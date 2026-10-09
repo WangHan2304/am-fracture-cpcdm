@@ -1,0 +1,47 @@
+================================================================================
+CONVENTIONAL LEMAITRE BASELINE (no AM corrections)
+
+[Part 1] S0 calibration on 0 deg only
+
+  Ti-6Al-4V (target ef=0.080):
+    scan S0=   0.050  ef=0.0366 (target 0.0800)
+    scan S0=   0.200  ef=0.0403 (target 0.0800)
+    scan S0=   0.800  ef=0.0553 (target 0.0800)
+    scan S0=   3.200  ef=0.1159 (target 0.0800)
+  -> S0_lemaitre=1.775000 MPa (best ef err=0.0002)
+
+  316L SS (target ef=0.370):
+    scan S0=   0.050  ef=0.0401 (target 0.3700)
+    scan S0=   0.200  ef=0.0315 (target 0.3700)
+    scan S0=   0.800  ef=0.0716 (target 0.3700)
+    scan S0=   3.200  ef=0.1818 (target 0.3700)
+    scan S0=  12.800  ef=0.6268 (target 0.3700)
+  -> S0_lemaitre=7.622656 MPa (best ef err=0.0025)
+
+  AlSi10Mg (target ef=0.056):
+    scan S0=   0.050  ef=0.0175 (target 0.0560)
+    scan S0=   0.200  ef=0.0267 (target 0.0560)
+    scan S0=   0.800  ef=0.0605 (target 0.0560)
+  -> S0_lemaitre=0.725000 MPa (best ef err=0.0005)
+
+[Part 2] 9-case prediction with conventional Lemaitre model
+
+Material      Orient  ef_exp    ef_pred   Err%    
+--------------------------------------------------
+Ti-6Al-4V     0       0.0800    0.0802    0.29    
+Ti-6Al-4V     45      0.0630    0.0802    27.35   
+Ti-6Al-4V     90      0.0480    0.0802    67.15   
+316L SS       0       0.3700    0.3675    0.67    
+316L SS       45      0.3100    0.3675    18.56   
+316L SS       90      0.2550    0.3675    44.13   
+AlSi10Mg      0       0.0560    0.0565    0.90    
+AlSi10Mg      45      0.0470    0.0565    20.22   
+AlSi10Mg      90      0.0370    0.0564    52.56   
+--------------------------------------------------
+Average ef error (9 cases): 25.76%
+Average ef error (45/90 deg only): 38.33%
+Max ef error: 67.15%
+
+Saved: D:\20260618断裂模型论文\simulation\output/lemaitre_baseline_results.json
+Saved: D:\20260618断裂模型论文\simulation\figures/Fig9_errors_compare.png
+DONE

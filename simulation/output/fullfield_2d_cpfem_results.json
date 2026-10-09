@@ -1,0 +1,54 @@
+{
+ "model": "2D plane-strain full-field CPFEM vs TaylorCPCDM (identical parameters, orientations, eps_step, n_sub)",
+ "constitutive": "batch explicit integration, fixed n_sub (no per-point bisection), slip clip 0.01",
+ "cases": [
+  {
+   "material": "Ti64",
+   "orientation": 0,
+   "ef_fullfield": 0.0555,
+   "ef_taylor": 0.07547,
+   "bias_pct": -26.46,
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "fullfield_wall_sec": 226.9
+  },
+  {
+   "material": "Ti64",
+   "orientation": 45,
+   "ef_fullfield": 0.04125,
+   "ef_taylor": 0.06122,
+   "bias_pct": -32.62,
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "fullfield_wall_sec": 260.8
+  },
+  {
+   "material": "Ti64",
+   "orientation": 90,
+   "ef_fullfield": 0.03581,
+   "ef_taylor": 0.05578,
+   "bias_pct": -35.8,
+   "Dc": 0.42,
+   "S0": 0.32,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "fullfield_wall_sec": 108.8
+  },
+  {
+   "material": "AlSi10Mg",
+   "orientation": 0,
+   "ef_fullfield": 0.122,
+   "ef_taylor": 0.11588,
+   "bias_pct": 5.28,
+   "Dc": 0.35,
+   "S0": 0.2,
+   "eps_step": 0.002,
+   "n_sub": 30,
+   "fullfield_wall_sec": 809.5
+  }
+ ]
+}

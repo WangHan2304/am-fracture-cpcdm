@@ -1,0 +1,8 @@
+C:\Users\ZJ03\miniconda3\Lib\site-packages\numpy\_core\fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+C:\Users\ZJ03\miniconda3\Lib\site-packages\numpy\_core\_methods.py:144: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+D:\20260618断裂模型论文\simulation\experiment_v3.py:124: UserWarning: [316L] ef范围[0.7900, 0.5200]不含目标0.3700，扩展S0搜索范围
+  warnings.warn(
+D:\20260618断裂模型论文\simulation\experiment_v3.py:124: UserWarning: [AlSi10Mg] ef范围[0.1620, 0.1620]不含目标0.0560，扩展S0搜索范围
+  warnings.warn(

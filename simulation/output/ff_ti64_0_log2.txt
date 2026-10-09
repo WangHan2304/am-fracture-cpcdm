@@ -1,0 +1,23 @@
+﻿python.exe : Traceback (most recent call last):
+所在位置 行:1 字符: 1
++ & 'C:\Users\ZJ03\miniconda3\python.exe' -c "
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 7, in <module>
+    r = run_case('Ti64', 0, verbose=True)
+  File "D:\20260618断裂模型论文\simulation\fullfield_2d_cpfem.py", line 395, in run_case
+    res = ff.run(verbose=verbose)
+  File "D:\20260618断裂模型论文\simulation\fullfield_2d_cpfem.py", line 319, in run
+    r, _ = self._residual(u, st, dt)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\20260618断裂模型论文\simulation\fullfield_2d_cpfem.py", line 284, in _residual
+    sig, _, _, _, _ = self._integrate_batch(F3, st, dt)
+                      ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "D:\20260618断裂模型论文\simulation\fullfield_2d_cpfem.py", line 272, in _integrate_batch
+    Fe = np.einsum('nij,njk->nik', np.einsum('nij,njk->nik', Rt, F3, R), Fp_inv)
+                                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJ03\miniconda3\Lib\site-packages\numpy\_core\einsumfunc.py", line 1423, in einsum
+    return c_einsum(*operands, **kwargs)
+ValueError: fewer operands provided to einstein sum function than specified in the subscripts string

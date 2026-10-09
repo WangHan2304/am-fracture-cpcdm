@@ -1,0 +1,1112 @@
+{
+  "meta": {
+    "generated": "2026-09-28 17:51:58",
+    "script": "D:\\20260618断裂模型论文\\simulation\\tests\\test_taylor_cpcdm.py",
+    "python": "3.13.0 | packaged by conda-forge | (main, Nov 27 2024, 19:03:49) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "C:\\Users\\ZJ03\\miniconda3\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.3.4",
+    "test_framework": "unittest (pytest is not installed in this env)",
+    "fixed_seed": 42
+  },
+  "source_provenance": {
+    "src/taylor_cpcdm.py": {
+      "md5": "38bd53d31a92fef55418448fd116c6bb",
+      "mtime": "2026-09-25 07:41:02"
+    },
+    "src/materials.py": {
+      "md5": "ca6c6fdef5dfe4febeefac50fea24c21",
+      "mtime": "2026-09-16 18:06:00"
+    },
+    "src/am_correction_v4.py": {
+      "md5": "d05d9562826c1328ea4f8477517f1dbe",
+      "mtime": "2026-09-25 22:25:15"
+    },
+    "src/cp_cdm_model.py": {
+      "md5": "a2a6863c5c7eac022e8307587720af99",
+      "mtime": "2026-06-18 16:54:11"
+    },
+    "convergence_test.py": {
+      "md5": "bb81cdd1182386d3d69483f550258158",
+      "mtime": "2026-09-23 22:33:26"
+    },
+    "taylor_single_crystal_bounds.py": {
+      "md5": "4926ded39a2126ea5660e23f91c18c56",
+      "mtime": "2026-09-23 22:42:21"
+    }
+  },
+  "summary": {
+    "n_tests": 35,
+    "n_passed": 32,
+    "n_failed": 3,
+    "n_errors": 0,
+    "n_skipped": 0,
+    "was_successful": false,
+    "wallclock_s": 1240.21
+  },
+  "tests": {
+    "__main__.TestArchivedReproduction.test_archived_convergence_json_is_reproducible": {
+      "status": "fail",
+      "message": "AssertionError: 0.27649532872030835 not less than 0.01 : archived convergence_test.json is NOT reproducible with the current sources: ef = 0.07229 (now) vs 0.05663 (archived), +27.6%",
+      "duration_s": 38.286
+    },
+    "__main__.TestArchivedReproduction.test_archived_single_crystal_bounds_are_reproducible": {
+      "status": "fail",
+      "message": "AssertionError: 0.27649532872030835 not less than 0.01 : single-crystal-bounds v9 archive is NOT reproducible: ef = 0.07229 (now) vs 0.05663 (archived), +27.6%",
+      "duration_s": 43.53
+    },
+    "__main__.TestConvergence.test_convergence_with_eps_step": {
+      "status": "fail",
+      "message": "AssertionError: 53.51429783529619 not less than 5.0 : eps_step convergence FAILED: ef = 0.07229, 0.07180, 0.11097 (max relative spread 53.51% > 5%)",
+      "duration_s": 139.679
+    },
+    "__main__.TestConvergence.test_convergence_with_eps_step_cross_material": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 102.214
+    },
+    "__main__.TestConvergence.test_convergence_with_n_grains": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 256.258
+    },
+    "__main__.TestConvergence.test_convergence_with_n_grains_archive_grid": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 233.9
+    },
+    "__main__.TestConvergence.test_convergence_with_n_sub": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 84.653
+    },
+    "__main__.TestDamageEvolution.test_damage_gate_is_driven_by_plastic_strain": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.487
+    },
+    "__main__.TestDamageEvolution.test_per_grain_damage_monotonically_nondecreasing": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 2.622
+    },
+    "__main__.TestDamageEvolution.test_uniaxial_damage_history_is_monotone": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 67.478
+    },
+    "__main__.TestElasticLimitBaseline.test_default_inner_tolerance_bias_is_recorded": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 2.77
+    },
+    "__main__.TestElasticLimitBaseline.test_elastic_modulus_matches_analytic_reference": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 3.943
+    },
+    "__main__.TestElasticLimitBaseline.test_elastic_window_is_linear_and_damage_free": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 3.983
+    },
+    "__main__.TestElasticStiffness.test_born_stability_criteria": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.0
+    },
+    "__main__.TestElasticStiffness.test_cubic_point_group_invariance": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.002
+    },
+    "__main__.TestElasticStiffness.test_double_contraction_matches_voigt": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.006
+    },
+    "__main__.TestElasticStiffness.test_hcp_transverse_isotropy_invariance": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.001
+    },
+    "__main__.TestElasticStiffness.test_positive_definite": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.033
+    },
+    "__main__.TestElasticStiffness.test_symmetry_minor_and_major": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.0
+    },
+    "__main__.TestLemaitreLimit.test_each_corrective_factor_unity_at_reference_state": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.054
+    },
+    "__main__.TestLemaitreLimit.test_literal_three_condition_limit_is_insufficient": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.0
+    },
+    "__main__.TestLemaitreLimit.test_neutral_parameters_reproduce_lemaitre_exactly": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 26.383
+    },
+    "__main__.TestModelInitialisation.test_crss_and_saturation_vectors": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.165
+    },
+    "__main__.TestModelInitialisation.test_global_database_not_mutated_by_overrides": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.053
+    },
+    "__main__.TestModelInitialisation.test_mean_schmid_factor_consistency": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.201
+    },
+    "__main__.TestModelInitialisation.test_orientation_seed_reproducibility": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.157
+    },
+    "__main__.TestModelInitialisation.test_orientation_set_is_orthonormal_and_proper": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.162
+    },
+    "__main__.TestModelInitialisation.test_parameter_loading": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.209
+    },
+    "__main__.TestRunUniaxialInterface.test_effective_strain_increment": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.261
+    },
+    "__main__.TestRunUniaxialInterface.test_fracture_strain_and_uts_are_reproducible": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 68.125
+    },
+    "__main__.TestRunUniaxialInterface.test_stress_is_in_pascals": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 164.584
+    },
+    "__main__.TestSlipSystems.test_bcc_24_systems": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.001
+    },
+    "__main__.TestSlipSystems.test_fcc_12_systems": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.001
+    },
+    "__main__.TestSlipSystems.test_hcp_12_systems_three_families": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.001
+    },
+    "__main__.TestSlipSystems.test_schmid_tensors_are_traceless": {
+      "status": "pass",
+      "message": "",
+      "duration_s": 0.003
+    }
+  },
+  "evidence": {
+    "archive_convergence_json": {
+      "archive_file": "D:\\20260618断裂模型论文\\simulation\\output\\convergence_test.json",
+      "archive_written": "2026-09-23 22:35:55",
+      "taylor_cpcdm_mtime": "2026-09-25 07:41:02",
+      "am_correction_v4_mtime": "2026-09-25 22:25:15",
+      "n_grains": 20,
+      "eps_step": 0.0005,
+      "ef_current_source": 0.07228673685617111,
+      "uts_MPa_current_source": 959.8832975000528,
+      "ef_archived": 0.056629064932528075,
+      "uts_MPa_archived": 959.3631776153682,
+      "ef_rel_dev_pct": 27.649532872030836,
+      "archive_keys": [
+        "S0",
+        "eps_step_convergence",
+        "material",
+        "n_grains_convergence",
+        "n_grains_relative_dev",
+        "orientation"
+      ]
+    },
+    "archive_single_crystal_v9": {
+      "archive_file": "D:\\20260618断裂模型论文\\simulation\\output\\taylor_single_crystal_bounds_v9.json",
+      "ef_current_source_20grain": 0.07228673685617111,
+      "ef_archived_20grain": 0.056629064932528075,
+      "ef_archived_single_min": 0.04800664580689432,
+      "ef_archived_single_max": 0.06735339831255256,
+      "ef_archived_single_mean": 0.05634929819646741,
+      "dev_pct_archived_min": -15.226137206939793,
+      "dev_pct_archived_max": 18.93786060709677,
+      "rel_dev_pct": 27.649532872030836
+    },
+    "convergence_eps_step": {
+      "runs": [
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.0005,
+          "n_sub": 30,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "n_points": 146,
+          "ef": 0.07228673685617111,
+          "uts_MPa": 959.8832975000528,
+          "wallclock_s": 43.5
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.001,
+          "n_sub": 30,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 73,
+          "ef": 0.07179663045842166,
+          "uts_MPa": 938.9949264682064,
+          "wallclock_s": 24.46
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.002,
+          "n_sub": 30,
+          "deps_effective": 0.002,
+          "deps_over_eps_step": 1.0,
+          "n_points": 57,
+          "ef": 0.11097047651279934,
+          "uts_MPa": 733.559982270629,
+          "wallclock_s": 41.18
+        }
+      ],
+      "ef": [
+        0.07228673685617111,
+        0.07179663045842166,
+        0.11097047651279934
+      ],
+      "reference_eps_step": 0.0005,
+      "rel_dev_pct": [
+        0.0,
+        -0.6780032120202258,
+        53.51429783529619
+      ],
+      "max_abs_rel_dev_pct": 53.51429783529619,
+      "threshold_pct": 5.0,
+      "passed": false,
+      "supplementary_eps_step_1p5e-3": {
+        "material": "Ti64",
+        "psi_deg": 0.0,
+        "n_grains": 20,
+        "eps_step": 0.0015,
+        "n_sub": 30,
+        "deps_effective": 0.0015,
+        "deps_over_eps_step": 1.0,
+        "n_points": 56,
+        "ef": 0.08222781818272337,
+        "uts_MPa": 872.5291374087858,
+        "wallclock_s": 30.54
+      },
+      "supplementary_rel_dev_pct": 13.752289505517487
+    },
+    "convergence_eps_step_cross_material": {
+      "AlSi10Mg": {
+        "n_grains": 10,
+        "runs": [
+          {
+            "material": "AlSi10Mg",
+            "psi_deg": 0.0,
+            "n_grains": 10,
+            "eps_step": 0.0005,
+            "n_sub": 30,
+            "deps_effective": 0.0005,
+            "deps_over_eps_step": 1.0,
+            "n_points": 197,
+            "ef": 0.0977583382452149,
+            "uts_MPa": 357.2635504613339,
+            "wallclock_s": 29.3
+          },
+          {
+            "material": "AlSi10Mg",
+            "psi_deg": 0.0,
+            "n_grains": 10,
+            "eps_step": 0.002,
+            "n_sub": 30,
+            "deps_effective": 0.002,
+            "deps_over_eps_step": 1.0,
+            "n_points": 76,
+            "ef": 0.14927595360074897,
+            "uts_MPa": 252.13024900389203,
+            "wallclock_s": 27.88
+          }
+        ],
+        "ef": [
+          0.0977583382452149,
+          0.14927595360074897
+        ],
+        "rel_dev_pct_2e-3_vs_5e-4": 52.69894750697213
+      },
+      "316L": {
+        "n_grains": 10,
+        "runs": [
+          {
+            "material": "316L",
+            "psi_deg": 0.0,
+            "n_grains": 10,
+            "eps_step": 0.0005,
+            "n_sub": 30,
+            "deps_effective": 0.0005,
+            "deps_over_eps_step": 1.0,
+            "n_points": 178,
+            "ef": 0.08814718477134181,
+            "uts_MPa": 564.7619371538988,
+            "wallclock_s": 32.26
+          },
+          {
+            "material": "316L",
+            "psi_deg": 0.0,
+            "n_grains": 10,
+            "eps_step": 0.002,
+            "n_sub": 30,
+            "deps_effective": 0.002,
+            "deps_over_eps_step": 1.0,
+            "n_points": 18,
+            "ef": 0.03373509431590737,
+            "uts_MPa": 399.95846717622123,
+            "wallclock_s": 12.77
+          }
+        ],
+        "ef": [
+          0.08814718477134181,
+          0.03373509431590737
+        ],
+        "rel_dev_pct_2e-3_vs_5e-4": -61.728676413866324
+      }
+    },
+    "convergence_n_grains": {
+      "runs": [
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 27,
+          "eps_step": 0.001,
+          "n_sub": 30,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 74,
+          "ef": 0.07254763247216568,
+          "uts_MPa": 934.7587687467259,
+          "wallclock_s": 33.24
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 64,
+          "eps_step": 0.001,
+          "n_sub": 30,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 73,
+          "ef": 0.0712190920884665,
+          "uts_MPa": 942.4313041238822,
+          "wallclock_s": 76.55
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 125,
+          "eps_step": 0.001,
+          "n_sub": 30,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 71,
+          "ef": 0.06953774799441607,
+          "uts_MPa": 951.681169933388,
+          "wallclock_s": 146.46
+        }
+      ],
+      "ef": [
+        0.07254763247216568,
+        0.0712190920884665,
+        0.06953774799441607
+      ],
+      "reference_n_grains": 125,
+      "rel_dev_pct_vs_125": [
+        4.3284181103927954,
+        2.4178868924334944,
+        0.0
+      ],
+      "max_abs_rel_dev_pct": 4.3284181103927954,
+      "threshold_pct": 10.0,
+      "passed": true
+    },
+    "convergence_n_grains_archive_grid": {
+      "runs": [
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 10,
+          "eps_step": 0.0005,
+          "n_sub": 30,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "n_points": 144,
+          "ef": 0.07145481264077289,
+          "uts_MPa": 963.5610823497713,
+          "wallclock_s": 21.21
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.0005,
+          "n_sub": 30,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "n_points": 146,
+          "ef": 0.07228673685617111,
+          "uts_MPa": 959.8832975000528,
+          "wallclock_s": 42.55
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 30,
+          "eps_step": 0.0005,
+          "n_sub": 30,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "n_points": 148,
+          "ef": 0.07314294453537151,
+          "uts_MPa": 953.978560197865,
+          "wallclock_s": 63.86
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 50,
+          "eps_step": 0.0005,
+          "n_sub": 30,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "n_points": 147,
+          "ef": 0.07264333702619807,
+          "uts_MPa": 957.7620014891106,
+          "wallclock_s": 106.29
+        }
+      ],
+      "ef": [
+        0.07145481264077289,
+        0.07228673685617111,
+        0.07314294453537151,
+        0.07264333702619807
+      ],
+      "reference_n_grains": 50,
+      "rel_dev_pct_vs_50": [
+        -1.6361092896882738,
+        -0.4908917797902912,
+        0.687754073017406,
+        0.0
+      ],
+      "max_abs_rel_dev_pct": 1.6361092896882738,
+      "threshold_pct": 5.0,
+      "passed": true
+    },
+    "convergence_n_sub": {
+      "runs": [
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.001,
+          "n_sub": 15,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 74,
+          "ef": 0.07294311497892561,
+          "uts_MPa": 929.6618688083445,
+          "wallclock_s": 11.99
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.001,
+          "n_sub": 30,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 73,
+          "ef": 0.07179663045842166,
+          "uts_MPa": 938.9949264682064,
+          "wallclock_s": 24.34
+        },
+        {
+          "material": "Ti64",
+          "psi_deg": 0.0,
+          "n_grains": 20,
+          "eps_step": 0.001,
+          "n_sub": 60,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "n_points": 73,
+          "ef": 0.07138433744259971,
+          "uts_MPa": 941.0880166564423,
+          "wallclock_s": 48.33
+        }
+      ],
+      "ef": [
+        0.07294311497892561,
+        0.07179663045842166,
+        0.07138433744259971
+      ],
+      "reference_n_sub": 30,
+      "rel_dev_pct": [
+        1.5968500376461154,
+        0.0,
+        -0.5742512053691894
+      ],
+      "max_abs_rel_dev_pct": 1.5968500376461154,
+      "threshold_pct": 5.0,
+      "passed": true
+    },
+    "damage_threshold_gate": {
+      "p_D_used": 1000000000.0,
+      "max_abs_damage_change": 0.0,
+      "D0": 0.003
+    },
+    "damage_monotonicity": {
+      "worst_per_grain_increment": 0.0,
+      "min_delta_p": 2.742400074300608e-22,
+      "D_initial": 0.003,
+      "D_final": 0.051341775791140076,
+      "p_final": 0.13335457214215338,
+      "n_steps": 120,
+      "strain_final": 0.12
+    },
+    "uniaxial_damage_monotonicity": {
+      "worst_increment": 0.0,
+      "n_points": 253,
+      "D_final": 0.4217660607652004,
+      "Dc": 0.42
+    },
+    "elastic_default_tolerance_bias": {
+      "316L": {
+        "E_default_tolerance_GPa": 201.22236305105335,
+        "E_analytic_GPa": 204.01334186001102,
+        "rel_dev_pct": -1.368037395746781,
+        "default_inner_tol_pa": 3000000.0,
+        "default_n_inner": 25
+      },
+      "Ti64": {
+        "E_default_tolerance_GPa": 120.30079289580786,
+        "E_analytic_GPa": 118.00746790601883,
+        "rel_dev_pct": 1.9433727631673587,
+        "default_inner_tol_pa": 3000000.0,
+        "default_n_inner": 25
+      },
+      "AlSi10Mg": {
+        "E_default_tolerance_GPa": 75.7728616877098,
+        "E_analytic_GPa": 70.26894524827536,
+        "rel_dev_pct": 7.832644164485354,
+        "default_inner_tol_pa": 3000000.0,
+        "default_n_inner": 25
+      }
+    },
+    "elastic_limit_benchmark": {
+      "316L": {
+        "E_analytic_GPa": 204.01334186001102,
+        "w_analytic_from_solver_kinematics": 0.28748610222915516,
+        "E_numerical_GPa": 203.72695314651446,
+        "rel_dev_pct": -0.14037744339929714,
+        "max_abs_D_minus_D0": 2.168404344971009e-19
+      },
+      "Ti64": {
+        "E_analytic_GPa": 118.00746790601883,
+        "w_analytic_from_solver_kinematics": 0.3162766459229024,
+        "E_numerical_GPa": 117.85776927670368,
+        "rel_dev_pct": -0.12685521685320378,
+        "max_abs_D_minus_D0": 0.0
+      },
+      "AlSi10Mg": {
+        "E_analytic_GPa": 70.26894524827536,
+        "w_analytic_from_solver_kinematics": 0.34724142337331454,
+        "E_numerical_GPa": 70.37658039173897,
+        "rel_dev_pct": 0.15317597707395433,
+        "max_abs_D_minus_D0": 4.336808689942018e-19
+      }
+    },
+    "elastic_window_linearity": {
+      "316L": {
+        "max_abs_D_minus_D0": 2.168404344971009e-19,
+        "E_secant_spread_rel": 0.003649934359257051,
+        "E_mean_GPa": 204.1219516896561,
+        "n_points": 11,
+        "strain_max": 0.002
+      },
+      "Ti64": {
+        "max_abs_D_minus_D0": 0.0,
+        "E_secant_spread_rel": 0.008951910218359076,
+        "E_mean_GPa": 118.37189842455639,
+        "n_points": 11,
+        "strain_max": 0.005
+      },
+      "AlSi10Mg": {
+        "max_abs_D_minus_D0": 4.336808689942018e-19,
+        "E_secant_spread_rel": 0.0032689570391150544,
+        "E_mean_GPa": 70.43141511464928,
+        "n_points": 11,
+        "strain_max": 0.003
+      }
+    },
+    "born_stability": {
+      "316L": {
+        "crystal_structure": "FCC",
+        "C11_GPa": 204.0,
+        "C12_GPa": 138.0,
+        "C44_GPa": 126.0,
+        "C55_GPa": 126.0,
+        "C66_GPa": 126.0,
+        "criteria_GPa": {
+          "C11-C12>0": 66.0,
+          "C11+2C12>0": 480.0,
+          "C44>0": 126.0
+        }
+      },
+      "Ti64": {
+        "crystal_structure": "HCP",
+        "C11_GPa": 162.0,
+        "C12_GPa": 92.0,
+        "C44_GPa": 47.0,
+        "C55_GPa": 47.0,
+        "C66_GPa": 35.0,
+        "criteria_GPa": {
+          "C11-C12>0": 70.0,
+          "C33(C11+C12)-2C13^2>0": 36198000000000.0,
+          "C44>0": 47.0,
+          "C66=(C11-C12)/2>0": 35.0
+        }
+      },
+      "AlSi10Mg": {
+        "crystal_structure": "FCC",
+        "C11_GPa": 108.0,
+        "C12_GPa": 61.0,
+        "C44_GPa": 28.0,
+        "C55_GPa": 28.0,
+        "C66_GPa": 28.0,
+        "criteria_GPa": {
+          "C11-C12>0": 47.0,
+          "C11+2C12>0": 230.0,
+          "C44>0": 28.0
+        }
+      }
+    },
+    "cubic_group_invariance": {
+      "worst_rel_dev": 0.0,
+      "negative_control_rel_dev": 0.34191176470588236,
+      "n_group_elements": 24
+    },
+    "naive_tensor_voigt_reduction_worst_rel_dev": 1.0,
+    "double_contraction_vs_einsum_worst_abs": 0.0,
+    "hcp_transverse_isotropy": {
+      "worst_rel_dev": 1.6954210069444444e-16,
+      "negative_control_rel_dev": 0.05532940079733912
+    },
+    "stiffness_positive_definite": {
+      "316L": {
+        "eig_min_GPa": 65.99999999999996,
+        "eig_max_GPa": 480.0,
+        "min_energy_density_Pa": 49992986687.384094
+      },
+      "Ti64": {
+        "eig_min_GPa": 35.0,
+        "eig_max_GPa": 321.359954005356,
+        "min_energy_density_Pa": 27426512614.645668
+      },
+      "AlSi10Mg": {
+        "eig_min_GPa": 28.0,
+        "eig_max_GPa": 229.99999999999994,
+        "min_energy_density_Pa": 28519571467.870285
+      }
+    },
+    "stiffness_symmetry_rel": {
+      "316L": {
+        "minor_symmetry_ij": 0.0,
+        "minor_symmetry_kl": 0.0,
+        "major_symmetry": 0.0
+      },
+      "Ti64": {
+        "minor_symmetry_ij": 0.0,
+        "minor_symmetry_kl": 0.0,
+        "major_symmetry": 0.0
+      },
+      "AlSi10Mg": {
+        "minor_symmetry_ij": 0.0,
+        "minor_symmetry_kl": 0.0,
+        "major_symmetry": 0.0
+      }
+    },
+    "lemaitre_factor_normalisation": {
+      "neutral_lambda_eff_over_ref": 1.0,
+      "neutral_xi_eff": 1.0,
+      "neutral_components": {
+        "f_phi": 1.0,
+        "f_theta": 1.0,
+        "f_D0": 1.0,
+        "f_lambda": 1.0,
+        "f_xi": 1.0,
+        "f_shield": 1.0,
+        "lambda_eff_mm": 50.0,
+        "xi_eff": 1.0,
+        "theta_bar": 0.5,
+        "f_AM": 1.0
+      },
+      "f_theta_at_theta_bar_0.40": 1.1341640786499874,
+      "production_theta_bar": 0.4552405079733615,
+      "production_components": {
+        "f_phi": 1.045,
+        "f_theta": 1.0401757484538214,
+        "f_D0": 1.030454533953517,
+        "f_lambda": 0.3999999999999999,
+        "f_xi": 0.8571428571428571,
+        "f_shield": 1.0,
+        "lambda_eff_mm": 12.5,
+        "xi_eff": 3.5,
+        "theta_bar": 0.4552405079733615,
+        "f_AM": 0.3840299101122363
+      },
+      "production_lambda_mp": 50.0,
+      "production_xi_grain": 3.5,
+      "production_w_iso": 0.25,
+      "production_phi": 0.003,
+      "production_D0": 0.003
+    },
+    "lemaitre_three_condition_limit": {
+      "316L": {
+        "phi": 0.001,
+        "D0_after_v4_rule": 0.001,
+        "_w_iso": 0.25,
+        "lambda_eff_over_ref": 0.25,
+        "xi_eff": 1.0,
+        "components": {
+          "f_phi": 1.0066666666666666,
+          "f_theta": 1.0,
+          "f_D0": 1.016128685406095,
+          "f_lambda": 0.55,
+          "f_xi": 1.0,
+          "f_shield": 1.0,
+          "lambda_eff_mm": 12.5,
+          "xi_eff": 1.0,
+          "theta_bar": 0.5,
+          "f_AM": 0.5625965821531745
+        },
+        "f_AM": 0.5625965821531745
+      },
+      "Ti64": {
+        "phi": 0.003,
+        "D0_after_v4_rule": 0.003,
+        "_w_iso": 0.25,
+        "lambda_eff_over_ref": 0.25,
+        "xi_eff": 1.0,
+        "components": {
+          "f_phi": 1.045,
+          "f_theta": 1.0,
+          "f_D0": 1.0512710963760241,
+          "f_lambda": 0.3999999999999999,
+          "f_xi": 1.0,
+          "f_shield": 1.0,
+          "lambda_eff_mm": 12.5,
+          "xi_eff": 1.0,
+          "theta_bar": 0.5,
+          "f_AM": 0.43943131828517795
+        },
+        "f_AM": 0.43943131828517795
+      },
+      "AlSi10Mg": {
+        "phi": 0.005,
+        "D0_after_v4_rule": 0.002,
+        "_w_iso": 0.25,
+        "lambda_eff_over_ref": 0.25,
+        "xi_eff": 1.0,
+        "components": {
+          "f_phi": 1.1,
+          "f_theta": 1.0,
+          "f_D0": 1.1007590639939788,
+          "f_lambda": 0.25,
+          "f_xi": 1.0,
+          "f_shield": 1.0,
+          "lambda_eff_mm": 12.5,
+          "xi_eff": 1.0,
+          "theta_bar": 0.5,
+          "f_AM": 0.3027087425983442
+        },
+        "f_AM": 0.3027087425983442
+      }
+    },
+    "lemaitre_reference_state_note": "phi -> 0 and D0 -> 0 are required in addition to xi = 1, lambda_eff = lambda_ref, theta_bar = 0.5; _w_iso = 1 is needed for lambda_eff = lambda0.",
+    "lemaitre_limit_equivalence": {
+      "max_abs_damage_diff": 0.0,
+      "max_abs_stress_diff_Pa": 0.0,
+      "fracture_strain_f_AM_computed": 0.08957183966027298,
+      "fracture_strain_f_AM_forced": 0.08957183966027298,
+      "uts_MPa_f_AM_computed": 733.0275842020457,
+      "uts_MPa_f_AM_forced": 733.0275842020457,
+      "n_points_compared": 46
+    },
+    "crss_saturation": {
+      "316L": {
+        "crystal_structure": "FCC",
+        "n_systems": 12,
+        "g0_unique_MPa": [
+          200.0
+        ],
+        "g_sat_unique_MPa": [
+          500.0
+        ]
+      },
+      "Ti64": {
+        "crystal_structure": "HCP",
+        "n_systems": 12,
+        "g0_unique_MPa": [
+          350.0,
+          370.0,
+          450.0
+        ],
+        "g_sat_unique_MPa": [
+          700.0,
+          720.0,
+          800.0
+        ]
+      },
+      "AlSi10Mg": {
+        "crystal_structure": "FCC",
+        "n_systems": 12,
+        "g0_unique_MPa": [
+          120.0
+        ],
+        "g_sat_unique_MPa": [
+          280.0
+        ]
+      }
+    },
+    "global_database_isolation": "MATERIAL_DATABASE unmodified after parameter overrides",
+    "mean_schmid_factor": {
+      "316L": {
+        "theta_bar_code_n_mc2000": 0.4349563865029904,
+        "theta_bar_sampled_Ru": 0.4334281990976468,
+        "theta_bar_sampled_Rtu": 0.4329496504602999,
+        "n_orientations_sampled": 400
+      },
+      "Ti64": {
+        "theta_bar_code_n_mc2000": 0.4552405079733615,
+        "theta_bar_sampled_Ru": 0.45530534009621326,
+        "theta_bar_sampled_Rtu": 0.4546756506897514,
+        "n_orientations_sampled": 400
+      },
+      "AlSi10Mg": {
+        "theta_bar_code_n_mc2000": 0.4368457365704136,
+        "theta_bar_sampled_Ru": 0.434558166797425,
+        "theta_bar_sampled_Rtu": 0.4333947306991923,
+        "n_orientations_sampled": 400
+      }
+    },
+    "seed_reproducibility": {
+      "same_seed_max_abs_diff": 0.0,
+      "theta_bar_seed17": 0.4552405079733615,
+      "theta_bar_seed18": 0.4552405079733615,
+      "different_seed_max_abs_diff": 1.876238003698809
+    },
+    "orientation_properness": {
+      "316L": {
+        "worst_orthogonality_err": 5.551115123125783e-16,
+        "worst_det_err": 6.661338147750939e-16,
+        "n_grains": 40
+      },
+      "Ti64": {
+        "worst_orthogonality_err": 5.551115123125783e-16,
+        "worst_det_err": 6.661338147750939e-16,
+        "n_grains": 40
+      },
+      "AlSi10Mg": {
+        "worst_orthogonality_err": 5.551115123125783e-16,
+        "worst_det_err": 6.661338147750939e-16,
+        "n_grains": 40
+      }
+    },
+    "init_parameters": {
+      "316L": {
+        "S0_params": 2.8,
+        "S0_library": 2.8,
+        "D0_params_v4": 0.001,
+        "D0_EXPERIMENTAL": 0.001,
+        "D0_MATERIAL_DATABASE": 0.002,
+        "crystal_structure": "FCC",
+        "S_eff": 2.8,
+        "f_AM": 0.4925852669081124
+      },
+      "Ti64": {
+        "S0_params": 3.5,
+        "S0_library": 3.5,
+        "D0_params_v4": 0.003,
+        "D0_EXPERIMENTAL": 0.003,
+        "D0_MATERIAL_DATABASE": 0.005,
+        "crystal_structure": "HCP",
+        "S_eff": 3.5,
+        "f_AM": 0.3840299101122363
+      },
+      "AlSi10Mg": {
+        "S0_params": 2.0,
+        "S0_library": 2.0,
+        "D0_params_v4": 0.002,
+        "D0_EXPERIMENTAL": 0.002,
+        "D0_MATERIAL_DATABASE": 0.008,
+        "crystal_structure": "FCC",
+        "S_eff": 2.0,
+        "f_AM": 0.34141633629419
+      },
+      "S0_override_check": 0.293
+    },
+    "effective_increment": {
+      "cases": [
+        {
+          "max_strain": 0.004,
+          "eps_step": 0.0005,
+          "n_steps": 11,
+          "deps_effective": 0.0004,
+          "deps_over_eps_step": 0.8,
+          "strain_rate_effective": 0.0008,
+          "strain_rate_requested": 0.001
+        },
+        {
+          "max_strain": 0.002,
+          "eps_step": 0.0005,
+          "n_steps": 11,
+          "deps_effective": 0.0002,
+          "deps_over_eps_step": 0.4,
+          "strain_rate_effective": 0.0004,
+          "strain_rate_requested": 0.001
+        },
+        {
+          "max_strain": 0.17,
+          "eps_step": 0.0005,
+          "n_steps": 341,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "strain_rate_effective": 0.001,
+          "strain_rate_requested": 0.001
+        },
+        {
+          "max_strain": 0.25,
+          "eps_step": 0.0005,
+          "n_steps": 501,
+          "deps_effective": 0.0005,
+          "deps_over_eps_step": 1.0,
+          "strain_rate_effective": 0.001,
+          "strain_rate_requested": 0.001
+        },
+        {
+          "max_strain": 0.3,
+          "eps_step": 0.001,
+          "n_steps": 301,
+          "deps_effective": 0.001,
+          "deps_over_eps_step": 1.0,
+          "strain_rate_effective": 0.001,
+          "strain_rate_requested": 0.001
+        }
+      ]
+    },
+    "fracture_consistency": {
+      "fracture_strain": 0.5026251719009015,
+      "fracture_strain_recomputed": 0.5026251719009015,
+      "Dc": 0.42,
+      "uts_Pa": 918090665.7517321,
+      "uts_MPa": 918.0906657517321,
+      "uts_recomputed_Pa": 918090665.7517321,
+      "eps_step_requested": 0.002,
+      "deps_effective": 0.002,
+      "deps_over_eps_step": 1.0,
+      "strain_rate_requested": 0.001,
+      "strain_rate_effective": 0.001,
+      "n_points_returned": 253,
+      "frac_broken_at_end": 0.0
+    },
+    "stress_units_pascals": {
+      "Ti64": {
+        "peak_stress_Pa": 918090665.7517321,
+        "peak_stress_MPa": 918.0906657517321,
+        "uts_experimental_MPa": 1150.0,
+        "uts_experimental_MPa_by_orientation": {
+          "0": 1150,
+          "45": 1100,
+          "90": 1050
+        },
+        "uts_ratio_model_over_experiment": 0.7983397093493323,
+        "fracture_strain": 0.5026251719009015,
+        "ef_experimental": 0.08
+      },
+      "AlSi10Mg": {
+        "peak_stress_Pa": 417792286.7438327,
+        "peak_stress_MPa": 417.79228674383273,
+        "uts_experimental_MPa": 440.0,
+        "uts_experimental_MPa_by_orientation": {
+          "0": 440,
+          "45": 410,
+          "90": 375
+        },
+        "uts_ratio_model_over_experiment": 0.9495279244178016,
+        "fracture_strain": 0.5041247750970231,
+        "ef_experimental": 0.056
+      },
+      "316L": {
+        "peak_stress_Pa": 471688337.14767504,
+        "peak_stress_MPa": 471.68833714767504,
+        "uts_experimental_MPa": 680.0,
+        "uts_experimental_MPa_by_orientation": {
+          "0": 680,
+          "45": 640,
+          "90": 595
+        },
+        "uts_ratio_model_over_experiment": 0.6936593193348163,
+        "fracture_strain": 0.35484007242624394,
+        "ef_experimental": 0.37
+      }
+    },
+    "slip_bcc": {
+      "n_systems": 24,
+      "max_abs_nd": 0.0,
+      "max_norm_err": 1.1102230246251565e-16,
+      "note": "the BCC generator is not exercised by the three calibration alloys (FCC/HCP only); tested for materials-module completeness."
+    },
+    "slip_fcc": {
+      "n_systems": 12,
+      "n_planes": 4,
+      "systems_per_plane": 3,
+      "max_abs_nd": 0.0,
+      "max_norm_err": 1.1102230246251565e-16
+    },
+    "slip_hcp": {
+      "n_systems": 12,
+      "basal": 3,
+      "prism": 3,
+      "pyr": 6,
+      "max_abs_nd": 1.1102230246251565e-16,
+      "max_norm_err": 2.220446049250313e-16
+    },
+    "schmid_traceless_worst_abs_trace": 1.1102230246251565e-16
+  }
+}

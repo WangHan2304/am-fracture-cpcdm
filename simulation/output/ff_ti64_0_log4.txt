@@ -1,0 +1,2 @@
+﻿  [fail] eps=0.0100->0.0101 nrm=6.128e+07
+RESULT {"material": "Ti64", "orientation": 0, "ef_fullfield": 0.01, "ef_taylor": 0.03, "bias_pct": -66.67, "Dc": 0.42, "S0": 0.32, "eps_step": 0.002, "n_sub": 30, "fullfield_wall_sec": 1.5}

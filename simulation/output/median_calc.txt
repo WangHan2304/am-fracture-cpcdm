@@ -1,0 +1,6 @@
+﻿cal errors: [9.64, 11.2, 8.47, 12.01, 19.35, 58.95, 22.8, 20.45, 22.69]
+cal median = 19.35 mean = 20.62
+blind errors: [9.64, 11.2, 8.47, 46.45, 34.75, 58.95, 74.02, 20.45, 22.69]
+blind median = 22.69 mean = 31.85
+LEM blind median = 21.07 mean = 24.57
+blind UTS median = 14.67 mean = 15.33

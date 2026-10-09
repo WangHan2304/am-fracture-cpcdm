@@ -1,0 +1,234 @@
+
+==============================================================================
+cv_variants session start 2026-10-01 08:01:45
+==============================================================================
+[08:01:45] Item 2  Expanded paired blind set (descriptor vs Lemaitre)
+[08:01:45] n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=4
+[08:01:45] dataset 54 points, 7 sources; mod cache 154, lem cache 0
+[08:01:45] LOSO feasible folds: 7
+[08:01:45]   [cache] nothing to run (3 requested, all cached)
+[08:01:45]   [lem-run] 3 new baseline run(s), workers=4
+[08:01:56]   [lem-run] done: 3 new, 0 failed, 12s
+[08:01:56]   [lem-run] 3 new baseline run(s), workers=4
+[08:02:19]   [lem-run] done: 3 new, 0 failed, 23s
+[08:02:19]   [lem-run] 3 new baseline run(s), workers=4
+[08:03:01]   [lem-run] done: 3 new, 0 failed, 42s
+[08:03:01]   [lem-run] 3 new baseline run(s), workers=4
+[08:06:10]   [lem-run] done: 3 new, 0 failed, 189s
+[08:06:10]   [lem-run] 3 new baseline run(s), workers=4
+[08:13:40]   [lem-run] done: 3 new, 0 failed, 450s
+[08:13:40]   [lem-run] 3 new baseline run(s), workers=4
+[08:21:44]   [lem-run] done: 3 new, 0 failed, 484s
+[08:21:44]   [lem-run] 3 new baseline run(s), workers=4
+[08:23:31]   [lem-run] done: 3 new, 0 failed, 108s
+[08:23:31]   [lem-run] 3 new baseline run(s), workers=4
+
+==============================================================================
+cv_variants session start 2026-10-01 08:25:24
+==============================================================================
+[08:25:24] Item 2  Expanded paired blind set (descriptor vs Lemaitre)
+[08:25:24] n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=4
+[08:25:24] dataset 54 points, 7 sources; mod cache 154, lem cache 21
+[08:25:24] LOSO feasible folds: 7
+[08:25:24]   [cache] nothing to run (3 requested, all cached)
+[08:25:24]   [lem-run] 3 new baseline run(s), workers=4
+[08:30:21]   [lem-run] done: 3 new, 0 failed, 296s
+[08:30:21]   316L      held=hitzler2017materials   S0mod=2         S0lem=3.2       (train_err mod=30.1% lem=22.5%)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   316L      held=v12_original           S0mod=0.8       S0lem=2         (train_err mod=63.2% lem=54.1%)
+[08:30:21]   [cache] nothing to run (3 requested, all cached)
+[08:30:21]   [lem-run] 3 new baseline run(s), workers=4
+[08:30:28]   [lem-run] done: 3 new, 0 failed, 8s
+[08:30:28]   [lem-run] 3 new baseline run(s), workers=4
+[08:30:46]   [lem-run] done: 3 new, 0 failed, 18s
+[08:30:46]   [lem-run] 3 new baseline run(s), workers=4
+[08:31:33]   [lem-run] done: 3 new, 0 failed, 47s
+[08:31:33]   [lem-run] 3 new baseline run(s), workers=4
+[08:32:52]   [lem-run] done: 3 new, 0 failed, 79s
+[08:32:52]   [lem-run] 3 new baseline run(s), workers=4
+[08:33:05]   [lem-run] done: 3 new, 0 failed, 13s
+[08:33:05]   [lem-run] 3 new baseline run(s), workers=4
+[08:33:28]   [lem-run] done: 3 new, 0 failed, 24s
+[08:33:28]   AlSi10Mg  held=awd2018metals          S0mod=0.2       S0lem=0.32      (train_err mod=22.0% lem=15.1%)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [cache] nothing to run (3 requested, all cached)
+[08:33:28]   [lem-run] 3 new baseline run(s), workers=4
+[08:33:59]   [lem-run] done: 3 new, 0 failed, 30s
+[08:33:59]   [lem-run] 3 new baseline run(s), workers=4
+[08:35:13]   [lem-run] done: 3 new, 0 failed, 74s
+[08:35:13]   AlSi10Mg  held=v12_original           S0mod=0.32      S0lem=0.5       (train_err mod=28.2% lem=19.2%)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [cache] nothing to run (6 requested, all cached)
+[08:35:13]   [lem-run] 3 new baseline run(s), workers=4
+[08:35:32]   [lem-run] done: 3 new, 0 failed, 19s
+[08:35:32]   [lem-run] 3 new baseline run(s), workers=4
+[08:35:56]   [lem-run] done: 3 new, 0 failed, 24s
+[08:35:56]   [lem-run] 3 new baseline run(s), workers=4
+[08:36:34]   [lem-run] done: 3 new, 0 failed, 39s
+[08:36:34]   [lem-run] 3 new baseline run(s), workers=4
+[08:38:33]   [lem-run] done: 3 new, 0 failed, 119s
+[08:38:33]   [lem-run] 3 new baseline run(s), workers=4
+[08:39:06]   [lem-run] done: 3 new, 0 failed, 33s
+[08:39:06]   [lem-run] 3 new baseline run(s), workers=4
+[08:39:58]   [lem-run] done: 3 new, 0 failed, 52s
+[08:39:58]   Ti64      held=nist_mds2_3402         S0mod=0.32      S0lem=0.5       (train_err mod=16.9% lem=21.7%)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   Ti64      held=sun2024adem            S0mod=0.5       S0lem=0.5       (train_err mod=28.8% lem=38.5%)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   [cache] nothing to run (5 requested, all cached)
+[08:39:58]   Ti64      held=v12_original           S0mod=0.5       S0lem=0.8       (train_err mod=37.0% lem=37.5%)
+[08:39:58]   [cache] nothing to run (8 requested, all cached)
+[08:39:58]   [cache] nothing to run (6 requested, all cached)
+[08:39:58]   [cache] nothing to run (6 requested, all cached)
+[08:39:58] IN718 strict LOMO transfer S0: mod=0.504 lem=0.9357
+[08:39:58] headline blind units (as-built, dedup): n=23
+[08:39:58]   [cache] nothing to run (23 requested, all cached)
+[08:39:58]   [lem-run] 2 new baseline run(s), workers=4
+[08:41:58]   [lem-run] done: 2 new, 0 failed, 120s
+
+[08:41:59] ==============================================================================
+[08:41:59] n=23  mod mean/med=46.40/37.92  lem mean/med=48.02/45.00
+[08:41:59] paired mean diff=-1.63pt  wilcoxon p=0.6869  sign p=0.6776  bootstrap CI=[-19.13,13.78]  dz=-0.04
+[08:41:59] DONE -> D:\20260618断裂模型论文\simulation\output\blind_eval_expanded_results.json  (995.1s)
+
+==============================================================================
+cv_variants session start 2026-10-06 23:56:11
+==============================================================================
+[23:56:11] Item 2  Expanded paired blind set (descriptor vs Lemaitre)
+[23:56:11] n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=8
+[23:56:11] dataset 54 points, 7 sources; mod cache 157, lem cache 0
+[23:56:11] LOSO feasible folds: 7
+[23:56:12]   [cache] nothing to run (3 requested, all cached)
+[23:56:12]   [lem-run] 3 new baseline run(s), workers=8
+[23:56:22]   [lem-run] done: 3 new, 0 failed, 10s
+[23:56:22]   [lem-run] 3 new baseline run(s), workers=8
+[23:56:44]   [lem-run] done: 3 new, 0 failed, 22s
+[23:56:44]   [lem-run] 3 new baseline run(s), workers=8
+[23:57:22]   [lem-run] done: 3 new, 0 failed, 39s
+[23:57:22]   [lem-run] 3 new baseline run(s), workers=8
+[00:00:18]   [lem-run] done: 3 new, 0 failed, 175s
+[00:00:18]   [lem-run] 3 new baseline run(s), workers=8
+[00:02:03]   [lem-run] done: 3 new, 0 failed, 105s
+[00:02:03]   [lem-run] 3 new baseline run(s), workers=8
+[00:07:08]   [lem-run] done: 3 new, 0 failed, 305s
+[00:07:08]   316L      held=hitzler2017materials   S0mod=3.2       S0lem=3.2       (train_err mod=28.2% lem=21.8%)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   316L      held=v12_original           S0mod=0.8       S0lem=2         (train_err mod=62.7% lem=55.3%)
+[00:07:08]   [cache] nothing to run (3 requested, all cached)
+[00:07:08]   [lem-run] 3 new baseline run(s), workers=8
+[00:07:16]   [lem-run] done: 3 new, 0 failed, 8s
+[00:07:16]   [lem-run] 3 new baseline run(s), workers=8
+[00:07:33]   [lem-run] done: 3 new, 0 failed, 17s
+[00:07:33]   [lem-run] 3 new baseline run(s), workers=8
+[00:08:18]   [lem-run] done: 3 new, 0 failed, 45s
+[00:08:18]   [lem-run] 3 new baseline run(s), workers=8
+[00:09:32]   [lem-run] done: 3 new, 0 failed, 74s
+[00:09:32]   [lem-run] 3 new baseline run(s), workers=8
+[00:09:44]   [lem-run] done: 3 new, 0 failed, 13s
+[00:09:44]   [lem-run] 3 new baseline run(s), workers=8
+[00:10:07]   [lem-run] done: 3 new, 0 failed, 22s
+[00:10:07]   AlSi10Mg  held=awd2018metals          S0mod=0.2       S0lem=0.32      (train_err mod=22.1% lem=15.1%)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [cache] nothing to run (3 requested, all cached)
+[00:10:07]   [lem-run] 3 new baseline run(s), workers=8
+[00:10:36]   [lem-run] done: 3 new, 0 failed, 29s
+[00:10:36]   [lem-run] 3 new baseline run(s), workers=8
+[00:11:46]   [lem-run] done: 3 new, 0 failed, 70s
+[00:11:46]   AlSi10Mg  held=v12_original           S0mod=0.32      S0lem=0.5       (train_err mod=28.3% lem=19.3%)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [cache] nothing to run (6 requested, all cached)
+[00:11:46]   [lem-run] 3 new baseline run(s), workers=8
+[00:12:04]   [lem-run] done: 3 new, 0 failed, 18s
+[00:12:04]   [lem-run] 3 new baseline run(s), workers=8
+[00:12:28]   [lem-run] done: 3 new, 0 failed, 23s
+[00:12:28]   [lem-run] 3 new baseline run(s), workers=8
+[00:13:05]   [lem-run] done: 3 new, 0 failed, 37s
+[00:13:05]   [lem-run] 3 new baseline run(s), workers=8
+[00:14:58]   [lem-run] done: 3 new, 0 failed, 113s
+[00:14:58]   [lem-run] 3 new baseline run(s), workers=8
+[00:15:29]   [lem-run] done: 3 new, 0 failed, 31s
+[00:15:29]   [lem-run] 3 new baseline run(s), workers=8
+[00:16:18]   [lem-run] done: 3 new, 0 failed, 49s
+[00:16:18]   Ti64      held=nist_mds2_3402         S0mod=0.32      S0lem=0.5       (train_err mod=16.8% lem=21.7%)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   Ti64      held=sun2024adem            S0mod=0.5       S0lem=0.5       (train_err mod=27.9% lem=38.5%)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   [cache] nothing to run (5 requested, all cached)
+[00:16:18]   Ti64      held=v12_original           S0mod=0.5       S0lem=0.8       (train_err mod=36.0% lem=37.6%)
+[00:16:18]   [cache] nothing to run (8 requested, all cached)
+[00:16:18]   [cache] nothing to run (6 requested, all cached)
+[00:16:18]   [cache] nothing to run (6 requested, all cached)
+[00:16:18] IN718 strict LOMO transfer S0: mod=0.5894 lem=0.9357
+[00:16:18] headline blind units (as-built, dedup): n=23
+[00:16:18]   [cache] nothing to run (23 requested, all cached)
+[00:16:18]   [lem-run] 2 new baseline run(s), workers=8
+[00:18:14]   [lem-run] done: 2 new, 0 failed, 116s
+
+[00:18:15] ==============================================================================
+[00:18:15] n=23  mod mean/med=53.09/34.66  lem mean/med=48.28/45.00
+[00:18:15] paired mean diff=+4.81pt  wilcoxon p=1.0000  sign p=1.0000  bootstrap CI=[-16.94,32.12]  dz=0.08
+[00:18:15] DONE -> D:\20260618断裂模型论文\simulation\output\blind_eval_expanded_results.json  (1323.3s)

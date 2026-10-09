@@ -1,0 +1,17 @@
+{
+ "316L": {
+  "ef_taylor": 0.262264,
+  "ef_fftstress": 0.262264,
+  "rel_pct": 0.0
+ },
+ "AlSi10Mg": {
+  "ef_taylor": 0.139662,
+  "ef_fftstress": 0.139662,
+  "rel_pct": 0.0
+ },
+ "Ti64": {
+  "ef_taylor": 0.1153087043676092,
+  "ef_fftstress": 0.09354002810070254,
+  "rel_pct": -18.878606247718448
+ }
+}

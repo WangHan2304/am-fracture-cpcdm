@@ -1,0 +1,146 @@
+{
+  "_r13b_note": "R13 snapshot of the extended grouping, written before the NIST mds2-3402 addition was integrated: it describes the 24-point / six-source dataset and does NOT contain mds2-3402. The R13b leave-one-source run that includes mds2-3402 (54 points, seven sources, nist_mds2_3402 = 30 points, leave-one-source error 61.35%) is recorded in ../output/experiment_v13b_mds2_loso_results.json. No value in this file has been altered.",
+  "protocol": "Process grouping for leave-one-process cross-validation. Groups are defined by the measured triple (laser power W, scan speed mm/s, layer height um). Each group is a distinct process window; leave-one-process CV holds out one complete window.",
+  "note_on_usability": "With 6 fully parameterised groups the leave-one-process CV has non-trivial support (the nine v12 points and the three Awd points cannot participate; see ungroupable_sources).",
+  "n_groups": 6,
+  "groups": {
+    "PG1_168W_1475mmps_30um": {
+      "laser_power_W": 168,
+      "scan_speed_mm_s": 1475,
+      "layer_height_um": 30,
+      "volumetric_energy_density_J_per_mm3": 3.8,
+      "n_points": 1,
+      "materials": [
+        "IN718"
+      ],
+      "sources": [
+        "watring2020addma"
+      ],
+      "point_ids": [
+        "watring2020_IN718_90_lo"
+      ],
+      "heat_treatment": "as-built"
+    },
+    "PG2_175W_710mmps_30um": {
+      "laser_power_W": 175,
+      "scan_speed_mm_s": 710,
+      "layer_height_um": 30,
+      "volumetric_energy_density_J_per_mm3": 8.2,
+      "n_points": 3,
+      "materials": [
+        "Ti64"
+      ],
+      "sources": [
+        "sun2024adem"
+      ],
+      "point_ids": [
+        "sun2024_Ti64_0",
+        "sun2024_Ti64_45",
+        "sun2024_Ti64_90"
+      ],
+      "heat_treatment": "as-built"
+    },
+    "PG3_200W_800mmps_30um": {
+      "laser_power_W": 200,
+      "scan_speed_mm_s": 800,
+      "layer_height_um": 30,
+      "volumetric_energy_density_J_per_mm3": 8.3,
+      "n_points": 3,
+      "materials": [
+        "316L"
+      ],
+      "sources": [
+        "hitzler2017materials"
+      ],
+      "point_ids": [
+        "hitzler2017_316L_90",
+        "hitzler2017_316L_45",
+        "hitzler2017_316L_0"
+      ],
+      "heat_treatment": "as-built (build platform preheated to 200 C)"
+    },
+    "PG4_220W_1180mmps_30um": {
+      "laser_power_W": 220,
+      "scan_speed_mm_s": 1180,
+      "layer_height_um": 30,
+      "volumetric_energy_density_J_per_mm3": 6.2,
+      "n_points": 1,
+      "materials": [
+        "IN718"
+      ],
+      "sources": [
+        "watring2020addma"
+      ],
+      "point_ids": [
+        "watring2020_IN718_30"
+      ],
+      "heat_treatment": "as-built"
+    },
+    "PG5_275W_805mmps_50um": {
+      "laser_power_W": 275,
+      "scan_speed_mm_s": 805,
+      "layer_height_um": 50,
+      "volumetric_energy_density_J_per_mm3": 6.8,
+      "n_points": 3,
+      "materials": [
+        "IN718"
+      ],
+      "sources": [
+        "hovig2018in718"
+      ],
+      "point_ids": [
+        "hovig2018_IN718_90",
+        "hovig2018_IN718_45",
+        "hovig2018_IN718_0"
+      ],
+      "heat_treatment": "solution-treated (980 C / 1 h, argon, air cool) - set 1"
+    },
+    "PG6_330W_1770mmps_30um": {
+      "laser_power_W": 330,
+      "scan_speed_mm_s": 1770,
+      "layer_height_um": 30,
+      "volumetric_energy_density_J_per_mm3": 6.2,
+      "n_points": 1,
+      "materials": [
+        "IN718"
+      ],
+      "sources": [
+        "watring2020addma"
+      ],
+      "point_ids": [
+        "watring2020_IN718_90_hi"
+      ],
+      "heat_treatment": "as-built"
+    }
+  },
+  "ungroupable_sources": {
+    "v12_original": {
+      "n_points": 9,
+      "point_ids": [
+        "v12_Ti64_0",
+        "v12_Ti64_45",
+        "v12_Ti64_90",
+        "v12_316L_0",
+        "v12_316L_45",
+        "v12_316L_90",
+        "v12_AlSi10Mg_0",
+        "v12_AlSi10Mg_45",
+        "v12_AlSi10Mg_90"
+      ],
+      "materials": "Ti64",
+      "groupable": false,
+      "reason": "v12 is a COMPILED representative dataset: its values are central values of reported literature ranges from several publications (Carroll 2015 / Wang 2024, Jaskari 2021, Wu 2023) and no single process window (power / scan speed / layer thickness) is defined for it. Cannot be placed in any process group; its nine points participate only in leave-one-source and leave-one-material CV, never in leave-one-process CV."
+    },
+    "awd2018metals": {
+      "n_points": 3,
+      "point_ids": [
+        "awd2018_AlSi10Mg_90",
+        "awd2018_AlSi10Mg_45",
+        "awd2018_AlSi10Mg_0"
+      ],
+      "materials": "AlSi10Mg",
+      "groupable": false,
+      "reason": "The source explicitly states that the SLM scanning parameters are not available for publication ('not available to be published in this work'); no laser power, scan speed or layer thickness can be attributed. Cannot be placed in any process group; must be excluded from leave-one-process CV."
+    }
+  }
+}

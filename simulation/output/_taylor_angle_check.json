@@ -1,0 +1,61 @@
+{
+ "material": "Ti64",
+ "n_grains": 27,
+ "S0": 0.32,
+ "seed": 42,
+ "r13_locked_ef_taylor": {
+  "0.0": 0.11175,
+  "45.0": 0.09408,
+  "90.0": 0.0775
+ },
+ "runs": [
+  {
+   "angle_deg": 0.0,
+   "eps_step": 0.001,
+   "ef": 0.072548,
+   "uts_MPa": 934758768.75,
+   "wall_s": 21.3
+  },
+  {
+   "angle_deg": 0.0,
+   "eps_step": 0.002,
+   "ef": 0.11175,
+   "uts_MPa": 727253069.76,
+   "wall_s": 38.8,
+   "r13_locked": 0.11175,
+   "ef_rel_diff_pct_vs_r13_locked": -0.0001
+  },
+  {
+   "angle_deg": 45.0,
+   "eps_step": 0.001,
+   "ef": 0.0542,
+   "uts_MPa": 928006732.19,
+   "wall_s": 13.0
+  },
+  {
+   "angle_deg": 45.0,
+   "eps_step": 0.002,
+   "ef": 0.092258,
+   "uts_MPa": 727141037.6,
+   "wall_s": 14.2,
+   "r13_locked": 0.09408,
+   "ef_rel_diff_pct_vs_r13_locked": -1.9366
+  },
+  {
+   "angle_deg": 90.0,
+   "eps_step": 0.001,
+   "ef": 0.044335,
+   "uts_MPa": 925934045.36,
+   "wall_s": 8.3
+  },
+  {
+   "angle_deg": 90.0,
+   "eps_step": 0.002,
+   "ef": 0.076793,
+   "uts_MPa": 727108419.1,
+   "wall_s": 10.8,
+   "r13_locked": 0.0775,
+   "ef_rel_diff_pct_vs_r13_locked": -0.9117
+  }
+ ]
+}

@@ -1,0 +1,939 @@
+
+==============================================================================
+cv_variants session start 2026-09-28 17:09:14
+==============================================================================
+[17:09:14] === PRE-FLIGHT smoke: v13 runner vs published v12 predictions (n_grains 10 vs 20) ===
+[17:09:14]   [run] 3 new run(s), workers=3
+[17:09:29]     1/3 AlSi10Mg|0|0.200000|g10      ef=0.0689 uts= 356.9 (14.5s)  elapsed=15s
+[17:09:31]     2/3 Ti64|0|0.320000|g10          ef=0.0715 uts= 963.6 (16.7s)  elapsed=17s
+[17:11:21]     3/3 316L|0|2.000000|g10          ef=0.3552 uts= 557.7 (126.5s)  elapsed=127s
+[17:11:21]   [run] done: 3 new, 0 failed, 127s
+[17:11:21] pre-flight wall: 127s
+
+[17:11:21] material  psi  S0     ef_n10    ef_n20_v12  delta_ef     rel_pct   uts_n10  uts_n20    rel_pct  trunc
+[17:11:21] AlSi10Mg    0  0.2    0.06892   0.06877     +0.00016     +0.23%    356.9    351.7    +1.46%  False
+[17:11:21] 316L        0  2      0.35517   0.32556     +0.02961     +9.09%    557.7    513.7    +8.57%  False
+[17:11:21] Ti64        0  0.32   0.07145   0.07229     -0.00083     -1.15%    963.6    959.9    +0.38%  False
+[17:11:21] === PRE-FLIGHT end ===
+
+==============================================================================
+cv_variants session start 2026-09-28 17:15:13
+==============================================================================
+[17:15:13] experiment_v13_cv_variants  n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=8
+[17:15:13] loaded 24 points, 6 sources, 4 materials
+[17:15:13] cache: 3 entries loaded from D:\20260618断裂模型论文\simulation\output\cv_prediction_cache.json
+[17:15:13]   [run] 78 new run(s), workers=8
+[17:15:25]     1/78 316L|0|0.050000|g20          ef=0.0240 uts= 411.8 (11.3s)  elapsed=11s
+[17:15:26]     2/78 316L|45|0.200000|g20         ef=0.0306 uts= 411.8 (12.0s)  elapsed=12s
+[17:15:26]     3/78 316L|45|0.050000|g20         ef=0.0210 uts= 411.8 (12.4s)  elapsed=13s
+[17:15:37]     4/78 316L|0|0.200000|g20          ef=0.0362 uts= 411.8 (23.9s)  elapsed=24s
+[17:16:15]     5/78 316L|45|0.800000|g20         ef=0.0734 uts= 411.8 (49.8s)  elapsed=61s
+[17:16:27]     6/78 316L|90|0.050000|g20         ef=0.0180 uts= 411.8 (12.5s)  elapsed=74s
+[17:16:34]     7/78 316L|0|0.800000|g20          ef=0.1427 uts= 411.8 (80.8s)  elapsed=81s
+[17:16:38]     8/78 316L|90|0.200000|g20         ef=0.0180 uts= 411.8 (11.1s)  elapsed=85s
+[17:17:00]     9/78 316L|90|0.800000|g20         ef=0.0310 uts= 411.8 (25.9s)  elapsed=107s
+[17:18:56]     10/78 316L|90|3.200000|g20         ef=0.2236 uts= 411.8 (137.5s)  elapsed=223s
+[17:20:00]     11/78 316L|45|3.200000|g20         ef=0.4177 uts= 525.8 (273.9s)  elapsed=286s
+[17:20:19]     12/78 AlSi10Mg|0|0.050000|g20      ef=0.0294 uts= 350.3 (19.6s)  elapsed=306s
+[17:20:58]     13/78 AlSi10Mg|0|0.200000|g20      ef=0.0688 uts= 351.7 (39.3s)  elapsed=345s
+[17:21:01]     14/78 316L|0|3.200000|g20          ef=0.5419 uts= 620.6 (347.8s)  elapsed=348s
+[17:21:43]     15/78 316L|45|12.800000|g20        ef=0.5160 uts= 751.7 (377.0s)  elapsed=390s
+[17:22:00]     16/78 316L|45|50.000000|g20        ef=0.5160 uts= 856.8 (383.1s)  elapsed=407s
+[17:22:06]     17/78 316L|90|12.800000|g20        ef=0.4280 uts= 669.9 (306.0s)  elapsed=413s
+[17:22:17]     18/78 AlSi10Mg|0|0.800000|g20      ef=0.1220 uts= 363.0 (78.8s)  elapsed=424s
+[17:22:20]     19/78 AlSi10Mg|45|0.050000|g20     ef=0.0205 uts= 349.8 (13.4s)  elapsed=426s
+[17:22:21]     20/78 AlSi10Mg|0|3.200000|g20      ef=0.1220 uts= 406.8 (79.9s)  elapsed=428s
+[17:22:34]     21/78 316L|0|12.800000|g20         ef=0.6120 uts= 814.3 (440.3s)  elapsed=441s
+[17:22:41]     22/78 AlSi10Mg|45|0.200000|g20     ef=0.0374 uts= 349.8 (24.1s)  elapsed=448s
+[17:22:58]     23/78 316L|0|50.000000|g20         ef=0.6120 uts= 912.6 (464.3s)  elapsed=465s
+[17:23:03]     24/78 AlSi10Mg|0|12.800000|g20     ef=0.1220 uts= 422.7 (80.3s)  elapsed=470s
+[17:23:09]     25/78 AlSi10Mg|90|0.050000|g20     ef=0.0181 uts= 349.3 (11.5s)  elapsed=476s
+[17:23:16]     26/78 AlSi10Mg|45|0.800000|g20     ef=0.0968 uts= 351.7 (56.8s)  elapsed=483s
+[17:23:21]     27/78 AlSi10Mg|0|50.000000|g20     ef=0.1220 uts= 426.6 (80.3s)  elapsed=488s
+[17:23:22]     28/78 AlSi10Mg|90|0.200000|g20     ef=0.0286 uts= 349.5 (18.9s)  elapsed=489s
+[17:23:27]     29/78 AlSi10Mg|45|3.200000|g20     ef=0.1040 uts= 370.8 (65.6s)  elapsed=494s
+[17:23:40]     30/78 AlSi10Mg|45|12.800000|g20    ef=0.1040 uts= 401.9 (66.1s)  elapsed=507s
+[17:23:47]     31/78 AlSi10Mg|90|0.800000|g20     ef=0.0666 uts= 350.5 (37.5s)  elapsed=514s
+[17:23:48]     32/78 AlSi10Mg|45|50.000000|g20    ef=0.1040 uts= 409.7 (66.3s)  elapsed=514s
+[17:24:03]     33/78 IN718|0|0.050000|g20         ef=0.0330 uts= 385.0 (36.7s)  elapsed=530s
+[17:24:06]     34/78 AlSi10Mg|90|3.200000|g20     ef=0.0840 uts= 357.5 (49.4s)  elapsed=532s
+[17:24:11]     35/78 AlSi10Mg|90|12.800000|g20    ef=0.0840 uts= 383.8 (50.1s)  elapsed=538s
+[17:24:12]     36/78 AlSi10Mg|90|50.000000|g20    ef=0.0840 uts= 393.1 (50.1s)  elapsed=539s
+[17:24:20]     37/78 316L|90|50.000000|g20        ef=0.4280 uts= 795.1 (324.5s)  elapsed=547s
+[17:24:37]     38/78 IN718|0|0.200000|g20         ef=0.0670 uts= 420.5 (56.8s)  elapsed=563s
+[17:24:41]     39/78 IN718|30|0.050000|g20        ef=0.0287 uts= 381.8 (30.2s)  elapsed=568s
+[17:25:01]     40/78 IN718|30|0.200000|g20        ef=0.0606 uts= 396.4 (49.0s)  elapsed=588s
+[17:26:22]     41/78 IN718|30|0.800000|g20        ef=0.1507 uts= 426.9 (121.8s)  elapsed=669s
+[17:26:46]     42/78 IN718|45|0.050000|g20        ef=0.0235 uts= 372.8 (24.0s)  elapsed=693s
+[17:26:59]     43/78 IN718|0|0.800000|g20         ef=0.2577 uts= 448.9 (192.5s)  elapsed=706s
+[17:27:34]     44/78 IN718|45|0.200000|g20        ef=0.0466 uts= 391.7 (47.6s)  elapsed=740s
+[17:28:33]     45/78 IN718|45|0.800000|g20        ef=0.0793 uts= 416.7 (93.5s)  elapsed=800s
+[17:30:38]     46/78 IN718|0|3.200000|g20         ef=0.4000 uts= 543.0 (410.7s)  elapsed=925s
+[17:31:10]     47/78 IN718|0|12.800000|g20        ef=0.4000 uts= 615.2 (426.7s)  elapsed=957s
+[17:31:18]     48/78 IN718|0|50.000000|g20        ef=0.4000 uts= 645.6 (432.7s)  elapsed=965s
+[17:31:27]     49/78 IN718|30|3.200000|g20        ef=0.4000 uts= 510.9 (410.4s)  elapsed=974s
+[17:31:28]     50/78 IN718|90|0.050000|g20        ef=0.0220 uts= 360.3 (18.2s)  elapsed=975s
+[17:31:46]     51/78 IN718|30|12.800000|g20       ef=0.4000 uts= 588.4 (424.8s)  elapsed=993s
+[17:31:48]     52/78 IN718|90|0.200000|g20        ef=0.0264 uts= 360.3 (30.1s)  elapsed=995s
+[17:32:17]     53/78 IN718|30|50.000000|g20       ef=0.4000 uts= 619.5 (435.4s)  elapsed=1023s
+[17:32:22]     54/78 IN718|90|0.800000|g20        ef=0.0558 uts= 405.4 (55.2s)  elapsed=1029s
+[17:32:43]     55/78 Ti64|0|0.050000|g20          ef=0.0410 uts= 958.3 (26.4s)  elapsed=1050s
+[17:32:59]     56/78 Ti64|0|0.200000|g20          ef=0.0586 uts= 959.5 (37.2s)  elapsed=1066s
+[17:34:02]     57/78 IN718|45|3.200000|g20        ef=0.4000 uts= 466.7 (388.2s)  elapsed=1129s
+[17:34:04]     58/78 Ti64|0|0.800000|g20          ef=0.1248 uts= 960.3 (80.8s)  elapsed=1131s
+[17:34:31]     59/78 IN718|90|3.200000|g20        ef=0.1895 uts= 393.5 (182.4s)  elapsed=1158s
+[17:34:55]     60/78 Ti64|45|0.050000|g20         ef=0.0383 uts= 954.4 (24.7s)  elapsed=1182s
+[17:34:59]     61/78 Ti64|0|3.200000|g20          ef=0.1700 uts= 964.5 (119.4s)  elapsed=1186s
+[17:35:27]     62/78 Ti64|45|0.200000|g20         ef=0.0481 uts= 954.6 (31.9s)  elapsed=1214s
+[17:35:44]     63/78 IN718|45|12.800000|g20       ef=0.4000 uts= 559.6 (431.3s)  elapsed=1231s
+[17:35:50]     64/78 Ti64|45|0.800000|g20         ef=0.0863 uts= 955.8 (51.3s)  elapsed=1237s
+[17:36:04]     65/78 Ti64|0|12.800000|g20         ef=0.1700 uts=1043.0 (122.6s)  elapsed=1251s
+[17:36:07]     66/78 Ti64|0|50.000000|g20         ef=0.1700 uts=1075.7 (123.5s)  elapsed=1254s
+[17:36:28]     67/78 Ti64|90|0.050000|g20         ef=0.0367 uts= 950.3 (23.2s)  elapsed=1274s
+[17:36:34]     68/78 Ti64|90|0.200000|g20         ef=0.0405 uts= 950.3 (26.5s)  elapsed=1281s
+[17:36:59]     69/78 Ti64|45|3.200000|g20         ef=0.1360 uts= 957.3 (92.1s)  elapsed=1306s
+[17:37:04]     70/78 Ti64|90|0.800000|g20         ef=0.0573 uts= 950.6 (36.5s)  elapsed=1311s
+[17:37:17]     71/78 Ti64|45|12.800000|g20        ef=0.1360 uts= 981.6 (92.6s)  elapsed=1324s
+[17:37:23]     72/78 Ti64|45|50.000000|g20        ef=0.1360 uts=1023.8 (92.7s)  elapsed=1330s
+[17:37:39]     73/78 Ti64|90|3.200000|g20         ef=0.1060 uts= 951.7 (64.9s)  elapsed=1345s
+[17:37:55]     74/78 IN718|45|50.000000|g20       ef=0.4000 uts= 601.6 (436.7s)  elapsed=1362s
+[17:38:06]     75/78 Ti64|90|12.800000|g20        ef=0.1060 uts= 953.4 (66.7s)  elapsed=1373s
+[17:38:11]     76/78 Ti64|90|50.000000|g20        ef=0.1060 uts= 977.3 (66.9s)  elapsed=1378s
+[17:38:49]     77/78 IN718|90|12.800000|g20       ef=0.4000 uts= 490.4 (423.0s)  elapsed=1416s
+[17:39:10]     78/78 IN718|90|50.000000|g20       ef=0.4000 uts= 547.7 (441.5s)  elapsed=1437s
+[17:39:10]   [run] done: 78 new, 0 failed, 1437s
+[17:39:10]   [run] 3 new run(s), workers=8
+[17:40:06]     1/3 316L|90|2.000000|g20         ef=0.1047 uts= 411.8 (55.6s)  elapsed=56s
+[17:41:45]     2/3 316L|45|2.000000|g20         ef=0.2500 uts= 423.6 (154.9s)  elapsed=155s
+[17:42:27]     3/3 316L|0|2.000000|g20          ef=0.3256 uts= 513.7 (196.4s)  elapsed=197s
+[17:42:27]   [run] done: 3 new, 0 failed, 197s
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [cache] nothing to run (3 requested, all cached)
+[17:42:27]   [run] 3 new run(s), workers=8
+[17:42:46]     1/3 316L|90|0.500000|g20         ef=0.0243 uts= 411.8 (19.3s)  elapsed=19s
+[17:42:53]     2/3 316L|45|0.500000|g20         ef=0.0516 uts= 411.8 (25.8s)  elapsed=26s
+[17:43:05]     3/3 316L|0|0.500000|g20          ef=0.0658 uts= 411.8 (37.9s)  elapsed=38s
+[17:43:05]   [run] done: 3 new, 0 failed, 38s
+[17:43:05]   [run] 3 new run(s), workers=8
+[17:43:42]     1/3 316L|90|1.280000|g20         ef=0.0587 uts= 411.8 (37.3s)  elapsed=37s
+[17:44:30]     2/3 316L|45|1.280000|g20         ef=0.1310 uts= 411.8 (84.9s)  elapsed=85s
+[17:45:25]     3/3 316L|0|1.280000|g20          ef=0.2234 uts= 422.7 (139.8s)  elapsed=140s
+[17:45:25]   [run] done: 3 new, 0 failed, 140s
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [cache] nothing to run (3 requested, all cached)
+[17:45:25]   [run] 3 new run(s), workers=8
+[17:45:35]     1/3 AlSi10Mg|90|0.125000|g20     ef=0.0234 uts= 349.4 (10.1s)  elapsed=10s
+[17:45:39]     2/3 AlSi10Mg|45|0.125000|g20     ef=0.0291 uts= 349.8 (13.9s)  elapsed=14s
+[17:45:49]     3/3 AlSi10Mg|0|0.125000|g20      ef=0.0498 uts= 350.9 (24.5s)  elapsed=25s
+[17:45:49]   [run] done: 3 new, 0 failed, 25s
+[17:45:49]   [run] 3 new run(s), workers=8
+[17:46:07]     1/3 AlSi10Mg|90|0.320000|g20     ef=0.0366 uts= 349.5 (17.7s)  elapsed=18s
+[17:46:14]     2/3 AlSi10Mg|45|0.320000|g20     ef=0.0500 uts= 350.3 (24.4s)  elapsed=25s
+[17:46:41]     3/3 AlSi10Mg|0|0.320000|g20      ef=0.0975 uts= 352.3 (51.6s)  elapsed=52s
+[17:46:41]   [run] done: 3 new, 0 failed, 52s
+[17:46:41]   [run] 3 new run(s), workers=8
+[17:47:04]     1/3 Ti64|90|0.320000|g20         ef=0.0439 uts= 950.3 (23.0s)  elapsed=23s
+[17:47:11]     2/3 Ti64|45|0.320000|g20         ef=0.0559 uts= 955.0 (29.7s)  elapsed=30s
+[17:47:19]     3/3 Ti64|0|0.320000|g20          ef=0.0723 uts= 959.9 (37.9s)  elapsed=38s
+[17:47:19]   [run] done: 3 new, 0 failed, 38s
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [cache] nothing to run (3 requested, all cached)
+[17:47:19]   [run] 3 new run(s), workers=8
+[17:47:38]     1/3 Ti64|90|0.125000|g20         ef=0.0384 uts= 950.3 (18.7s)  elapsed=19s
+[17:47:42]     2/3 Ti64|45|0.125000|g20         ef=0.0432 uts= 954.4 (22.2s)  elapsed=22s
+[17:47:46]     3/3 Ti64|0|0.125000|g20          ef=0.0499 uts= 958.8 (26.7s)  elapsed=27s
+[17:47:46]   [run] done: 3 new, 0 failed, 27s
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (6 requested, all cached)
+[17:47:46]   [cache] nothing to run (6 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [cache] nothing to run (3 requested, all cached)
+[17:47:46]   [run] 2 new run(s), workers=8
+[17:48:25]     1/2 IN718|90|0.500000|g20        ef=0.0405 uts= 390.1 (38.3s)  elapsed=38s
+[17:49:10]     2/2 IN718|30|0.500000|g20        ef=0.0882 uts= 438.7 (83.8s)  elapsed=84s
+[17:49:10]   [run] done: 2 new, 0 failed, 84s
+[17:49:10]   [run] 2 new run(s), workers=8
+[17:49:58]     1/2 IN718|90|1.280000|g20        ef=0.0450 uts= 379.5 (47.5s)  elapsed=48s
+[17:53:15]     2/2 IN718|30|1.280000|g20        ef=0.2735 uts= 460.0 (244.6s)  elapsed=245s
+[17:53:15]   [run] done: 2 new, 0 failed, 245s
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (6 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (3 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [cache] nothing to run (2 requested, all cached)
+[17:53:15]   [run] 2 new run(s), workers=8
+[17:54:23]     1/2 IN718|90|2.000000|g20        ef=0.0706 uts= 385.3 (68.2s)  elapsed=68s
+[18:00:02]     2/2 IN718|30|2.000000|g20        ef=0.4000 uts= 480.9 (407.0s)  elapsed=407s
+[18:00:02]   [run] done: 2 new, 0 failed, 407s
+[18:00:02]   [run] 2 new run(s), workers=8
+[18:06:19]     1/2 IN718|90|5.120000|g20        ef=0.4000 uts= 433.8 (376.5s)  elapsed=377s
+[18:06:52]     2/2 IN718|30|5.120000|g20        ef=0.4000 uts= 530.2 (409.9s)  elapsed=410s
+[18:06:52]   [run] done: 2 new, 0 failed, 410s
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [cache] nothing to run (3 requested, all cached)
+[18:06:52]   [run] 3 new run(s), workers=8
+[18:11:24]     1/3 316L|90|5.120000|g20         ef=0.4276 uts= 481.7 (271.0s)  elapsed=271s
+[18:12:53]     2/3 316L|45|5.120000|g20         ef=0.5160 uts= 620.4 (360.3s)  elapsed=361s
+[18:13:45]     3/3 316L|0|5.120000|g20          ef=0.6120 uts= 697.5 (412.2s)  elapsed=412s
+[18:13:45]   [run] done: 3 new, 0 failed, 412s
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (2 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [cache] nothing to run (3 requested, all cached)
+[18:13:45]   [run] 2 new run(s), workers=8
+[18:19:11]     1/2 IN718|45|2.000000|g20        ef=0.3533 uts= 452.9 (326.3s)  elapsed=327s
+[18:20:26]     2/2 IN718|0|2.000000|g20         ef=0.4000 uts= 510.2 (400.8s)  elapsed=401s
+[18:20:26]   [run] done: 2 new, 0 failed, 401s
+[18:20:26]   [run] 2 new run(s), workers=8
+[18:27:15]     1/2 IN718|45|5.120000|g20        ef=0.4000 uts= 504.3 (409.5s)  elapsed=410s
+[18:27:16]     2/2 IN718|0|5.120000|g20         ef=0.4000 uts= 562.6 (410.1s)  elapsed=410s
+[18:27:16]   [run] done: 2 new, 0 failed, 410s
+[18:27:16] fold plan: LOSO 6 folds + 1 skip note(s); LOMO 4 folds; LOPO 6 folds + 0 skip note(s)
+[18:27:16]   [run] 25 new run(s), workers=8
+[18:27:28]     1/25 316L|90|0.507968|g20         ef=0.0200 uts= 411.8 (11.9s)  elapsed=12s
+[18:27:30]     2/25 316L|90|0.434307|g20         ef=0.0269 uts= 411.8 (13.8s)  elapsed=14s
+[18:27:37]     3/25 316L|45|0.434307|g20         ef=0.0410 uts= 411.8 (21.3s)  elapsed=22s
+[18:27:40]     4/25 316L|45|0.507968|g20         ef=0.0498 uts= 411.8 (23.8s)  elapsed=24s
+[18:27:57]     5/25 316L|0|0.434307|g20          ef=0.0718 uts= 411.8 (41.0s)  elapsed=41s
+[18:28:01]     6/25 316L|0|0.507968|g20          ef=0.0830 uts= 411.8 (45.0s)  elapsed=45s
+[18:28:10]     7/25 AlSi10Mg|90|0.935686|g20     ef=0.0747 uts= 350.7 (41.4s)  elapsed=54s
+[18:28:13]     8/25 AlSi10Mg|45|0.935686|g20     ef=0.1040 uts= 352.0 (56.7s)  elapsed=57s
+[18:28:17]     9/25 AlSi10Mg|90|0.806349|g20     ef=0.0670 uts= 350.5 (37.1s)  elapsed=61s
+[18:28:30]     10/25 AlSi10Mg|0|0.935686|g20      ef=0.1220 uts= 365.3 (73.6s)  elapsed=74s
+[18:28:34]     11/25 AlSi10Mg|45|0.806349|g20     ef=0.0974 uts= 351.7 (56.4s)  elapsed=78s
+[18:28:48]     12/25 IN718|45|0.503968|g20        ef=0.0472 uts= 413.4 (46.6s)  elapsed=92s
+[18:28:48]     13/25 AlSi10Mg|0|0.806349|g20      ef=0.1220 uts= 363.2 (78.5s)  elapsed=92s
+[18:28:59]     14/25 IN718|90|0.503968|g20        ef=0.0632 uts= 383.5 (61.8s)  elapsed=103s
+[18:29:06]     15/25 IN718|90|0.507968|g20        ef=0.0414 uts= 378.7 (49.2s)  elapsed=110s
+[18:29:32]     16/25 IN718|30|0.503968|g20        ef=0.0917 uts= 432.7 (79.3s)  elapsed=136s
+[18:29:38]     17/25 IN718|30|0.507968|g20        ef=0.0471 uts= 426.0 (49.8s)  elapsed=142s
+[18:29:43]     18/25 Ti64|90|0.806349|g20         ef=0.0575 uts= 950.6 (36.2s)  elapsed=147s
+[18:29:43]     19/25 IN718|45|0.507968|g20        ef=0.0846 uts= 409.1 (73.4s)  elapsed=147s
+[18:29:50]     20/25 Ti64|45|0.806349|g20         ef=0.0867 uts= 955.8 (50.9s)  elapsed=154s
+[18:30:08]     21/25 Ti64|0|0.806349|g20          ef=0.1255 uts= 960.3 (79.9s)  elapsed=172s
+[18:30:15]     22/25 IN718|0|0.503968|g20         ef=0.1442 uts= 427.5 (125.3s)  elapsed=179s
+[18:30:17]     23/25 IN718|0|0.507968|g20         ef=0.1361 uts= 410.3 (102.7s)  elapsed=181s
+[18:32:50]     24/25 IN718|45|1.280000|g20        ef=0.2086 uts= 431.0 (198.0s)  elapsed=334s
+[18:36:07]     25/25 IN718|0|1.280000|g20         ef=0.4000 uts= 490.8 (389.4s)  elapsed=531s
+[18:36:07]   [run] done: 25 new, 0 failed, 531s
+[18:36:08] deviation check: reproducing the nine v12 calibration cases at n_grains=20
+[18:36:08]   [cache] nothing to run (9 requested, all cached)
+[18:36:08] deviation check: n_grains=10 truncation sensitivity
+[18:36:08]   [run] 6 new run(s), workers=8
+[18:36:13]     1/6 AlSi10Mg|90|0.200000|g10     ef=0.0282 uts= 355.1 (4.3s)  elapsed=5s
+[18:36:15]     2/6 AlSi10Mg|45|0.200000|g10     ef=0.0371 uts= 356.1 (7.0s)  elapsed=7s
+[18:36:17]     3/6 Ti64|90|0.320000|g10         ef=0.0437 uts= 954.8 (9.3s)  elapsed=10s
+[18:36:21]     4/6 Ti64|45|0.320000|g10         ef=0.0555 uts= 958.9 (12.4s)  elapsed=13s
+[18:36:49]     5/6 316L|90|2.000000|g10         ef=0.0947 uts= 402.8 (41.0s)  elapsed=41s
+[18:37:31]     6/6 316L|45|2.000000|g10         ef=0.2363 uts= 444.7 (83.0s)  elapsed=83s
+[18:37:31]   [run] done: 6 new, 0 failed, 83s
+[18:37:31]   [cache] nothing to run (3 requested, all cached)
+[18:37:31]   [cache] nothing to run (3 requested, all cached)
+[18:37:31]   [cache] nothing to run (3 requested, all cached)
+[18:37:31]   [cache] nothing to run (3 requested, all cached)
+
+[18:37:31] ==============================================================================
+[18:37:31] leave_one_source     n= 18 mean=44.07 median=28.8 CI=[25.91, 66.03] pass@10=5/18
+[18:37:31] leave_one_material   n= 24 mean=64.2 median=67.81 CI=[51.27, 76.66] pass@10=2/24
+[18:37:31] leave_one_process    n= 12 mean=67.86 median=45.25 CI=[36.73, 105.84] pass@10=1/12
+[18:37:31] paired vs v12 LOOCV (n=9): mean diff 5.54 pt, wilcoxon p=0.359375
+[18:37:31] DONE -> D:\20260618断裂模型论文\simulation\output\experiment_v13_cv_variants_results.json   (4937.9s)
+
+==============================================================================
+POST-RUN SUMMARY  (2026-09-28 18:47:05, appended by v13_finalise.py from the result JSON)
+==============================================================================
+solver wall clock: 4937.9 s (2026-09-28 18:37:31)
+prediction cache: 148 entries at D:\20260618断裂模型论文\simulation\output\cv_prediction_cache.json
+
+LOCKED v12 REFERENCE (read back from experiment_v12_fxi_transverse_results.json,
+never recomputed or rewritten): nine-fold leave-one-orientation-out,
+mean blind ef error 31.85%, UTS 15.33%, median 22.69%, pass@10 2/9.
+
+REPRODUCTION CHECK (does this runner equal v12 at v12 settings?)
+  nine v12 calibration cases at their published S0 and n_grains=20: every case
+  reproduces with delta ef = 0.000000 and delta UTS = 0.000000 -> VERIFIED.
+  The extended-protocol numbers therefore differ from v12 only through the
+  cross-validation design, not through the solver or the protocol.
+
+n_grains=10 TRUNCATION SENSITIVITY (the deviation the brief requested)
+  |delta ef| mean 3.225%  max 9.505%   |delta UTS| mean 2.428%  max 8.566%
+  the brief's "<5% accuracy loss at n_grains=10" is NOT SUPPORTED (max 9.5%)
+  consequently the primary run used v12's n_grains=20, and D1/D2 of the
+  original brief are recorded as NOT EXERCISED rather than as applied savings.
+
+FOLD RESULTS (sorted by error), all with the single-S0 leakage-free protocol:
+variant                held unit                        material      S0     n   ef err%  uts err%  S0 method
+LOprocess              PG1_168W_1475mmps_30um           IN718        3.2     1    215.84     49.16  v12_grid_refit
+LOsource               hitzler2017materials             316L           2     3     89.52     24.95  v12_locked_value
+LOprocess              PG3_200W_800mmps_30um            316L           2     3     89.52     24.95  v12_grid_refit
+LOprocess              PG6_330W_1770mmps_30um           IN718       1.28     1     84.50     64.90  v12_grid_refit
+LOmaterial             AlSi10Mg                         AlSi10Mg  0.9357     6     79.70      8.89  cross_material_geomean
+LOmaterial             316L                             316L      0.4343     6     79.18     33.61  cross_material_geomean
+LOsource               v12_original                     316L         0.8     3     75.21     35.30  v12_grid_refit
+LOmaterial             IN718                            IN718      0.504     6     58.71     58.05  cross_material_geomean
+LOprocess              PG4_220W_1180mmps_30um           IN718        0.8     1     46.18     60.10  v12_grid_refit
+LOprocess              PG5_275W_805mmps_50um            IN718       1.28     3     42.46     55.28  v12_grid_refit  [CONFOUND]
+LOmaterial             Ti64                             Ti64         0.8     6     39.22     17.15  cross_material_geomean
+LOsource               awd2018metals                    AlSi10Mg     0.2     3     38.75      4.28  v12_locked_value
+LOsource               v12_original                     AlSi10Mg    0.32     3     27.18     13.76  v12_grid_refit
+LOsource               sun2024adem                      Ti64        0.32     3     23.97     21.32  v12_locked_value
+LOprocess              PG2_175W_710mmps_30um            Ti64        0.32     3     23.97     21.32  v12_grid_refit
+LOsource               v12_original                     Ti64        0.32     3      9.77     13.07  v12_grid_refit
+
+VARIANT SUMMARIES vs the locked v12 reference
+variant                pts folds mean(pt) mean(fold) median(pt)  std(pt) pass@10
+v12 LOOCV (locked)       9     9    31.85    31.85       22.69    23.49     2/9
+leave-one-source        18     6    44.07    44.07       28.80    43.96     5/18
+leave-one-material      24     4    64.20    64.20       67.81    32.27     2/24
+leave-one-process       12     6    67.86    83.75       45.25    65.36     1/12
+
+LOSO split by held source:
+  held = a v12_original material sub-fold : mean 37.39% (n=9)
+  held = an extended literature source   : mean 50.74% (n=9)
+
+PAIRED COMPARISON ON THE SAME NINE CASES (v12 orientation-hold-out vs
+v13 source-hold-out): mean 37.39% vs 31.85%, mean difference +5.54 pt,
+  Wilcoxon p=0.3594, sign test p=0.5078, bootstrap 95% CI of the difference
+  [-6.25, 18.56] -> the interval includes 0: NOT separable at n=9.
+
+DECLARED LIMITS (not defects to be smoothed over)
+  1. LOSO IN718: skipped, only one as-built IN718 source exists. The same
+     comparison is reported as a declared cross-heat-treatment diagnostic
+     (hovig2018in718 is solution-treated, not as-built) and is excluded from
+     the LOSO summary.
+  2. LOPO statistical power: LOPO is deliverable but weakly powered: 6 process windows, of which 3 hold out a single point and 3 hold out one complete source; 2 of the 6 folds cannot use heat-treatment-matched training data and 3 of the 6 are calibrated on a training set drawn from a single publication. The pooled n is 12 predictions, not 12 independent processes. It is reported as an exploratory block.
+  3. ORIENTATION PAIRING: the extended dataset converts the printed
+     build-plate angle into the model convention while the in-repo blind
+     scripts used the printed angle directly. For hitzler2017materials the
+     CSV pairing gives 89.52% mean error and the mirrored pairing 6.52% -
+     the affected conclusion is orientation attribution, not solver accuracy.
+     v12 locked statistics are unaffected (they use v12 orientations only).
+  4. IN718 in the extended set is NOT one material history: hovig2018in718 is
+     solution-treated, watring2020addma is as-built. Any fold mixing them is
+     flagged as confounded rather than averaged silently.
+  5. All experimental data are literature values, not original measurements;
+     every number above is an extrapolation test and is reported as such.
+
+RESULT JSON: D:\20260618断裂模型论文\simulation\output\experiment_v13_cv_variants_results.json
+CACHE JSON : D:\20260618断裂模型论文\simulation\output\cv_prediction_cache.json
+SHA256 of the solver result file before the added fold-level keys: 2198e263983596bad720712449bc747b91e63725e5746a8a36894f82b1bb5ecb
+
+==============================================================================
+cv_variants session start 2026-10-06 21:40:43
+==============================================================================
+[21:40:43] experiment_v13_cv_variants  n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=14
+[21:40:43] loaded 54 points, 7 sources, 4 materials
+[21:40:43] cache: 0 entries loaded from D:\20260618断裂模型论文\simulation\output\cv_prediction_cache.json
+[21:40:43]   [run] 78 new run(s), workers=14
+[21:40:50]     1/78 316L|90|0.200000|g20         ef=0.0180 uts= 411.8 (6.7s)  elapsed=7s
+[21:40:50]     2/78 316L|45|0.050000|g20         ef=0.0170 uts= 411.8 (7.4s)  elapsed=8s
+[21:40:51]     3/78 316L|90|0.050000|g20         ef=0.0180 uts= 411.8 (7.4s)  elapsed=8s
+[21:40:52]     4/78 316L|0|0.050000|g20          ef=0.0240 uts= 411.8 (9.4s)  elapsed=10s
+[21:40:54]     5/78 316L|45|0.200000|g20         ef=0.0275 uts= 411.8 (10.7s)  elapsed=11s
+[21:41:02]     6/78 316L|0|0.200000|g20          ef=0.0362 uts= 411.8 (18.5s)  elapsed=19s
+[21:41:07]     7/78 AlSi10Mg|0|0.050000|g20      ef=0.0294 uts= 350.3 (13.2s)  elapsed=24s
+[21:41:07]     8/78 316L|90|0.800000|g20         ef=0.0310 uts= 411.8 (17.2s)  elapsed=24s
+[21:41:16]     9/78 316L|45|0.800000|g20         ef=0.0782 uts= 411.8 (33.0s)  elapsed=33s
+[21:41:26]     10/78 AlSi10Mg|0|0.200000|g20      ef=0.0688 uts= 351.7 (24.9s)  elapsed=44s
+[21:41:39]     11/78 316L|0|0.800000|g20          ef=0.1427 uts= 411.8 (55.8s)  elapsed=56s
+[21:41:48]     12/78 AlSi10Mg|45|0.050000|g20     ef=0.0204 uts= 349.7 (8.8s)  elapsed=65s
+[21:41:58]     13/78 AlSi10Mg|0|0.800000|g20      ef=0.1220 uts= 363.0 (50.9s)  elapsed=75s
+[21:41:59]     14/78 AlSi10Mg|0|3.200000|g20      ef=0.1220 uts= 406.8 (52.2s)  elapsed=77s
+[21:42:03]     15/78 AlSi10Mg|45|0.200000|g20     ef=0.0372 uts= 349.8 (15.6s)  elapsed=81s
+[21:42:08]     16/78 AlSi10Mg|0|12.800000|g20     ef=0.1220 uts= 422.7 (52.2s)  elapsed=86s
+[21:42:18]     17/78 AlSi10Mg|0|50.000000|g20     ef=0.1220 uts= 426.6 (51.3s)  elapsed=95s
+[21:42:19]     18/78 316L|90|3.200000|g20         ef=0.2236 uts= 411.8 (88.9s)  elapsed=97s
+[21:42:25]     19/78 AlSi10Mg|90|0.050000|g20     ef=0.0181 uts= 349.3 (7.2s)  elapsed=102s
+[21:42:31]     20/78 AlSi10Mg|90|0.200000|g20     ef=0.0286 uts= 349.5 (11.7s)  elapsed=108s
+[21:42:34]     21/78 AlSi10Mg|45|0.800000|g20     ef=0.0964 uts= 351.5 (35.9s)  elapsed=111s
+[21:42:41]     22/78 AlSi10Mg|45|3.200000|g20     ef=0.1040 uts= 369.6 (42.0s)  elapsed=119s
+[21:42:46]     23/78 AlSi10Mg|45|12.800000|g20    ef=0.1040 uts= 400.8 (43.1s)  elapsed=124s
+[21:42:50]     24/78 AlSi10Mg|90|0.800000|g20     ef=0.0666 uts= 350.5 (24.7s)  elapsed=127s
+[21:42:51]     25/78 AlSi10Mg|45|50.000000|g20    ef=0.1040 uts= 408.5 (42.4s)  elapsed=128s
+[21:43:03]     26/78 AlSi10Mg|90|3.200000|g20     ef=0.0840 uts= 357.5 (32.3s)  elapsed=141s
+[21:43:07]     27/78 AlSi10Mg|90|12.800000|g20    ef=0.0840 uts= 383.8 (33.0s)  elapsed=144s
+[21:43:11]     28/78 IN718|0|0.050000|g20         ef=0.0330 uts= 385.0 (24.4s)  elapsed=148s
+[21:43:14]     29/78 AlSi10Mg|90|50.000000|g20    ef=0.0840 uts= 393.1 (33.1s)  elapsed=152s
+[21:43:27]     30/78 IN718|0|0.200000|g20         ef=0.0670 uts= 420.5 (36.9s)  elapsed=164s
+[21:43:27]     31/78 316L|45|3.200000|g20         ef=0.3902 uts= 501.3 (163.5s)  elapsed=164s
+[21:43:32]     32/78 IN718|30|0.050000|g20        ef=0.0267 uts= 369.6 (17.4s)  elapsed=169s
+[21:43:53]     33/78 IN718|30|0.200000|g20        ef=0.0434 uts= 407.4 (26.4s)  elapsed=190s
+[21:44:09]     34/78 316L|90|12.800000|g20        ef=0.4280 uts= 669.9 (198.0s)  elapsed=206s
+[21:44:22]     35/78 IN718|30|0.800000|g20        ef=0.0792 uts= 422.1 (55.7s)  elapsed=220s
+[21:44:24]     36/78 316L|90|50.000000|g20        ef=0.4280 uts= 795.1 (211.5s)  elapsed=221s
+[21:44:29]     37/78 316L|0|3.200000|g20          ef=0.5419 uts= 620.6 (226.1s)  elapsed=226s
+[21:44:34]     38/78 316L|45|12.800000|g20        ef=0.5160 uts= 740.8 (230.4s)  elapsed=231s
+[21:44:39]     39/78 IN718|45|0.050000|g20        ef=0.0244 uts= 369.2 (16.7s)  elapsed=236s
+[21:44:56]     40/78 IN718|45|0.200000|g20        ef=0.0486 uts= 378.8 (31.8s)  elapsed=253s
+[21:44:56]     41/78 316L|45|50.000000|g20        ef=0.5160 uts= 841.9 (252.6s)  elapsed=253s
+[21:44:59]     42/78 IN718|0|0.800000|g20         ef=0.2577 uts= 448.9 (128.8s)  elapsed=257s
+[21:45:06]     43/78 IN718|45|0.800000|g20        ef=0.0594 uts= 383.6 (37.0s)  elapsed=263s
+[21:45:08]     44/78 IN718|90|0.050000|g20        ef=0.0220 uts= 360.3 (12.4s)  elapsed=265s
+[21:45:19]     45/78 IN718|90|0.200000|g20        ef=0.0264 uts= 360.3 (19.7s)  elapsed=276s
+[21:45:30]     46/78 316L|0|12.800000|g20         ef=0.6120 uts= 814.3 (287.1s)  elapsed=287s
+[21:45:42]     47/78 IN718|90|0.800000|g20        ef=0.0558 uts= 405.4 (36.1s)  elapsed=300s
+[21:45:49]     48/78 316L|0|50.000000|g20         ef=0.6120 uts= 912.6 (305.8s)  elapsed=306s
+[21:45:59]     49/78 Ti64|0|0.050000|g20          ef=0.0410 uts= 958.3 (16.9s)  elapsed=317s
+[21:46:14]     50/78 Ti64|0|0.200000|g20          ef=0.0586 uts= 959.5 (24.6s)  elapsed=331s
+[21:46:52]     51/78 Ti64|0|0.800000|g20          ef=0.1248 uts= 960.3 (52.6s)  elapsed=369s
+[21:47:08]     52/78 IN718|90|3.200000|g20        ef=0.1895 uts= 393.5 (119.5s)  elapsed=385s
+[21:47:31]     53/78 Ti64|0|3.200000|g20          ef=0.1700 uts= 964.5 (77.8s)  elapsed=409s
+[21:47:35]     54/78 IN718|0|3.200000|g20         ef=0.4000 uts= 543.0 (271.4s)  elapsed=412s
+[21:47:45]     55/78 IN718|0|12.800000|g20        ef=0.4000 uts= 615.2 (278.7s)  elapsed=423s
+[21:47:47]     56/78 Ti64|45|0.050000|g20         ef=0.0380 uts= 952.2 (16.0s)  elapsed=425s
+[21:47:55]     57/78 Ti64|45|0.200000|g20         ef=0.0469 uts= 952.2 (20.3s)  elapsed=432s
+[21:47:58]     58/78 IN718|0|50.000000|g20        ef=0.4000 uts= 645.6 (287.6s)  elapsed=436s
+[21:48:06]     59/78 IN718|30|3.200000|g20        ef=0.4000 uts= 485.3 (274.2s)  elapsed=443s
+[21:48:11]     60/78 Ti64|0|12.800000|g20         ef=0.1700 uts=1043.0 (79.2s)  elapsed=448s
+[21:48:17]     61/78 Ti64|45|0.800000|g20         ef=0.0819 uts= 953.4 (31.5s)  elapsed=454s
+[21:48:21]     62/78 Ti64|90|0.050000|g20         ef=0.0367 uts= 950.3 (15.2s)  elapsed=458s
+[21:48:24]     63/78 IN718|30|12.800000|g20       ef=0.4000 uts= 566.4 (271.0s)  elapsed=461s
+[21:48:28]     64/78 Ti64|0|50.000000|g20         ef=0.1700 uts=1075.7 (80.4s)  elapsed=465s
+[21:48:29]     65/78 Ti64|90|0.200000|g20         ef=0.0405 uts= 950.3 (17.7s)  elapsed=466s
+[21:48:41]     66/78 Ti64|90|0.800000|g20         ef=0.0573 uts= 950.6 (24.0s)  elapsed=478s
+[21:48:47]     67/78 Ti64|45|3.200000|g20         ef=0.1360 uts= 954.5 (59.3s)  elapsed=484s
+[21:48:52]     68/78 IN718|30|50.000000|g20       ef=0.4000 uts= 597.6 (283.0s)  elapsed=489s
+[21:48:54]     69/78 IN718|45|3.200000|g20        ef=0.4000 uts= 465.5 (260.1s)  elapsed=491s
+[21:48:54]     70/78 Ti64|45|12.800000|g20        ef=0.1360 uts= 966.2 (59.0s)  elapsed=491s
+[21:48:57]     71/78 Ti64|45|50.000000|g20        ef=0.1360 uts=1010.7 (58.8s)  elapsed=494s
+[21:49:00]     72/78 Ti64|90|3.200000|g20         ef=0.1060 uts= 951.7 (39.2s)  elapsed=498s
+[21:49:04]     73/78 Ti64|90|12.800000|g20        ef=0.1060 uts= 953.4 (39.8s)  elapsed=501s
+[21:49:05]     74/78 IN718|45|12.800000|g20       ef=0.4000 uts= 536.0 (266.2s)  elapsed=502s
+[21:49:06]     75/78 Ti64|90|50.000000|g20        ef=0.1060 uts= 977.3 (38.5s)  elapsed=504s
+[21:49:22]     76/78 IN718|45|50.000000|g20       ef=0.4000 uts= 577.6 (266.5s)  elapsed=519s
+[21:49:30]     77/78 IN718|90|12.800000|g20       ef=0.4000 uts= 490.4 (250.5s)  elapsed=527s
+[21:49:42]     78/78 IN718|90|50.000000|g20       ef=0.4000 uts= 547.7 (251.4s)  elapsed=539s
+[21:49:42]   [run] done: 78 new, 0 failed, 539s
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [cache] nothing to run (3 requested, all cached)
+[21:49:42]   [run] 3 new run(s), workers=14
+[21:49:51]     1/3 316L|90|0.500000|g20         ef=0.0243 uts= 411.8 (9.1s)  elapsed=9s
+[21:49:53]     2/3 316L|45|0.500000|g20         ef=0.0410 uts= 411.8 (10.9s)  elapsed=11s
+[21:49:57]     3/3 316L|0|0.500000|g20          ef=0.0658 uts= 411.8 (15.5s)  elapsed=16s
+[21:49:57]   [run] done: 3 new, 0 failed, 16s
+[21:49:57]   [run] 3 new run(s), workers=14
+[21:50:13]     1/3 316L|90|1.280000|g20         ef=0.0587 uts= 411.8 (15.1s)  elapsed=15s
+[21:50:22]     2/3 316L|45|1.280000|g20         ef=0.1044 uts= 411.8 (24.6s)  elapsed=25s
+[21:50:47]     3/3 316L|0|1.280000|g20          ef=0.2234 uts= 422.7 (48.9s)  elapsed=49s
+[21:50:47]   [run] done: 3 new, 0 failed, 49s
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [cache] nothing to run (3 requested, all cached)
+[21:50:47]   [run] 3 new run(s), workers=14
+[21:50:52]     1/3 AlSi10Mg|90|0.125000|g20     ef=0.0234 uts= 349.4 (5.3s)  elapsed=6s
+[21:50:54]     2/3 AlSi10Mg|45|0.125000|g20     ef=0.0290 uts= 349.7 (6.7s)  elapsed=7s
+[21:50:57]     3/3 AlSi10Mg|0|0.125000|g20      ef=0.0498 uts= 350.9 (10.0s)  elapsed=10s
+[21:50:57]   [run] done: 3 new, 0 failed, 10s
+[21:50:57]   [run] 3 new run(s), workers=14
+[21:51:06]     1/3 AlSi10Mg|90|0.320000|g20     ef=0.0366 uts= 349.5 (8.9s)  elapsed=9s
+[21:51:08]     2/3 AlSi10Mg|45|0.320000|g20     ef=0.0498 uts= 350.2 (11.2s)  elapsed=11s
+[21:51:17]     3/3 AlSi10Mg|0|0.320000|g20      ef=0.0975 uts= 352.3 (19.5s)  elapsed=20s
+[21:51:17]   [run] done: 3 new, 0 failed, 20s
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [cache] nothing to run (6 requested, all cached)
+[21:51:17]   [run] 3 new run(s), workers=14
+[21:51:27]     1/3 Ti64|90|0.125000|g20         ef=0.0384 uts= 950.3 (9.3s)  elapsed=10s
+[21:51:27]     2/3 Ti64|45|0.125000|g20         ef=0.0424 uts= 952.2 (10.0s)  elapsed=10s
+[21:51:29]     3/3 Ti64|0|0.125000|g20          ef=0.0499 uts= 958.8 (11.9s)  elapsed=12s
+[21:51:29]   [run] done: 3 new, 0 failed, 12s
+[21:51:29]   [run] 3 new run(s), workers=14
+[21:51:40]     1/3 Ti64|90|0.320000|g20         ef=0.0439 uts= 950.3 (10.9s)  elapsed=11s
+[21:51:43]     2/3 Ti64|45|0.320000|g20         ef=0.0541 uts= 952.4 (13.3s)  elapsed=14s
+[21:51:46]     3/3 Ti64|0|0.320000|g20          ef=0.0723 uts= 959.9 (16.3s)  elapsed=17s
+[21:51:46]   [run] done: 3 new, 0 failed, 17s
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [cache] nothing to run (5 requested, all cached)
+[21:51:46]   [run] 3 new run(s), workers=14
+[21:51:58]     1/3 Ti64|90|0.500000|g20         ef=0.0490 uts= 950.3 (11.7s)  elapsed=12s
+[21:52:01]     2/3 Ti64|45|0.500000|g20         ef=0.0646 uts= 953.0 (14.5s)  elapsed=15s
+[21:52:05]     3/3 Ti64|0|0.500000|g20          ef=0.0924 uts= 960.1 (19.1s)  elapsed=19s
+[21:52:05]   [run] done: 3 new, 0 failed, 19s
+[21:52:05]   [run] 3 new run(s), workers=14
+[21:52:21]     1/3 Ti64|90|1.280000|g20         ef=0.0705 uts= 951.2 (15.7s)  elapsed=16s
+[21:52:30]     2/3 Ti64|45|1.280000|g20         ef=0.1092 uts= 953.6 (23.9s)  elapsed=24s
+[21:52:46]     3/3 Ti64|0|1.280000|g20          ef=0.1700 uts= 961.3 (40.4s)  elapsed=41s
+[21:52:46]   [run] done: 3 new, 0 failed, 41s
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (5 requested, all cached)
+[21:52:46]   [cache] nothing to run (8 requested, all cached)
+[21:52:46]   [cache] nothing to run (6 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [cache] nothing to run (3 requested, all cached)
+[21:52:46]   [run] 2 new run(s), workers=14
+[21:53:02]     1/2 IN718|90|0.500000|g20        ef=0.0405 uts= 390.1 (16.1s)  elapsed=16s
+[21:53:16]     2/2 IN718|30|0.500000|g20        ef=0.0963 uts= 409.9 (29.5s)  elapsed=30s
+[21:53:16]   [run] done: 2 new, 0 failed, 30s
+[21:53:16]   [run] 2 new run(s), workers=14
+[21:53:35]     1/2 IN718|90|1.280000|g20        ef=0.0450 uts= 379.5 (18.7s)  elapsed=19s
+[21:54:16]     2/2 IN718|30|1.280000|g20        ef=0.2297 uts= 445.4 (59.7s)  elapsed=60s
+[21:54:16]   [run] done: 2 new, 0 failed, 60s
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (8 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (6 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (3 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [cache] nothing to run (2 requested, all cached)
+[21:54:16]   [run] 2 new run(s), workers=14
+[21:54:42]     1/2 IN718|90|2.000000|g20        ef=0.0706 uts= 385.3 (26.2s)  elapsed=26s
+[21:56:25]     2/2 IN718|30|2.000000|g20        ef=0.4000 uts= 460.4 (128.4s)  elapsed=129s
+[21:56:25]   [run] done: 2 new, 0 failed, 129s
+[21:56:25]   [run] 2 new run(s), workers=14
+[21:58:45]     1/2 IN718|90|5.120000|g20        ef=0.4000 uts= 433.8 (139.6s)  elapsed=140s
+[21:58:56]     2/2 IN718|30|5.120000|g20        ef=0.4000 uts= 523.8 (150.9s)  elapsed=151s
+[21:58:56]   [run] done: 2 new, 0 failed, 151s
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (5 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [cache] nothing to run (3 requested, all cached)
+[21:58:56]   [run] 3 new run(s), workers=14
+[21:59:20]     1/3 316L|90|2.000000|g20         ef=0.1047 uts= 411.8 (23.4s)  elapsed=24s
+[21:59:47]     2/3 316L|45|2.000000|g20         ef=0.2272 uts= 411.8 (50.5s)  elapsed=51s
+[22:00:07]     3/3 316L|0|2.000000|g20          ef=0.3256 uts= 513.7 (71.0s)  elapsed=71s
+[22:00:07]   [run] done: 3 new, 0 failed, 71s
+[22:00:07]   [run] 3 new run(s), workers=14
+[22:01:55]     1/3 316L|90|5.120000|g20         ef=0.4276 uts= 481.7 (107.7s)  elapsed=108s
+[22:02:23]     2/3 316L|45|5.120000|g20         ef=0.5160 uts= 587.1 (135.3s)  elapsed=136s
+[22:02:44]     3/3 316L|0|5.120000|g20          ef=0.6120 uts= 697.5 (156.3s)  elapsed=157s
+[22:02:44]   [run] done: 3 new, 0 failed, 157s
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (2 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [cache] nothing to run (3 requested, all cached)
+[22:02:44]   [run] 2 new run(s), workers=14
+[22:04:12]     1/2 IN718|45|2.000000|g20        ef=0.2750 uts= 427.9 (88.1s)  elapsed=88s
+[22:05:10]     2/2 IN718|0|2.000000|g20         ef=0.4000 uts= 510.2 (145.6s)  elapsed=146s
+[22:05:10]   [run] done: 2 new, 0 failed, 146s
+[22:05:10]   [run] 2 new run(s), workers=14
+[22:07:45]     1/2 IN718|45|5.120000|g20        ef=0.4000 uts= 487.1 (154.9s)  elapsed=155s
+[22:07:47]     2/2 IN718|0|5.120000|g20         ef=0.4000 uts= 562.6 (156.9s)  elapsed=157s
+[22:07:47]   [run] done: 2 new, 0 failed, 157s
+[22:07:47] fold plan: LOSO 7 folds + 1 skip note(s); LOMO 4 folds; LOPO 6 folds + 0 skip note(s)
+[22:07:47]   [run] 28 new run(s), workers=14
+[22:07:58]     1/28 316L|90|0.507968|g20         ef=0.0200 uts= 411.8 (10.5s)  elapsed=11s
+[22:07:59]     2/28 316L|90|0.434307|g20         ef=0.0269 uts= 411.8 (12.0s)  elapsed=12s
+[22:08:00]     3/28 316L|45|0.434307|g20         ef=0.0343 uts= 411.8 (12.8s)  elapsed=13s
+[22:08:08]     4/28 316L|45|0.507968|g20         ef=0.0411 uts= 411.8 (20.8s)  elapsed=21s
+[22:08:09]     5/28 AlSi10Mg|90|0.689419|g20     ef=0.0599 uts= 350.2 (21.0s)  elapsed=21s
+[22:08:14]     6/28 IN718|90|0.589445|g20        ef=0.0406 uts= 381.2 (26.6s)  elapsed=27s
+[22:08:17]     7/28 316L|0|0.434307|g20          ef=0.0718 uts= 411.8 (29.2s)  elapsed=30s
+[22:08:18]     8/28 AlSi10Mg|90|1.094385|g20     ef=0.0840 uts= 350.9 (30.6s)  elapsed=31s
+[22:08:19]     9/28 AlSi10Mg|45|0.689419|g20     ef=0.0861 uts= 351.4 (31.0s)  elapsed=31s
+[22:08:19]     10/28 316L|0|0.507968|g20          ef=0.0830 uts= 411.8 (31.5s)  elapsed=32s
+[22:08:21]     11/28 IN718|45|0.589445|g20        ef=0.0645 uts= 408.0 (33.3s)  elapsed=34s
+[22:08:26]     12/28 AlSi10Mg|45|1.094385|g20     ef=0.1040 uts= 352.3 (38.7s)  elapsed=39s
+[22:08:27]     13/28 IN718|90|0.434307|g20        ef=0.0437 uts= 382.5 (26.2s)  elapsed=39s
+[22:08:35]     14/28 IN718|45|0.434307|g20        ef=0.0466 uts= 393.3 (26.2s)  elapsed=47s
+[22:08:37]     15/28 AlSi10Mg|0|1.094385|g20      ef=0.1220 uts= 369.7 (49.0s)  elapsed=49s
+[22:08:37]     16/28 AlSi10Mg|0|0.689419|g20      ef=0.1220 uts= 360.3 (49.3s)  elapsed=50s
+[22:08:42]     17/28 Ti64|90|0.935686|g20         ef=0.0611 uts= 950.8 (23.6s)  elapsed=55s
+[22:08:47]     18/28 Ti64|90|0.689419|g20         ef=0.0543 uts= 950.5 (20.8s)  elapsed=60s
+[22:08:48]     19/28 Ti64|45|0.689419|g20         ef=0.0756 uts= 953.3 (26.8s)  elapsed=61s
+[22:08:49]     20/28 IN718|30|0.434307|g20        ef=0.0515 uts= 409.5 (34.5s)  elapsed=62s
+[22:08:51]     21/28 Ti64|45|0.935686|g20         ef=0.0897 uts= 953.5 (32.4s)  elapsed=63s
+[22:08:58]     22/28 Ti64|0|0.689419|g20          ef=0.1130 uts= 960.3 (38.8s)  elapsed=71s
+[22:08:58]     23/28 IN718|0|0.589445|g20         ef=0.1153 uts= 432.5 (60.2s)  elapsed=71s
+[22:09:01]     24/28 IN718|30|0.589445|g20        ef=0.1312 uts= 421.6 (61.5s)  elapsed=74s
+[22:09:07]     25/28 Ti64|0|0.935686|g20          ef=0.1392 uts= 960.6 (50.5s)  elapsed=80s
+[22:09:10]     26/28 IN718|0|0.434307|g20         ef=0.1503 uts= 437.2 (61.8s)  elapsed=83s
+[22:09:20]     27/28 IN718|45|1.280000|g20        ef=0.1386 uts= 419.0 (53.8s)  elapsed=93s
+[22:10:51]     28/28 IN718|0|1.280000|g20         ef=0.4000 uts= 490.8 (136.9s)  elapsed=184s
+[22:10:51]   [run] done: 28 new, 0 failed, 184s
+[22:10:52] deviation check: reproducing the nine v12 calibration cases at n_grains=20
+[22:10:52]   [cache] nothing to run (9 requested, all cached)
+[22:10:52] deviation check: n_grains=10 truncation sensitivity
+[22:10:52]   [run] 9 new run(s), workers=14
+[22:10:56]     1/9 AlSi10Mg|90|0.200000|g10     ef=0.0282 uts= 355.1 (4.0s)  elapsed=4s
+[22:10:58]     2/9 AlSi10Mg|45|0.200000|g10     ef=0.0370 uts= 356.0 (5.3s)  elapsed=6s
+[22:10:59]     3/9 Ti64|90|0.320000|g10         ef=0.0437 uts= 954.8 (6.9s)  elapsed=7s
+[22:11:01]     4/9 Ti64|45|0.320000|g10         ef=0.0536 uts= 956.6 (8.5s)  elapsed=9s
+[22:11:01]     5/9 AlSi10Mg|0|0.200000|g10      ef=0.0689 uts= 356.9 (9.0s)  elapsed=9s
+[22:11:03]     6/9 Ti64|0|0.320000|g10          ef=0.0715 uts= 963.6 (10.5s)  elapsed=11s
+[22:11:25]     7/9 316L|90|3.200000|g10         ef=0.2107 uts= 416.9 (32.9s)  elapsed=33s
+[22:11:51]     8/9 316L|45|3.200000|g10         ef=0.3925 uts= 529.6 (59.0s)  elapsed=59s
+[22:12:06]     9/9 316L|0|3.200000|g10          ef=0.5316 uts= 637.4 (73.9s)  elapsed=74s
+[22:12:06]   [run] done: 9 new, 0 failed, 74s
+[22:12:06]   [cache] nothing to run (3 requested, all cached)
+[22:12:06]   [cache] nothing to run (3 requested, all cached)
+[22:12:06]   [cache] nothing to run (3 requested, all cached)
+[22:12:06]   [cache] nothing to run (3 requested, all cached)
+
+[22:12:06] ==============================================================================
+[22:12:06] leave_one_source     n= 48 mean=64.13 median=72.64 CI=[51.78, 80.67] pass@10=5/48
+[22:12:06] leave_one_material   n= 54 mean=60.68 median=62.86 CI=[53.25, 68.13] pass@10=2/54
+[22:12:06] leave_one_process    n= 12 mean=83.43 median=41.23 CI=[37.1, 147.32] pass@10=1/12
+[22:12:06] paired vs v12 LOOCV (n=9): mean diff 4.92 pt, wilcoxon p=0.734375
+[22:12:06] DONE -> D:\20260618断裂模型论文\simulation\output\experiment_v13_cv_variants_results.json   (1883.6s)

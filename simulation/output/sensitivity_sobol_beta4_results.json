@@ -1,0 +1,92 @@
+{
+ "generated": "2026-10-07 00:31:18",
+ "sobel_anova_from_factorial": {
+  "sst": 0.0223731043,
+  "ss_main_pct": {
+   "beta3": 0.03,
+   "beta4": 98.87,
+   "beta5": 0.84
+  },
+  "ss_two_pct": {
+   "beta3xbeta4": 0.01,
+   "beta3xbeta5": 0.0,
+   "beta4xbeta5": 0.26
+  },
+  "first_order_S": {
+   "beta3": 0.0,
+   "beta4": 0.989,
+   "beta5": 0.008
+  },
+  "total_order_T": {
+   "beta3": 0.0,
+   "beta4": 0.991,
+   "beta5": 0.011
+  },
+  "kg_marginal_span_pct": 0.0
+ },
+ "beta4_range": {
+  "Ti64": {
+   "production": 0.8,
+   "minus40": 0.48,
+   "plus40": 1.12
+  },
+  "316L": {
+   "production": 0.6,
+   "minus40": 0.36,
+   "plus40": 0.84
+  },
+  "AlSi10Mg": {
+   "production": 1.0,
+   "minus40": 0.6,
+   "plus40": 1.4
+  },
+  "IN718": {
+   "production": 0.8,
+   "minus40": 0.48,
+   "plus40": 1.12
+  }
+ },
+ "paired_blind_beta4_sweep": {
+  "0.6x": {
+   "mean_diff_pct": -1.47,
+   "wilcoxon_p": 0.7998,
+   "sign_p": 1.0,
+   "bootstrap_ci": [
+    -19.59,
+    15.45
+   ],
+   "ci_contains_zero": true,
+   "effect_dz": -0.034,
+   "n": 23
+  },
+  "1.0x": {
+   "mean_diff_pct": 4.81,
+   "wilcoxon_p": 1.0,
+   "sign_p": 1.0,
+   "bootstrap_ci": [
+    -17.01,
+    31.89
+   ],
+   "ci_contains_zero": true,
+   "effect_dz": 0.078,
+   "n": 23
+  },
+  "1.4x": {
+   "mean_diff_pct": 17.21,
+   "wilcoxon_p": 0.41,
+   "sign_p": 0.4049,
+   "bootstrap_ci": [
+    -10.05,
+    50.85
+   ],
+   "ci_contains_zero": true,
+   "effect_dz": 0.225,
+   "n": 23
+  }
+ },
+ "conclusion": "beta4 dominance inflates the ABSOLUTE descriptor-model error but the paired descriptor-vs-Lemaitre contrast stays statistically undistinguishable across the +-40% beta4 range (bootstrap CI spans 0 and Wilcoxon/sign p >> 0.05 at every level), so beta4 dominance does NOT overturn the central leakage-free conclusion.",
+ "run": {
+  "wall_seconds": 547.3,
+  "workers": 6
+ }
+}

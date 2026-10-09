@@ -1,0 +1,96 @@
+{
+ "generated": "2026-10-07 00:54:25",
+ "purpose": "Fix / deactivate the Sobol-inert descriptor sub-terms and measure the shift in the n=23 headline blind metrics, to justify a reduced production parameter set with fewer hidden degrees of freedom.",
+ "inactive_terms": {
+  "beta3 (initial-damage f_D0)": "S1 ~ 0.000",
+  "beta5 (transverse short-ligament f_xi)": "S1 ~ 0.008",
+  "k_g (directional gs)": "zero marginal span at 0 deg"
+ },
+ "production_beta": {
+  "Ti64": {
+   "beta3": 10.0,
+   "beta5": 0.2
+  },
+  "316L": {
+   "beta3": 8.0,
+   "beta5": 0.15
+  },
+  "AlSi10Mg": {
+   "beta3": 12.0,
+   "beta5": 0.1
+  },
+  "IN718": {
+   "beta3": 10.0,
+   "beta5": 0.2
+  }
+ },
+ "variant_metrics": {
+  "production": {
+   "mean_abs_err_pct": 53.09,
+   "median_abs_err_pct": 34.66,
+   "pass10": 5
+  },
+  "no_b3": {
+   "mean_abs_err_pct": 53.71,
+   "median_abs_err_pct": 33.75,
+   "pass10": 5
+  },
+  "no_b5": {
+   "mean_abs_err_pct": 50.72,
+   "median_abs_err_pct": 29.09,
+   "pass10": 5
+  },
+  "no_kg": {
+   "mean_abs_err_pct": 51.44,
+   "median_abs_err_pct": 34.89,
+   "pass10": 5
+  },
+  "no_b3_b5": {
+   "mean_abs_err_pct": 51.49,
+   "median_abs_err_pct": 28.29,
+   "pass10": 6
+  },
+  "reduced_all": {
+   "mean_abs_err_pct": 50.52,
+   "median_abs_err_pct": 33.99,
+   "pass10": 6
+  }
+ },
+ "deltas_vs_production": {
+  "no_b3": {
+   "delta_mean_pt": 0.62,
+   "delta_median_pt": -0.91,
+   "delta_pass10": 0,
+   "n_missing": 0
+  },
+  "no_b5": {
+   "delta_mean_pt": -2.37,
+   "delta_median_pt": -5.57,
+   "delta_pass10": 0,
+   "n_missing": 0
+  },
+  "no_kg": {
+   "delta_mean_pt": -1.65,
+   "delta_median_pt": 0.23,
+   "delta_pass10": 0,
+   "n_missing": 0
+  },
+  "no_b3_b5": {
+   "delta_mean_pt": -1.6,
+   "delta_median_pt": -6.37,
+   "delta_pass10": 1,
+   "n_missing": 0
+  },
+  "reduced_all": {
+   "delta_mean_pt": -2.57,
+   "delta_median_pt": -0.67,
+   "delta_pass10": 1,
+   "n_missing": 0
+  }
+ },
+ "conclusion": "Deactivating the inert sub-terms moves the mean blind error by well under the 24 pt minimum detectable effect (and pass@10 by at most a couple of folds), so they can be FIXED rather than carried as tunable hidden degrees of freedom. The consequential assumed coefficient remains beta4 (S1 ~ 0.99); the production model therefore reduces to a single fitted S0 per material plus an assumed block in which only beta1/beta2/beta4 are active.",
+ "run": {
+  "wall_seconds": 1332.0,
+  "workers": 6
+ }
+}

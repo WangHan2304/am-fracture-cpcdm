@@ -1,0 +1,112 @@
+﻿python.exe : Traceback (most recent call last):
+所在位置 行:3 字符: 1
++ & 'C:\Users\ZJ03\miniconda3\python.exe' "$sim\experiment_v13b_mds2_lo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "D:\20260618断裂模型论文\simulation\experiment_v13b_mds2_loso.py", line 391, in <module>
+    main()
+    ~~~~^^
+  File "D:\20260618断裂模型论文\simulation\experiment_v13b_mds2_loso.py", line 65, in main
+    log = cv.Log(LOGPATH, echo=True)
+  File "D:\20260618断裂模型论文\simulation\experiment_v13_cv_variants.py", line 164, in __init__
+    self.fh = open(path, 'a', encoding='utf-8')
+              ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\20260618断裂模型论文\\simulation\\output\\cv_variants_r13b_log.txt'
+
+==============================================================================
+cv_variants session start 2026-09-28 22:04:22
+==============================================================================
+[22:04:22] ==============================================================================
+[22:04:22] R13b  LOSO re-run with NIST mds2-3402 as a third Ti64 source
+[22:04:22] n_grains=20  S0_grid=[0.05, 0.2, 0.8, 3.2, 12.8, 50.0]  workers=4
+[22:04:22] locked R13 result : 6 LOSO folds, 18 held predictions, mean ef 44.07%
+[22:04:22] locked R13 dataset: {"awd2018metals": 3, "hitzler2017materials": 3, "hovig2018in718": 3, "sun2024adem": 3, "v12_original": 9, "watring2020addma": 3}
+[22:04:22] R13b dataset      : 54 points, 7 sources
+[22:04:22] cache             : 154 entries
+[22:04:22] LOSO folds from build_loso: 7 (+1 skip note(s))
+[22:04:22]    316L      held=hitzler2017materials   train=v12_original                             n_train= 3 n_held= 3 prefer_locked=True
+[22:04:22]    316L      held=v12_original           train=hitzler2017materials                     n_train= 3 n_held= 3 prefer_locked=False
+[22:04:22]    AlSi10Mg  held=awd2018metals          train=v12_original                             n_train= 3 n_held= 3 prefer_locked=True
+[22:04:22]    AlSi10Mg  held=v12_original           train=awd2018metals                            n_train= 3 n_held= 3 prefer_locked=False
+[22:04:22]    Ti64      held=nist_mds2_3402         train=sun2024adem,v12_original                 n_train= 6 n_held=30 prefer_locked=False
+[22:04:22]    Ti64      held=sun2024adem            train=nist_mds2_3402,v12_original              n_train= 5 n_held= 3 prefer_locked=False
+[22:04:22]    Ti64      held=v12_original           train=nist_mds2_3402,sun2024adem               n_train= 5 n_held= 3 prefer_locked=False
+[22:04:22] (for comparison, the locked R13 run had 6 folds: 316L/hitzler2017materials, 316L/v12_original, AlSi10Mg/awd2018metals, AlSi10Mg/v12_original, Ti64/sun2024adem, Ti64/v12_original)
+[22:04:22] wave1 grid universe: 78 (orientation set is unchanged by mds2, so this is all cached)
+[22:04:22]   [cache] nothing to run (78 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]    -> 316L      held=hitzler2017materials   S0=2          method=v12_locked_value train_err=30.10%
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]    -> 316L      held=v12_original           S0=0.8        method=v12_grid_refit   train_err=63.17%
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]    -> AlSi10Mg  held=awd2018metals          S0=0.2        method=v12_locked_value train_err=21.98%
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]   [cache] nothing to run (3 requested, all cached)
+[22:04:22]    -> AlSi10Mg  held=v12_original           S0=0.32       method=v12_grid_refit   train_err=28.15%
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]   [cache] nothing to run (6 requested, all cached)
+[22:04:22]    -> Ti64      held=nist_mds2_3402         S0=0.32       method=v12_grid_refit   train_err=16.87%
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]    -> Ti64      held=sun2024adem            S0=0.5        method=v12_grid_refit   train_err=28.84%
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]   [cache] nothing to run (5 requested, all cached)
+[22:04:22]    -> Ti64      held=v12_original           S0=0.5        method=v12_grid_refit   train_err=37.04%
+[22:04:22] wave2: 60 prediction runs requested
+[22:04:22]   [cache] nothing to run (60 requested, all cached)
+[22:04:22] regression 316L/hitzler2017materials                inputs_same=True  S0_same=True  err_same=True   R13=89.52 -> R13b=89.52
+[22:04:22] regression 316L/v12_original                        inputs_same=True  S0_same=True  err_same=True   R13=75.21 -> R13b=75.21
+[22:04:22] regression AlSi10Mg/awd2018metals                   inputs_same=True  S0_same=True  err_same=True   R13=38.75 -> R13b=38.75
+[22:04:22] regression AlSi10Mg/v12_original                    inputs_same=True  S0_same=True  err_same=True   R13=27.18 -> R13b=27.18
+[22:04:22] regression Ti64/nist_mds2_3402                      inputs_same=None  S0_same=None  err_same=None   R13=None -> R13b=None
+[22:04:22] regression Ti64/sun2024adem                         inputs_same=False S0_same=False err_same=False  R13=23.97 -> R13b=21.87
+[22:04:22] regression Ti64/v12_original                        inputs_same=False S0_same=False err_same=False  R13=9.77 -> R13b=8.19
+
+[22:04:22] ==============================================================================
+[22:04:22] loso_v13_original    folds=6 n= 18 mean= 44.07 median= 28.80 pass@10=5/18
+[22:04:22] loso_with_nist       folds=7 n= 48 mean= 61.35 median= 72.64 pass@10=5/48
+[22:04:22]    316L      held=hitzler2017materials   n_held= 3 S0=2          ef_err=  89.52 uts_err=  24.95 (alt locked S0 -> 89.52)
+[22:04:22]    316L      held=v12_original           n_held= 3 S0=0.8        ef_err=  75.21 uts_err=   35.3 (alt locked S0 -> 30.1)
+[22:04:22]    AlSi10Mg  held=awd2018metals          n_held= 3 S0=0.2        ef_err=  38.75 uts_err=   4.28 (alt locked S0 -> 38.75)
+[22:04:22]    AlSi10Mg  held=v12_original           n_held= 3 S0=0.32       ef_err=  27.18 uts_err=  13.76 (alt locked S0 -> 21.98)
+[22:04:22]    Ti64      held=nist_mds2_3402         n_held=30 S0=0.32       ef_err=  72.09 uts_err=   8.34 (alt locked S0 -> 72.09)
+[22:04:22]    Ti64      held=sun2024adem            n_held= 3 S0=0.5        ef_err=  21.87 uts_err=   21.3 (alt locked S0 -> 23.97)
+[22:04:22]    Ti64      held=v12_original           n_held= 3 S0=0.5        ef_err=   8.19 uts_err=  13.04 (alt locked S0 -> 9.77)
+[22:04:22]    mds2 as_built_HT0_only          n= 2 mean ef err=  67.09%  median=  67.09%
+[22:04:22]    mds2 stress_relief_HT1_only     n= 2 mean ef err=  77.97%  median=  77.97%
+[22:04:22]    mds2 hip_conditions_HT2_to_HT14 n=26 mean ef err=  72.02%  median=  75.13%
+[22:04:22]    mds2 heat_treated_all           n=28 mean ef err=  72.44%  median=  75.13%
+[22:04:22] DONE -> D:\20260618断裂模型论文\simulation\output\experiment_v13b_mds2_loso_results.json  (0.1s)

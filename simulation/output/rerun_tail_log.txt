@@ -1,0 +1,14 @@
+
+==== rerun_tail 2026-10-07 00:49:02 ====
+
+==== rerun_tail 2026-10-07 01:33:23 ====
+[03:37:16] experiment_v14_uncertainty.py        rc=0  10094s    AlSi10Mg   90deg exp=0.0370 pred=[0.0270,0.0330,0.0398] hit=True | DONE -> D:\20260618断裂模型论文\simulation\output\experiment_v14_uncertainty_results.json
+[04:19:42] experiment_v14_uncertainty.py        rc=0  9979s    AlSi10Mg   90deg exp=0.0370 pred=[0.0270,0.0330,0.0398] hit=True | DONE -> D:\20260618断裂模型论文\simulation\output\experiment_v14_uncertainty_results.json
+[05:25:14] experiment_v15_lambda_rel.py         rc=0  6478s  BOOT {'mean_diff_pp': 12.708043334254377, 'ci95': [-8.517990765561365, 32.116551497335564], 'n_mod_worse': 6, 'n_mod_better': 3, 'sign_test_p': 1.0, 'wilcoxon_Wpos': 33.0} | DONE saved D:\20260618断裂模型论文\simulation\output\experiment_v15_lamb
+[05:34:03] wiso_scan.py                         rc=0  530s    w_iso=0.7: mean_err= 30.81% ef={0: 0.0354, 45: 0.0315, 90: 0.0286} | DONE -> D:\20260618断裂模型论文\simulation\output\wiso_scan_results.json
+[05:48:08] beta5_scan.py                        rc=0  844s    beta5=0.1: mean_err= 22.08% ef={0: 0.0688, 45: 0.0372, 90: 0.0286} | DONE -> D:\20260618断裂模型论文\simulation\output\beta5_scan_results.json
+[05:48:08] ==== rerun_tail DONE ====
+[06:09:47] experiment_v15_lambda_rel.py         rc=0  6605s  BOOT {'mean_diff_pp': 12.708043334254377, 'ci95': [-8.517990765561365, 32.116551497335564], 'n_mod_worse': 6, 'n_mod_better': 3, 'sign_test_p': 1.0, 'wilcoxon_Wpos': 33.0} | DONE saved D:\20260618断裂模型论文\simulation\output\experiment_v15_lamb
+[06:18:10] wiso_scan.py                         rc=0  503s    w_iso=0.7: mean_err= 30.81% ef={0: 0.0354, 45: 0.0315, 90: 0.0286} | DONE -> D:\20260618断裂模型论文\simulation\output\wiso_scan_results.json
+[06:32:17] beta5_scan.py                        rc=0  847s    beta5=0.1: mean_err= 22.08% ef={0: 0.0688, 45: 0.0372, 90: 0.0286} | DONE -> D:\20260618断裂模型论文\simulation\output\beta5_scan_results.json
+[06:32:17] ==== rerun_tail DONE ====

@@ -1,0 +1,44 @@
+
+==============================================================================
+cv_variants session start 2026-10-05 23:29:34
+==============================================================================
+[23:29:34] FROZEN-PARAMETER BLIND PREDICTION (external literature, no refit)
+[23:29:34] frozen S0 from the 9-case v12 calibration: {'Ti64': 0.32, '316L': 2.0, 'AlSi10Mg': 0.2}
+[23:29:34] external in-domain as-built: headline=9 supplementary=2; cache entries=154
+
+[23:29:34] === HEADLINE blind points (frozen S0, one full trio per material) ===
+[23:29:34] point_id              mat     ori    S0  ef_exp ef_pred signed%   abs% uts_exp uts_pred   uts%
+[23:29:34] hitzler2017_316L_0    316L      0  2.00  0.1176  0.3256   176.8  176.8  511.99    513.7    0.3
+[23:29:34] hitzler2017_316L_45   316L     45  2.00  0.3256  0.2500   -23.2   23.2  698.98    423.6   39.4
+[23:29:34] hitzler2017_316L_90   316L     90  2.00  0.3324  0.1047   -68.5   68.5  634.43    411.8   35.1
+[23:29:34] awd2018_AlSi10Mg_0    AlSi10Mg   0  0.20  0.0830  0.0688   -17.1   17.1   351.8    351.7    0.0
+[23:29:34] awd2018_AlSi10Mg_45   AlSi10Mg  45  0.20  0.0570  0.0374   -34.4   34.4   367.8    349.8    4.9
+[23:29:34] awd2018_AlSi10Mg_90   AlSi10Mg  90  0.20  0.0810  0.0286   -64.7   64.7   379.6    349.5    7.9
+[23:29:34] sun2024_Ti64_0        Ti64      0  0.32  0.0934  0.0723   -22.6   22.6  1165.0    959.9   17.6
+[23:29:34] sun2024_Ti64_45       Ti64     45  0.32  0.0533  0.0559     5.0    5.0  1299.0    955.0   26.5
+[23:29:34] sun2024_Ti64_90       Ti64     90  0.32  0.0789  0.0439   -44.3   44.3  1186.0    950.3   19.9
+
+[23:29:34] HEADLINE n=9  ef mean/med/max=50.74/34.4/176.84%  pass@20%=2/9  UTS mean=16.85%
+[23:29:34] DONE -> D:\20260618断裂模型论文\simulation\output\blind_predict_frozen_results.json  (0.0s)
+
+==============================================================================
+cv_variants session start 2026-10-06 22:25:30
+==============================================================================
+[22:25:30] FROZEN-PARAMETER BLIND PREDICTION (external literature, no refit)
+[22:25:30] frozen S0 from the 9-case v12 calibration: {'Ti64': 0.32, '316L': 3.2, 'AlSi10Mg': 0.2}
+[22:25:30] external in-domain as-built: headline=9 supplementary=2; cache entries=157
+
+[22:25:30] === HEADLINE blind points (frozen S0, one full trio per material) ===
+[22:25:30] point_id              mat     ori    S0  ef_exp ef_pred signed%   abs% uts_exp uts_pred   uts%
+[22:25:30] hitzler2017_316L_0    316L      0  3.20  0.1176  0.5419   360.8  360.8  511.99    620.6   21.2
+[22:25:30] hitzler2017_316L_45   316L     45  3.20  0.3256  0.3902    19.9   19.9  698.98    501.3   28.3
+[22:25:30] hitzler2017_316L_90   316L     90  3.20  0.3324  0.2236   -32.7   32.7  634.43    411.8   35.1
+[22:25:30] awd2018_AlSi10Mg_0    AlSi10Mg   0  0.20  0.0830  0.0688   -17.1   17.1   351.8    351.7    0.0
+[22:25:30] awd2018_AlSi10Mg_45   AlSi10Mg  45  0.20  0.0570  0.0372   -34.7   34.7   367.8    349.8    4.9
+[22:25:30] awd2018_AlSi10Mg_90   AlSi10Mg  90  0.20  0.0810  0.0286   -64.7   64.7   379.6    349.5    7.9
+[22:25:30] sun2024_Ti64_0        Ti64      0  0.32  0.0934  0.0723   -22.6   22.6  1165.0    959.9   17.6
+[22:25:30] sun2024_Ti64_45       Ti64     45  0.32  0.0533  0.0541     1.5    1.5  1299.0    952.4   26.7
+[22:25:30] sun2024_Ti64_90       Ti64     90  0.32  0.0789  0.0439   -44.3   44.3  1186.0    950.3   19.9
+
+[22:25:30] HEADLINE n=9  ef mean/med/max=66.48/32.74/360.78%  pass@20%=3/9  UTS mean=17.96%
+[22:25:30] DONE -> D:\20260618断裂模型论文\simulation\output\blind_predict_frozen_results.json  (0.0s)

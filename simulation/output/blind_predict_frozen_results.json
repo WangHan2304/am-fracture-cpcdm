@@ -1,0 +1,296 @@
+{
+ "generated": "2026-10-06 22:25:30",
+ "protocol": "Parameters frozen at the nine-case v12 calibration (source_id=v12_original): one adjustable S0 per material, no grid search / refinement / per-fold refit. External as-built points from OTHER papers are predicted DIRECTLY.",
+ "frozen_S0_MPa": {
+  "Ti64": 0.32,
+  "316L": 3.2,
+  "AlSi10Mg": 0.2
+ },
+ "calibration_source": "v12_original (9 points: Ti64/316L/AlSi10Mg x 0/45/90)",
+ "excluded": {
+  "v12_original": "these ARE the calibration set (never blind)",
+  "hovig2018in718": "solution-treated and IN718 not among the 9 cases",
+  "watring2020addma": "IN718 not among the 9 cases",
+  "nist HT1..HT14": "heat-treated (HIP/anneal/temper) -> out of as-built domain"
+ },
+ "headline": {
+  "description": "in-domain external as-built trios: sun2024adem (Ti64), hitzler2017materials (316L), awd2018metals (AlSi10Mg)",
+  "summary": {
+   "n_points": 9,
+   "ef_mean_abs_err_pct": 66.48,
+   "ef_median_abs_err_pct": 32.74,
+   "ef_max_abs_err_pct": 360.78,
+   "ef_mean_signed_pct": 18.44,
+   "ef_within_10pct": 1,
+   "ef_within_20pct": 3,
+   "ef_within_30pct": 4,
+   "uts_mean_abs_err_pct": 17.96,
+   "uts_within_10pct": 3
+  },
+  "by_source": {
+   "awd2018metals": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 38.83,
+    "ef_median_abs_err_pct": 34.66,
+    "ef_max_abs_err_pct": 64.69,
+    "ef_mean_signed_pct": -38.83,
+    "ef_within_10pct": 0,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 1,
+    "uts_mean_abs_err_pct": 4.29,
+    "uts_within_10pct": 3
+   },
+   "hitzler2017materials": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 137.79,
+    "ef_median_abs_err_pct": 32.74,
+    "ef_max_abs_err_pct": 360.78,
+    "ef_mean_signed_pct": 115.97,
+    "ef_within_10pct": 0,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 1,
+    "uts_mean_abs_err_pct": 28.2,
+    "uts_within_10pct": 0
+   },
+   "sun2024adem": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 22.8,
+    "ef_median_abs_err_pct": 22.61,
+    "ef_max_abs_err_pct": 44.32,
+    "ef_mean_signed_pct": -21.82,
+    "ef_within_10pct": 1,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 2,
+    "uts_mean_abs_err_pct": 21.39,
+    "uts_within_10pct": 0
+   }
+  },
+  "by_material": {
+   "316L": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 137.79,
+    "ef_median_abs_err_pct": 32.74,
+    "ef_max_abs_err_pct": 360.78,
+    "ef_mean_signed_pct": 115.97,
+    "ef_within_10pct": 0,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 1,
+    "uts_mean_abs_err_pct": 28.2,
+    "uts_within_10pct": 0
+   },
+   "AlSi10Mg": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 38.83,
+    "ef_median_abs_err_pct": 34.66,
+    "ef_max_abs_err_pct": 64.69,
+    "ef_mean_signed_pct": -38.83,
+    "ef_within_10pct": 0,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 1,
+    "uts_mean_abs_err_pct": 4.29,
+    "uts_within_10pct": 3
+   },
+   "Ti64": {
+    "n_points": 3,
+    "ef_mean_abs_err_pct": 22.8,
+    "ef_median_abs_err_pct": 22.61,
+    "ef_max_abs_err_pct": 44.32,
+    "ef_mean_signed_pct": -21.82,
+    "ef_within_10pct": 1,
+    "ef_within_20pct": 1,
+    "ef_within_30pct": 2,
+    "uts_mean_abs_err_pct": 21.39,
+    "uts_within_10pct": 0
+   }
+  },
+  "points": [
+   {
+    "point_id": "hitzler2017_316L_0",
+    "material": "316L",
+    "source_id": "hitzler2017materials",
+    "orientation_deg": 0,
+    "S0_frozen_MPa": 3.2,
+    "ef_exp": 0.1176,
+    "ef_pred": 0.54188,
+    "ef_signed_err_pct": 360.78,
+    "ef_abs_err_pct": 360.78,
+    "uts_exp_MPa": 511.99,
+    "uts_pred_MPa": 620.6,
+    "uts_abs_err_pct": 21.22,
+    "truncated": false
+   },
+   {
+    "point_id": "hitzler2017_316L_45",
+    "material": "316L",
+    "source_id": "hitzler2017materials",
+    "orientation_deg": 45,
+    "S0_frozen_MPa": 3.2,
+    "ef_exp": 0.3256,
+    "ef_pred": 0.39025,
+    "ef_signed_err_pct": 19.86,
+    "ef_abs_err_pct": 19.86,
+    "uts_exp_MPa": 698.98,
+    "uts_pred_MPa": 501.3,
+    "uts_abs_err_pct": 28.29,
+    "truncated": false
+   },
+   {
+    "point_id": "hitzler2017_316L_90",
+    "material": "316L",
+    "source_id": "hitzler2017materials",
+    "orientation_deg": 90,
+    "S0_frozen_MPa": 3.2,
+    "ef_exp": 0.3324,
+    "ef_pred": 0.22358,
+    "ef_signed_err_pct": -32.74,
+    "ef_abs_err_pct": 32.74,
+    "uts_exp_MPa": 634.43,
+    "uts_pred_MPa": 411.8,
+    "uts_abs_err_pct": 35.1,
+    "truncated": false
+   },
+   {
+    "point_id": "awd2018_AlSi10Mg_0",
+    "material": "AlSi10Mg",
+    "source_id": "awd2018metals",
+    "orientation_deg": 0,
+    "S0_frozen_MPa": 0.2,
+    "ef_exp": 0.083,
+    "ef_pred": 0.06877,
+    "ef_signed_err_pct": -17.15,
+    "ef_abs_err_pct": 17.15,
+    "uts_exp_MPa": 351.8,
+    "uts_pred_MPa": 351.7,
+    "uts_abs_err_pct": 0.02,
+    "truncated": false
+   },
+   {
+    "point_id": "awd2018_AlSi10Mg_45",
+    "material": "AlSi10Mg",
+    "source_id": "awd2018metals",
+    "orientation_deg": 45,
+    "S0_frozen_MPa": 0.2,
+    "ef_exp": 0.057,
+    "ef_pred": 0.03725,
+    "ef_signed_err_pct": -34.66,
+    "ef_abs_err_pct": 34.66,
+    "uts_exp_MPa": 367.8,
+    "uts_pred_MPa": 349.8,
+    "uts_abs_err_pct": 4.91,
+    "truncated": false
+   },
+   {
+    "point_id": "awd2018_AlSi10Mg_90",
+    "material": "AlSi10Mg",
+    "source_id": "awd2018metals",
+    "orientation_deg": 90,
+    "S0_frozen_MPa": 0.2,
+    "ef_exp": 0.081,
+    "ef_pred": 0.0286,
+    "ef_signed_err_pct": -64.69,
+    "ef_abs_err_pct": 64.69,
+    "uts_exp_MPa": 379.6,
+    "uts_pred_MPa": 349.5,
+    "uts_abs_err_pct": 7.93,
+    "truncated": false
+   },
+   {
+    "point_id": "sun2024_Ti64_0",
+    "material": "Ti64",
+    "source_id": "sun2024adem",
+    "orientation_deg": 0,
+    "S0_frozen_MPa": 0.32,
+    "ef_exp": 0.0934,
+    "ef_pred": 0.07229,
+    "ef_signed_err_pct": -22.61,
+    "ef_abs_err_pct": 22.61,
+    "uts_exp_MPa": 1165.0,
+    "uts_pred_MPa": 959.9,
+    "uts_abs_err_pct": 17.61,
+    "truncated": false
+   },
+   {
+    "point_id": "sun2024_Ti64_45",
+    "material": "Ti64",
+    "source_id": "sun2024adem",
+    "orientation_deg": 45,
+    "S0_frozen_MPa": 0.32,
+    "ef_exp": 0.0533,
+    "ef_pred": 0.05408,
+    "ef_signed_err_pct": 1.47,
+    "ef_abs_err_pct": 1.47,
+    "uts_exp_MPa": 1299.0,
+    "uts_pred_MPa": 952.4,
+    "uts_abs_err_pct": 26.68,
+    "truncated": false
+   },
+   {
+    "point_id": "sun2024_Ti64_90",
+    "material": "Ti64",
+    "source_id": "sun2024adem",
+    "orientation_deg": 90,
+    "S0_frozen_MPa": 0.32,
+    "ef_exp": 0.0789,
+    "ef_pred": 0.04394,
+    "ef_signed_err_pct": -44.32,
+    "ef_abs_err_pct": 44.32,
+    "uts_exp_MPa": 1186.0,
+    "uts_pred_MPa": 950.3,
+    "uts_abs_err_pct": 19.87,
+    "truncated": false
+   }
+  ]
+ },
+ "supplementary": {
+  "description": "Ti-6Al-4V as-built (no post-build treatment) NIST HT0 h/v pair; UTS out-of-band (1294-1303 MPa) -> reported separately",
+  "summary": {
+   "n_points": 2,
+   "ef_mean_abs_err_pct": 67.09,
+   "ef_median_abs_err_pct": 67.09,
+   "ef_max_abs_err_pct": 77.21,
+   "ef_mean_signed_pct": -67.09,
+   "ef_within_10pct": 0,
+   "ef_within_20pct": 0,
+   "ef_within_30pct": 0,
+   "uts_mean_abs_err_pct": 26.45,
+   "uts_within_10pct": 0
+  },
+  "points": [
+   {
+    "point_id": "nist_mds2_3402_HT0_v",
+    "material": "Ti64",
+    "source_id": "nist_mds2_3402",
+    "orientation_deg": 0,
+    "S0_frozen_MPa": 0.32,
+    "ef_exp": 0.168,
+    "ef_pred": 0.07229,
+    "ef_signed_err_pct": -56.97,
+    "ef_abs_err_pct": 56.97,
+    "uts_exp_MPa": 1302.72,
+    "uts_pred_MPa": 959.9,
+    "uts_abs_err_pct": 26.32,
+    "truncated": false
+   },
+   {
+    "point_id": "nist_mds2_3402_HT0_h",
+    "material": "Ti64",
+    "source_id": "nist_mds2_3402",
+    "orientation_deg": 90,
+    "S0_frozen_MPa": 0.32,
+    "ef_exp": 0.1928,
+    "ef_pred": 0.04394,
+    "ef_signed_err_pct": -77.21,
+    "ef_abs_err_pct": 77.21,
+    "uts_exp_MPa": 1294.2,
+    "uts_pred_MPa": 950.3,
+    "uts_abs_err_pct": 26.57,
+    "truncated": false
+   }
+  ]
+ },
+ "run": {
+  "wall_seconds": 0.0,
+  "n_grains": 20,
+  "cache_reused": true
+ }
+}

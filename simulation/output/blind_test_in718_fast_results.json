@@ -1,0 +1,72 @@
+{
+ "material": "Inconel 718 (LPBF, as-solution-treated, Hovig&Azar 2018)",
+ "projection": "corrected transverse short-ligament f_xi (v12 set)",
+ "resolution": "fast: n_sub=12, eps_step=2e-3 (calibration/bias-level impact negligible at these error magnitudes)",
+ "mode1_S0_geo_mean_MPa": 0.5894450397824619,
+ "mode1": [
+  {
+   "psi": 0,
+   "ef_exp": 0.3,
+   "ef_pred": 0.017880905950722014,
+   "ef_error_pct": 94.039698016426,
+   "uts_exp_MPa": 970.0,
+   "uts_pred_MPa": 307.8841634058084,
+   "uts_error_pct": 68.25936459733934
+  },
+  {
+   "psi": 45,
+   "ef_exp": 0.25,
+   "ef_pred": 0.014250819609987404,
+   "ef_error_pct": 94.29967215600504,
+   "uts_exp_MPa": 970.0,
+   "uts_pred_MPa": 88.08746178724454,
+   "uts_error_pct": 90.91881837244901
+  },
+  {
+   "psi": 90,
+   "ef_exp": 0.2,
+   "ef_pred": 0.012609051792550311,
+   "ef_error_pct": 93.69547410372483,
+   "uts_exp_MPa": 970.0,
+   "uts_pred_MPa": 73.14161811018596,
+   "uts_error_pct": 92.4596269989499
+  }
+ ],
+ "mode2": {
+  "S0_2.0_0deg": {
+   "err_pct": 83.61339276546452,
+   "ef_pred": 0.04915982170360644
+  },
+  "S0_4.0_0deg": {
+   "err_pct": 61.58324439848831,
+   "ef_pred": 0.11525026680453507
+  },
+  "S0_6.0_0deg": {
+   "err_pct": 41.26647348098286,
+   "ef_pred": 0.1762005795570514
+  },
+  "S0_8.0_0deg": {
+   "err_pct": 17.524962895161377,
+   "ef_pred": 0.24742511131451586
+  },
+  "S0_cal_on_0_MPa": 8.0,
+  "train_err_pct": 17.524962895161377,
+  "blind_45deg": {
+   "ef_exp": 0.25,
+   "ef_pred": 0.08952210836151886,
+   "ef_error_pct": 64.19115665539246
+  },
+  "blind_90deg": {
+   "ef_exp": 0.2,
+   "ef_pred": 0.04219856335347363,
+   "ef_error_pct": 78.90071832326319
+  }
+ },
+ "mode1_avg_ef_error_pct": 94.01161475871862,
+ "mode1_avg_uts_error_pct": 83.87926998957941,
+ "mode2_avg_blind_ef_error_pct": 71.54593748932783,
+ "mode2_ratio_90_over_0": {
+  "pred": 0.17055085124255104,
+  "exp": 0.6666666666666667
+ }
+}

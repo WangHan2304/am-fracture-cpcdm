@@ -1,0 +1,41 @@
+{
+ "material": "Inconel 718 (LPBF, as-solution-treated, Hovig&Azar 2018)",
+ "S0_geo_mean_MPa": 0.5894450397824619,
+ "k_g": 0.15,
+ "note": "All material parameters are literature-assumed/estimated; S0 is the cross-material geometric mean of the three calibrated S0 values (0.32/3.20/0.20 MPa), i.e. a genuine out-of-sample extrapolation; experimental values are read from Fig. 15 of the source (uncertainty ~\u00b110%).",
+ "cases": [
+  {
+   "psi": 0,
+   "ef_exp": 0.2,
+   "ef_pred": 0.01843369450425168,
+   "ef_error_pct": 90.78315274787417,
+   "uts_exp_MPa": 950.0,
+   "uts_pred_MPa": 286.1996565508224,
+   "uts_error_pct": 69.87372036307133
+  },
+  {
+   "psi": 45,
+   "ef_exp": 0.25,
+   "ef_pred": 0.012785426745539983,
+   "ef_error_pct": 94.88582930178401,
+   "uts_exp_MPa": 970.0,
+   "uts_pred_MPa": 203.85620740483805,
+   "uts_error_pct": 78.98389614383112
+  },
+  {
+   "psi": 90,
+   "ef_exp": 0.3,
+   "ef_pred": 0.011463713084009952,
+   "ef_error_pct": 96.17876230533001,
+   "uts_exp_MPa": 990.0,
+   "uts_pred_MPa": 286.60184910292196,
+   "uts_error_pct": 71.05031827243212
+  }
+ ],
+ "direction_ratio_90_over_0": {
+  "pred": 0.621889067401322,
+  "exp": 1.4999999999999998
+ },
+ "avg_ef_error_pct": 93.94924811832941,
+ "avg_uts_error_pct": 73.30264492644486
+}

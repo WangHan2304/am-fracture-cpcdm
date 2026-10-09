@@ -1,0 +1,50 @@
+{
+ "material": "316L SS (SLM, as-built milled surfaces; Hitzler 2017 Materials 10:1136)",
+ "note": "Cross-source blind test: independent literature source, genuine reversed direction trend vs calibration set (0 deg least ductile here, opposite to the columnar-dominated calibration trend); protocol: slow resolution (n_sub=30, eps_step=1e-3), S0 grid-calibrated on the 0 deg fold only, then blind 45/90 deg predictions.",
+ "exp_ef": {
+  "0": 0.1176,
+  "45": 0.3256,
+  "90": 0.3324
+ },
+ "grid": {
+  "0.5": {
+   "ef_pred_0deg": 0.06577866891850769,
+   "err_pct_0deg": 44.065757722357404
+  },
+  "1.0": {
+   "ef_pred_0deg": 0.14915694641419505,
+   "err_pct_0deg": 26.834138107308718
+  },
+  "2.0": {
+   "ef_pred_0deg": 0.3255603977081551,
+   "err_pct_0deg": 176.83707288108428
+  },
+  "3.0": {
+   "ef_pred_0deg": 0.5158725376759017,
+   "err_pct_0deg": 338.6671238740661
+  },
+  "4.0": {
+   "ef_pred_0deg": 0.55,
+   "err_pct_0deg": 367.68707482993204
+  }
+ },
+ "blind": {
+  "45deg": {
+   "ef_exp": 0.3256,
+   "ef_pred": 0.08422561015466423,
+   "err_pct": 74.13218361343236
+  },
+  "90deg": {
+   "ef_exp": 0.3324,
+   "ef_pred": 0.04281956233696374,
+   "err_pct": 87.1180618721529
+  }
+ },
+ "S0_cal_on_0_MPa": 1.0,
+ "train_err_pct": 26.834138107308718,
+ "avg_blind_ef_error_pct": 80.62512274279263,
+ "direction_ratio_90_over_0": {
+  "pred": 0.28707722547535786,
+  "exp": 2.826530612244898
+ }
+}

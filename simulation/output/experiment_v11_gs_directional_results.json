@@ -1,0 +1,412 @@
+{
+  "model": "v11_gs_directional",
+  "notes": {
+    "protocol": "Scheme B (damage-independent plastic flow); gs(psi)=gs*[1-k_g*(1-xi_eff/xi0)], k_g=0.15 assumed shared (never fitted); single S0 per material; LOOCV per-fold S0 on training orientations only; Lemaitre baseline identical protocol (f_AM=1, same gs(psi)); AIC/BIC on blind folds, k=3 both models."
+  },
+  "main_calibration": {
+    "modified_model": {
+      "materials": {
+        "Ti64": {
+          "material": "Ti64",
+          "S0": 0.32000000000000006,
+          "calibration_avg_err_pct": 17.859963857760842,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.08,
+              "ef_pred": 0.05662906493252808,
+              "error_pct": 29.213668834339902,
+              "uts_exp_MPa": 1150,
+              "uts_pred_MPa": 959.3631776153682,
+              "uts_error_pct": 16.577114989967985
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.063,
+              "ef_pred": 0.051142010256843944,
+              "error_pct": 18.82220594151755,
+              "uts_exp_MPa": 1100,
+              "uts_pred_MPa": 954.7286020798455,
+              "uts_error_pct": 13.206490720014047
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.048,
+              "ef_pred": 0.05066112806276404,
+              "error_pct": 5.5440167974250745,
+              "uts_exp_MPa": 1050,
+              "uts_pred_MPa": 950.3481704294945,
+              "uts_error_pct": 9.490650435286236
+            }
+          ],
+          "walltime_s": 1447.6
+        },
+        "316L": {
+          "material": "316L",
+          "S0": 3.2,
+          "calibration_avg_err_pct": 17.0859682120128,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.37,
+              "ef_pred": 0.41069004882706606,
+              "error_pct": 10.997310493801638,
+              "uts_exp_MPa": 680,
+              "uts_pred_MPa": 570.2674032332598,
+              "uts_error_pct": 16.137146583344155
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.31,
+              "ef_pred": 0.338121628736644,
+              "error_pct": 9.071493140852896,
+              "uts_exp_MPa": 640,
+              "uts_pred_MPa": 487.4338993532583,
+              "uts_error_pct": 23.83845322605339
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.255,
+              "ef_pred": 0.33453220755352886,
+              "error_pct": 31.18910100138386,
+              "uts_exp_MPa": 595,
+              "uts_pred_MPa": 446.2868294831964,
+              "uts_error_pct": 24.993810170891358
+            }
+          ],
+          "walltime_s": 5632.9
+        },
+        "AlSi10Mg": {
+          "material": "AlSi10Mg",
+          "S0": 0.2,
+          "calibration_avg_err_pct": 18.830604035623498,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.056,
+              "ef_pred": 0.06482914866842165,
+              "error_pct": 15.766336907895809,
+              "uts_exp_MPa": 440,
+              "uts_pred_MPa": 351.6197265635153,
+              "uts_error_pct": 20.086425781019244
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.047,
+              "ef_pred": 0.03704214383162763,
+              "error_pct": 21.186928017813557,
+              "uts_exp_MPa": 410,
+              "uts_pred_MPa": 349.84606416064764,
+              "uts_error_pct": 14.67169166813472
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.037,
+              "ef_pred": 0.029770737542970382,
+              "error_pct": 19.538547181161125,
+              "uts_exp_MPa": 375,
+              "uts_pred_MPa": 349.49879130556695,
+              "uts_error_pct": 6.800322318515479
+            }
+          ],
+          "walltime_s": 1225.3
+        }
+      },
+      "avg_error_pct": 17.925512035132382,
+      "avg_uts_error_pct": 16.20023398813629,
+      "pass_count": 2
+    },
+    "lemaitre_baseline": {
+      "materials": {
+        "Ti64": {
+          "material": "Ti64",
+          "S0": 0.5,
+          "calibration_avg_err_pct": 19.0182616075419,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.08,
+              "ef_pred": 0.0576940284650654,
+              "error_pct": 27.882464418668256,
+              "uts_exp_MPa": 1150,
+              "uts_pred_MPa": 959.4210613363974,
+              "uts_error_pct": 16.572081622921964
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.063,
+              "ef_pred": 0.057894994804092506,
+              "error_pct": 8.103182850646816,
+              "uts_exp_MPa": 1100,
+              "uts_pred_MPa": 955.1502878765825,
+              "uts_error_pct": 13.168155647583408
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.048,
+              "ef_pred": 0.0581131860255891,
+              "error_pct": 21.069137553310618,
+              "uts_exp_MPa": 1050,
+              "uts_pred_MPa": 950.6812632495215,
+              "uts_error_pct": 9.458927309569379
+            }
+          ],
+          "walltime_s": 1608.1
+        },
+        "316L": {
+          "material": "316L",
+          "S0": 3.2,
+          "calibration_avg_err_pct": 22.462841562077422,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.37,
+              "ef_pred": 0.26585659176793475,
+              "error_pct": 28.146867089747364,
+              "uts_exp_MPa": 680,
+              "uts_pred_MPa": 461.67614873505653,
+              "uts_error_pct": 32.10644871543286
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.31,
+              "ef_pred": 0.24953328043700937,
+              "error_pct": 19.50539340741633,
+              "uts_exp_MPa": 640,
+              "uts_pred_MPa": 426.69436211090635,
+              "uts_error_pct": 33.329005920170886
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.255,
+              "ef_pred": 0.20467252631787514,
+              "error_pct": 19.736264189068574,
+              "uts_exp_MPa": 595,
+              "uts_pred_MPa": 411.77270022330737,
+              "uts_error_pct": 30.794504164150023
+            }
+          ],
+          "walltime_s": 5054.0
+        },
+        "AlSi10Mg": {
+          "material": "AlSi10Mg",
+          "S0": 0.32000000000000006,
+          "calibration_avg_err_pct": 15.10431865039546,
+          "cases": [
+            {
+              "orientation": 0,
+              "ef_exp": 0.056,
+              "ef_pred": 0.04564971106500803,
+              "error_pct": 18.482658812485663,
+              "uts_exp_MPa": 440,
+              "uts_pred_MPa": 350.63617149681363,
+              "uts_error_pct": 20.309961023451446
+            },
+            {
+              "orientation": 45,
+              "ef_exp": 0.047,
+              "ef_pred": 0.045840169278496254,
+              "error_pct": 2.4677249393696727,
+              "uts_exp_MPa": 410,
+              "uts_pred_MPa": 350.09061638332247,
+              "uts_error_pct": 14.612044784555495
+            },
+            {
+              "orientation": 90,
+              "ef_exp": 0.037,
+              "ef_pred": 0.046014151713752484,
+              "error_pct": 24.36257219933104,
+              "uts_exp_MPa": 375,
+              "uts_pred_MPa": 349.5368563043765,
+              "uts_error_pct": 6.790171652166268
+            }
+          ],
+          "walltime_s": 1136.5
+        }
+      },
+      "avg_error_pct": 18.861807273338258,
+      "avg_uts_error_pct": 19.682366760000193,
+      "pass_count": 2
+    }
+  },
+  "loocv": {
+    "modified_model": {
+      "folds": [
+        {
+          "material": "Ti64",
+          "held_orientation": 0,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 12.183111369471312,
+          "blind_ef_error_pct": 29.213668834339902,
+          "blind_uts_error_pct": 16.577114989967985
+        },
+        {
+          "material": "Ti64",
+          "held_orientation": 45,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 17.378842815882486,
+          "blind_ef_error_pct": 18.82220594151755,
+          "blind_uts_error_pct": 13.206490720014047
+        },
+        {
+          "material": "Ti64",
+          "held_orientation": 90,
+          "S0": 0.5,
+          "train_err_pct": 9.55548149627584,
+          "blind_ef_error_pct": 23.756438239932066,
+          "blind_uts_error_pct": 9.451969701395543
+        },
+        {
+          "material": "316L",
+          "held_orientation": 0,
+          "S0": 3.2,
+          "train_err_pct": 20.13029707111838,
+          "blind_ef_error_pct": 10.997310493801638,
+          "blind_uts_error_pct": 16.137146583344155
+        },
+        {
+          "material": "316L",
+          "held_orientation": 45,
+          "S0": 3.2,
+          "train_err_pct": 21.09320574759275,
+          "blind_ef_error_pct": 9.071493140852896,
+          "blind_uts_error_pct": 23.83845322605339
+        },
+        {
+          "material": "316L",
+          "held_orientation": 90,
+          "S0": 3.2,
+          "train_err_pct": 10.034401817327268,
+          "blind_ef_error_pct": 31.18910100138386,
+          "blind_uts_error_pct": 24.993810170891358
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 0,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 4.544443897679005,
+          "blind_ef_error_pct": 63.428199240039206,
+          "blind_uts_error_pct": 19.959595281143653
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 45,
+          "S0": 0.2,
+          "train_err_pct": 17.652442044528467,
+          "blind_ef_error_pct": 21.186928017813557,
+          "blind_uts_error_pct": 14.67169166813472
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 90,
+          "S0": 0.2,
+          "train_err_pct": 18.476632462854685,
+          "blind_ef_error_pct": 19.538547181161125,
+          "blind_uts_error_pct": 6.800322318515479
+        }
+      ],
+      "avg_ef_error_pct": 25.244876898982422,
+      "avg_uts_error_pct": 16.181843851051145,
+      "pass_10pct": 1
+    },
+    "lemaitre_baseline": {
+      "folds": [
+        {
+          "material": "Ti64",
+          "held_orientation": 0,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 12.44384959326229,
+          "blind_ef_error_pct": 37.965983102283815,
+          "blind_uts_error_pct": 16.623427474817877
+        },
+        {
+          "material": "Ti64",
+          "held_orientation": 45,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 20.889381306278914,
+          "blind_ef_error_pct": 21.07491967625057,
+          "blind_uts_error_pct": 13.212205854733849
+        },
+        {
+          "material": "Ti64",
+          "held_orientation": 90,
+          "S0": 0.8,
+          "train_err_pct": 12.283493295103305,
+          "blind_ef_error_pct": 49.4119072997135,
+          "blind_uts_error_pct": 9.4099439702454
+        },
+        {
+          "material": "316L",
+          "held_orientation": 0,
+          "S0": 3.2,
+          "train_err_pct": 19.620828798242453,
+          "blind_ef_error_pct": 28.146867089747364,
+          "blind_uts_error_pct": 32.10644871543286
+        },
+        {
+          "material": "316L",
+          "held_orientation": 45,
+          "S0": 3.2,
+          "train_err_pct": 23.94156563940797,
+          "blind_ef_error_pct": 19.50539340741633,
+          "blind_uts_error_pct": 33.329005920170886
+        },
+        {
+          "material": "316L",
+          "held_orientation": 90,
+          "S0": 3.2,
+          "train_err_pct": 23.826130248581848,
+          "blind_ef_error_pct": 19.736264189068574,
+          "blind_uts_error_pct": 30.794504164150023
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 0,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 13.415148569350357,
+          "blind_ef_error_pct": 18.482658812485663,
+          "blind_uts_error_pct": 20.309961023451446
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 45,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 21.422615505908354,
+          "blind_ef_error_pct": 2.4677249393696727,
+          "blind_uts_error_pct": 14.612044784555495
+        },
+        {
+          "material": "AlSi10Mg",
+          "held_orientation": 90,
+          "S0": 0.32000000000000006,
+          "train_err_pct": 10.475191875927669,
+          "blind_ef_error_pct": 24.36257219933104,
+          "blind_uts_error_pct": 6.790171652166268
+        }
+      ],
+      "avg_ef_error_pct": 24.572698968407394,
+      "avg_uts_error_pct": 19.68752372885824,
+      "pass_10pct": 1
+    }
+  },
+  "aic_bic": {
+    "modified_model": {
+      "AIC": -28.821396814479,
+      "BIC": -28.229723082470343,
+      "RMS": 0.03496315177701952,
+      "lnL": 17.4106984072395,
+      "k": 3,
+      "n": 9
+    },
+    "lemaitre_baseline": {
+      "AIC": -23.958147864859626,
+      "BIC": -23.366474132850968,
+      "RMS": 0.045808753519119255,
+      "lnL": 14.979073932429813,
+      "k": 3,
+      "n": 9
+    },
+    "dAIC": -4.863248949619376,
+    "dBIC": -4.863248949619376
+  }
+}

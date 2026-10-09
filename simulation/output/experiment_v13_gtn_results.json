@@ -1,0 +1,205 @@
+{
+  "model": "v13_gtn_baseline",
+  "notes": {
+    "protocol": "GTN-type baseline: Taylor plasticity + strain-controlled constant nucleation rate f_dot=A*p_dot (AM defect-driven; growth term vanishes under incompressible Taylor plasticity); f_c=0.15 literature-fixed; damage non-interacting (same one-way structure as modified model); single fitted A per material; LOOCV per-fold A on training orientations only; AIC/BIC k=3."
+  },
+  "main_calibration": {
+    "materials": {
+      "Ti64": {
+        "material": "Ti64",
+        "A": 3.0,
+        "calibration_avg_err_pct": 17.84231831712587,
+        "cases": [
+          {
+            "orientation": 0,
+            "ef_exp": 0.08,
+            "ef_pred": 0.0616379334329097,
+            "error_pct": 22.952583208862876,
+            "uts_exp_MPa": 1150,
+            "uts_pred_MPa": 960.2664949054397,
+            "uts_error_pct": 16.49856566039655
+          },
+          {
+            "orientation": 45,
+            "ef_exp": 0.063,
+            "ef_pred": 0.0616379334329097,
+            "error_pct": 2.1620104239528577,
+            "uts_exp_MPa": 1100,
+            "uts_pred_MPa": 960.2664949054397,
+            "uts_error_pct": 12.7030459176873
+          },
+          {
+            "orientation": 90,
+            "ef_exp": 0.048,
+            "ef_pred": 0.0616379334329097,
+            "error_pct": 28.412361318561874,
+            "uts_exp_MPa": 1050,
+            "uts_pred_MPa": 960.2664949054397,
+            "uts_error_pct": 8.54604810424384
+          }
+        ],
+        "walltime_s": 1804.1
+      },
+      "316L": {
+        "material": "316L",
+        "A": 0.2,
+        "calibration_avg_err_pct": 33.36770055185992,
+        "cases": [
+          {
+            "orientation": 0,
+            "ef_exp": 0.37,
+            "ef_pred": 0.20293941101099533,
+            "error_pct": 45.151510537568825,
+            "uts_exp_MPa": 680,
+            "uts_pred_MPa": 645.0576231859899,
+            "uts_error_pct": 5.1385848255897235
+          },
+          {
+            "orientation": 45,
+            "ef_exp": 0.31,
+            "ef_pred": 0.20293941101099533,
+            "error_pct": 34.53567386742086,
+            "uts_exp_MPa": 640,
+            "uts_pred_MPa": 645.0576231859899,
+            "uts_error_pct": 0.7902536228109192
+          },
+          {
+            "orientation": 90,
+            "ef_exp": 0.255,
+            "ef_pred": 0.20293941101099533,
+            "error_pct": 20.41591725059007,
+            "uts_exp_MPa": 595,
+            "uts_pred_MPa": 645.0576231859899,
+            "uts_error_pct": 8.413045913611745
+          }
+        ],
+        "walltime_s": 3413.1
+      },
+      "AlSi10Mg": {
+        "material": "AlSi10Mg",
+        "A": 1.875,
+        "calibration_avg_err_pct": 14.921662988802687,
+        "cases": [
+          {
+            "orientation": 0,
+            "ef_exp": 0.056,
+            "ef_pred": 0.047542010831257024,
+            "error_pct": 15.103552087041031,
+            "uts_exp_MPa": 440,
+            "uts_pred_MPa": 352.0138661398665,
+            "uts_error_pct": 19.996848604575803
+          },
+          {
+            "orientation": 45,
+            "ef_exp": 0.047,
+            "ef_pred": 0.047542010831257024,
+            "error_pct": 1.153214534589413,
+            "uts_exp_MPa": 410,
+            "uts_pred_MPa": 352.0138661398665,
+            "uts_error_pct": 14.142959478081346
+          },
+          {
+            "orientation": 90,
+            "ef_exp": 0.037,
+            "ef_pred": 0.04754804226756772,
+            "error_pct": 28.508222344777618,
+            "uts_exp_MPa": 375,
+            "uts_pred_MPa": 352.07234481490974,
+            "uts_error_pct": 6.114041382690736
+          }
+        ],
+        "walltime_s": 1168.7
+      }
+    },
+    "avg_error_pct": 22.043893952596154,
+    "avg_uts_error_pct": 10.260377056631995,
+    "pass_count": 2
+  },
+  "loocv": {
+    "folds": [
+      {
+        "material": "Ti64",
+        "held_orientation": 0,
+        "A": 6.0,
+        "train_err_pct": 11.994061156460067,
+        "blind_ef_error_pct": 39.54993177144126,
+        "blind_uts_error_pct": 16.52554228965417
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 45,
+        "A": 6.0,
+        "train_err_pct": 20.15002274285291,
+        "blind_ef_error_pct": 23.23800859865557,
+        "blind_uts_error_pct": 12.731248757365723
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 90,
+        "A": 3.0,
+        "train_err_pct": 12.557296816407867,
+        "blind_ef_error_pct": 28.412361318561874,
+        "blind_uts_error_pct": 8.54604810424384
+      },
+      {
+        "material": "316L",
+        "held_orientation": 0,
+        "A": 0.2,
+        "train_err_pct": 27.475795559005466,
+        "blind_ef_error_pct": 45.151510537568825,
+        "blind_uts_error_pct": 5.1385848255897235
+      },
+      {
+        "material": "316L",
+        "held_orientation": 45,
+        "A": 0.2,
+        "train_err_pct": 32.78371389407945,
+        "blind_ef_error_pct": 34.53567386742086,
+        "blind_uts_error_pct": 0.7902536228109192
+      },
+      {
+        "material": "316L",
+        "held_orientation": 90,
+        "A": 0.125,
+        "train_err_pct": 28.354168207089348,
+        "blind_ef_error_pct": 67.84313725490198,
+        "blind_uts_error_pct": 28.32201202011082
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 0,
+        "A": 1.875,
+        "train_err_pct": 14.830718439683515,
+        "blind_ef_error_pct": 15.103552087041031,
+        "blind_uts_error_pct": 19.996848604575803
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 45,
+        "A": 3.0,
+        "train_err_pct": 21.28101602322529,
+        "blind_ef_error_pct": 25.36522090138925,
+        "blind_uts_error_pct": 14.303056377372892
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 90,
+        "A": 1.5,
+        "train_err_pct": 9.557878820554546,
+        "blind_ef_error_pct": 51.08162208323292,
+        "blind_uts_error_pct": 6.0500633475105285
+      }
+    ],
+    "avg_ef_error_pct": 36.69789093557929,
+    "avg_uts_error_pct": 12.489295327692712,
+    "pass_10pct": 0
+  },
+  "aic_bic": {
+    "AIC": -12.005330274535122,
+    "BIC": -11.413656542526464,
+    "RMS": 0.08898969881791538,
+    "lnL": 9.002665137267561,
+    "k": 3,
+    "n": 9
+  }
+}

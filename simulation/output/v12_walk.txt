@@ -1,0 +1,42 @@
+﻿model = v12_fxi_transverse
+notes -> {'protocol': 'Scheme B; f_xi transverse-short-ligament form 1+beta5*(1/xi_eff-1); gs(psi) kg=0.15 assumed; single S0 per material; LOOCV per-fold S0 on training
+  protocol = Scheme B; f_xi transverse-short-ligament form 1+beta5*(1/xi_eff-1); gs(psi) kg=0
+main_calibration -> {'modified_model': {'materials': {'Ti64': {'material': 'Ti64', 'S0': 0.32000000000000006, 'calibration_avg_err_pct': 9.768311888321792, 'cases': [{'orientation'
+  modified_model -> {'materials': {'Ti64': {'material': 'Ti64', 'S0': 0.32000000000000006, 'calibration_avg_err_pct': 9.768311888321792, 'cases': [{'orientation': 0, 'ef_exp': 0.08
+    materials -> {'Ti64': {'material': 'Ti64', 'S0': 0.32000000000000006, 'calibration_avg_err_pct': 9.768311888321792, 'cases': [{'orientation': 0, 'ef_exp': 0.08, 'ef_pred': 0
+    avg_error_pct = 20.616145029605416
+    avg_uts_error_pct = 18.866407800088204
+    pass_count = 2
+  lemaitre_baseline -> {'materials': {'Ti64': {'material': 'Ti64', 'S0': 0.5, 'calibration_avg_err_pct': 19.0182616075419, 'cases': [{'orientation': 0, 'ef_exp': 0.08, 'ef_pred': 0.05
+    materials -> {'Ti64': {'material': 'Ti64', 'S0': 0.5, 'calibration_avg_err_pct': 19.0182616075419, 'cases': [{'orientation': 0, 'ef_exp': 0.08, 'ef_pred': 0.0576940284650654
+    avg_error_pct = 18.861807273338258
+    avg_uts_error_pct = 19.682366760000193
+    pass_count = 2
+loocv -> {'modified_model': {'folds': [{'material': 'Ti64', 'held_orientation': 0, 'S0': 0.32000000000000006, 'train_err_pct': 9.83167836758963, 'blind_ef_error_pct': 9.
+  modified_model -> {'folds': [{'material': 'Ti64', 'held_orientation': 0, 'S0': 0.32000000000000006, 'train_err_pct': 9.83167836758963, 'blind_ef_error_pct': 9.641578929786114, 'b
+    folds -> [{'material': 'Ti64', 'held_orientation': 0, 'S0': 0.32000000000000006, 'train_err_pct': 9.83167836758963, 'blind_ef_error_pct': 9.641578929786114, 'blind_uts_e
+    avg_ef_error_pct = 31.846634370068653
+    avg_uts_error_pct = 15.332028087258335
+    pass_10pct = 2
+  lemaitre_baseline -> {'folds': [{'material': 'Ti64', 'held_orientation': 0, 'S0': 0.32000000000000006, 'train_err_pct': 12.44384959326229, 'blind_ef_error_pct': 37.965983102283815, 
+    folds -> [{'material': 'Ti64', 'held_orientation': 0, 'S0': 0.32000000000000006, 'train_err_pct': 12.44384959326229, 'blind_ef_error_pct': 37.965983102283815, 'blind_uts
+    avg_ef_error_pct = 24.572698968407394
+    avg_uts_error_pct = 19.68752372885824
+    pass_10pct = 1
+aic_bic -> {'modified_model': {'AIC': -12.730843559390209, 'BIC': -12.13916982738155, 'RMS': 0.0854741786136405, 'lnL': 9.365421779695104, 'k': 3, 'n': 9}, 'lemaitre_basel
+  modified_model -> {'AIC': -12.730843559390209, 'BIC': -12.13916982738155, 'RMS': 0.0854741786136405, 'lnL': 9.365421779695104, 'k': 3, 'n': 9}
+    AIC = -12.730843559390209
+    BIC = -12.13916982738155
+    RMS = 0.0854741786136405
+    lnL = 9.365421779695104
+    k = 3
+    n = 9
+  lemaitre_baseline -> {'AIC': -23.958147864859626, 'BIC': -23.366474132850968, 'RMS': 0.045808753519119255, 'lnL': 14.979073932429813, 'k': 3, 'n': 9}
+    AIC = -23.958147864859626
+    BIC = -23.366474132850968
+    RMS = 0.045808753519119255
+    lnL = 14.979073932429813
+    k = 3
+    n = 9
+  dAIC = 11.227304305469417
+  dBIC = 11.227304305469417

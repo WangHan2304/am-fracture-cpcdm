@@ -1,0 +1,155 @@
+{
+  "model": "v7_final",
+  "model_form": "S=S0; f_AM=f_phi*f_theta*f_D0*f_lambda(psi)*f_xi(psi)*f_aniso(psi); f_lambda=1+beta4*(lambda_bar-1); Voce g_s recalibrated per material (0-deg UTS target); f_aniso in [0.4,8] (residual multiplier)",
+  "params": {
+    "Ti64": {
+      "gs_mult": 2.1996,
+      "S0": 0.7838,
+      "a45": 1.2455,
+      "a90": 2.7402
+    },
+    "AlSi10Mg": {
+      "gs_mult": 2.1996,
+      "S0": 0.1848,
+      "a45": 0.5584,
+      "a90": 0.563
+    },
+    "316L": {
+      "gs_mult": 1.2986915110447788,
+      "S0": 3.154413958671694,
+      "a45": 1.0482543945312501,
+      "a90": 1.2310180664062502
+    }
+  },
+  "avg_error_pct": 0.7604097838929226,
+  "avg_uts_error_pct": 7.893214781180577,
+  "pass_count": 9,
+  "cases": [
+    {
+      "material": "Ti64",
+      "orientation": 0,
+      "S0": 0.7838,
+      "gs_mult": 2.1996,
+      "a_aniso": 1.0,
+      "f_AM": 0.6720523426964136,
+      "ef_exp": 0.08,
+      "ef_pred": 0.08000057869153313,
+      "error_pct": 0.0007233644164043873,
+      "uts_exp_MPa": 1150.0,
+      "uts_pred_MPa": 1007.7460101924142,
+      "uts_error_pct": 12.36991215718137
+    },
+    {
+      "material": "Ti64",
+      "orientation": 45,
+      "S0": 0.7838,
+      "gs_mult": 2.1996,
+      "a_aniso": 1.2455,
+      "f_AM": 1.135411855700682,
+      "ef_exp": 0.063,
+      "ef_pred": 0.06299718543478995,
+      "error_pct": 0.004467563825474907,
+      "uts_exp_MPa": 1100.0,
+      "uts_pred_MPa": 1006.30725131078,
+      "uts_error_pct": 8.51752260811091
+    },
+    {
+      "material": "Ti64",
+      "orientation": 90,
+      "S0": 0.7838,
+      "gs_mult": 2.1996,
+      "a_aniso": 2.7402,
+      "f_AM": 2.5942489895125043,
+      "ef_exp": 0.048,
+      "ef_pred": 0.04800085468059495,
+      "error_pct": 0.0017805845728124474,
+      "uts_exp_MPa": 1050.0,
+      "uts_pred_MPa": 1004.5440962982658,
+      "uts_error_pct": 4.329133685879448
+    },
+    {
+      "material": "316L",
+      "orientation": 0,
+      "S0": 3.154413958671694,
+      "gs_mult": 1.2986915110447788,
+      "a_aniso": 1.0,
+      "f_AM": 0.6630955516070745,
+      "ef_exp": 0.37,
+      "ef_pred": 0.36069921430062,
+      "error_pct": 2.5137258646972906,
+      "uts_exp_MPa": 680.0,
+      "uts_pred_MPa": 651.3964309233723,
+      "uts_error_pct": 4.206407217151125
+    },
+    {
+      "material": "316L",
+      "orientation": 45,
+      "S0": 3.154413958671694,
+      "gs_mult": 1.2986915110447788,
+      "a_aniso": 1.0482543945312501,
+      "f_AM": 0.791349020073948,
+      "ef_exp": 0.31,
+      "ef_pred": 0.30946039238266604,
+      "error_pct": 0.17406697333353524,
+      "uts_exp_MPa": 640.0,
+      "uts_pred_MPa": 608.7454798647625,
+      "uts_error_pct": 4.883518771130859
+    },
+    {
+      "material": "316L",
+      "orientation": 90,
+      "S0": 3.154413958671694,
+      "gs_mult": 1.2986915110447788,
+      "a_aniso": 1.2310180664062502,
+      "f_AM": 0.9616671808011031,
+      "ef_exp": 0.255,
+      "ef_pred": 0.2654175622588142,
+      "error_pct": 4.085318532868308,
+      "uts_exp_MPa": 595.0,
+      "uts_pred_MPa": 580.49070498496,
+      "uts_error_pct": 2.4385369773176535
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 0,
+      "S0": 0.1848,
+      "gs_mult": 2.1996,
+      "a_aniso": 1.0,
+      "f_AM": 0.37084877907817193,
+      "ef_exp": 0.056,
+      "ef_pred": 0.05601155449947634,
+      "error_pct": 0.020633034779177117,
+      "uts_exp_MPa": 440.0,
+      "uts_pred_MPa": 360.81354093915417,
+      "uts_error_pct": 17.996922513828597
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 45,
+      "S0": 0.1848,
+      "gs_mult": 2.1996,
+      "a_aniso": 0.5584,
+      "f_AM": 0.49574301824938927,
+      "ef_exp": 0.047,
+      "ef_pred": 0.046989410713074276,
+      "error_pct": 0.022530397714307624,
+      "uts_exp_MPa": 410.0,
+      "uts_pred_MPa": 360.0327781846868,
+      "uts_error_pct": 12.187127272027617
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation": 90,
+      "S0": 0.1848,
+      "gs_mult": 2.1996,
+      "a_aniso": 0.563,
+      "f_AM": 0.7553798454652676,
+      "ef_exp": 0.037,
+      "ef_pred": 0.037007563443366726,
+      "error_pct": 0.020441738828992903,
+      "uts_exp_MPa": 375.0,
+      "uts_pred_MPa": 359.5880556450089,
+      "uts_error_pct": 4.109851827997621
+    }
+  ]
+}

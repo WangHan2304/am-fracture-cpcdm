@@ -1,0 +1,233 @@
+{
+ "model": "Hierarchical Bayesian per-group directional-gain MCMC (emcee), seed 42",
+ "structure": "o_i=beta_g c_i+e; beta_g~N(mu,tau^2); mu~N(0,3), tau~HN(2), s~HN(1)",
+ "data": "blind_eval_expanded_results.json complete 0/45/90 triples",
+ "n_groups": 6,
+ "n_obs": 18,
+ "groups": [
+  "AlSi10Mg·awd2018metals",
+  "316L·hitzler2017materials",
+  "Ti64·sun2024adem",
+  "316L·v12_original",
+  "AlSi10Mg·v12_original",
+  "Ti64·v12_original"
+ ],
+ "hierarchical": {
+  "modified": {
+   "per_group_beta": [
+    {
+     "group": "AlSi10Mg·awd2018metals",
+     "beta_median": 0.114,
+     "beta_hpd89": [
+      -0.365,
+      0.597
+     ],
+     "P(beta>0.5)": 0.095
+    },
+    {
+     "group": "316L·hitzler2017materials",
+     "beta_median": -0.675,
+     "beta_hpd89": [
+      -1.293,
+      0.069
+     ],
+     "P(beta>0.5)": 0.002
+    },
+    {
+     "group": "Ti64·sun2024adem",
+     "beta_median": 0.211,
+     "beta_hpd89": [
+      -0.384,
+      0.85
+     ],
+     "P(beta>0.5)": 0.222
+    },
+    {
+     "group": "316L·v12_original",
+     "beta_median": 0.214,
+     "beta_hpd89": [
+      -0.107,
+      0.535
+     ],
+     "P(beta>0.5)": 0.076
+    },
+    {
+     "group": "AlSi10Mg·v12_original",
+     "beta_median": 0.301,
+     "beta_hpd89": [
+      -0.15,
+      0.76
+     ],
+     "P(beta>0.5)": 0.236
+    },
+    {
+     "group": "Ti64·v12_original",
+     "beta_median": 0.461,
+     "beta_hpd89": [
+      -0.158,
+      1.177
+     ],
+     "P(beta>0.5)": 0.463
+    }
+   ],
+   "pooled_mu_median": 0.113,
+   "pooled_mu_hpd89": [
+    -0.38,
+    0.629
+   ],
+   "tau_median": 0.567,
+   "acceptance_frac": 0.408,
+   "deterministic_capture": [
+    {
+     "group": "AlSi10Mg·awd2018metals",
+     "R2_direction": -3.383,
+     "contrast_sd_model": 0.367,
+     "contrast_sd_obs": 0.172
+    },
+    {
+     "group": "316L·hitzler2017materials",
+     "R2_direction": -1.763,
+     "contrast_sd_model": 0.365,
+     "contrast_sd_obs": 0.485
+    },
+    {
+     "group": "Ti64·sun2024adem",
+     "R2_direction": -0.422,
+     "contrast_sd_model": 0.26,
+     "contrast_sd_obs": 0.235
+    },
+    {
+     "group": "316L·v12_original",
+     "R2_direction": -8.863,
+     "contrast_sd_model": 0.629,
+     "contrast_sd_obs": 0.152
+    },
+    {
+     "group": "AlSi10Mg·v12_original",
+     "R2_direction": -1.193,
+     "contrast_sd_model": 0.409,
+     "contrast_sd_obs": 0.17
+    },
+    {
+     "group": "Ti64·v12_original",
+     "R2_direction": 0.926,
+     "contrast_sd_model": 0.26,
+     "contrast_sd_obs": 0.209
+    }
+   ]
+  },
+  "lemaitre": {
+   "per_group_beta": [
+    {
+     "group": "AlSi10Mg·awd2018metals",
+     "beta_median": -0.689,
+     "beta_hpd89": [
+      -4.752,
+      3.08
+     ],
+     "P(beta>0.5)": 0.265
+    },
+    {
+     "group": "316L·hitzler2017materials",
+     "beta_median": -1.793,
+     "beta_hpd89": [
+      -3.819,
+      0.275
+     ],
+     "P(beta>0.5)": 0.037
+    },
+    {
+     "group": "Ti64·sun2024adem",
+     "beta_median": -0.736,
+     "beta_hpd89": [
+      -4.965,
+      2.911
+     ],
+     "P(beta>0.5)": 0.257
+    },
+    {
+     "group": "316L·v12_original",
+     "beta_median": 0.43,
+     "beta_hpd89": [
+      -1.278,
+      2.098
+     ],
+     "P(beta>0.5)": 0.473
+    },
+    {
+     "group": "AlSi10Mg·v12_original",
+     "beta_median": -0.773,
+     "beta_hpd89": [
+      -5.022,
+      2.85
+     ],
+     "P(beta>0.5)": 0.251
+    },
+    {
+     "group": "Ti64·v12_original",
+     "beta_median": -0.801,
+     "beta_hpd89": [
+      -5.151,
+      2.733
+     ],
+     "P(beta>0.5)": 0.245
+    }
+   ],
+   "pooled_mu_median": -0.68,
+   "pooled_mu_hpd89": [
+    -2.964,
+    1.462
+   ],
+   "tau_median": 1.668,
+   "acceptance_frac": 0.392,
+   "deterministic_capture": [
+    {
+     "group": "AlSi10Mg·awd2018metals",
+     "R2_direction": -0.009,
+     "contrast_sd_model": 0.003,
+     "contrast_sd_obs": 0.172
+    },
+    {
+     "group": "316L·hitzler2017materials",
+     "R2_direction": -0.356,
+     "contrast_sd_model": 0.115,
+     "contrast_sd_obs": 0.485
+    },
+    {
+     "group": "Ti64·sun2024adem",
+     "R2_direction": -0.016,
+     "contrast_sd_model": 0.003,
+     "contrast_sd_obs": 0.235
+    },
+    {
+     "group": "316L·v12_original",
+     "R2_direction": 0.899,
+     "contrast_sd_model": 0.14,
+     "contrast_sd_obs": 0.152
+    },
+    {
+     "group": "AlSi10Mg·v12_original",
+     "R2_direction": -0.062,
+     "contrast_sd_model": 0.005,
+     "contrast_sd_obs": 0.17
+    },
+    {
+     "group": "Ti64·v12_original",
+     "R2_direction": -0.048,
+     "contrast_sd_model": 0.005,
+     "contrast_sd_obs": 0.209
+    }
+   ]
+  }
+ },
+ "lemaitre_note": "Lemaitre per-group beta is numerically unstable because its predicted within-group contrast is ~0 (direction-blind): its R2_direction ~ 0 and contrast_sd_model << contrast_sd_obs.",
+ "ti64_v12_ratio_0_90": {
+  "exp": 1.667,
+  "modified": 1.885,
+  "lemaitre": 0.988
+ },
+ "level_rmse_log": {
+  "modified": 0.8052,
+  "lemaitre": 0.5004
+ }
+}

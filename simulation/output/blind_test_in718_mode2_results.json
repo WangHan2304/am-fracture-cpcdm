@@ -1,0 +1,34 @@
+{
+ "material": "Inconel 718 (mode 2: material-internal LOOCV, S0 calibrated on 0\u00b0 only)",
+ "S0_calibrated_MPa": 8.0,
+ "protocol_note": "Identical to main protocol: single tunable S0 per material, leave-one-direction-out blind prediction; IN718 participates only through its 0\u00b0 datum; 45\u00b0/90\u00b0 are genuinely blind.",
+ "cases": [
+  {
+   "psi": 0,
+   "blind": false,
+   "ef_exp": 0.3,
+   "ef_pred": 0.24742511131451586,
+   "ef_error_pct": 17.524962895161377,
+   "uts_pred_MPa": 309.62114495602515
+  },
+  {
+   "psi": 45,
+   "blind": true,
+   "ef_exp": 0.25,
+   "ef_pred": 0.08952210836151886,
+   "ef_error_pct": 64.19115665539246,
+   "uts_pred_MPa": 207.4007918178846
+  },
+  {
+   "psi": 90,
+   "blind": true,
+   "ef_exp": 0.2,
+   "ef_pred": 0.04219856335347363,
+   "ef_error_pct": 78.90071832326319,
+   "uts_pred_MPa": 129.8767371346053
+  }
+ ],
+ "blind_avg_ef_error_pct": 71.54593748932783,
+ "ef_direction_ratio_90_over_0_pred": 0.17055085124255104,
+ "ef_direction_ratio_90_over_0_exp": 0.6666666666666667
+}

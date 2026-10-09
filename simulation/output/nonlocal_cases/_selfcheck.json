@@ -1,0 +1,57 @@
+{
+ "weights": {
+  "nip": 216,
+  "lc": 0.3333333333333333,
+  "rcut": 1.0,
+  "nnz": 42792,
+  "nnz_per_row_mean": 198.11,
+  "max_neighbour_radius": 1.0,
+  "row_sum_min": 0.9999999999999997,
+  "row_sum_max": 1.0000000000000002,
+  "constant_field_error": 4.440892098500626e-16,
+  "sparse": true,
+  "row_sum_max_dev": 3.3306690738754696e-16,
+  "symmetry_max_dev": 0.024196669945044713,
+  "min_entry": 0.0,
+  "isolated_ips": 0
+ },
+ "identity_W_vs_local": {
+  "n_steps": 3,
+  "strain_max_abs_diff": 0.0,
+  "stress_max_abs_diff": 0.0,
+  "damage_max_abs_diff": 0.0,
+  "ef_diff": 0.0,
+  "ftype_a": "max_strain",
+  "ftype_b": "max_strain",
+  "ef_both": [
+   0.006,
+   0.006
+  ],
+  "bitwise_identical": true
+ },
+ "integrate_batch_identity_W_test": {
+  "D_max_abs_diff": 0.0,
+  "Fp_max_abs_diff": 0.0,
+  "g_max_abs_diff": 0.0,
+  "p_max_abs_diff": 0.0,
+  "sig_max_abs_diff": 0.0,
+  "damage_branch_active": true,
+  "bitwise_identical": true
+ },
+ "operator_checks": {
+  "constant_field_preserved_max_dev": 0.0,
+  "uniform_activation_note": "W @ c*1 = c*1 由行归一化保证"
+ },
+ "local_vs_original_file": {
+  "eps_step_used_for_comparison": 0.002,
+  "note": "原文件 run() 忽略构造参数 eps_step 而用模块常量 EPS_STEP；本文件改用构造参数。两者在 eps_step=EPS_STEP 时逐位相同。",
+  "n_steps_original": 3,
+  "n_steps_new_local": 3,
+  "strain_max_abs_diff": 0.0,
+  "stress_max_abs_diff": 0.0,
+  "damage_max_abs_diff": 0.0,
+  "ef_original": 0.006,
+  "ef_new_local": 0.006,
+  "bitwise_identical": true
+ }
+}

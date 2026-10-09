@@ -1,0 +1,50 @@
+{
+  "Ti64": {
+    "ef_taylor_20grain": 0.056629064932528075,
+    "uts_taylor_20grain_MPa": 959.3631776153682,
+    "ef_exp_0deg": 0.08,
+    "ef_single_mean": 0.05634929819646741,
+    "ef_single_std": 0.006862982995741317,
+    "ef_single_min": 0.04800664580689432,
+    "ef_single_max": 0.06735339831255256,
+    "dev_pct_mean": -0.4940338259054724,
+    "dev_pct_std": 12.119188271814776,
+    "dev_pct_min": -15.226137206939793,
+    "dev_pct_max": 18.93786060709677,
+    "uts_single_mean_MPa": 978.5038468780108,
+    "uts_single_std_MPa": 66.49664850444387,
+    "n_single": 12
+  },
+  "316L": {
+    "ef_taylor_20grain": 0.41069004882706606,
+    "uts_taylor_20grain_MPa": 570.2674032332598,
+    "ef_exp_0deg": 0.37,
+    "ef_single_mean": 0.34836156101092675,
+    "ef_single_std": 0.16316086546960246,
+    "ef_single_min": 0.15362169770000053,
+    "ef_single_max": 0.612,
+    "dev_pct_mean": -15.176527406531989,
+    "dev_pct_std": 39.72846820505905,
+    "dev_pct_min": -62.594248840763164,
+    "dev_pct_max": 49.01748940542307,
+    "uts_single_mean_MPa": 623.3091060153475,
+    "uts_single_std_MPa": 77.36839696126884,
+    "n_single": 12
+  },
+  "AlSi10Mg": {
+    "ef_taylor_20grain": 0.06482914866842165,
+    "uts_taylor_20grain_MPa": 351.6197265635153,
+    "ef_exp_0deg": 0.056,
+    "ef_single_mean": 0.07410998848300522,
+    "ef_single_std": 0.02804799439431579,
+    "ef_single_min": 0.04906833573952502,
+    "ef_single_max": 0.122,
+    "dev_pct_mean": 14.315844038075838,
+    "dev_pct_std": 43.2644805159658,
+    "dev_pct_min": -24.311306337690255,
+    "dev_pct_max": 88.1869537173582,
+    "uts_single_mean_MPa": 355.3515904578214,
+    "uts_single_std_MPa": 54.40036821665617,
+    "n_single": 12
+  }
+}

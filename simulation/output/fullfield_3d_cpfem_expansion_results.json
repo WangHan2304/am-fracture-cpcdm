@@ -1,0 +1,41 @@
+[
+ {
+  "material": "Ti64",
+  "orientation": 45,
+  "ef_fullfield": 0.08762,
+  "ef_taylor": 0.09312,
+  "bias_pct": -5.9,
+  "Dc": 0.42,
+  "S0": 0.32,
+  "eps_step": 0.002,
+  "n_sub": 30,
+  "fullfield_wall_sec": 1934.2,
+  "wall_clock_total_sec": 1946.2
+ },
+ {
+  "material": "Ti64",
+  "orientation": 90,
+  "ef_fullfield": 0.0665,
+  "ef_taylor": 0.0775,
+  "bias_pct": -14.2,
+  "Dc": 0.42,
+  "S0": 0.32,
+  "eps_step": 0.002,
+  "n_sub": 30,
+  "fullfield_wall_sec": 1712.5,
+  "wall_clock_total_sec": 1723.2
+ },
+ {
+  "material": "AlSi10Mg",
+  "orientation": 0,
+  "ef_fullfield": 0.122,
+  "ef_taylor": 0.11811,
+  "bias_pct": 3.29,
+  "Dc": 0.35,
+  "S0": 0.2,
+  "eps_step": 0.002,
+  "n_sub": 30,
+  "fullfield_wall_sec": 2132.1,
+  "wall_clock_total_sec": 2146.5
+ }
+]

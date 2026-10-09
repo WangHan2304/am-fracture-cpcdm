@@ -1,0 +1,79 @@
+{
+ "model": "Bayes-factor + TOST + bootstrap-Kendall upgrade (post-hoc, seed 42)",
+ "n_paired": 23,
+ "paired_diff_pp": {
+  "mean": 4.814,
+  "sd": 61.355,
+  "se": 12.793
+ },
+ "bayes_factor_BF01": {
+  "BF01_delta_over_sigma~Cauchy(0,0.2)": 1.801,
+  "BF01_delta_over_sigma~Cauchy(0,0.35)": 2.491,
+  "BF01_delta_over_sigma~Cauchy(0,0.5)": 3.226,
+  "BF01_delta_over_sigma~Cauchy(0,1.0)": 5.84
+ },
+ "tost": {
+  "margin_10pp": {
+   "mean": 4.8139,
+   "sd": 61.3553,
+   "se": 12.7935,
+   "p_lower": 0.1297,
+   "p_upper": 0.3446,
+   "p_tost": 0.3446,
+   "equivalence_rejected": false
+  },
+  "margin_15pp": {
+   "mean": 4.8139,
+   "sd": 61.3553,
+   "se": 12.7935,
+   "p_lower": 0.0679,
+   "p_upper": 0.2172,
+   "p_tost": 0.2172,
+   "equivalence_rejected": false
+  },
+  "margin_20pp": {
+   "mean": 4.8139,
+   "sd": 61.3553,
+   "se": 12.7935,
+   "p_lower": 0.0327,
+   "p_upper": 0.1239,
+   "p_tost": 0.1239,
+   "equivalence_rejected": false
+  },
+  "margin_25pp": {
+   "mean": 4.8139,
+   "sd": 61.3553,
+   "se": 12.7935,
+   "p_lower": 0.0147,
+   "p_upper": 0.0644,
+   "p_tost": 0.0644,
+   "equivalence_rejected": false
+  }
+ },
+ "kendall_descriptor": {
+  "mean_tau": 0.208,
+  "ci95": [
+   -0.333,
+   0.708
+  ],
+  "p_vs_0": 0.5315,
+  "n_groups": 8
+ },
+ "kendall_lemaitre": {
+  "mean_tau": -0.208,
+  "ci95": [
+   -0.75,
+   0.333
+  ],
+  "p_vs_0": 0.5115,
+  "n_groups": 8
+ },
+ "kendall_diff_mod_minus_lem": {
+  "mean": 0.417,
+  "ci95": [
+   -0.417,
+   1.25
+  ],
+  "p_vs_0": 0.4339
+ }
+}

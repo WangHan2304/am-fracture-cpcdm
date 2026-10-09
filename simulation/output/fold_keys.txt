@@ -1,0 +1,9 @@
+﻿fold keys: ['material', 'held_orientation', 'S0', 'train_err_pct', 'blind_ef_error_pct', 'blind_uts_error_pct']
+{
+ "material": "Ti64",
+ "held_orientation": 0,
+ "S0": 0.32000000000000006,
+ "train_err_pct": 9.83167836758963,
+ "blind_ef_error_pct": 9.641578929786114,
+ "blind_uts_error_pct": 16.531887173908455
+}

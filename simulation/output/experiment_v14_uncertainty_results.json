@@ -1,0 +1,120 @@
+{
+  "model": "v14_global_uncertainty",
+  "protocol": "LHS MC N=24/case; descriptors phi/lambda/xi/theta/D0/beta1-5 log-uniform ±50% (literature cross-source spread); S0 fixed from v12 calibration; kg=0.15; gs(psi) as assumed term (kg sweep included).",
+  "S0_used": {
+    "Ti64": 0.32,
+    "316L": 3.2,
+    "AlSi10Mg": 0.2
+  },
+  "cases": [
+    {
+      "material": "Ti64",
+      "orientation_deg": 0,
+      "ef_exp": 0.08,
+      "p5": 0.05797663375242041,
+      "p50": 0.06901794516208179,
+      "p95": 0.11568116593024194,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "Ti64",
+      "orientation_deg": 45,
+      "ef_exp": 0.063,
+      "p5": 0.05114615965715331,
+      "p50": 0.05450340380682682,
+      "p95": 0.06279170612096376,
+      "hit": false,
+      "n": 24
+    },
+    {
+      "material": "Ti64",
+      "orientation_deg": 90,
+      "ef_exp": 0.048,
+      "p5": 0.04170556392131048,
+      "p50": 0.04561839803077965,
+      "p95": 0.04834424320746094,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "316L",
+      "orientation_deg": 0,
+      "ef_exp": 0.37,
+      "p5": 0.35769186601247593,
+      "p50": 0.5663255794231419,
+      "p95": 0.612,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "316L",
+      "orientation_deg": 45,
+      "ef_exp": 0.31,
+      "p5": 0.3091028260930558,
+      "p50": 0.365173934306045,
+      "p95": 0.4711103162233024,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "316L",
+      "orientation_deg": 90,
+      "ef_exp": 0.255,
+      "p5": 0.14921652519599715,
+      "p50": 0.23306183797783092,
+      "p95": 0.37484553257087927,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation_deg": 0,
+      "ef_exp": 0.056,
+      "p5": 0.04250090845523541,
+      "p50": 0.05754706540772539,
+      "p95": 0.122,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation_deg": 45,
+      "ef_exp": 0.047,
+      "p5": 0.03174240596761799,
+      "p50": 0.03769365481336322,
+      "p95": 0.04747018060096605,
+      "hit": true,
+      "n": 24
+    },
+    {
+      "material": "AlSi10Mg",
+      "orientation_deg": 90,
+      "ef_exp": 0.037,
+      "p5": 0.027046695234045123,
+      "p50": 0.0329991252697385,
+      "p95": 0.03977511039308095,
+      "hit": true,
+      "n": 24
+    }
+  ],
+  "hit_count": 8,
+  "n_cases": 9,
+  "kg_sweep_0deg": {
+    "Ti64": {
+      "0.0": 0.0723,
+      "0.15": 0.0723,
+      "0.3": 0.0723
+    },
+    "316L": {
+      "0.0": 0.5419,
+      "0.15": 0.5419,
+      "0.3": 0.5419
+    },
+    "AlSi10Mg": {
+      "0.0": 0.0688,
+      "0.15": 0.0688,
+      "0.3": 0.0688
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+ "purpose": "identify what code_verification_summary.md section 5 actually measures",
+ "archived_section_5_1": {
+  "27": {
+   "ef": 0.072548,
+   "uts_MPa": 934.76,
+   "wall_s": 32.9
+  },
+  "64": {
+   "ef": 0.071219,
+   "uts_MPa": 942.43,
+   "wall_s": 77.9
+  },
+  "125": {
+   "ef": 0.069538,
+   "uts_MPa": 951.68,
+   "wall_s": 148.4
+  }
+ },
+ "runs": [
+  {
+   "n_grains": 27,
+   "eps_step": 0.001,
+   "ef": 0.072548,
+   "uts_MPa": 934758768.75,
+   "wall_s": 29.3,
+   "archived_ef": 0.072548,
+   "archived_uts_MPa": 934.76,
+   "ef_rel_diff_pct_vs_archived": -0.001
+  },
+  {
+   "n_grains": 27,
+   "eps_step": 0.002,
+   "ef": 0.11175,
+   "uts_MPa": 727253069.76,
+   "wall_s": 57.1
+  },
+  {
+   "n_grains": 64,
+   "eps_step": 0.001,
+   "ef": 0.071219,
+   "uts_MPa": 942431304.12,
+   "wall_s": 85.8,
+   "archived_ef": 0.071219,
+   "archived_uts_MPa": 942.43,
+   "ef_rel_diff_pct_vs_archived": 0.0
+  },
+  {
+   "n_grains": 64,
+   "eps_step": 0.002,
+   "ef": 0.103989,
+   "uts_MPa": 713102504.37,
+   "wall_s": 75.3
+  },
+  {
+   "n_grains": 125,
+   "eps_step": 0.001,
+   "ef": 0.069538,
+   "uts_MPa": 951681169.93,
+   "wall_s": 160.9,
+   "archived_ef": 0.069538,
+   "archived_uts_MPa": 951.68,
+   "ef_rel_diff_pct_vs_archived": -0.0
+  },
+  {
+   "n_grains": 125,
+   "eps_step": 0.002,
+   "ef": 0.100446,
+   "uts_MPa": 677082761.58,
+   "wall_s": 145.3
+  }
+ ]
+}

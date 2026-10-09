@@ -1,0 +1,13 @@
+﻿  [Ti64 0°] eps=0.0168 sig11=808.8 Dagg=0.0030 (30s, it=349, eps0=0.0003, r=3)
+  [Ti64 0°] eps=0.0230 sig11=838.9 Dagg=0.0030 (62s, it=679, eps0=0.0003, r=3)
+  [Ti64 0°] eps=0.0293 sig11=853.7 Dagg=0.0030 (95s, it=1029, eps0=0.0003, r=3)
+  [Ti64 0°] eps=0.0355 sig11=863.0 Dagg=0.0057 (128s, it=1369, eps0=0.0003, r=3)
+  [Ti64 0°] eps=0.0399 sig11=840.1 Dagg=0.0294 (176s, it=1794, eps0=0.0001, r=4)
+  [Ti64 0°] eps=0.0430 sig11=789.1 Dagg=0.0523 (223s, it=2202, eps0=0.0001, r=4)
+  [Ti64 0°] eps=0.0461 sig11=718.2 Dagg=0.0790 (270s, it=2642, eps0=0.0001, r=4)
+  [Ti64 0°] eps=0.0493 sig11=629.6 Dagg=0.1091 (318s, it=3080, eps0=0.0001, r=4)
+  [Ti64 0°] eps=0.0524 sig11=521.3 Dagg=0.1429 (365s, it=3505, eps0=0.0001, r=4)
+  [Ti64 0°] eps=0.0548 sig11=419.6 Dagg=0.1739 (415s, it=3938, eps0=0.0000, r=6)
+  [Ti64 0°] eps=0.0556 sig11=383.3 Dagg=0.1858 (455s, it=4144, eps0=0.0000, r=6)
+  [fail] eps=0.0556->0.0556 nrm=7.248e+01
+RESULT {"material": "Ti64", "orientation": 0, "ef_fullfield": 0.05559, "ef_taylor": 0.07559, "bias_pct": -26.46, "Dc": 0.42, "S0": 0.32, "eps_step": 0.002, "n_sub": 30, "fullfield_wall_sec": 457.5}

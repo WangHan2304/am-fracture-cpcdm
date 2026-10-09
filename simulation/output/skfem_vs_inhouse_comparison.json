@@ -1,0 +1,49 @@
+{
+ "note": "Taylor ef computed with generous max_strain=0.5 (un-truncated); in-house = fullfield_2d_cpfem; skfem = fullfield_skfem (scikit-fem 12)",
+ "rows": [
+  {
+   "material": "Ti64",
+   "orientation": 0,
+   "criterion_sk": "localization_onset",
+   "ef_taylor": 0.11236,
+   "ef_inhouse": 0.0555,
+   "ef_skfem": 0.04931,
+   "bias_inhouse_pct": -50.6,
+   "bias_skfem_pct": -56.11,
+   "skfem_vs_inhouse_pct": -11.15
+  },
+  {
+   "material": "Ti64",
+   "orientation": 45,
+   "criterion_sk": "localization_onset",
+   "ef_taylor": 0.09129,
+   "ef_inhouse": 0.04125,
+   "ef_skfem": 0.03453,
+   "bias_inhouse_pct": -54.81,
+   "bias_skfem_pct": -62.18,
+   "skfem_vs_inhouse_pct": -16.29
+  },
+  {
+   "material": "Ti64",
+   "orientation": 90,
+   "criterion_sk": "localization_onset",
+   "ef_taylor": 0.07531,
+   "ef_inhouse": 0.03581,
+   "ef_skfem": 0.02963,
+   "bias_inhouse_pct": -52.45,
+   "bias_skfem_pct": -60.65,
+   "skfem_vs_inhouse_pct": -17.26
+  },
+  {
+   "material": "AlSi10Mg",
+   "orientation": 0,
+   "criterion_sk": "aggregate_Dc",
+   "ef_taylor": 0.11434,
+   "ef_inhouse": 0.122,
+   "ef_skfem": 0.05642,
+   "bias_inhouse_pct": 6.7,
+   "bias_skfem_pct": -50.66,
+   "skfem_vs_inhouse_pct": -53.75
+  }
+ ]
+}

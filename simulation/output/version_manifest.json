@@ -1,0 +1,326 @@
+{
+  "generated_by": "gen_reproducibility.py",
+  "environment": {
+    "python": "3.13.0",
+    "numpy": "2.3.4",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "seed": 42,
+    "solver": "TaylorCPCDM (in-house Taylor-type crystal plasticity, DAMASK interface conventions)",
+    "determinism": "fixed seed=42; ProcessPoolExecutor parallelism does not alter per-case results",
+    "scipy": "1.17.1"
+  },
+  "files": {
+    "core_model": [
+      {
+        "path": "src/taylor_cpcdm.py",
+        "sha256": "47e964b7d8f06407161c767c6902ce8ed81cadcd14ba29477570eda8f491dc55",
+        "bytes": 27720
+      },
+      {
+        "path": "src/materials.py",
+        "sha256": "c6b01ef0d8f55676ae9d64eb00b0c83bf4eb47d9e1dd6af55f7dc5d3f30f3f9f",
+        "bytes": 17968
+      },
+      {
+        "path": "src/calibrated_model.py",
+        "sha256": "31561bf80910706372b8ecaa9d912ef7ab760acf1137681d5e42de0bffc874b6",
+        "bytes": 9785
+      },
+      {
+        "path": "src/cp_cdm_model.py",
+        "sha256": "234573b28b32f146f8a67efc6d332d0cd7a608a81d8cd84d03456cc725d9c3a2",
+        "bytes": 15660
+      },
+      {
+        "path": "src/rve_simulator.py",
+        "sha256": "3ff3a520cc584afb6f2370473b913eb520c103a0bcb3e8890a25a3e2e05fe6fc",
+        "bytes": 11740
+      },
+      {
+        "path": "src/am_correction_v4.py",
+        "sha256": "81eb6fab7fda8de312219c33e9e9d3b080294a5c1c39ab19a1c32f7b3ed80242",
+        "bytes": 6544
+      }
+    ],
+    "data": [
+      {
+        "path": "data/extended_literature_dataset.csv",
+        "sha256": "65183045594b00b7b349a0fa9bb799bc5c58bff4af346f4427ba66231803e8b5",
+        "bytes": 91958
+      },
+      {
+        "path": "data/extended_process_groups.json",
+        "sha256": "a45da02b0e69ed21a4a74ee10fa91df395dd5dc97ca82e6b187a9dd263bd6438",
+        "bytes": 5047
+      },
+      {
+        "path": "data/extended_source_groups.json",
+        "sha256": "86f18ac5c7a6e222859083c05f32f2c562dc4530ae35c97b60a802c92cc1a501",
+        "bytes": 8213
+      },
+      {
+        "path": "data/extraction_log.md",
+        "sha256": "fb982a5356e77750a538420825a43ccd2a4ae36f918092ced28196b211350c18",
+        "bytes": 43489
+      }
+    ],
+    "blind_and_cross_source_scripts": [
+      {
+        "path": "blind_test_in718_fast.py",
+        "sha256": "b011c951fc37e50f171e841348f4866828438f65ffeea1d659eaf90ecc0cd6a7",
+        "bytes": 5789
+      },
+      {
+        "path": "blind_test_in718_mode2.py",
+        "sha256": "f6e1e28bc2d6b885247c24eee226a1ae761d97e0738e10b91d4a7387da1f2fb3",
+        "bytes": 4523
+      },
+      {
+        "path": "blind_test_ti64_cross_source.py",
+        "sha256": "b93bf4f098cd20f762fb1c10947b99ad4a502491be96c9a8001c3704de68db99",
+        "bytes": 3146
+      },
+      {
+        "path": "blind_alsi_second_source.py",
+        "sha256": "b451abf06e8a44bd340f65d0d26b91841d0c5ec1e7659b801495a3a473839820",
+        "bytes": 2738
+      },
+      {
+        "path": "blind_test_316l_cross_source.py",
+        "sha256": "b02f11102ff4fd471a19c5657e6ecbcde0917b43e2cf1a6e15cb9a780a00a643",
+        "bytes": 4197
+      },
+      {
+        "path": "blind_316l_beta6_slow.py",
+        "sha256": "80cf0f1ff9968984c0a9d1ac5b43c9469b062cd7d2902536b629c721a79bc83d",
+        "bytes": 1861
+      }
+    ],
+    "blind_and_cross_source_results": [
+      {
+        "path": "output/blind_test_in718_fast_results.json",
+        "sha256": "b80a387b092d681fe095a3bb08a5b24861fd5192a426d7569f033302dadd7f1f",
+        "bytes": 1947
+      },
+      {
+        "path": "output/blind_test_in718_mode2_results.json",
+        "sha256": "336495975bcfc17cb557dfc6845ad76d0e874eeda285b505a6c7c2b55b34f2da",
+        "bytes": 1055
+      },
+      {
+        "path": "output/blind_test_ti64_cross_source_results.json",
+        "sha256": "b8f48b06df60a4b0603662029b60f2b8de707530677f80ecaacc2fe850395b0f",
+        "bytes": 590
+      },
+      {
+        "path": "output/blind_test_316l_cross_source_results.json",
+        "sha256": "2036a45e368bfc133745f88f515fb9c37f1c7a4f2a9d36539e0e18b09edf2ef9",
+        "bytes": 1429
+      },
+      {
+        "path": "output/blind_316l_beta6_slow_results.json",
+        "sha256": "63184ec9fe3bc56301dbc9addfbf2ac048f40172a5807e9bfb1a2f3f764efb5c",
+        "bytes": 325
+      },
+      {
+        "path": "output/blind_alsi_second_source_results.json",
+        "sha256": "24f1f5972a8e802a3008491f1915cea13d374da463cdd1b0d740caaf55b4e9fc",
+        "bytes": 584
+      }
+    ],
+    "headline_statistics_scripts": [
+      {
+        "path": "experiment_v12_fxi_transverse.py",
+        "sha256": "cdc4ccd6bd318fe53eb7c384e4e9076225962de744be0000b6a73dfad0c75f5a",
+        "bytes": 10619
+      },
+      {
+        "path": "experiment_v11_loocv_fix.py",
+        "sha256": "51965666f5d54334a7fc4fcc1c641ab7b53ee7699d21180e31c0cdda6d5a553c",
+        "bytes": 7592
+      },
+      {
+        "path": "lemaitre_baseline.py",
+        "sha256": "c337295eb0f4fdb2e3ca1b62668ff7775fea3b4f9f50d4a066178a69f7f68fcd",
+        "bytes": 9149
+      },
+      {
+        "path": "paired_test_bootstrap.py",
+        "sha256": "b335d188dbdb01e252fb43832e82dfbadcae4014a3d6d3916694fcb08cbe7353",
+        "bytes": 3032
+      },
+      {
+        "path": "recompute_aic.py",
+        "sha256": "03a06546f9bb9866e3d77445f29d228ccd26c9abcdb5069ee9a1d061d0853603",
+        "bytes": 1344
+      },
+      {
+        "path": "experiment_v14_uncertainty.py",
+        "sha256": "25f96f4d6299bbcbbdc975ffb716dc417ffa4263e834e9bc1a0e2e35f6482481",
+        "bytes": 6021
+      },
+      {
+        "path": "bayes_calibration_v7.py",
+        "sha256": "6314bfeac0c6a71e2d71163e40872813324fc716f0fba0c76e431c2878110aba",
+        "bytes": 17375
+      }
+    ],
+    "headline_statistics_results": [
+      {
+        "path": "output/experiment_v12_fxi_transverse_results.json",
+        "sha256": "b5be95c17812e0c9636426a9214abe2ff4cd9e074b3b6d983bc643e00eea5f63",
+        "bytes": 13672
+      },
+      {
+        "path": "output/experiment_v11_gs_directional_results.json",
+        "sha256": "5e917593ee1f342d95fb32bb2effb6b796657873fab09b69a7c1114daa4a89d7",
+        "bytes": 13707
+      },
+      {
+        "path": "output/lemaitre_baseline_results.json",
+        "sha256": "a335ee215be1a5aa67f0c1f254384fbdeef53758a597b1fd8a05c974fbf6a053",
+        "bytes": 2380
+      },
+      {
+        "path": "output/paired_test_bootstrap_results.json",
+        "sha256": "7f4c61a5f2d807b7fc563a28ade52748b9ee0eebfb6b7df649c3ba751d957dce",
+        "bytes": 1557
+      },
+      {
+        "path": "output/experiment_v14_uncertainty_results.json",
+        "sha256": "8a31a56c9b0eb49885c22cf4387c0d61f91fc6d608b4219505c0b746b463c7a5",
+        "bytes": 2779
+      },
+      {
+        "path": "output/bayes_calibration_v7_results.json",
+        "sha256": "b0077034bee68488569fbf5248e87602545731079f764f4c571755f48008690a",
+        "bytes": 4467
+      }
+    ],
+    "fullfield_scripts": [
+      {
+        "path": "fullfield_3d_cpfem.py",
+        "sha256": "beb240d33681cfeea7c0efb7c5f11554e66331e29aff0ade9043f0a0c9a672c1",
+        "bytes": 18519
+      },
+      {
+        "path": "fullfield_2d_cpfem.py",
+        "sha256": "79aec4c749521519dd9fb98cefe345f1d51ddc8b13a216371889a58854c5ddb0",
+        "bytes": 20426
+      },
+      {
+        "path": "fullfield_3d_cpfem_nonlocal.py",
+        "sha256": "f1225e8a8b024af3bc7f5876e8cbed4f105606e01860501227cde65123e5d0be",
+        "bytes": 29851
+      }
+    ],
+    "fullfield_results": [
+      {
+        "path": "output/fullfield_3d_cpfem_r13_merged.json",
+        "sha256": "30d14ff69dad818dd4dd98f9950087445aee48369187821094ea26a50c4853c6",
+        "bytes": 2194
+      },
+      {
+        "path": "output/fullfield_2d_cpfem_results.json",
+        "sha256": "d0889fa66691c158f1d677a3a66f390b2c03ddd786fec210047fe350c7cb9bc2",
+        "bytes": 1197
+      },
+      {
+        "path": "output/nonlocal_damage_results.json",
+        "sha256": "7ff7fdb8ec2a13b5f6ef458d73cd7b4b70d84a75646722a0ebd8d7ec5de0af12",
+        "bytes": 63221
+      }
+    ]
+  },
+  "headline_bindings": [
+    {
+      "id": "cal_mean_ef_error_pct",
+      "value": 20.35,
+      "unit": "%",
+      "claim": "mean calibration fracture-strain error (nine cases)",
+      "tex": "Abstract; Table tab:results",
+      "script": "experiment_v12_fxi_transverse.py",
+      "result_json": "output/experiment_v12_fxi_transverse_results.json",
+      "json_field": "main_calibration.modified_model.avg_error_pct"
+    },
+    {
+      "id": "loocv_blind_ef_error_pct",
+      "value": 31.22,
+      "unit": "%",
+      "claim": "leakage-free leave-one-orientation-out blind mean error",
+      "tex": "Abstract; Section sec:loocv; Table tab:loocv",
+      "script": "experiment_v12_fxi_transverse.py",
+      "result_json": "output/experiment_v12_fxi_transverse_results.json",
+      "json_field": "loocv.modified_model.avg_ef_error_pct"
+    },
+    {
+      "id": "lemaitre_baseline_error_pct",
+      "value": 24.34,
+      "unit": "%",
+      "claim": "Lemaitre baseline blind error at equal single-parameter count",
+      "tex": "Abstract; Section sec:validation",
+      "script": "experiment_v12_fxi_transverse.py",
+      "result_json": "output/experiment_v12_fxi_transverse_results.json",
+      "json_field": "loocv.lemaitre_baseline.avg_ef_error_pct"
+    },
+    {
+      "id": "paired_test_n9",
+      "value": "not significant",
+      "unit": "",
+      "claim": "paired bootstrap/Wilcoxon/sign test: no significant separation at n=9",
+      "tex": "Abstract; Section sec:validation",
+      "script": "paired_test_bootstrap.py",
+      "result_json": "output/paired_test_bootstrap_results.json"
+    },
+    {
+      "id": "blind_ti64_sun_avg_err_pct",
+      "value": 22.8,
+      "unit": "%",
+      "claim": "Ti-6Al-4V cross-source (Sun) transferred-S0 mean error, 0/45/90 = 22.6/1.5/44.3",
+      "tex": "Section sec:cross_source; Table tab:blind_failures",
+      "script": "blind_test_ti64_cross_source.py",
+      "result_json": "output/blind_test_ti64_cross_source_results.json",
+      "json_field": "avg_error_pct"
+    },
+    {
+      "id": "blind_in718_mode2_avg_err_pct",
+      "value": 71.5,
+      "unit": "%",
+      "claim": "IN718 mode-2 in-source blind avg (S0*=8.0 on 0deg), ratio 90/0 pred 0.17 vs exp 0.67 (same side)",
+      "tex": "Section sec:in718_blind; Table tab:blind_failures",
+      "script": "blind_test_in718_fast.py",
+      "result_json": "output/blind_test_in718_fast_results.json",
+      "json_field": "mode2_avg_blind_ef_error_pct"
+    },
+    {
+      "id": "blind_alsi_awd_avg_err_pct",
+      "value": 38.8,
+      "unit": "%",
+      "claim": "AlSi10Mg cross-source (Awd) mean error, 0/45/90 = 17.2/34.7/64.7, V-shape",
+      "tex": "Section sec:cross_source; Table tab:blind_failures",
+      "script": "blind_alsi_second_source.py",
+      "result_json": "output/blind_alsi_second_source_results.json",
+      "json_field": "avg_error_pct"
+    },
+    {
+      "id": "blind_316l_hitzler_avg_err_pct",
+      "value": 80.6,
+      "unit": "%",
+      "claim": "316L (Hitzler) transferred-S0 blind avg, ratio 90/0 pred 0.29 vs exp 2.83 (genuine reversal)",
+      "tex": "Section sec:cross_source; Table tab:blind_failures",
+      "script": "blind_test_316l_cross_source.py",
+      "result_json": "output/blind_test_316l_cross_source_results.json",
+      "json_field": "avg_blind_ef_error_pct"
+    },
+    {
+      "id": "beta6_hitzler_repair",
+      "value": "32.7 -> 12.9",
+      "unit": "%",
+      "claim": "geometric shielding repairs the 316L 90deg reversal from 32.7% (b6=0) to 12.9% (b6=0.3)",
+      "tex": "Section sec:cross_source (b6 paragraph); Table tab:blind_failures",
+      "script": "blind_316l_beta6_slow.py",
+      "result_json": "output/blind_316l_beta6_slow_results.json",
+      "json_field": "['0.0'].err_pct -> ['0.3'].err_pct"
+    }
+  ]
+}

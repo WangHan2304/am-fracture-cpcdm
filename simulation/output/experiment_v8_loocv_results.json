@@ -1,0 +1,346 @@
+{
+  "model": "v8_loocv_S0only",
+  "notes": {
+    "protocol": "leave-one-orientation-out; per fold ONLY S0 is re-calibrated (train-mean ef error minimised); all microstructure coefficients, orientation multipliers a45/a90, and Voce g_s fixed at v7 global values",
+    "lemaitre_baseline": "same, f_AM=1"
+  },
+  "fixed_params_v7": {
+    "Ti64": {
+      "gs_mult": 2.1996,
+      "S0": 0.7838,
+      "a45": 1.2455,
+      "a90": 2.7402
+    },
+    "AlSi10Mg": {
+      "gs_mult": 2.1996,
+      "S0": 0.1848,
+      "a45": 0.5584,
+      "a90": 0.563
+    },
+    "316L": {
+      "gs_mult": 1.2986915110447788,
+      "S0": 3.154413958671694,
+      "a45": 1.0482543945312501,
+      "a90": 1.2310180664062502
+    }
+  },
+  "modified_model": {
+    "folds": [
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 0.2,
+        "train_avg_err_pct": 4.598639021442474,
+        "ef_exp": 0.056,
+        "ef_pred": 0.058830963934061176,
+        "error_pct": 5.055292739394955,
+        "uts_exp_MPa": 440.0,
+        "uts_pred_MPa": 361.19269829706417,
+        "uts_error_pct": 17.910750387030873,
+        "walltime_s": 483.2
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 0.2,
+        "train_avg_err_pct": 4.732439341392505,
+        "ef_exp": 0.047,
+        "ef_pred": 0.0492502152867626,
+        "error_pct": 4.787692099494892,
+        "uts_exp_MPa": 410.0,
+        "uts_pred_MPa": 360.0973984833583,
+        "uts_error_pct": 12.17136622357115,
+        "walltime_s": 578.0
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 0.8,
+        "train_avg_err_pct": 0.6838342963082257,
+        "ef_exp": 0.08,
+        "ef_pred": 0.08083241338485662,
+        "error_pct": 1.0405167310707786,
+        "uts_exp_MPa": 1150.0,
+        "uts_pred_MPa": 1008.0444223966656,
+        "uts_error_pct": 12.343963269855166,
+        "walltime_s": 605.9
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 0.8,
+        "train_avg_err_pct": 0.7851001701230154,
+        "ef_exp": 0.063,
+        "ef_pred": 0.06352793053956796,
+        "error_pct": 0.8379849834411994,
+        "uts_exp_MPa": 1100.0,
+        "uts_pred_MPa": 1006.3557651377446,
+        "uts_error_pct": 8.51311226020504,
+        "walltime_s": 729.2
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 0.8,
+        "train_avg_err_pct": 0.9392508572559889,
+        "ef_exp": 0.048,
+        "ef_pred": 0.04825424813240412,
+        "error_pct": 0.529683609175252,
+        "uts_exp_MPa": 1050.0,
+        "uts_pred_MPa": 1004.5888112558806,
+        "uts_error_pct": 4.324875118487561,
+        "walltime_s": 879.3
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 0.2,
+        "train_avg_err_pct": 4.921492419444924,
+        "ef_exp": 0.037,
+        "ef_pred": 0.03863154679905432,
+        "error_pct": 4.409585943390055,
+        "uts_exp_MPa": 375.0,
+        "uts_pred_MPa": 359.7068251057101,
+        "uts_error_pct": 4.078179971810641,
+        "walltime_s": 1066.5
+      },
+      {
+        "material": "316L",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 3.2,
+        "train_avg_err_pct": 2.0061123871810236,
+        "ef_exp": 0.37,
+        "ef_pred": 0.3748963566621827,
+        "error_pct": 1.3233396384277536,
+        "uts_exp_MPa": 680.0,
+        "uts_pred_MPa": 668.5424653966677,
+        "uts_error_pct": 1.6849315593135745,
+        "walltime_s": 3015.4
+      },
+      {
+        "material": "316L",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 3.2,
+        "train_avg_err_pct": 1.2257973456273912,
+        "ef_exp": 0.31,
+        "ef_pred": 0.31894030613675856,
+        "error_pct": 2.883969721535019,
+        "uts_exp_MPa": 640.0,
+        "uts_pred_MPa": 639.148938861614,
+        "uts_error_pct": 0.13297830287280377,
+        "walltime_s": 3404.2
+      },
+      {
+        "material": "316L",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 3.2,
+        "train_avg_err_pct": 2.103654679981386,
+        "ef_exp": 0.255,
+        "ef_pred": 0.25787705038470893,
+        "error_pct": 1.1282550528270288,
+        "uts_exp_MPa": 595.0,
+        "uts_pred_MPa": 569.4798901637542,
+        "uts_error_pct": 4.289094090125337,
+        "walltime_s": 3763.6
+      }
+    ],
+    "avg_ef_error_pct": 2.444035613195215,
+    "avg_uts_error_pct": 7.272139020363571,
+    "pass_10pct": 9
+  },
+  "lemaitre_baseline": {
+    "folds": [
+      {
+        "material": "Ti64",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 0.32000000000000006,
+        "train_avg_err_pct": 12.083044698282322,
+        "ef_exp": 0.08,
+        "ef_pred": 0.048718836223474324,
+        "error_pct": 39.101454720657095,
+        "uts_exp_MPa": 1150.0,
+        "uts_pred_MPa": 1004.6674077021736,
+        "uts_error_pct": 12.63761672155012,
+        "walltime_s": 993.3
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 0.32000000000000006,
+        "train_avg_err_pct": 20.2995150931143,
+        "ef_exp": 0.063,
+        "ef_pred": 0.048718836223474324,
+        "error_pct": 22.668513930993136,
+        "uts_exp_MPa": 1100.0,
+        "uts_pred_MPa": 1004.6674077021736,
+        "uts_error_pct": 8.666599299802401,
+        "walltime_s": 1043.2
+      },
+      {
+        "material": "Ti64",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 0.8,
+        "train_avg_err_pct": 11.306166580528956,
+        "ef_exp": 0.048,
+        "ef_pred": 0.06703891713631287,
+        "error_pct": 39.6644107006518,
+        "uts_exp_MPa": 1050.0,
+        "uts_pred_MPa": 1006.635694554718,
+        "uts_error_pct": 4.129933851931615,
+        "walltime_s": 1136.7
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 0.32000000000000006,
+        "train_avg_err_pct": 12.337151466941354,
+        "ef_exp": 0.056,
+        "ef_pred": 0.04298478325989756,
+        "error_pct": 23.241458464468646,
+        "uts_exp_MPa": 440.0,
+        "uts_pred_MPa": 359.8925514880059,
+        "uts_error_pct": 18.20623829818048,
+        "walltime_s": 442.6
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 0.32000000000000006,
+        "train_avg_err_pct": 19.68637352885393,
+        "ef_exp": 0.047,
+        "ef_pred": 0.04298478325989756,
+        "error_pct": 8.543014340643488,
+        "uts_exp_MPa": 410.0,
+        "uts_pred_MPa": 359.8925514880059,
+        "uts_error_pct": 12.221328905364416,
+        "walltime_s": 454.3
+      },
+      {
+        "material": "AlSi10Mg",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 0.32000000000000006,
+        "train_avg_err_pct": 15.892236402556067,
+        "ef_exp": 0.037,
+        "ef_pred": 0.04296857677949851,
+        "error_pct": 16.13128859323922,
+        "uts_exp_MPa": 375.0,
+        "uts_pred_MPa": 359.95605157397796,
+        "uts_error_pct": 4.011719580272544,
+        "walltime_s": 548.9
+      },
+      {
+        "material": "316L",
+        "held_orientation": 0,
+        "train_orientations": [
+          45,
+          90
+        ],
+        "S0": 3.2,
+        "train_avg_err_pct": 9.486366034474587,
+        "ef_exp": 0.37,
+        "ef_pred": 0.2532779739814083,
+        "error_pct": 31.546493518538306,
+        "uts_exp_MPa": 680.0,
+        "uts_pred_MPa": 561.9152405366373,
+        "uts_error_pct": 17.365405803435696,
+        "walltime_s": 3199.9
+      },
+      {
+        "material": "316L",
+        "held_orientation": 45,
+        "train_orientations": [
+          0,
+          90
+        ],
+        "S0": 3.2,
+        "train_avg_err_pct": 16.110898919777334,
+        "ef_exp": 0.31,
+        "ef_pred": 0.2532779739814083,
+        "error_pct": 18.29742774793281,
+        "uts_exp_MPa": 640.0,
+        "uts_pred_MPa": 561.9152405366373,
+        "uts_error_pct": 12.200743666150426,
+        "walltime_s": 2967.7
+      },
+      {
+        "material": "316L",
+        "held_orientation": 90,
+        "train_orientations": [
+          0,
+          45
+        ],
+        "S0": 5.120000000000001,
+        "train_avg_err_pct": 10.942615952615519,
+        "ef_exp": 0.255,
+        "ef_pred": 0.3742681779342647,
+        "error_pct": 46.77183448402537,
+        "uts_exp_MPa": 595.0,
+        "uts_pred_MPa": 663.087803337348,
+        "uts_error_pct": 11.443328291991255,
+        "walltime_s": 3119.8
+      }
+    ],
+    "avg_ef_error_pct": 27.329544055683318,
+    "avg_uts_error_pct": 11.20921271318655
+  }
+}

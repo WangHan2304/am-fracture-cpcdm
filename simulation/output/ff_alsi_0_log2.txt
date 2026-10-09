@@ -1,0 +1,1 @@
+﻿RESULT {"material": "AlSi10Mg", "orientation": 0, "ef_fullfield": 0.122, "ef_taylor": 0.11588, "bias_pct": 5.28, "Dc": 0.35, "S0": 0.2, "eps_step": 0.002, "n_sub": 30, "fullfield_wall_sec": 1275.1}

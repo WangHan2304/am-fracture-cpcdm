@@ -1,0 +1,10 @@
+step 0 cur 0.0005 iters 11 nrm0 1.10e+08 nrm_last 4.59e-01
+  Dagg 0.00300 Dmax 0.00300
+step 1 cur 0.001 iters 11 nrm0 1.10e+08 nrm_last 4.51e-01
+  Dagg 0.00300 Dmax 0.00300
+step 2 cur 0.0015 iters 11 nrm0 1.10e+08 nrm_last 4.44e-01
+  Dagg 0.00300 Dmax 0.00300
+step 3 cur 0.002 iters 11 nrm0 1.10e+08 nrm_last 4.38e-01
+  Dagg 0.00300 Dmax 0.00300
+step 4 cur 0.0025 iters 11 nrm0 1.10e+08 nrm_last 4.59e-01
+  Dagg 0.00300 Dmax 0.00300

@@ -1,0 +1,54 @@
+{
+ "model": "Normal-Normal hierarchical (empirical Bayes, closed-form)",
+ "observations": {
+  "Ti64": [
+   0.32,
+   0.32,
+   0.32
+  ],
+  "316L": [
+   3.2,
+   3.2,
+   2.0
+  ],
+  "AlSi10Mg": [
+   0.32,
+   0.2,
+   0.2
+  ]
+ },
+ "logS0_group_means": {
+  "Ti64": -1.139,
+  "316L": 1.006,
+  "AlSi10Mg": -1.453
+ },
+ "within_group_sd": 0.2215618356146317,
+ "between_group_sd": 2.307908779388575,
+ "grand_mean_logS0": -0.529,
+ "shrinkage": {
+  "Ti64": 0.997,
+  "316L": 0.997,
+  "AlSi10Mg": 0.997
+ },
+ "shrunk_theta": {
+  "Ti64": -0.53,
+  "316L": -0.524,
+  "AlSi10Mg": -0.531
+ },
+ "new_material_predictive": {
+  "mean_S0": 8.664138499643107,
+  "median_S0": 0.5894450397824619,
+  "95pct_interval": [
+   0.013,
+   26.719
+  ]
+ },
+ "blind_material_reference_S0": {
+  "IN718 mode1 (geo-mean)": 0.589445,
+  "IN718 mode2 (cal on 0deg)": 6.0,
+  "Ti64-2 (S0 transfer)": 0.32,
+  "316L-2 (S0 transfer)": 3.2,
+  "AlSi-2 (S0 transfer)": 0.2
+ },
+ "note": "S0 stability across LOOCV folds: Ti64 identical (3/3 folds), 316L 3.2->2.0 (fold-sensitive), AlSi10Mg 0.32->0.2; the within-material spread is the Bayesian counterpart of the cross-source non-transferability finding."
+}

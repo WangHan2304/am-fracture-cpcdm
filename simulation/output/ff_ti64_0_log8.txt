@@ -1,0 +1,1 @@
+﻿RESULT {"material": "Ti64", "orientation": 0, "ef_fullfield": 0.0555, "ef_taylor": 0.07547, "bias_pct": -26.46, "Dc": 0.42, "S0": 0.32, "eps_step": 0.002, "n_sub": 30, "fullfield_wall_sec": 420.8}

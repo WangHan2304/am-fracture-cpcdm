@@ -1,0 +1,204 @@
+{
+  "_r13b_note": "R13 snapshot of the extended grouping, written before the NIST mds2-3402 addition was integrated: it describes the 24-point / six-source dataset and does NOT contain mds2-3402. The R13b leave-one-source run that includes mds2-3402 (54 points, seven sources, nist_mds2_3402 = 30 points, leave-one-source error 61.35%) is recorded in ../output/experiment_v13b_mds2_loso_results.json. No value in this file has been altered.",
+  "protocol": "Extended protocol for the LPBF tensile-fracture dataset. This is an INDEPENDENT protocol: the v12 nine points are reproduced verbatim (source_id = v12_original) and are NOT modified; the extended statistics are reported separately and must not be silently substituted for the v12 statistics.",
+  "orientation_convention": "0 deg = loading axis PARALLEL to the build direction (BD), 90 deg = PERPENDICULAR to BD, 45 deg = inclined. Sources reporting the angle from the build PLATE are converted (plate 0 -> 90, plate 90 -> 0); ASTM Z/X specimen codes need no conversion.",
+  "total_points": 24,
+  "n_sources": 6,
+  "materials": [
+    "316L",
+    "AlSi10Mg",
+    "IN718",
+    "Ti64"
+  ],
+  "sources": {
+    "v12_original": {
+      "label": "v12 primary calibration set (compiled representative values)",
+      "citation": "v12 calibration set (primary 9-point protocol of this work, simulation/src/materials.py EXPERIMENTAL). Underlying literature: Carroll et al. 2015 (Ti-6Al-4V, doi:10.1016/j.actamat.2014.10.054); Wang et al., Metals 14 (2024) 130 (Ti-6Al-4V); Jaskari et al., Materials 14 (2021) 5809 (316L); Wu et al., Sci. Rep. 13 (2023) 14681 (AlSi10Mg).",
+      "role": "PRIMARY protocol (authoritative). Values reproduced verbatim; must not be modified.",
+      "materials": [
+        "316L",
+        "AlSi10Mg",
+        "Ti64"
+      ],
+      "n_points": 9,
+      "as_built": true,
+      "heat_treatment": "as-built",
+      "process_parameters_known": false,
+      "point_ids": [
+        "v12_Ti64_0",
+        "v12_Ti64_45",
+        "v12_Ti64_90",
+        "v12_316L_0",
+        "v12_316L_45",
+        "v12_316L_90",
+        "v12_AlSi10Mg_0",
+        "v12_AlSi10Mg_45",
+        "v12_AlSi10Mg_90"
+      ],
+      "orientation_deg": [
+        0,
+        45,
+        90
+      ]
+    },
+    "sun2024adem": {
+      "label": "Sun 2024 (Adv. Eng. Mater.) - LPBF Ti-6Al-4V, build-orientation study",
+      "citation": "Sun, S.; Delp, A.; Zhang, D.; Palanisamy, S.; Liu, Q.; Schmidt, M.; Dargusch, M.S. Effect of sample-build orientation on the tensile deformation and properties of Ti6Al4V processed by laser powder bed fusion. Advanced Engineering Materials 2024, 26, 2400942. doi:10.1002/adem.202400942",
+      "role": "EXTENDED source. One build, one parameter set, three build orientations = one specimen batch.",
+      "materials": [
+        "Ti64"
+      ],
+      "n_points": 3,
+      "as_built": true,
+      "heat_treatment": "as-built",
+      "process_parameters_known": true,
+      "point_ids": [
+        "sun2024_Ti64_0",
+        "sun2024_Ti64_45",
+        "sun2024_Ti64_90"
+      ],
+      "orientation_deg": [
+        0,
+        45,
+        90
+      ]
+    },
+    "hitzler2017materials": {
+      "label": "Hitzler 2017 (Materials) - SLM 316L, polar/azimuth build-angle study",
+      "citation": "Hitzler, L.; Hirsch, J.; Heine, B.; Merkel, M.; Hall, W.; Oechsner, A. On the Anisotropic Mechanical Properties of Selective Laser-Melted Stainless Steel. Materials 2017, 10(10), 1136. doi:10.3390/ma10101136",
+      "role": "EXTENDED source. Seven configurations in Table 6; the three azimuth-Theta=0 configurations are used so that the polar-angle trend is not confounded by the azimuth dependence.",
+      "materials": [
+        "316L"
+      ],
+      "n_points": 3,
+      "as_built": true,
+      "heat_treatment": "as-built (platform preheated 200 C); specimens milled to final geometry",
+      "process_parameters_known": true,
+      "point_ids": [
+        "hitzler2017_316L_90",
+        "hitzler2017_316L_45",
+        "hitzler2017_316L_0"
+      ],
+      "orientation_deg": [
+        0,
+        45,
+        90
+      ]
+    },
+    "awd2018metals": {
+      "label": "Awd 2018 (Metals) - LPBF AlSi10Mg, build-orientation study",
+      "citation": "Awd, M.; Stern, F.; Kampmann, A.; Kotzem, D.; Tenkamp, J.; Walther, F. Microstructural characterization of the anisotropy and cyclic deformation behavior of selective laser melted AlSi10Mg structures. Metals 2018, 8(10), 825. doi:10.3390/met8100825",
+      "role": "EXTENDED source. One build, three orientations = one specimen batch. Already reported as a blind set in the manuscript (sec:cross_source); re-designated an extended source here.",
+      "materials": [
+        "AlSi10Mg"
+      ],
+      "n_points": 3,
+      "as_built": true,
+      "heat_treatment": "as-built",
+      "process_parameters_known": false,
+      "point_ids": [
+        "awd2018_AlSi10Mg_90",
+        "awd2018_AlSi10Mg_45",
+        "awd2018_AlSi10Mg_0"
+      ],
+      "orientation_deg": [
+        0,
+        45,
+        90
+      ]
+    },
+    "hovig2018in718": {
+      "label": "Hovig 2018 (Adv. Mater. Sci. Eng.) - LPBF IN718, 11-orientation study (set 1)",
+      "citation": "Hovig, E.W.; Azar, A.S.; Grytten, F.; Soerby, K.; Andreassen, E. Determination of Anisotropic Mechanical Properties for Materials Processed by Laser Powder Bed Fusion. Advances in Materials Science and Engineering 2018, 2018, 7650303. doi:10.1155/2018/7650303",
+      "role": "EXTENDED source. Already reported as a blind set in the manuscript (sec:in718_blind); re-designated an extended source here. HEAT-TREATED, not as-built.",
+      "materials": [
+        "IN718"
+      ],
+      "n_points": 3,
+      "as_built": false,
+      "heat_treatment": "solution-treated (980 C / 1 h, argon, air cool) - set 1",
+      "process_parameters_known": true,
+      "point_ids": [
+        "hovig2018_IN718_90",
+        "hovig2018_IN718_45",
+        "hovig2018_IN718_0"
+      ],
+      "orientation_deg": [
+        0,
+        45,
+        90
+      ]
+    },
+    "watring2020addma": {
+      "label": "Watring 2020 (Addit. Manuf.) - as-built LPBF IN718, energy-density x orientation study",
+      "citation": "Watring, D.S.; Benzing, J.T.; Hrabe, N.; Spear, A.D. Effects of laser-energy density and build orientation on the structure-property relationships in as-built Inconel 718 manufactured by laser powder bed fusion. Additive Manufacturing 2020, 36, 101425. doi:10.1016/j.addma.2020.101425",
+      "role": "EXTENDED source, fully as-built. Three distinct process windows (energy density 38 and 62 J/mm^3; two orientations) = three separate sample batches within one publication.",
+      "materials": [
+        "IN718"
+      ],
+      "n_points": 3,
+      "as_built": true,
+      "heat_treatment": "as-built",
+      "process_parameters_known": true,
+      "point_ids": [
+        "watring2020_IN718_90_lo",
+        "watring2020_IN718_90_hi",
+        "watring2020_IN718_30"
+      ],
+      "orientation_deg": [
+        30,
+        90
+      ]
+    }
+  },
+  "leave_one_source_cross_validation": {
+    "Ti64": {
+      "n_sources": 2,
+      "sources": [
+        "sun2024adem",
+        "v12_original"
+      ],
+      "loso_feasible": true,
+      "points_per_fold": {
+        "sun2024adem": 3,
+        "v12_original": 3
+      }
+    },
+    "316L": {
+      "n_sources": 2,
+      "sources": [
+        "hitzler2017materials",
+        "v12_original"
+      ],
+      "loso_feasible": true,
+      "points_per_fold": {
+        "hitzler2017materials": 3,
+        "v12_original": 3
+      }
+    },
+    "AlSi10Mg": {
+      "n_sources": 2,
+      "sources": [
+        "awd2018metals",
+        "v12_original"
+      ],
+      "loso_feasible": true,
+      "points_per_fold": {
+        "awd2018metals": 3,
+        "v12_original": 3
+      }
+    },
+    "IN718": {
+      "n_sources": 2,
+      "sources": [
+        "hovig2018in718",
+        "watring2020addma"
+      ],
+      "loso_feasible": true,
+      "points_per_fold": {
+        "hovig2018in718": 3,
+        "watring2020addma": 3
+      }
+    }
+  }
+}

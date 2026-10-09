@@ -1,0 +1,156 @@
+{
+ "generated": "2026-10-07 00:54:37",
+ "n_blind_points": 23,
+ "mixed_effects": {
+  "group_material": {
+   "descriptor_minus_lemaitre_fixed_effect_pt": 4.81,
+   "fixed_effect_se": 15.74,
+   "fixed_effect_p": 0.7597,
+   "random_intercept_sd": 21.25,
+   "n_groups": 4,
+   "converged": true
+  },
+  "group_source": {
+   "descriptor_minus_lemaitre_fixed_effect_pt": 4.81,
+   "fixed_effect_se": 14.99,
+   "fixed_effect_p": 0.7481,
+   "random_intercept_sd": 0.0,
+   "n_groups": 6,
+   "converged": true
+  },
+  "paired_diff_by_material": {
+   "per_material_mean_diff_pt": {
+    "316L": 47.65,
+    "AlSi10Mg": -3.32,
+    "IN718": -28.84,
+    "Ti64": -8.59
+   },
+   "kruskal_wallis_p_between_material": 0.3668,
+   "note": "heterogeneity of the descriptor-baseline gap across materials; a large p means no material shows a reliably different gap, consistent with the overall indistinguishability."
+  }
+ },
+ "hierarchical_shrinkage": {
+  "per_material_mean_diff_pt": {
+   "316L": 47.65,
+   "AlSi10Mg": -3.32,
+   "IN718": -28.84,
+   "Ti64": -8.59
+  },
+  "per_material_n": {
+   "316L": 6,
+   "AlSi10Mg": 6,
+   "IN718": 3,
+   "Ti64": 8
+  },
+  "grand_mean_diff_pt": 1.72,
+  "within_sd_pt": 59.2,
+  "between_sd_pt": 44.52,
+  "shrunk_material_mean_pt": {
+   "316L": 37.19,
+   "AlSi10Mg": -2.17,
+   "IN718": -17.51,
+   "Ti64": -6.72
+  },
+  "new_material_predictive_90ci_pt": [
+   -120.12,
+   123.57
+  ],
+  "note": "positive = descriptor worse; the predictive interval brackets 0, i.e. a new material is expected to show no reliable descriptor advantage in blind accuracy."
+ },
+ "directional_ranking": {
+  "per_group": [
+   {
+    "material": "316L",
+    "held_source": "hitzler2017materials",
+    "n_or": 3,
+    "kendall_descriptor": -1.0,
+    "kendall_lemaitre": -1.0
+   },
+   {
+    "material": "316L",
+    "held_source": "v12_original",
+    "n_or": 3,
+    "kendall_descriptor": 1.0,
+    "kendall_lemaitre": 1.0
+   },
+   {
+    "material": "AlSi10Mg",
+    "held_source": "awd2018metals",
+    "n_or": 3,
+    "kendall_descriptor": 0.333,
+    "kendall_lemaitre": -0.333
+   },
+   {
+    "material": "AlSi10Mg",
+    "held_source": "v12_original",
+    "n_or": 3,
+    "kendall_descriptor": 1.0,
+    "kendall_lemaitre": -1.0
+   },
+   {
+    "material": "IN718",
+    "held_source": "watring/hovig",
+    "n_or": 2,
+    "kendall_descriptor": 0.0,
+    "kendall_lemaitre": 0.0
+   },
+   {
+    "material": "Ti64",
+    "held_source": "nist_mds2_3402",
+    "n_or": 2,
+    "kendall_descriptor": -1.0,
+    "kendall_lemaitre": 1.0
+   },
+   {
+    "material": "Ti64",
+    "held_source": "sun2024adem",
+    "n_or": 3,
+    "kendall_descriptor": 0.333,
+    "kendall_lemaitre": -0.333
+   },
+   {
+    "material": "Ti64",
+    "held_source": "v12_original",
+    "n_or": 3,
+    "kendall_descriptor": 1.0,
+    "kendall_lemaitre": -1.0
+   }
+  ],
+  "descriptor": {
+   "kendall": {
+    "mean": 0.208,
+    "median": 0.333,
+    "n_groups": 8
+   },
+   "spearman": {
+    "mean": 0.25,
+    "median": 0.5,
+    "n_groups": 8
+   },
+   "monotone_order_hits": "6/6"
+  },
+  "lemaitre": {
+   "kendall": {
+    "mean": -0.208,
+    "median": -0.333,
+    "n_groups": 8
+   },
+   "spearman": {
+    "mean": -0.25,
+    "median": -0.5,
+    "n_groups": 8
+   }
+  }
+ },
+ "effect_size_power": {
+  "n": 23,
+  "mean_diff_pt": 4.81,
+  "sd_diff_pt": 61.36,
+  "cohen_dz": 0.078,
+  "mde_80pct_power_pt": 35.84,
+  "wilcoxon_p": 1.0,
+  "tost_within_mde_band": true,
+  "interpretation": "|mean diff| = 4.8 pt < the 35.8 pt minimum detectable effect at 80% power (n=23): the test is underpowered to declare a difference of this size, so the correct statement is \"cannot distinguish\", not \"equivalent\"."
+ },
+ "framing": "Bootstrap intervals, paired tests, mixed effects and effect size are the primary evidence; information criteria are auxiliary. The model is a low-order direction-mechanism screening surrogate, not a point predictor."
+}

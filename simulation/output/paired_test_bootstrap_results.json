@@ -1,0 +1,64 @@
+{
+ "n_folds": 9,
+ "fold_order": [
+  "Ti64@0",
+  "Ti64@45",
+  "Ti64@90",
+  "316L@0",
+  "316L@45",
+  "316L@90",
+  "AlSi10Mg@0",
+  "AlSi10Mg@45",
+  "AlSi10Mg@90"
+ ],
+ "model_blind_err_pct": [
+  9.641578929786114,
+  14.157042116859508,
+  8.468152776369047,
+  46.45460860465293,
+  25.886884374025087,
+  58.9476061960269,
+  74.01947268624058,
+  20.752657423860672,
+  22.692836667606876
+ ],
+ "lemaitre_blind_err_pct": [
+  37.965983102283815,
+  20.984514980473314,
+  49.4119072997135,
+  28.146867089747364,
+  17.627064630973948,
+  19.736264189068574,
+  18.482658812485663,
+  2.381745186060892,
+  24.36257219933104
+ ],
+ "paired_diff_pct": [
+  -28.3244041724977,
+  -6.8274728636138065,
+  -40.94375452334445,
+  18.30774151490557,
+  8.259819743051139,
+  39.21134200695833,
+  55.53681387375491,
+  18.37091223779978,
+  -1.6697355317241644
+ ],
+ "mean_diff_pct": 6.880140253921067,
+ "model_mean": 31.2245377528253,
+ "lemaitre_mean": 24.344397498904236,
+ "wilcoxon_signed_rank": {
+  "stat": 17.0,
+  "p_value": 0.5703125
+ },
+ "sign_test": {
+  "n_positive": 5,
+  "n_negative": 4,
+  "p_value_two_sided": 1.0
+ },
+ "bootstrap_100k_mean_diff_95ci": {
+  "lo": -11.825572500100726,
+  "hi": 25.640647421581413
+ },
+ "interpretation": "At n=9 the paired mean difference (model worse by 7.27 pt) is not significant: Wilcoxon p and sign-test p both > 0.05; the bootstrap 95% CI of the mean difference includes 0. AIC/BIC at n=9 are therefore reported with these intervals rather than as decisive model-selection evidence."
+}
