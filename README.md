@@ -1,4 +1,4 @@
-# A leakage-free validation framework for Taylor homogenization bias and the applicability domain of orientation-resolved ductile damage descriptors in additively manufactured metals (Taylor CP-CDM)
+# Leakage-free validation of orientation-resolved ductile damage descriptors in additively manufactured metals: homogenization bias and a mechanism-keyed applicability domain (Taylor CP-CDM)
 
 Reproducibility archive for the manuscript submitted to *Engineering Fracture Mechanics* (Elsevier), transferred there at the editors' suggestion from the *International Journal of Materials Science*. It contains the solver code, the curated literature dataset, the result JSONs behind every reported number, and the LaTeX sources.
 
