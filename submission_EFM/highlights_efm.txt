@@ -1,0 +1,5 @@
+A leakage-free leave-one-orientation-out protocol tests AM damage descriptors.
+Taylor iso-strain bias sign is set by constraint, not by the damage law.
+Orientation descriptors are indistinguishable from an equal-parameter baseline.
+A mechanism-keyed gate uses the directional model only for columnar damage.
+The gated hybrid is never worse: 15.9% vs 24.3% vs 31.2% blind fracture strain.

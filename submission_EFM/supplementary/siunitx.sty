@@ -1,0 +1,25 @@
+% siunitx.sty -- minimal local shim
+% The full siunitx package is unavailable in the local MiKTeX installation
+% (package server unreachable). This shim implements exactly the subset of
+% siunitx commands used by manuscript_main.tex:
+%   \SI{value}{unit}, \si{unit}, \num{value}, \ang{degrees}
+% and the unit macros \meter \milli \micro \nano \per \percent.
+% Replace with the real siunitx package when the full TeX tree is available.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{siunitx}[2026/06/18 minimal local shim for manuscript draft]
+
+% ---- unit building blocks (work in both text and math mode) ----
+\providecommand{\meter}{\ensuremath{\mathrm{m}}}
+\providecommand{\milli}{\ensuremath{\mathrm{m}}}
+\providecommand{\micro}{\ensuremath{\mu}}
+\providecommand{\nano}{\ensuremath{\mathrm{n}}}
+\providecommand{\per}{\ensuremath{/}}
+\providecommand{\percent}{\ensuremath{\%}}
+
+% ---- quantity commands ----
+\providecommand{\si}[1]{\ensuremath{\mathrm{#1}}}
+\providecommand{\SI}[2]{#1\,#2}
+\providecommand{\num}[1]{#1}
+\providecommand{\ang}[1]{\ensuremath{#1^\circ}}
+
+\endinput

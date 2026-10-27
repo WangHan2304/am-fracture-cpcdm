@@ -1,0 +1,15 @@
+% ---------------------------------------------------------------------------
+% Minimal stand-in for the standard LaTeX "endnotes" package.
+% Provided ONLY because this offline machine cannot install the genuine CTAN
+% package, which sagej.cls loads via \RequirePackage{...endnotes...} and then
+% redefines through \enotesize / \enoteheading / \enoteformat.
+% The manuscript uses regular footnotes and never invokes \endnote/\theendnotes,
+% so defining only the hooks sagej.cls redefines is sufficient and changes no
+% layout. On a network-connected MiKTeX/TeX Live, delete this file: the real
+% package will be used automatically.
+% ---------------------------------------------------------------------------
+\ProvidesPackage{endnotes}[1999/06/23 v1.3b minimal endnotes shim]
+\providecommand{\enoteformat}{}
+\providecommand{\enotesize}{\small}
+\providecommand{\enoteheading}{}
+\endinput

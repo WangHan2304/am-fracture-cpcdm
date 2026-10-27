@@ -1,0 +1,14 @@
+% ---------------------------------------------------------------------------
+% Minimal stand-in for the standard LaTeX "textcase" package.
+% Provided ONLY because this offline machine cannot install the genuine CTAN
+% package, which sagej.cls loads via \RequirePackage{...textcase...}.
+% The manuscript never calls any text-case command, so exposing the two
+% classic macros as thin wrappers is sufficient and changes no layout.
+% On a network-connected MiKTeX/TeX Live, delete this file: the real package
+% will be used automatically.
+% ---------------------------------------------------------------------------
+\ProvidesPackage{textcase}[2004/01/26 v1.07 minimal text-case shim]
+\providecommand{\MakeTextUppercase}[1]{\MakeUppercase{#1}}
+\providecommand{\MakeTextLowercase}[1]{\MakeLowercase{#1}}
+\providecommand{\MakeTextTitle}[1]{#1}
+\endinput
