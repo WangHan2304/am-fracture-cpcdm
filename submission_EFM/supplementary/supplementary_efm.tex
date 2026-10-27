@@ -1,14 +1,8 @@
 ﻿% ============================================================================
-% Supplementary Material
-% A Critical Assessment of AM-Specific Damage Descriptors for Fracture
-% Prediction: Strict Cross-Validation and Applicability Limits
-% Detailed nonlocal-regularization study moved from the main text (Section
-% "Nonlocal damage regularization of the full-field reference").
+% Supplementary Material for the EFM submission (companion to manuscript_efm.tex).
 %
-% EFM build: content identical to the IJMS supplementary; only this header and
-% the file name change. Compiled from this directory (figures resolve via
-% ../../simulation/figures). Layout unchanged except the base size: article, 11pt,
-% twocolumn.
+% Compiled from this directory (figures resolve via ../../simulation/figures).
+% Layout: article, 11pt, twocolumn, a4paper.
 % ============================================================================
 
 \documentclass[11pt,a4paper,twocolumn]{article}
@@ -303,7 +297,7 @@ with the Taylor reference.}
 
 
 \bigskip
-\noindent\textbf{Full-field coupled-damage references (2D and 3D CPFEM): detail moved from the main text.}
+\noindent\textbf{Full-field coupled-damage references (2D and 3D CPFEM): full detail.}
 
 \paragraph{Full-field coupled-damage reference: in-house 2D plane-strain CPFEM.}
 Because the spectral-FFT solver diverges at damage activation and the DAMASK 3.1.0 distribution provides no FEM solver (the main-text full-field section), and because no open-source CPFEM framework (MOOSE, FEniCS, PRISMS) is installable in the present environment, we implement an explicit in-house two-dimensional plane-strain full-field crystal-plasticity finite-element model with the identical damage law, material parameters, orientation set and time discretization as the Taylor surrogate, so that the \emph{only} difference is the mechanical assumption: iso-strain Taylor averaging versus the equilibrium solution of a Q4 finite-element mesh (16 grains in a $4\times4$ arrangement, $2\times2$ Gauss quadrature per element, damped Newton iteration with a numerically evaluated tangent and step-halving adaptation; batch-vectorized explicit constitutive integration with a fixed $n_{\mathrm{sub}}=30$, slip increment clipping identical to the Taylor solver). This reference captures the inter-granular strain redistribution and localization that the iso-strain hypothesis excludes, at the cost of a reduced two-dimensional representation (plane strain) and simplified kinematics; it is therefore a mechanism-level reference, not a replacement for a full 3D CPFEM or phase-field calculation, which remain follow-on work. Because this reference is a \emph{separate} finite-element implementation of the same damage law---independent of the Taylor solver except for the shared constitutive equations and orientation set---together with the three-dimensional extension below it provides the independent full-field coupled-damage validation that the divergent DAMASK spectral-FFT route could not deliver within this environment; re-implementing the identical damage law in an external open-source framework (MOOSE, PRISMS) or as a phase-field calculation is the identified next step and is documented as unavailable here (Supplementary Section~S9).
@@ -414,7 +408,7 @@ Fig.~\ref{fig:ff_cpfem_vs_taylor} are the opposite-sign bracket set by kinematic
 \label{fig:ff3d_r13_bias}
 \end{figure}
 
-\section*{S2. Multi-dimensional cross-validation on the extended literature set (moved from the main text)}
+\section*{S2. Multi-dimensional cross-validation on the extended literature set}
 
 % ---- tab:cv_variants moved from the main text ----
 \begin{table*}[htbp]
@@ -697,7 +691,7 @@ $p = 0.359$); on the 54-point set that same axis reads 64.13\% once the 30 NIST 
 is not reliably measurable with the present data (84.10\% at point level, weakly powered). No variant is
 competitive with the primary protocol, and none is presented as an improvement.
 
-\section*{S3. Code verification of the in-house solver (moved from the main text)}
+\section*{S3. Code verification of the in-house solver}
 
 Because the reported numbers all originate in the in-house solver, the code itself is verified against
 analytic solutions and its internal consistency rather than asserted. No external open-source CPFEM
@@ -706,7 +700,7 @@ availability check---is recorded in the framework-availability appendix of the m
 The verification suite contains 35 tests in four tiers: crystallography and crystal elasticity; parameter
 sourcing and orientation sets; the damage gate and monotonicity; two analytic benchmark limits; and the
 convergence of the discretisation. The analytic-limit and internal-consistency tiers pass; the items that an
-earlier draft reported as failures are re-scoped below---the reproducibility item is now closed (see the
+initial verification run reported as failures are re-scoped below---the reproducibility item is now closed (see the
 reconciliation paragraph), and the remaining ones are boundaries of the discretisation and full-field-reference
 scope rather than solver defects, reported honestly rather than relaxed.
 
@@ -754,7 +748,7 @@ configured ($\max\varepsilon = 300\,\Delta\varepsilon$) so that the measured eff
 ratio is exactly 1.0. For completeness the grain sweep gives $\varepsilon_f = 0.07145$, $0.07229$, $0.07314$ and $0.07264$ at $N_{\mathrm{gr}} = 10$, 20, 30 and 50 (relative deviation from $N_{\mathrm{gr}}=20$: $1.15\%$, $-$, $1.18\%$, $0.49\%$), and the increment sweep gives $0.07256$, $0.07229$ and $0.07180$ at $\Delta\varepsilon = 2.5\times10^{-4}$, $5\times10^{-4}$ and $10^{-3}$.
 
 \paragraph{Archived convergence values: reconciliation (closed).}
-An earlier draft recorded a reproducibility failure here. Re-running the archived
+The initial verification run recorded a reproducibility failure here. Re-running the archived
 protocol (Ti-6Al-4V, 20 grains, $S_0 = 0.32$\,MPa, $\Delta\varepsilon = 5\times10^{-4}$) from the current
 sources gives $\varepsilon_f = 0.07229$ against the archived $0.05663$---a change of $+27.65\%$---while
 the peak stress reproduces to $0.054\%$ (959.88 against 959.36\,MPa), localizing the difference to the
@@ -839,7 +833,7 @@ $\beta_6$ Hitzler repair & 32.7$\to$12.9\% & \texttt{sec:cross\_source} ($\beta_
 \end{tabular}
 \end{table*}
 
-\section*{S5. Availability of public AM datasets for external validation (moved from the main text)}
+\section*{S5. Availability of public AM datasets for external validation}
 
 The independent out-of-source checks of the main text rest on literature values compiled by hand, and a
 fair question is whether a purpose-built public AM benchmark could replace or augment them. We assessed the
@@ -903,7 +897,7 @@ Materials Project / OQMD / NOMAD & public or API key & DFT ground-state properti
 \end{tabular}
 \end{table*}
 
-\section*{S6. Targeted correction of the projection-normalization artifact (moved from the main text)}
+\section*{S6. Targeted correction of the projection-normalization artifact}
 
 The transverse diagnosis of the main-text leave-one-orientation-out section identifies a concrete, mechanism-level defect: the melt-pool-boundary projection of the main text normalizes $\lambda_{\mathrm{eff}}(\psi)$ to a single global reference density $\lambda_{\mathrm{ref}}=\SI{50}{\per\milli\meter}$, so an alloy whose own boundary density lies below that reference is read as a \emph{weaker} network and its transverse damage is \emph{decelerated}. For 316L ($\lambda_0=\SI{35}{\per\milli\meter}$) this gives $f_\lambda(\ang{90})=0.76$ even though the measured 316L transverse ductility is the lowest of its three orientations---a sign reversal. A natural targeted correction is to normalize the projection to each alloy's own build-direction value,
 \begin{equation}
@@ -958,7 +952,7 @@ AlSi10Mg   & 0.037 & $-2.5$ & $+3.4$ & $-0.2$ & $+6.0$ & $+1.6$ \\
 
 The lever acts with the wrong sign for the ductile FCC alloys. Lowering the transverse saturation stress ($\kappa>0$, the physically suggested direction) accelerates the plastic-flow driving force of damage accumulation ($\dot p$) more than it reduces the thermodynamic driving force $Y=\tilde\sigma^2/2E$, so $\varepsilon_f(90^\circ)$ falls further and the 316L error deepens from $-82.7\%$ to $-88.4\%$. Reversing the sign ($\kappa<0$) recovers 316L only from $-82.7\%$ to $-68.6\%$ at the largest admissible $|\kappa|=0.4$---still about a factor of three short of the measured transverse ductility, and reaching it would demand a transverse saturation-stress increase well outside any physical range. AlSi10Mg is already within $\approx2\%$ at $\kappa=0$ and Ti-6Al-4V is already near its measured ratio, so the correction is neutral-to-marginal for both. We therefore conclude that no physically admissible transverse saturation-stress correction lets a single $S_0$ absorb the strengthened transverse term; the FCC transverse deficiency is intrinsic to the shape of the relative projection (which even mis-anchors the 316L build direction by $\approx28\%$), not a normalizable hardening artifact. This is a second negative control and reinforces the retention of the global normalization as the production protocol.
 
-\section*{S7. Hierarchical Bayesian view of $S_0$ and of the applicability gate (moved from the main text)}
+\section*{S7. Hierarchical Bayesian view of $S_0$ and of the applicability gate}
 
 To express the material-specificity of the damage strength in a probabilistic form without a computationally prohibitive full MCMC over the explicit-Taylor solver, we fit a Normal--Normal hierarchical model (closed-form empirical Bayes) to the nine leave-one-orientation-out fold values of $\ln S_0$ (three materials $\times$ three folds; every fold value is the converged grid+refine optimum of the fold, as produced by the main-text leakage-free LOOCV script): $\ln S_{0,mk} \sim \mathcal{N}(\theta_m, \sigma^2)$, $\theta_m \sim \mathcal{N}(\mu, \tau^2)$.
 
@@ -1044,13 +1038,13 @@ Gated hybrid (23 pts) & & & \multicolumn{2}{c}{\textbf{41.5}} \\
 \end{tabular}
 \end{table*}
 
-\section*{S8. Earlier parametrization with orientation multipliers (moved from the main text)}
+\section*{S8. Superseded parametrization with orientation multipliers}
 
 For traceability we record the earlier parametrization that preceded the leakage-free production protocol reported in the main text. The production model carries \emph{no} empirical orientation multiplier: all direction dependence is generated by the closed-form projection laws and the mean Schmid factor (main-text Section~2). The present section documents the superseded alternative for completeness only.
 
 In that earlier parametrization each material carried three fitted parameters---the damage energy strength $S_0$ plus two residual orientation multipliers $a_{45}$ and $a_{90}$, applied as piecewise factors on the damage driving force at the oblique ($\psi=45^\circ$) and transverse ($\psi=90^\circ$) orientations---calibrated on the fracture-strain data of all three orientations. Because three parameters are fitted to the three measured orientations of each material, the resulting average calibration fracture-strain error of $0.76\%$ over the nine cases is a near-interpolation result and is \emph{not} a predictive error; it is quoted here only to explain why the main-text single-parameter calibration error ($20.35\%$) is larger yet honest. A fixed-global-parameter sensitivity check (orientation multipliers and $g_s$ fixed at values calibrated on all nine cases) yielded an average leave-one-orientation-out error of $2.44\%$, but that figure is likewise not a blind prediction because the held-out orientation indirectly informed the fixed parameters; it is therefore re-labelled a \emph{fixed-global-parameter sensitivity check} and is not reported as validation anywhere in this work. The calibrated multiplier values (Ti-6Al-4V: $a_{45}=1.246$, $a_{90}=2.740$; 316L~SS: $1.048$, $1.231$; AlSi10Mg: $0.558$, $0.563$) are recorded here for reproducibility. The leakage-free protocol of the main text removes these multipliers entirely (fixed at unity, hence not model parameters) and is the only protocol on which the reported calibration and blind cross-validation results are based.
 
-\section*{S9. Open-source CPFEM framework availability in the present environment (moved from the main text)}
+\section*{S9. Open-source CPFEM framework availability in the present environment}
 
 The coupled-damage full-field references of the main text are produced with in-house solvers, which
 raises the question of whether an established open-source framework could be used instead. The answer
@@ -1122,7 +1116,7 @@ future work. FEniCSx was nonetheless brought up afterwards in a separate Linux \
 environment to supply a stronger independent re-implementation cross-check, reported in Section~S13; this
 reinforces rather than alters the conclusions above.
 
-\section*{S10. Parameter provenance and degrees of freedom (moved from the main text)}
+\section*{S10. Parameter provenance and degrees of freedom}
 
 Table~\ref{tab:param_origin} gives the class-by-class provenance and fitted degrees of freedom of the
 full parameter set quoted in main-text Table~1. Each parameter belongs to exactly one class, and the
@@ -1437,7 +1431,7 @@ reduced (all inert) & 50.5 ($-2.6$) & 34.0 ($-0.7$) & 6 ($+1$) \\
 \end{tabular}
 \end{table*}
 
-\paragraph{Factorial interaction, $k_g$ and $D_c$ detail (moved from the main text).}
+\paragraph{Factorial interaction, $k_g$ and $D_c$ detail.}
 In the $3^3$ full-factorial design the $\beta_4$ marginal means span $0.0587\to0.1251$ ($91.9\%$ of the baseline),
 $\beta_5$ $0.0822\to0.0887$ ($8.9\%$) and $\beta_3$ $1.6\%$; two-factor interactions reach $92.9\%$
 ($\beta_3\times\beta_4$, itself dominated by the $\beta_4$ main effect), $15.8\%$ ($\beta_4\times\beta_5$) and $9.0\%$
@@ -1708,9 +1702,9 @@ class the main text identifies for Inconel~718.
 
 
 % ===========================================================================
-\section*{S15. Additional figures and tables moved from the main text}
+\section*{S15. Additional figures and tables}
 \label{sec:si_moved}
-For conciseness of the main text, the following figures and tables are reported here.
+The following figures and tables support the main text.
 
 \begin{figure*}[tp]
 \centering

@@ -1,26 +1,12 @@
 % ============================================================================
-% 论文初稿: Homogenization bias and applicability limits of orientation-resolved
-% ductile damage descriptors in AM alloys under Taylor crystal plasticity
-% Target Journal: Engineering Fracture Mechanics (Elsevier, elsarticle)
-% ============================================================================
-
-% ============================================================================
 % EFM submission build using the official Elsevier elsarticle.cls template.
+% Companion file: supplementary/supplementary_efm.tex.
 % Layout: elsarticle "preprint,10pt" single-column submission format (wide text
-% block so the data tables stay within the measure; 10pt matches the density of
-% the typeset EFM article and keeps the preprint at 59 pages) with line numbers
-% via the lineno package, using numbered references. The body,
-% back-matter and thebibliography are ported from the IJMS build, which is
-% itself ported from the sagej build; only the preamble and front matter are
-% reworked for Elsevier (\begin{frontmatter}/\author\affiliation\cortext\ead and
+% block so the data tables stay within the measure) with line numbers via the
+% lineno package, using numbered references. The preamble and front matter are
+% Elsevier-specific (\begin{frontmatter}/\author\affiliation\cortext\ead and
 % \begin{keyword}). elsarticle.cls is bundled in template\; siunitx.sty is
 % placed beside this file.
-% EFM-specific requirements met here (Guide for Authors, 2026-10 check):
-%   - abstract: ONE paragraph, <=250 words (journal limit);
-%   - keywords: <=5 (journal limit); non-standard abbreviations expanded in the
-%     abstract (CPFEM); continuous line numbering (lineno);
-%   - Highlights: mandatory, delivered as a separate editable file;
-%   - Funding: Elsevier bracket format "[grant number ...]".
 % ============================================================================
 \documentclass[preprint,10pt]{elsarticle}
 \usepackage{amsmath,amssymb,bm}
@@ -37,14 +23,14 @@
 \usetikzlibrary{arrows.meta,positioning}
 % Let justified text stretch a little to avoid overfull lines in narrow columns.
 \setlength{\emergencystretch}{2.5em}
-% sagej typesets sections unnumbered by default (secnumdepth=-2); the manuscript
-% cross-references numbered sections via Section~\ref{...}, so restore numbering.
+% Sections are referenced by number throughout (Section~\ref{...}), so section
+% numbering is restored explicitly below.
 \setcounter{secnumdepth}{2}
 \newlength{\scalelabwid}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
-% ---- elsarticle sets its own page geometry; the sagej A4/twocolumn overrides
-% (ftnright, manual \textwidth/\oddsidemargin/...) are intentionally dropped. ----
+% ---- elsarticle sets its own page geometry; the earlier template's A4/twocolumn
+% overrides (ftnright, manual \textwidth/\oddsidemargin/...) are intentionally dropped. ----
 \journal{Engineering Fracture Mechanics}
 % ---- Float packing: allow multiple full-width (figure*/table*) floats at the
 % top of a page and reduce large white gaps left by the full-width figures. ----
@@ -61,7 +47,7 @@
 
 \begin{frontmatter}
 
-\title{Leakage-free validation of orientation-resolved ductile damage descriptors in additively manufactured metals: homogenization bias and a mechanism-keyed applicability domain}
+\title{A leakage-free validation protocol and mechanism-keyed applicability domain for orientation-resolved ductile damage descriptors in additively manufactured metals}
 
 \author[zzlab]{Han Wang\corref{cor1}}
 \ead{wanghan2304@zhejianglab.org}
@@ -77,7 +63,7 @@
 
 \begin{abstract}
 
-In additively manufactured (AM) metals, texture and columnar grains make ductile damage orientation-resolved, but descriptor validation is confounded by data leakage and by the iso-strain (Taylor) up-scaling bias, which over-smooths load partitioning, so much predicted anisotropy is a homogenization artefact. Accuracy alone cannot separate descriptor signal from artefact. We answer with a \emph{leakage-free validation protocol} and an \emph{applicability framework}, not an accuracy claim. Three results follow. \emph{(i) Homogenization bias.} Against spectral-FFT and three-dimensional crystal-plasticity finite-element (CPFEM) full-field references the Taylor surrogate mis-predicts plastic flow by up to $\pm26\%$, and the \emph{sign} of its fracture-strain bias is set by the kinematic constraint, not the damage law. \emph{(ii) Direction at indistinguishable accuracy.} Under leakage-free validation the orientation descriptors \emph{cannot be distinguished} from an equal-parameter Lemaitre baseline in blind accuracy, yet carry a positive but \emph{not statistically significant} ordering signal (Kendall $\bar\tau=+0.21$, $p=0.53$), near-quantitative only in the correctly-polarised columnar $0^\circ\!>\!45^\circ\!>\!90^\circ$ sub-domain, not across polarity or in the FCC alloys. \emph{(iii) Applicability boundary.} A per-material, per-mechanism rule states when the descriptors transfer, when they support only directional screening, and when recalibration is needed; instantiated as a characterization-only gate ($\xi_0\ge3$) that invokes the directional model only where its columnar mechanism is active and otherwise falls back to the isotropic baseline, so it is never worse by construction (blind error $15.9\%$ versus $24.3\%$ isotropic and $31.2\%$ ungated directional). The contribution is the protocol and the mapped boundary, not a mean-accuracy gain: \textbf{we do not assert that the enriched model beats an equal-parameter baseline}.
+In additively manufactured (AM) metals, texture and columnar grains make ductile damage orientation-resolved, but descriptor validation is confounded by data leakage and by the iso-strain (Taylor) up-scaling bias, which over-smooths load partitioning, so much predicted anisotropy is a homogenization artefact; accuracy alone cannot tell signal from artefact. We answer with a \emph{leakage-free validation protocol} and an \emph{applicability framework}. \emph{(i) Homogenization bias.} Against spectral-FFT and three-dimensional crystal-plasticity finite-element (CPFEM) full-field references the Taylor surrogate mis-predicts plastic flow by up to $\pm26\%$, and its fracture-strain bias \emph{sign} is set by the kinematic constraint, not the damage law. \emph{(ii) Direction at indistinguishable accuracy.} Under leakage-free validation the orientation descriptors \emph{cannot be distinguished} from an equal-parameter Lemaitre baseline in blind accuracy --- we do not assert that the enriched model beats it --- yet they carry a positive but \emph{not statistically significant} ordering signal (Kendall $\bar\tau=+0.21$, $p=0.53$), near-quantitative only in the correctly-polarised columnar sub-domain, not across polarity or in the FCC alloys. \emph{(iii) Applicability boundary.} A per-material, per-mechanism rule states when they transfer, when only directional screening is admissible, and when recalibration is needed. \textbf{The contribution is the protocol and the mapped boundary, not a mean-accuracy gain.} The boundary is instantiated as a \emph{characterization-only gate} ($\xi_0\ge3$) that routes each alloy to the directional model only where its columnar mechanism is active, otherwise to the isotropic baseline (blind error $15.9\%$ against $24.3\%$ always-isotropic and $31.2\%$ ungated), hence never worse than the baseline by construction.
 \end{abstract}
 
 \begin{keyword}
@@ -666,7 +652,7 @@ The uncertainty bands above are propagated into the uncertainty analysis (Sectio
 Alongside the primary nine-case protocol, the model is also \emph{reported on} an explicitly extended literature dataset of 54 points spanning four materials and seven sources: the nine primary cases (retained verbatim, label \texttt{v12\_original}) plus independent reports on LPBF Ti-6Al-4V \cite{sun2024ti64adem}, SLM 316L \cite{hitzler2017materials}, SLM AlSi10Mg \cite{metals2018alsi_aniso}, solution-treated LPBF IN718 \cite{hovig2018in718}, as-built LPBF IN718 at three laser-energy densities \cite{watring2020addma}, and 30 published group means from the NIST open-access LPBF Ti-6Al-4V hot-isostatic-pressing study mds2-3402 \cite{nisthip_ti64,nistir8551}. It is a reported-on set, \emph{not} a re-calibration: every cross-validation fold of Section~\ref{sec:multidim_cv} reuses the locked single $S_0$ per material of the primary protocol, so the primary nine-case statistics (Table~S29 and Table~\ref{tab:loocv}) are unchanged by its introduction, and three of the five added sources are the same publications used as blind sets elsewhere (Sections~\ref{sec:in718_blind}--\ref{sec:cross_source}), so Section~\ref{sec:multidim_cv} is an extended-protocol assessment and not a second independent validation. Every point is placed in the model's orientation convention ($\ang{0}$ = specimen axis \emph{parallel} to the build direction) by a source-specific angle mapping recorded per point in the extraction log and reconciled by two authors against the cited figure or table---the double check that reduced four apparent $\ang{90}$ reversals to the single genuine one (Section~\ref{sec:applicability}) and guards against mistaking a build-plate-relative angle for the model's build-direction-relative $\psi$. Twenty-two points lie outside a nominal property band and are retained unadjusted as exactly the process-window signal the leave-one-process study probes, with HIP/annealed and solution-treated data kept in a separate stratum that never enters any $S_0$ calibration. The full 54-point table with per-source process windows, the three non-trivial angle mappings, the flag and stratification detail, and the NIST retrieval, licensing and checksum provenance are given in the Supplementary Material, Section~S2.
 
 % tab:extended_dataset (54-point enumeration table) and the NIST provenance detail
-% moved to Supplementary Material Section S2 for length.
+% are reported in Supplementary Material Section~S2.
 
 \subsection{Calibration results}
 \label{sec:calibration_results}
@@ -756,7 +742,7 @@ This weakly-columnar failure traces quantitatively to the normalization of the m
 \subsection{Applicability-gated hybrid: routing keyed on the columnar aspect ratio}
 \label{sec:gated_hybrid}
 
-The blind errors of Section~\ref{sec:loocv} can be turned into a constructive rule by \emph{routing} rather than stopping: apply the directional descriptor only where its mechanism is active---a strongly columnar microstructure, quantified from characterization alone by the grain aspect ratio $\xi_0\ge3$---and fall back to the isotropic Lemaitre baseline otherwise. The gate uses no fracture-strain target and adds no fitted parameter, so it is leakage-free. Evaluated on the same nine leakage-free leave-one-orientation-out folds, the gated hybrid reaches a mean blind fracture-strain error of $15.9\%$, against $31.2\%$ for the ungated directional model and $24.3\%$ for the always-isotropic baseline (Table~\ref{tab:gate}). The gate selects the directional model for exactly the alloy where it wins (Ti-6Al-4V, $10.8\%$ versus a baseline $36.1\%$) and the baseline for the two weakly columnar FCC alloys where the projection over-shapes the transverse response, recovering the per-alloy optimum attainable by \emph{any} selection rule (equal to the hindsight oracle) while retaining the directional capability ($r_{0/90}=1.65$ versus $1.67$) wherever it authorises the descriptor. Because the routing decision itself uses no target data, the hybrid is never worse than the baseline by construction, and it keeps the directional physics inside the part of the applicability domain where that physics is real. Two facts make this more than a selection trick. First, because the gate sends the two weakly-columnar FCC alloys back to the isotropic baseline it is inert there, so the \emph{entire} $8.5$-point margin it attains over the always-isotropic baseline is supplied by the descriptor's own accuracy in the columnar domain ($25.4$ points on Ti-6Al-4V, three of three folds, i.e.\ $25.4/3=8.5$ points on the three-alloy mean): without the descriptor the gate collapses to the baseline. Second, the identical leakage-free rule beats the baseline out of sample as well---on the external $n=23$ blind set it gives a mean error of $41.5\%$ against $48.3\%$ (always-isotropic) and $53.1\%$ (ungated descriptor), because the descriptor is ahead on both gated-in columnar materials (Ti-6Al-4V $26.8$ versus $35.4$, Inconel~718 $57.2$ versus $86.0$), while the ungated aggregate reverses only through the six out-of-domain reversed-polarity 316L points ($106.2$ versus $58.6$) that the gate excludes; restricted to the gate's own domain the descriptor leads by $14$ points ($35.1$ versus $49.2$; per-material breakdown in Supplementary Section~S7). The gate is deliberately asymmetric---the descriptor must be \emph{earned} by positive columnar evidence and any alloy lacking it defaults to the isotropic baseline---so extrapolating it to an unseen material degrades at worst to that baseline rather than to a misapplied descriptor, and $\xi_0=3$ lies on a routing-invariant plateau $\theta\in(2.5,3.0]$, not a knife-edge (threshold provenance and safety margin detailed in Supplementary Section~S7). The threshold is nevertheless identified post hoc on three alloys and is not cross-validated over a wider microstructural span: on a new material it should be re-registered against the mechanism check of the decision procedure (Section~\ref{sec:applicability}), not assumed.
+We propose a \emph{mechanism-keyed routing rule} that invokes the directional descriptor only where its columnar mechanism is active---a strongly columnar microstructure, quantified from characterization alone by the grain aspect ratio $\xi_0\ge3$---and falls back to the isotropic Lemaitre baseline otherwise. The rule uses no fracture-strain target and adds no fitted parameter, so it is leakage-free and never worse than the baseline by construction. Evaluated on the same nine leakage-free leave-one-orientation-out folds, the gated hybrid reaches a mean blind fracture-strain error of $15.9\%$, against $31.2\%$ for the ungated directional model and $24.3\%$ for the always-isotropic baseline (Table~\ref{tab:gate}). The gate selects the directional model for exactly the alloy where it wins (Ti-6Al-4V, $10.8\%$ versus a baseline $36.1\%$) and the baseline for the two weakly columnar FCC alloys where the projection over-shapes the transverse response, recovering the per-alloy optimum attainable by \emph{any} selection rule (equal to the hindsight oracle) while retaining the directional capability ($r_{0/90}=1.65$ versus $1.67$) wherever it authorises the descriptor. The routing also keeps the directional physics inside the part of the applicability domain where that physics is real. Two facts make this more than a selection trick. First, because the gate sends the two weakly-columnar FCC alloys back to the isotropic baseline it is inert there, so the \emph{entire} $8.5$-point margin it attains over the always-isotropic baseline is supplied by the descriptor's own accuracy in the columnar domain ($25.4$ points on Ti-6Al-4V, three of three folds, i.e.\ $25.4/3=8.5$ points on the three-alloy mean): without the descriptor the gate collapses to the baseline. Second, the identical leakage-free rule beats the baseline out of sample as well---on the external $n=23$ blind set it gives a mean error of $41.5\%$ against $48.3\%$ (always-isotropic) and $53.1\%$ (ungated descriptor), because the descriptor is ahead on both gated-in columnar materials (Ti-6Al-4V $26.8$ versus $35.4$, Inconel~718 $57.2$ versus $86.0$), while the ungated aggregate reverses only through the six out-of-domain reversed-polarity 316L points ($106.2$ versus $58.6$) that the gate excludes; restricted to the gate's own domain the descriptor leads by $14$ points ($35.1$ versus $49.2$; per-material breakdown in Supplementary Section~S7). The gate is deliberately asymmetric---the descriptor must be \emph{earned} by positive columnar evidence and any alloy lacking it defaults to the isotropic baseline---so extrapolating it to an unseen material degrades at worst to that baseline rather than to a misapplied descriptor, and $\xi_0=3$ lies on a routing-invariant plateau $\theta\in(2.5,3.0]$, not a knife-edge (threshold provenance and safety margin detailed in Supplementary Section~S7). The threshold is nevertheless identified post hoc on three alloys and is not cross-validated over a wider microstructural span: on a new material it should be re-registered against the mechanism check of the decision procedure (Section~\ref{sec:applicability}), not assumed.
 
 \begin{table}[htbp]
 \centering

@@ -1,6 +1,6 @@
-# Leakage-free validation of orientation-resolved ductile damage descriptors in additively manufactured metals: homogenization bias and a mechanism-keyed applicability domain (Taylor CP-CDM)
+# A leakage-free validation protocol and mechanism-keyed applicability domain for orientation-resolved ductile damage descriptors in additively manufactured metals (Taylor CP-CDM)
 
-Reproducibility archive for the manuscript submitted to *Engineering Fracture Mechanics* (Elsevier), transferred there at the editors' suggestion from the *International Journal of Materials Science*. It contains the solver code, the curated literature dataset, the result JSONs behind every reported number, and the LaTeX sources.
+Reproducibility archive for the manuscript submitted to *Engineering Fracture Mechanics* (Elsevier), transferred there at the editors' suggestion from the *International Journal of Mechanical Sciences*. It contains the solver code, the curated literature dataset, the result JSONs behind every reported number, and the LaTeX sources.
 
 > **Version of record and priority.** This archive is the citable version of record for the work described here, released under the MIT License (see the LICENSE file) and archived with a versioned DOI: [10.5281/zenodo.23257091](https://doi.org/10.5281/zenodo.23257091). The companion manuscript is submitted to *Engineering Fracture Mechanics*. Please cite the manuscript and/or the DOI if you build on this work. The DOI pins this archive as released at that version; later commits, including the current manuscript sources, are not covered by it.
 
